@@ -1,7 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.models.Position;
-import centrikt.factory_monitoring.daily_report.models.Product;
+import centrikt.factory_monitoring.daily_report.dtos.PositionDTO;
 import centrikt.factory_monitoring.daily_report.services.PositionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,37 +25,42 @@ public class PositionController {
         this.positionService = positionService;
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Position> getPosition(@PathVariable Long id) {
+    @GetMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<PositionDTO> getPosition(@PathVariable Long id) {
         log.info("Fetching position with id: {}", id);
-        Position position = positionService.get(id);
+        PositionDTO position = positionService.get(id);
         return ResponseEntity.ok(position);
     }
 
-    @PostMapping()
-    public ResponseEntity<Position> createPosition(@RequestBody Position position) {
-        log.info("Creating new position: {}", position);
-        Position createdPosition = positionService.create(position);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<PositionDTO> createPosition(@RequestBody PositionDTO positionDTO) {
+        log.info("Creating new position: {}", positionDTO);
+        PositionDTO createdPosition = positionService.create(positionDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPosition);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Position> updatePosition(@PathVariable Long id, @RequestBody Position position) {
+    @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<PositionDTO> updatePosition(@PathVariable Long id, @RequestBody PositionDTO positionDTO) {
         log.info("Updating position with id: {}", id);
-        Position updatedPosition = positionService.update(id, position);
+        PositionDTO updatedPosition = positionService.update(id, positionDTO);
         return ResponseEntity.ok(updatedPosition);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Void> deletePosition(@PathVariable Long id) {
         log.info("Deleting position with id: {}", id);
         positionService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping()
-    public ResponseEntity<List<Position>> getAllPositions() {
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<PositionDTO>> getAllPositions() {
         log.info("Fetching all positions");
-        List<Position> positions = positionService.getAll();
+        List<PositionDTO> positions = positionService.getAll();
         return ResponseEntity.ok(positions);
     }
 }

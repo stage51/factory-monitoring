@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.models.Product;
+import centrikt.factory_monitoring.daily_report.dtos.ProductDTO;
 import centrikt.factory_monitoring.daily_report.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,37 +25,42 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(value = "/{id}")
-    public ResponseEntity<Product> getProduct(@PathVariable Long id) {
+    @GetMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
         log.info("Fetching product with id: {}", id);
-        Product product = productService.get(id);
+        ProductDTO product = productService.get(id);
         return ResponseEntity.ok(product);
     }
 
-    @PostMapping()
-    public ResponseEntity<Product> createProduct(@RequestBody Product product) {
-        log.info("Creating new product: {}", product);
-        Product createdProduct = productService.create(product);
+    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
+        log.info("Creating new product: {}", productDTO);
+        ProductDTO createdProduct = productService.create(productDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
-    @PutMapping(value = "/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product product) {
+    @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
         log.info("Updating product with id: {}", id);
-        Product updatedProduct = productService.update(id, product);
+        ProductDTO updatedProduct = productService.update(id, productDTO);
         return ResponseEntity.ok(updatedProduct);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.info("Deleting product with id: {}", id);
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping()
-    public ResponseEntity<List<Product>> getAllProducts() {
+    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
         log.info("Fetching all products");
-        List<Product> products = productService.getAll();
+        List<ProductDTO> products = productService.getAll();
         return ResponseEntity.ok(products);
     }
 }

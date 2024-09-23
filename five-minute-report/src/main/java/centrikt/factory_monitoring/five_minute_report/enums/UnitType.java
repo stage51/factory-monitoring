@@ -1,14 +1,30 @@
 package centrikt.factory_monitoring.five_minute_report.enums;
 
-public enum UnitType {
-    PACKED(0), UNPACKED(1);
+import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstraintException;
 
-    private int unitType;
-    private UnitType(int unitType){
+public enum UnitType {
+    PACKED("packed"), UNPACKED("unpacked");
+
+    private String unitType;
+    UnitType(String unitType){
         this.unitType = unitType;
     }
+
+    public String getUnitType() {
+        return unitType;
+    }
+
+    public static UnitType fromString(String string) {
+        for (UnitType unitType : values()) {
+            if (unitType.getUnitType().equals(string)) {
+                return unitType;
+            }
+        }
+        throw new InvalidConstraintException("Invalid unitType: " + string);
+    }
+
     @Override
     public String toString() {
-        return String.valueOf(unitType);
+        return unitType;
     }
 }

@@ -1,9 +1,11 @@
 package centrikt.factory_monitoring.five_minute_report.services.impl;
 
+import centrikt.factory_monitoring.five_minute_report.dtos.PositionDTO;
+import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
+import centrikt.factory_monitoring.five_minute_report.mappers.PositionMapper;
 import centrikt.factory_monitoring.five_minute_report.models.Position;
 import centrikt.factory_monitoring.five_minute_report.repos.PositionRepository;
 import centrikt.factory_monitoring.five_minute_report.services.PositionService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,32 +15,40 @@ import java.util.List;
 public class PositionServiceImpl implements PositionService {
 
     private PositionRepository positionRepository;
+    private PositionMapper positionMapper;
 
-    public PositionServiceImpl(PositionRepository positionRepository) {
+    public PositionServiceImpl(PositionRepository positionRepository, PositionMapper positionMapper) {
         this.positionRepository = positionRepository;
+        this.positionMapper = positionMapper;
     }
 
     @Autowired
     public void setPositionRepository(PositionRepository positionRepository) {
         this.positionRepository = positionRepository;
     }
-
-    @Override
-    public Position create(Position dto) {
-        return positionRepository.save(dto);
+    @Autowired
+    public void setPositionMapper(PositionMapper positionMapper) {
+        this.positionMapper = positionMapper;
     }
 
     @Override
-    public Position get(Long id) {
-        return positionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Position not found with id: " + id));
+    public PositionDTO create(PositionDTO dto) {
+        return positionMapper.toDTO(positionRepository.save(positionMapper.toEntity(dto)));
     }
 
     @Override
-    public Position update(Long id, Position dto) {
-        Position existingPosition = positionRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Position not found with id: " + id));
-        return positionRepository.save(dto);
+    public PositionDTO get(Long id) {
+        return positionMapper.toDTO(positionRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Position not found with id: " + id)));
+    }
+
+    @Override
+    public PositionDTO update(Long id, PositionDTO dto) {
+        Position existingPosition = positionMapper.toEntity(dto);
+        if (positionRepository.findById(id).isPresent()){
+            existingPosition.setId(id);
+        } else throw new EntityNotFoundException("Position not found with id: " + id);
+        return positionMapper.toDTO(positionRepository.save(existingPosition));
     }
 
     @Override
@@ -50,7 +60,7 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public List<Position> getAll() {
-        return positionRepository.findAll();
+    public List<PositionDTO> getAll() {
+        return positionRepository.findAll().stream().map(positionMapper::toDTO).toList();
     }
 }

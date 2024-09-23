@@ -1,9 +1,11 @@
 package centrikt.factory_monitoring.five_minute_report.services.impl;
 
+import centrikt.factory_monitoring.five_minute_report.dtos.ProductDTO;
+import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
+import centrikt.factory_monitoring.five_minute_report.mappers.ProductMapper;
 import centrikt.factory_monitoring.five_minute_report.models.Product;
 import centrikt.factory_monitoring.five_minute_report.repos.ProductRepository;
 import centrikt.factory_monitoring.five_minute_report.services.ProductService;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,31 +15,40 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
+    private ProductMapper productMapper;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
+    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
         this.productRepository = productRepository;
+        this.productMapper = productMapper;
     }
+
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-
-    @Override
-    public Product create(Product dto) {
-        return productRepository.save(dto);
+    @Autowired
+    public void setProductMapper(ProductMapper productMapper) {
+        this.productMapper = productMapper;
     }
 
     @Override
-    public Product get(Long id) {
-        return productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
+    public ProductDTO create(ProductDTO dto) {
+        return productMapper.toDTO(productRepository.save(productMapper.toEntity(dto)));
     }
 
     @Override
-    public Product update(Long id, Product dto) {
-        Product existingProduct = productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id));
-        return productRepository.save(dto);
+    public ProductDTO get(Long id) {
+        return productMapper.toDTO(productRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id)));
+    }
+
+    @Override
+    public ProductDTO update(Long id, ProductDTO dto) {
+        Product existingPosition = productMapper.toEntity(dto);
+        if (productRepository.findById(id).isPresent()){
+            existingPosition.setId(id);
+        } else throw new EntityNotFoundException("Product not found with id: " + id);
+        return productMapper.toDTO(productRepository.save(existingPosition));
     }
 
     @Override
@@ -49,8 +60,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> getAll() {
-        return productRepository.findAll();
+    public List<ProductDTO> getAll() {
+        return productRepository.findAll().stream().map(productMapper::toDTO).toList();
     }
 }
 
