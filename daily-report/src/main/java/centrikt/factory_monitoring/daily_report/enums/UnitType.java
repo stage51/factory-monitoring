@@ -3,10 +3,11 @@ package centrikt.factory_monitoring.daily_report.enums;
 import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstraintException;
 
 public enum UnitType {
-    PACKED("packed"), UNPACKED("unpacked");
+    PACKED("Фасованная"), UNPACKED("Нефасованная");
 
-    private String unitType;
-    UnitType(String unitType){
+    private final String unitType;
+
+    UnitType(String unitType) {
         this.unitType = unitType;
     }
 
@@ -20,7 +21,7 @@ public enum UnitType {
                 return unitType;
             }
         }
-        throw new InvalidConstraintException("Invalid unitType: " + string);
+        throw new IllegalArgumentException("Invalid unitType: " + string);
     }
 
     @Override

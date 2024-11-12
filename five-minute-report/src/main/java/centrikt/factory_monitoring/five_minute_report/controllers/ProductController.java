@@ -1,15 +1,21 @@
 package centrikt.factory_monitoring.five_minute_report.controllers;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.ProductDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extended.DateRange;
+import centrikt.factory_monitoring.five_minute_report.dtos.extended.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.services.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "api/v1/five-minute-report/products")
@@ -27,25 +33,25 @@ public class ProductController {
 
     @GetMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductDTO> getProduct(@PathVariable Long id) {
+    public ResponseEntity<ProductResponse> getProduct(@PathVariable Long id) {
         log.info("Fetching product with id: {}", id);
-        ProductDTO product = productService.get(id);
+        ProductResponse product = productService.get(id);
         return ResponseEntity.ok(product);
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) {
-        log.info("Creating new product: {}", productDTO);
-        ProductDTO createdProduct = productService.create(productDTO);
+    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest) {
+        log.info("Creating new product: {}", productRequest);
+        ProductResponse createdProduct = productService.create(productRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductDTO> updateProduct(@PathVariable Long id, @RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest) {
         log.info("Updating product with id: {}", id);
-        ProductDTO updatedProduct = productService.update(id, productDTO);
+        ProductResponse updatedProduct = productService.update(id, productRequest);
         return ResponseEntity.ok(updatedProduct);
     }
 
@@ -56,11 +62,22 @@ public class ProductController {
         productService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<ProductDTO>> getAllProducts() {
-        log.info("Fetching all products");
-        List<ProductDTO> products = productService.getAll();
+    @PostMapping(value = "/fetch",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<Page<ProductResponse>> getPagePositions(
+            @RequestBody PageRequestDTO pageRequestDTO
+    ) {
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        Page<ProductResponse> products = productService.getPage(
+                pageRequestDTO.getSize(),
+                pageRequestDTO.getNumber(),
+                pageRequestDTO.getSortBy(),
+                pageRequestDTO.getSortDirection(),
+                pageRequestDTO.getFilters(),
+                pageRequestDTO.getDateRanges()
+        );
         return ResponseEntity.ok(products);
     }
 }

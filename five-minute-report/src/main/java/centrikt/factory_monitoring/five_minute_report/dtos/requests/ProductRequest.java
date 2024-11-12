@@ -1,16 +1,17 @@
-package centrikt.factory_monitoring.daily_report.dtos;
-
-import centrikt.factory_monitoring.daily_report.enums.Type;
-import centrikt.factory_monitoring.daily_report.enums.UnitType;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-import jakarta.validation.constraints.*;
-import lombok.Data;
+package centrikt.factory_monitoring.five_minute_report.dtos.requests;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import jakarta.validation.constraints.*;
+import lombok.Builder;
+import lombok.Data;
+
 @Data
 @JacksonXmlRootElement(localName = "product")
-public class ProductDTO {
+public class ProductRequest {
+
+    private Long PositionId;
 
     @NotNull(message = "Unit type must not be null")
     private String unitType;
@@ -41,5 +42,10 @@ public class ProductDTO {
     @Size(min = 1, max = 5, message = "Product VCode must be between 1 and 5 characters")
     private String productVCode;
 
+    @Digits(integer = 2, fraction = 2, message = "Crotonaldehyde must be a valid decimal number with up to 2 digits and 2 decimal places")
+    private BigDecimal crotonaldehyde;
+
+    @Digits(integer = 2, fraction = 2, message = "Toluene must be a valid decimal number with up to 2 digits and 2 decimal places")
+    private BigDecimal toluene;
 }
 

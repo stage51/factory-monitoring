@@ -1,14 +1,15 @@
 package centrikt.factory_monitoring.five_minute_report.mappers;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.ProductDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.enums.Type;
 import centrikt.factory_monitoring.five_minute_report.enums.UnitType;
 import centrikt.factory_monitoring.five_minute_report.models.Product;
-import org.springframework.stereotype.Component;
+import org.aspectj.weaver.Position;
 
-@Component
+
 public class ProductMapper {
-    public Product toEntity(ProductDTO dto) {
+    public static Product toEntity(ProductRequest dto) {
         if (dto == null) {
             return null;
         }
@@ -27,22 +28,15 @@ public class ProductMapper {
         return product;
     }
 
-    public ProductDTO toDTO(Product entity) {
+    public static ProductResponse toResponse(Product entity) {
         if (entity == null) {
             return null;
         }
-        ProductDTO dto = new ProductDTO();
-        dto.setUnitType(entity.getUnitType().toString());
-        dto.setType(entity.getType().toString());
-        dto.setFullName(entity.getFullName());
-        dto.setShortName(entity.getShortName());
-        dto.setAlcCode(entity.getAlcCode());
-        dto.setCapacity(entity.getCapacity());
-        dto.setAlcVolume(entity.getAlcVolume());
-        dto.setProductVCode(entity.getProductVCode());
-        dto.setCrotonaldehyde(entity.getCrotonaldehyde());
-        dto.setToluene(entity.getToluene());
-
+        ProductResponse dto = ProductResponse.builder().id(entity.getId()).unitType(entity.getUnitType().toString())
+                .type(entity.getType().toString()).fullName(entity.getFullName()).shortName(entity.getShortName())
+                .alcCode(entity.getAlcCode()).capacity(entity.getCapacity()).alcVolume(entity.getAlcVolume())
+                .productVCode(entity.getProductVCode()).crotonaldehyde(entity.getCrotonaldehyde())
+                .toluene(entity.getToluene()).build();
         return dto;
     }
 }

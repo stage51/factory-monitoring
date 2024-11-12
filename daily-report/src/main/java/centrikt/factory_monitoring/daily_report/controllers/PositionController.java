@@ -1,9 +1,12 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.dtos.PositionDTO;
+import centrikt.factory_monitoring.daily_report.dtos.extended.PageRequestDTO;
+import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
+import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.daily_report.services.PositionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,27 +28,27 @@ public class PositionController {
         this.positionService = positionService;
     }
 
-    @GetMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    @GetMapping(value = "/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PositionDTO> getPosition(@PathVariable Long id) {
+    public ResponseEntity<PositionResponse> getPosition(@PathVariable Long id) {
         log.info("Fetching position with id: {}", id);
-        PositionDTO position = positionService.get(id);
+        PositionResponse position = positionService.get(id);
         return ResponseEntity.ok(position);
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PositionDTO> createPosition(@RequestBody PositionDTO positionDTO) {
-        log.info("Creating new position: {}", positionDTO);
-        PositionDTO createdPosition = positionService.create(positionDTO);
+    public ResponseEntity<PositionResponse> createPosition(@RequestBody PositionRequest positionRequest) {
+        log.info("Creating new position: {}", positionRequest);
+        PositionResponse createdPosition = positionService.create(positionRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPosition);
     }
 
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PositionDTO> updatePosition(@PathVariable Long id, @RequestBody PositionDTO positionDTO) {
+    public ResponseEntity<PositionResponse> updatePosition(@PathVariable Long id, @RequestBody PositionRequest positionRequest) {
         log.info("Updating position with id: {}", id);
-        PositionDTO updatedPosition = positionService.update(id, positionDTO);
+        PositionResponse updatedPosition = positionService.update(id, positionRequest);
         return ResponseEntity.ok(updatedPosition);
     }
 
@@ -56,11 +59,23 @@ public class PositionController {
         positionService.delete(id);
         return ResponseEntity.noContent().build();
     }
-    @GetMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<List<PositionDTO>> getAllPositions() {
-        log.info("Fetching all positions");
-        List<PositionDTO> positions = positionService.getAll();
+    @PostMapping(value = "/fetch",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<Page<PositionResponse>> getPagePositions(
+            @RequestBody PageRequestDTO pageRequestDTO
+    ) {
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        Page<PositionResponse> positions = positionService.getPage(
+                pageRequestDTO.getSize(),
+                pageRequestDTO.getNumber(),
+                pageRequestDTO.getSortBy(),
+                pageRequestDTO.getSortDirection(),
+                pageRequestDTO.getFilters(),
+                pageRequestDTO.getDateRanges()
+        );
         return ResponseEntity.ok(positions);
     }
+
 }

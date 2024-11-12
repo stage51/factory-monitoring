@@ -1,12 +1,10 @@
-package centrikt.factory_monitoring.daily_report.validator;
+package centrikt.factory_monitoring.five_minute_report.utils.validator;
 
-import centrikt.factory_monitoring.daily_report.exceptions.ValidationException;
+import centrikt.factory_monitoring.five_minute_report.exceptions.ValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.Set;
 
 @Component
@@ -28,9 +26,9 @@ public class EntityValidatorImpl implements EntityValidator {
         if (!violations.isEmpty()) {
             StringBuilder sb = new StringBuilder();
             for (ConstraintViolation<T> violation : violations) {
-                sb.append(violation.getPropertyPath()).append(": ").append(violation.getMessage()).append("\n");
+                sb.append(violation.getPropertyPath()).append(": ").append(violation.getMessage()).append(" ");
             }
-            throw new ValidationException("Validation failed: \n" + sb.toString());
+            throw new ValidationException("Validation failed: " + sb.toString());
         }
     }
 }

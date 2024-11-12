@@ -3,31 +3,34 @@ package centrikt.factory_monitoring.five_minute_report.enums;
 import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstraintException;
 
 public enum Mode {
-    WASHING("001"), CALIBRATION("002"), TECHNOLOGICAL_RUN("003"), PRODUCTION("004"), SHUTDOWN("005"),
-    ACCEPTANCE_RETURN("006"), ACCEPTANCE_PURCHASE("007"), INTERNAL_MOVEMENT("008"), SHIPMENT_TO_BUYER("009"),
-    SHIPMENT_RETURN("010");
+    WASHING("Промывка АСИиУ"), CALIBRATION("Калибровка АСИиУ"), TECHNOLOGICAL_RUN("Технологический прогон"),
+    PRODUCTION("Производство продукции"), SHUTDOWN("Остановка АСИиУ"),
+    ACCEPTANCE_RETURN("Прием (возврат)"), ACCEPTANCE_PURCHASE("Прием (закупка)"),
+    INTERNAL_MOVEMENT("Внутреннее перемещение"), SHIPMENT_TO_BUYER("Отгрузка (покупателю)"),
+    SHIPMENT_RETURN("Отгрузка (возврат)");
 
-    private final String code;
+    private final String mode;
 
-    Mode(String code) {
-        this.code = code;
+    Mode(String mode) {
+        this.mode = mode;
     }
 
-    public String getCode() {
-        return code;
+    public String getMode() {
+        return mode;
     }
 
-    public static Mode fromCode(String code) {
+    public static Mode fromDescription(String description) {
         for (Mode mode : values()) {
-            if (mode.getCode().equals(code)) {
+            if (mode.getMode().equals(description)) {
                 return mode;
             }
         }
-        throw new InvalidConstraintException("Invalid mode code: " + code);
+        throw new IllegalArgumentException("Invalid mode description: " + description);
     }
 
     @Override
     public String toString() {
-        return code;
+        return mode;
     }
 }
+

@@ -1,43 +1,37 @@
 package centrikt.factory_monitoring.daily_report.mappers;
 
-import centrikt.factory_monitoring.daily_report.dtos.ProductDTO;
+import centrikt.factory_monitoring.daily_report.dtos.requests.ProductRequest;
+import centrikt.factory_monitoring.daily_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.daily_report.enums.Type;
 import centrikt.factory_monitoring.daily_report.enums.UnitType;
 import centrikt.factory_monitoring.daily_report.models.Product;
-import org.springframework.stereotype.Component;
 
-@Component
 public class ProductMapper {
 
-    public ProductDTO toDTO(Product product) {
+    public static ProductResponse toResponse(Product product) {
         if (product == null) {
             return null;
         }
-        ProductDTO productDTO = new ProductDTO();
-        productDTO.setUnitType(product.getUnitType().toString());
-        productDTO.setType(product.getType().toString());
-        productDTO.setFullName(product.getFullName());
-        productDTO.setShortName(product.getShortName());
-        productDTO.setAlcCode(product.getAlcCode());
-        productDTO.setCapacity(product.getCapacity());
-        productDTO.setAlcVolume(product.getAlcVolume());
-        productDTO.setProductVCode(product.getProductVCode());
-        return productDTO;
+        ProductResponse dto = ProductResponse.builder().id(product.getId()).unitType(product.getUnitType().toString())
+                .type(product.getType().toString()).fullName(product.getFullName()).shortName(product.getShortName())
+                .alcCode(product.getAlcCode()).capacity(product.getCapacity()).alcVolume(product.getAlcVolume())
+                .productVCode(product.getProductVCode()).build();
+        return dto;
     }
 
-    public Product toEntity(ProductDTO productDTO) {
-        if (productDTO == null) {
+    public static Product toEntity(ProductRequest productRequest) {
+        if (productRequest == null) {
             return null;
         }
         Product product = new Product();
-        product.setUnitType(UnitType.fromString(productDTO.getUnitType()));
-        product.setType(Type.fromString(productDTO.getType()));
-        product.setFullName(productDTO.getFullName());
-        product.setShortName(productDTO.getShortName());
-        product.setAlcCode(productDTO.getAlcCode());
-        product.setCapacity(productDTO.getCapacity());
-        product.setAlcVolume(productDTO.getAlcVolume());
-        product.setProductVCode(productDTO.getProductVCode());
+        product.setUnitType(UnitType.fromString(productRequest.getUnitType()));
+        product.setType(Type.fromString(productRequest.getType()));
+        product.setFullName(productRequest.getFullName());
+        product.setShortName(productRequest.getShortName());
+        product.setAlcCode(productRequest.getAlcCode());
+        product.setCapacity(productRequest.getCapacity());
+        product.setAlcVolume(productRequest.getAlcVolume());
+        product.setProductVCode(productRequest.getProductVCode());
         return product;
     }
 }

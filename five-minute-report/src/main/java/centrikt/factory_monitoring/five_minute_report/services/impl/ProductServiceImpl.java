@@ -1,25 +1,36 @@
 package centrikt.factory_monitoring.five_minute_report.services.impl;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.ProductDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.five_minute_report.mappers.ProductMapper;
 import centrikt.factory_monitoring.five_minute_report.models.Product;
 import centrikt.factory_monitoring.five_minute_report.repos.ProductRepository;
 import centrikt.factory_monitoring.five_minute_report.services.ProductService;
+import centrikt.factory_monitoring.five_minute_report.utils.filter.FilterUtil;
+import centrikt.factory_monitoring.five_minute_report.utils.validator.EntityValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
-    private ProductMapper productMapper;
+    private EntityValidator entityValidator;
+    private FilterUtil<Product> filterUtil;
 
-    public ProductServiceImpl(ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductServiceImpl(ProductRepository productRepository, EntityValidator entityValidator, FilterUtil<Product> filterUtil) {
         this.productRepository = productRepository;
-        this.productMapper = productMapper;
+        this.entityValidator = entityValidator;
+        this.filterUtil = filterUtil;
     }
 
     @Autowired
@@ -27,28 +38,33 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
     }
     @Autowired
-    public void setProductMapper(ProductMapper productMapper) {
-        this.productMapper = productMapper;
+    public void setEntityValidator(EntityValidator entityValidator) {
+        this.entityValidator = entityValidator;
+    }
+    @Autowired
+    public void setFilterUtil(FilterUtil<Product> filterUtil) {
+        this.filterUtil = filterUtil;
+    }
+    @Override
+    public ProductResponse create(ProductRequest dto) {
+        entityValidator.validate(dto);
+        return ProductMapper.toResponse(productRepository.save(ProductMapper.toEntity(dto)));
     }
 
     @Override
-    public ProductDTO create(ProductDTO dto) {
-        return productMapper.toDTO(productRepository.save(productMapper.toEntity(dto)));
-    }
-
-    @Override
-    public ProductDTO get(Long id) {
-        return productMapper.toDTO(productRepository.findById(id)
+    public ProductResponse get(Long id) {
+        return ProductMapper.toResponse(productRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id)));
     }
 
     @Override
-    public ProductDTO update(Long id, ProductDTO dto) {
-        Product existingPosition = productMapper.toEntity(dto);
+    public ProductResponse update(Long id, ProductRequest dto) {
+        entityValidator.validate(dto);
+        Product existingPosition = ProductMapper.toEntity(dto);
         if (productRepository.findById(id).isPresent()){
             existingPosition.setId(id);
         } else throw new EntityNotFoundException("Product not found with id: " + id);
-        return productMapper.toDTO(productRepository.save(existingPosition));
+        return ProductMapper.toResponse(productRepository.save(existingPosition));
     }
 
     @Override
@@ -60,8 +76,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductDTO> getAll() {
-        return productRepository.findAll().stream().map(productMapper::toDTO).toList();
+    public List<ProductResponse> getAll() {
+        return productRepository.findAll().stream().map(ProductMapper::toResponse).toList();
+    }
+
+    @Override
+    public Page<ProductResponse> getPage(int size, int number, String sortBy, String sortDirection,
+                                         Map<String, String> filters, Map<String, String> dateRanges) {
+        Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy != null ? sortBy : "id");
+        Pageable pageable = PageRequest.of(number, size, sort);
+        Specification<Product> specification = filterUtil.buildSpecification(filters, dateRanges);
+        return productRepository.findAll(specification, pageable).map(ProductMapper::toResponse);
     }
 }
 

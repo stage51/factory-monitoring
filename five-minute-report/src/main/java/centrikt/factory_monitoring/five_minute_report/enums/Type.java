@@ -3,8 +3,11 @@ package centrikt.factory_monitoring.five_minute_report.enums;
 import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstraintException;
 
 public enum Type {
-    ALCOHOL_PRODUCT("АП"), ALCOHOL_CONTAINTING_FOOD_PRODUCT("ССП"), ALCOHOL_CONTAINING_NON_FOOD_PRODUCT("ССНП"), ALCOHOL("Спирт");
-    private String type;
+    ALCOHOL_PRODUCT("Алкогольная продукция"), ALCOHOL_CONTAINING_FOOD_PRODUCT("Спиртосодержащая пищевая продукция"),
+    ALCOHOL_CONTAINING_NON_FOOD_PRODUCT("Спиртосодержащая непищевая продукция"), ALCOHOL("Этиловый спирт");
+
+    private final String type;
+
     Type(String type){
         this.type = type;
     }
@@ -19,7 +22,7 @@ public enum Type {
                 return type;
             }
         }
-        throw new InvalidConstraintException("Invalid type: " + string);
+        throw new IllegalArgumentException("Invalid type: " + string);
     }
 
     @Override

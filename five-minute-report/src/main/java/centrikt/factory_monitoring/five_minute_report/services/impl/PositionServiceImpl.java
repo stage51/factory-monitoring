@@ -1,25 +1,37 @@
 package centrikt.factory_monitoring.five_minute_report.services.impl;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.PositionDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequest;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.five_minute_report.mappers.PositionMapper;
 import centrikt.factory_monitoring.five_minute_report.models.Position;
 import centrikt.factory_monitoring.five_minute_report.repos.PositionRepository;
 import centrikt.factory_monitoring.five_minute_report.services.PositionService;
+import centrikt.factory_monitoring.five_minute_report.utils.filter.FilterUtil;
+import centrikt.factory_monitoring.five_minute_report.utils.validator.EntityValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class PositionServiceImpl implements PositionService {
 
     private PositionRepository positionRepository;
-    private PositionMapper positionMapper;
+    private EntityValidator entityValidator;
+    private FilterUtil<Position> filterUtil;
 
-    public PositionServiceImpl(PositionRepository positionRepository, PositionMapper positionMapper) {
+    public PositionServiceImpl(PositionRepository positionRepository, EntityValidator entityValidator,
+        FilterUtil<Position> filterUtil) {
         this.positionRepository = positionRepository;
-        this.positionMapper = positionMapper;
+        this.entityValidator = entityValidator;
+        this.filterUtil = filterUtil;
     }
 
     @Autowired
@@ -27,28 +39,34 @@ public class PositionServiceImpl implements PositionService {
         this.positionRepository = positionRepository;
     }
     @Autowired
-    public void setPositionMapper(PositionMapper positionMapper) {
-        this.positionMapper = positionMapper;
+    public void setEntityValidator(EntityValidator entityValidator) {
+        this.entityValidator = entityValidator;
+    }
+    @Autowired
+    public void setFilterUtil(FilterUtil<Position> filterUtil) {
+        this.filterUtil = filterUtil;
     }
 
     @Override
-    public PositionDTO create(PositionDTO dto) {
-        return positionMapper.toDTO(positionRepository.save(positionMapper.toEntity(dto)));
+    public PositionResponse create(PositionRequest dto) {
+        entityValidator.validate(dto);
+        return PositionMapper.toResponse(positionRepository.save(PositionMapper.toEntity(dto)));
     }
 
     @Override
-    public PositionDTO get(Long id) {
-        return positionMapper.toDTO(positionRepository.findById(id)
+    public PositionResponse get(Long id) {
+        return PositionMapper.toResponse(positionRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Position not found with id: " + id)));
     }
 
     @Override
-    public PositionDTO update(Long id, PositionDTO dto) {
-        Position existingPosition = positionMapper.toEntity(dto);
+    public PositionResponse update(Long id, PositionRequest dto) {
+        entityValidator.validate(dto);
+        Position existingPosition = PositionMapper.toEntity(dto);
         if (positionRepository.findById(id).isPresent()){
             existingPosition.setId(id);
         } else throw new EntityNotFoundException("Position not found with id: " + id);
-        return positionMapper.toDTO(positionRepository.save(existingPosition));
+        return PositionMapper.toResponse(positionRepository.save(existingPosition));
     }
 
     @Override
@@ -60,7 +78,19 @@ public class PositionServiceImpl implements PositionService {
     }
 
     @Override
-    public List<PositionDTO> getAll() {
-        return positionRepository.findAll().stream().map(positionMapper::toDTO).toList();
+    public List<PositionResponse> getAll() {
+        return positionRepository.findAll().stream().map(PositionMapper::toResponse).toList();
     }
+
+    @Override
+    public Page<PositionResponse> getPage(int size, int number, String sortBy, String sortDirection,
+                                          Map<String, String> filters, Map<String, String> dateRanges) {
+
+        Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy != null ? sortBy : "controlDate");
+        Pageable pageable = PageRequest.of(number, size, sort);
+        Specification<Position> specification = filterUtil.buildSpecification(filters, dateRanges);
+        return positionRepository.findAll(specification, pageable).map(PositionMapper::toResponse);
+    }
+
 }

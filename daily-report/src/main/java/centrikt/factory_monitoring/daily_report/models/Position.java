@@ -1,11 +1,13 @@
 package centrikt.factory_monitoring.daily_report.models;
 
 import centrikt.factory_monitoring.daily_report.enums.Mode;
+import centrikt.factory_monitoring.daily_report.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -17,9 +19,9 @@ public class Position extends BaseEntity {
     @JoinColumn(name = "product_id")
     private Product product;
     @Column(nullable = false)
-    private LocalDateTime startDate;
+    private ZonedDateTime startDate;
     @Column(nullable = false)
-    private LocalDateTime endDate;
+    private ZonedDateTime endDate;
     @Column(nullable = false, precision = 18, scale = 2)
     private BigDecimal vbsStart;
     @Column(nullable = false, precision = 18, scale = 2)
@@ -43,4 +45,6 @@ public class Position extends BaseEntity {
     private BigDecimal crotonaldehyde;
     @Column(precision = 2, scale = 2)
     private BigDecimal toluene;
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
 }

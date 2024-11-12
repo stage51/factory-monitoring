@@ -1,25 +1,25 @@
-package centrikt.factory_monitoring.daily_report.dtos;
+package centrikt.factory_monitoring.daily_report.dtos.requests;
 
-import centrikt.factory_monitoring.daily_report.enums.Mode;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @JacksonXmlRootElement(localName = "position")
-public class PositionDTO {
+public class PositionRequest {
 
-    @NotNull(message = "Product must not be null")
-    private ProductDTO product;
+    private ProductRequest product;
 
     @NotNull(message = "Start date must not be null")
-    private LocalDateTime startDate;
+    private ZonedDateTime startDate;
 
     @NotNull(message = "End date must not be null")
-    private LocalDateTime endDate;
+    private ZonedDateTime endDate;
 
     @NotNull(message = "VBS start must not be null")
     @Digits(integer = 16, fraction = 2, message = "VBS start must be a valid decimal number with up to 16 digits and 2 decimal places")
@@ -31,10 +31,12 @@ public class PositionDTO {
 
     @NotNull(message = "A start must not be null")
     @Digits(integer = 16, fraction = 2, message = "A start must be a valid decimal number with up to 16 digits and 2 decimal places")
+    @JsonProperty("aStart")
     private BigDecimal aStart;
 
     @NotNull(message = "A end must not be null")
     @Digits(integer = 16, fraction = 2, message = "A end must be a valid decimal number with up to 16 digits and 2 decimal places")
+    @JsonProperty("aEnd")
     private BigDecimal aEnd;
 
     @NotNull(message = "Percent alcohol must not be null")
@@ -54,7 +56,6 @@ public class PositionDTO {
     private BigDecimal temperature;
 
     @NotNull(message = "Mode must not be null")
-    @Size(min = 3, max = 3, message = "Mode must be 3 characters")
     private String mode;
 
     @Digits(integer = 1, fraction = 2, message = "Crotonaldehyde must be a valid decimal number with up to 1 digit and 2 decimal places")
@@ -62,4 +63,7 @@ public class PositionDTO {
 
     @Digits(integer = 1, fraction = 2, message = "Toluene must be a valid decimal number with up to 1 digit and 2 decimal places")
     private BigDecimal toluene;
+
+    @NotNull(message = "Status must not be null")
+    private String status;
 }

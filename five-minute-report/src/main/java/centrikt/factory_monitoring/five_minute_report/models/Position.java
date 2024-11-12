@@ -1,11 +1,13 @@
 package centrikt.factory_monitoring.five_minute_report.models;
 
 import centrikt.factory_monitoring.five_minute_report.enums.Mode;
+import centrikt.factory_monitoring.five_minute_report.enums.Status;
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @Entity
@@ -16,7 +18,7 @@ public class Position extends BaseEntity{
     @JoinColumn(name = "product_id")
     private Product product;
     @Column(nullable = false)
-    private LocalDateTime controlDate;
+    private ZonedDateTime controlDate;
     @Column(nullable = false, precision = 18, scale = 2)
     private BigDecimal vbsControl;
     @Column(nullable = false, precision = 18, scale = 2)
@@ -30,4 +32,7 @@ public class Position extends BaseEntity{
     @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Mode mode;
+    @Column(nullable = false)
+    @Enumerated(EnumType.ORDINAL)
+    private Status status;
 }
