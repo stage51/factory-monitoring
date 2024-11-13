@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: five-minute-report-service
+          uri: lb:http://localhost:8081
+          predicates:
+            - Path=/api/v1/five-minute-report/**
+        - id: daily-report-service
+          uri: lb:http://localhost:8082
+          predicates:
+            - Path=/api/v1/daily-report/**
+server:
+  port: 8080

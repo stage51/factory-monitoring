@@ -1,0 +1,10 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "http://localhost:9098/realms/factory-monitoring"
+  application:
+    name: api-gateway
+  config:
+    import: optional:configserver:http://localhost:8888
