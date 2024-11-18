@@ -6,11 +6,11 @@ spring:
           enabled: true
       routes:
         - id: five-minute-report-service
-          uri: lb:http://localhost:8081
+          uri: lb://FIVE-MINUTE-REPORT
           predicates:
             - Path=/api/v1/five-minute-report/**
         - id: daily-report-service
-          uri: lb:http://localhost:8082
+          uri: lb://DAILY-REPORT
           predicates:
             - Path=/api/v1/daily-report/**
 server:

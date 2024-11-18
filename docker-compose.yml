@@ -11,7 +11,7 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: daily-report
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - daily_postgres_data:/var/lib/postgresql/data
   five-minute-report_db:
     image: postgres
     container_name: five-minute-report_db
@@ -20,19 +20,11 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres_password
       POSTGRES_USER: postgres_admin
-      POSTGRES_DB: daily-report
+      POSTGRES_DB: five-minute-report
     volumes:
-      - postgres_data:/var/lib/postgresql/data
-  keycloak:
-    container_name: keycloak
-    image: quay.io/keycloak/keycloak
-    ports:
-      - "9098:8080"
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
-    command:
-      - "start-dev"
+      - five_minute_postgres_data:/var/lib/postgresql/data
 volumes:
-  postgres_data:
+  daily_postgres_data:
+    driver: local
+  five_minute_postgres_data:
     driver: local
