@@ -1,16 +1,15 @@
 package centrikt.factorymonitoring.authserver.models;
 
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "organizations")
-@Getter
-@Setter
-public class Organization {
-    @Id
-    private String id;
+@Entity
+@Table(name = "organizations")
+@Data
+public class Organization extends BaseEntity {
     private String shortName;
     private String name;
     private String type;
@@ -20,4 +19,6 @@ public class Organization {
     private String address;
     private String specialEmail;
     private String specialPhone;
+    @OneToOne
+    private User user;
 }

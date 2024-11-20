@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.utils.filter;
 
-import centrikt.factory_monitoring.daily_report.dtos.extended.DateRange;
+import centrikt.factory_monitoring.daily_report.dtos.extra.DateRange;
 import centrikt.factory_monitoring.daily_report.enums.Mode;
 import centrikt.factory_monitoring.daily_report.enums.Status;
 import centrikt.factory_monitoring.daily_report.enums.Type;

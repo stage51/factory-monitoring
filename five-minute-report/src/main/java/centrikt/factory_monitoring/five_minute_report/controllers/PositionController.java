@@ -1,7 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.controllers;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extended.DateRange;
-import centrikt.factory_monitoring.five_minute_report.dtos.extended.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequestDTO;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.five_minute_report.services.PositionService;
@@ -12,10 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "api/v1/five-minute-report/positions")

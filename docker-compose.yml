@@ -1,6 +1,17 @@
 version: '3.8'
 
 services:
+  user_db:
+    image: postgres
+    container_name: user_db
+    ports:
+      - "8903:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_USER: postgres_admin
+      POSTGRES_DB: user
+    volumes:
+      - user_postgres_data:/var/lib/postgresql/data
   daily-report_db:
     image: postgres
     container_name: daily-report_db
@@ -27,4 +38,6 @@ volumes:
   daily_postgres_data:
     driver: local
   five_minute_postgres_data:
+    driver: local
+  user_postgres_data:
     driver: local

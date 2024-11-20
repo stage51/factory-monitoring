@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.dtos.extended.PageRequestDTO;
+import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequestDTO;
 import centrikt.factory_monitoring.daily_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.daily_report.services.ProductService;
@@ -11,8 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "api/v1/daily-report/products")

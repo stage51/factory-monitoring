@@ -8,3 +8,7 @@ spring:
   cloud:
     config:
       override.system-properties: false
+jwt:
+  secret: monitoring101monitoring202monitoring303
+  access-expiration: 900000 # 15 минут
+  refresh-expiration: 86400000 # 1 день

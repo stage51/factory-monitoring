@@ -1,18 +1,13 @@
 package centrikt.factorymonitoring.authserver.models;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import centrikt.factorymonitoring.authserver.enums.Role;
+import jakarta.persistence.*;
+import lombok.Data;
 
-import java.util.List;
-
-@Document(collection = "users")
-@Getter
-@Setter
-public class User {
-    @Id
-    private String id;
+@Entity
+@Table(name = "users")
+@Data
+public class User extends BaseEntity {
     private String email;
     private String password;
     private String firstName;
@@ -20,6 +15,9 @@ public class User {
     private String middleName;
     private String timezone;
     private boolean subscribe;
-    private List<String> roles; // Например, "ROLE_USER", "ROLE_ADMIN"
+    private boolean active;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @OneToOne
     private Organization organization;
 }

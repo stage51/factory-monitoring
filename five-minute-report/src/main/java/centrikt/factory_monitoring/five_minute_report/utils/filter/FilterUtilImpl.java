@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.utils.filter;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extended.DateRange;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.DateRange;
 
 import centrikt.factory_monitoring.five_minute_report.enums.Mode;
 import centrikt.factory_monitoring.five_minute_report.enums.Status;
@@ -11,12 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 

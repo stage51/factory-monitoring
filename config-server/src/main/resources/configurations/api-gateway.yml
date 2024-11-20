@@ -13,5 +13,9 @@ spring:
           uri: lb://DAILY-REPORT
           predicates:
             - Path=/api/v1/daily-report/**
+        - id: auth-server
+          uri: lb://AUTH-SERVER
+          predicates:
+            - Path=/api/v1/auth-server/**
 server:
   port: 8080

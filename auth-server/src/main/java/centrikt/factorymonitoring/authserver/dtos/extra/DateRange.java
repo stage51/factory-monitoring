@@ -1,4 +1,4 @@
-package centrikt.factory_monitoring.daily_report.dtos.extended;
+package centrikt.factorymonitoring.authserver.dtos.extra;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.services;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extended.DateRange;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Map;

@@ -1,11 +1,10 @@
-package centrikt.factory_monitoring.five_minute_report.dtos.extended;
+package centrikt.factory_monitoring.daily_report.dtos.extra;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
