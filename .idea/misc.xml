@@ -10,7 +10,13 @@
         <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
         <option value="$PROJECT_DIR$/five-minute-report/pom.xml" />
         <option value="$PROJECT_DIR$/auth-server/pom.xml" />
+        <option value="$PROJECT_DIR$/microservice-utils/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/microservice-utils/pom.xml" />
+      </set>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_23" project-jdk-name="corretto-17" project-jdk-type="JavaSDK" />

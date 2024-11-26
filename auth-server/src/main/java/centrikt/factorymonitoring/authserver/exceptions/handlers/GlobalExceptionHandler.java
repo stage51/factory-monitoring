@@ -1,9 +1,7 @@
 package centrikt.factorymonitoring.authserver.exceptions.handlers;
 
-import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidTokenException;
-import centrikt.factorymonitoring.authserver.exceptions.ValidationException;
+import centrikt.factorymonitoring.authserver.exceptions.*;
+import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
 import centrikt.factorymonitoring.authserver.utils.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +25,14 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<?> handleInvalidTokenException(InvalidTokenException ex){
+        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+    }
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex){
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
+    }
+    @ExceptionHandler(UserNotActiveException.class)
+    public ResponseEntity<?> handleUserNotActiveException(UserNotActiveException ex){
+        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
     }
 }

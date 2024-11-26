@@ -4,6 +4,7 @@ import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.enums.Role;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
+import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
 import centrikt.factorymonitoring.authserver.mappers.UserMapper;
 import centrikt.factorymonitoring.authserver.models.User;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
@@ -11,6 +12,7 @@ import centrikt.factorymonitoring.authserver.services.UserService;
 import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -20,6 +22,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -60,13 +63,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse create(UserRequest dto) {
-        entityValidator.validate(dto);
-        User user = UserMapper.toEntity(dto);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRole(Role.ROLE_USER);
-        user.setCreatedAt(ZonedDateTime.now());
-        user.setUpdatedAt(ZonedDateTime.now());
-        return UserMapper.toResponse(userRepository.save(user));
+        try {
+            entityValidator.validate(dto);
+            User user = UserMapper.toEntity(dto);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setActive(true);
+            user.setRole(Role.ROLE_USER);
+            user.setCreatedAt(ZonedDateTime.now());
+            user.setUpdatedAt(ZonedDateTime.now());
+            return UserMapper.toResponse(userRepository.save(user));
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalArgumentException("User with email " + dto.getEmail() + " already exists");
+        }
     }
 
     @Override

@@ -1,10 +1,7 @@
 package centrikt.factorymonitoring.authserver.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.data.annotation.Id;
 
 @Entity
 @Table(name = "organizations")
@@ -19,6 +16,6 @@ public class Organization extends BaseEntity {
     private String address;
     private String specialEmail;
     private String specialPhone;
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST})
     private User user;
 }

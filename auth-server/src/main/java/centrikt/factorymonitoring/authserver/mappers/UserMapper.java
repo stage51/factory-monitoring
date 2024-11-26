@@ -1,9 +1,13 @@
 package centrikt.factorymonitoring.authserver.mappers;
 
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
+import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+
+import java.time.ZonedDateTime;
 
 public class UserMapper {
 
@@ -32,6 +36,20 @@ public class UserMapper {
         user.setTimezone(userRequest.getTimezone());
         user.setSubscribe(userRequest.isSubscribe());
         return user;
+    }
+
+    public static User toEntityFromUpdateRequest(User existingUser, UserRequest userRequest) {
+        if (userRequest == null) {
+            return null;
+        }
+        existingUser.setEmail(userRequest.getEmail());
+        existingUser.setPassword(userRequest.getPassword());
+        existingUser.setFirstName(userRequest.getFirstName());
+        existingUser.setLastName(userRequest.getLastName());
+        existingUser.setMiddleName(userRequest.getMiddleName());
+        existingUser.setTimezone(userRequest.getTimezone());
+        existingUser.setSubscribe(userRequest.isSubscribe());
+        return existingUser;
     }
 }
 

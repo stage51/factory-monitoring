@@ -17,5 +17,18 @@ spring:
           uri: lb://AUTH-SERVER
           predicates:
             - Path=/api/v1/auth-server/**
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "http://127.0.0.1:3000, http://127.0.0.1:3001, http://localhost:3000, localhost:3000"
+            allowedHeaders: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - DELETE
+              - PUT
+              - OPTIONS
 server:
   port: 8080

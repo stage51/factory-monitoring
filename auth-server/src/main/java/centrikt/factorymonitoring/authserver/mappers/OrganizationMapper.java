@@ -2,9 +2,12 @@ package centrikt.factorymonitoring.authserver.mappers;
 
 
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+
+import java.time.ZonedDateTime;
 
 public class OrganizationMapper {
 
@@ -25,16 +28,47 @@ public class OrganizationMapper {
             return null;
         }
         Organization organization = new Organization();
+        return getOrganization(user, organization, organizationRequest.getShortName(), organizationRequest.getName(), organizationRequest.getType(), organizationRequest.getRegion(), organizationRequest.getTaxpayerNumber(), organizationRequest.getReasonCode(), organizationRequest.getAddress(), organizationRequest.getSpecialEmail(), organizationRequest.getSpecialPhone());
+    }
+
+    public static Organization toEntityFromCreateRequest(AuthOrganizationRequest organizationRequest, User user) {
+        if (organizationRequest == null) {
+            return null;
+        }
+        Organization organization = new Organization();
+        organization.setCreatedAt(ZonedDateTime.now());
+        organization.setUpdatedAt(ZonedDateTime.now());
+        return getOrganization(user, organization, organizationRequest.getShortName(), organizationRequest.getName(), organizationRequest.getType(), organizationRequest.getRegion(), organizationRequest.getTaxpayerNumber(), organizationRequest.getReasonCode(), organizationRequest.getAddress(), organizationRequest.getSpecialEmail(), organizationRequest.getSpecialPhone());
+    }
+
+    public static Organization toEntityFromUpdateRequest(Organization existingOrganization, AuthOrganizationRequest organizationRequest) {
+        if (organizationRequest == null) {
+            return null;
+        }
+        existingOrganization.setUpdatedAt(ZonedDateTime.now());
+        existingOrganization.setShortName(organizationRequest.getShortName());
+        existingOrganization.setName(organizationRequest.getName());
+        existingOrganization.setType(organizationRequest.getType());
+        existingOrganization.setRegion(organizationRequest.getRegion());
+        existingOrganization.setTaxpayerNumber(organizationRequest.getTaxpayerNumber());
+        existingOrganization.setReasonCode(organizationRequest.getReasonCode());
+        existingOrganization.setAddress(organizationRequest.getAddress());
+        existingOrganization.setSpecialEmail(organizationRequest.getSpecialEmail());
+        existingOrganization.setSpecialPhone(organizationRequest.getSpecialPhone());
+        return existingOrganization;
+    }
+
+    private static Organization getOrganization(User user, Organization organization, String shortName, String name, String type, String region, String taxpayerNumber, String reasonCode, String address, String specialEmail, String specialPhone) {
         organization.setUser(user);
-        organization.setShortName(organizationRequest.getShortName());
-        organization.setName(organizationRequest.getName());
-        organization.setType(organizationRequest.getType());
-        organization.setRegion(organizationRequest.getRegion());
-        organization.setTaxpayerNumber(organizationRequest.getTaxpayerNumber());
-        organization.setReasonCode(organizationRequest.getReasonCode());
-        organization.setAddress(organizationRequest.getAddress());
-        organization.setSpecialEmail(organizationRequest.getSpecialEmail());
-        organization.setSpecialPhone(organizationRequest.getSpecialPhone());
+        organization.setShortName(shortName);
+        organization.setName(name);
+        organization.setType(type);
+        organization.setRegion(region);
+        organization.setTaxpayerNumber(taxpayerNumber);
+        organization.setReasonCode(reasonCode);
+        organization.setAddress(address);
+        organization.setSpecialEmail(specialEmail);
+        organization.setSpecialPhone(specialPhone);
         return organization;
     }
 }

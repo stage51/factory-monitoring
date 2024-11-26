@@ -1,11 +1,10 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.requests.AccessTokenRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.LoginRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.RefreshTokenRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.*;
+import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.AccessRefreshTokenResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.AccessTokenResponse;
+import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.services.AuthService;
 import centrikt.factorymonitoring.authserver.services.UserService;
@@ -48,13 +47,37 @@ public class AuthController {
     public ResponseEntity<UserResponse> register(@RequestBody UserRequest userRequest) {
         return ResponseEntity.ok(userService.create(userRequest));
     }
-    @PostMapping("/profile")
-    public ResponseEntity<UserResponse> profile(@RequestBody AccessTokenRequest accessTokenRequest) {
-        return ResponseEntity.ok(authService.getProfile(accessTokenRequest));
-    }
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(@RequestBody RefreshTokenRequest request) {
         authService.revokeRefreshToken(request);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserResponse> profile(@RequestHeader("Authorization") String authorizationHeader) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(authService.getProfile(accessToken));
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<UserResponse> updateProfile(@RequestHeader("Authorization") String authorizationHeader, @RequestBody UserRequest userRequest) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(authService.updateProfile(accessToken, userRequest));
+    }
+
+    @PostMapping("/organization")
+    public ResponseEntity<OrganizationResponse> createOrganization(@RequestHeader("Authorization") String authorizationHeader, @RequestBody AuthOrganizationRequest request) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(authService.createOrganization(accessToken, request));
+    }
+    @PutMapping("/organization")
+    public ResponseEntity<OrganizationResponse> updateOrganization(@RequestHeader("Authorization") String authorizationHeader, @RequestBody AuthOrganizationRequest request) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(authService.updateOrganization(accessToken, request));
+    }
+    @DeleteMapping("/organization")
+    public ResponseEntity<OrganizationResponse> deleteOrganization(@RequestHeader("Authorization") String authorizationHeader) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        authService.deleteOrganization(accessToken);
         return ResponseEntity.noContent().build();
     }
 }
