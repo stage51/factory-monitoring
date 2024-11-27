@@ -1,7 +1,5 @@
 package centrikt.factorymonitoring.authserver.dtos.requests;
 
-import centrikt.factorymonitoring.authserver.enums.Role;
-import lombok.Builder;
 import lombok.Getter;
 
 @Getter

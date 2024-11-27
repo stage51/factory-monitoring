@@ -40,18 +40,16 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         authz -> authz
-                                .requestMatchers(HttpMethod.POST, "/api/v1/five-minute-report/positions/fetch", "/api/v1/five-minute-report/products/fetch").authenticated()
-                                .requestMatchers(HttpMethod.GET, "/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").authenticated()
+                                .requestMatchers(HttpMethod.POST, "/api/v1/five-minute-report/positions/fetch", "/api/v1/five-minute-report/products/fetch").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers(HttpMethod.POST,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.DELETE,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+                                .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .and()
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 );
         http.exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) ->
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication required"))
                 .accessDeniedHandler((request, response, accessDeniedException) ->
                         response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied"));
 

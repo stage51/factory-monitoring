@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.models;
 
-import centrikt.factorymonitoring.authserver.enums.Role;
+import centrikt.factorymonitoring.authserver.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -29,7 +29,7 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 

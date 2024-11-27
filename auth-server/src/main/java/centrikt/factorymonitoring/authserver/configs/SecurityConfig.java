@@ -48,19 +48,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authz -> authz
                                 .requestMatchers("/api/v1/auth-server/auth/login", "/api/v1/auth-server/auth/register",
-                                        "/api/v1/auth-server/auth/refresh-token", "/api/v1/auth-server/auth/organization",
-                                        "/api/v1/auth-server/auth/logout").permitAll()
-                                .requestMatchers("api/v1/auth-server/organizations/**").hasRole("ADMIN")
-                                .requestMatchers("/api/v1/auth-server/users/**").hasRole("ADMIN")
-                                .anyRequest().authenticated()
+                                        "/api/v1/auth-server/auth/refresh-token", "/api/v1/auth-server/auth/logout").permitAll()
+                                .requestMatchers("/api/v1/auth-server/auth/check").authenticated()
+                                .requestMatchers("/api/v1/auth-server/organizations/profile", "/api/v1/auth-server/users/profile").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers("/api/v1/auth-server/organizations/**", "/api/v1/auth-server/users/**",
+                                        "/api/v1/auth-server/auth/create-api-token").hasRole("ADMIN")
+                                .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .and()
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                );
-        http.exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) ->
-                        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication required"))
-                .accessDeniedHandler((request, response, accessDeniedException) ->
-                        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied"));
+                )
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> {
+                    log.warn("Authentication required: {}", authException.getMessage());
+                })
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    log.warn("Access denied: {}", accessDeniedException.getMessage());
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
+                });
 
         return http.build();
     }

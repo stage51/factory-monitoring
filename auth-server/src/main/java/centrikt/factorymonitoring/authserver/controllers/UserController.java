@@ -75,4 +75,15 @@ public class UserController {
         );
         return ResponseEntity.ok(users);
     }
+
+    @GetMapping("/profile")
+    public ResponseEntity<UserResponse> profile(@RequestHeader("Authorization") String authorizationHeader) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(userService.getProfile(accessToken));
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<UserResponse> updateProfile(@RequestHeader("Authorization") String authorizationHeader, @RequestBody UserRequest userRequest) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(userService.updateProfile(accessToken, userRequest));
+    }
 }

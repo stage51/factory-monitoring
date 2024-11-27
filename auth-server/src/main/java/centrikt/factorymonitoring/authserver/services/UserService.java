@@ -6,4 +6,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 
 public interface UserService extends UserDetailsService, CrudService<UserRequest, UserResponse> {
     UserResponse getByEmail(String email);
+    UserResponse getProfile(String accessToken);
+    UserResponse updateProfile(String accessToken, UserRequest userRequest);
 }

@@ -2,7 +2,7 @@ package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
-import centrikt.factorymonitoring.authserver.enums.Role;
+import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
 import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
 import centrikt.factorymonitoring.authserver.mappers.UserMapper;
@@ -11,6 +11,7 @@ import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.UserService;
 import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
+import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -22,7 +23,6 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -36,12 +36,16 @@ public class UserServiceImpl implements UserService {
     private PasswordEncoder passwordEncoder;
     private FilterUtil<User> filterUtil;
     private EntityValidator entityValidator;
+    private JwtTokenUtil jwtTokenUtil;
 
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder, FilterUtil<User> filterUtil , EntityValidator entityValidator) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
+                           FilterUtil<User> filterUtil , EntityValidator entityValidator,
+                           JwtTokenUtil jwtTokenUtil) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.filterUtil = filterUtil;
         this.entityValidator = entityValidator;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     @Autowired
@@ -60,6 +64,10 @@ public class UserServiceImpl implements UserService {
     public void setEntityValidator(EntityValidator entityValidator) {
         this.entityValidator = entityValidator;
     }
+    @Autowired
+    public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
+        this.jwtTokenUtil = jwtTokenUtil;
+    }
 
     @Override
     public UserResponse create(UserRequest dto) {
@@ -68,7 +76,7 @@ public class UserServiceImpl implements UserService {
             User user = UserMapper.toEntity(dto);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setActive(true);
-            user.setRole(Role.ROLE_USER);
+            user.setRole(Role.ROLE_GUEST);
             user.setCreatedAt(ZonedDateTime.now());
             user.setUpdatedAt(ZonedDateTime.now());
             return UserMapper.toResponse(userRepository.save(user));
@@ -133,4 +141,22 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toResponse(userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email)));
     }
+    @Override
+    public UserResponse getProfile(String accessToken) {
+        String username = jwtTokenUtil.extractUsername(accessToken);
+        return UserMapper.toResponse(
+                userRepository.findByEmail(username)
+                        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username))
+        );
+    }
+    @Override
+    public UserResponse updateProfile(String accessToken, UserRequest userRequest) {
+        String username = jwtTokenUtil.extractUsername(accessToken);
+        User existingUser = userRepository.findByEmail(username)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username));
+        existingUser = UserMapper.toEntityFromUpdateRequest(existingUser, userRequest);
+        existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
+        return UserMapper.toResponse(userRepository.save(existingUser));
+    }
+
 }

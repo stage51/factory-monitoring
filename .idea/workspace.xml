@@ -4,38 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add JWT authentication and authorization for microservices via auth server">
-      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/requests/users/AuthOrganizationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/IllegalArgumentException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/UserNotActiveException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add fetch user profile data and other work with it and his organization, add filters for other microservices">
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/responses/ApiTokenResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/SecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/requests/AccessTokenRequest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/OrganizationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/OrganizationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/Organization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/requests/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/requests/UserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/enums/Role.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/enums/Role.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/filters/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/repos/OrganizationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/repos/OrganizationRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/OrganizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/OrganizationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/UserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/api-gateway.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/api-gateway.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/filter/FilterUtilImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/filter/FilterUtilImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/configurations/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/configurations/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,8 +42,8 @@
         <option value="Enum" />
         <option value="Record" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Exception" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -90,47 +84,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.microservice-utils [clean].executor": "Run",
-    "Maven.microservice-utils [install].executor": "Run",
-    "Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Spring Boot.ApiGatewayApplication.executor": "Run",
-    "Spring Boot.AuthServerApplication.executor": "Run",
-    "Spring Boot.ConfigServerApplication.executor": "Run",
-    "Spring Boot.DailyReportApplication.executor": "Run",
-    "Spring Boot.DiscoveryServerApplication.executor": "Run",
-    "Spring Boot.FiveMinuteReportApplication.executor": "Run",
-    "extract.method.default.visibility": "private",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.14941406",
-    "project.structure.side.proportion": "0.2",
-    "run.configurations.included.in.services": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.microservice-utils [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.microservice-utils [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.AuthServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DailyReportApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Spring Boot.FiveMinuteReportApplication.executor&quot;: &quot;Run&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.14941406&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\five-minute-report\src\main\java\centrikt\factory_monitoring\five_minute_report" />
@@ -140,9 +134,11 @@
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\microservice-utils\src\main\java\centrikt\factorymonitoring\microserviceutils" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="centrikt.factory_monitoring.five_minute_report.utils.jwt" />
+      <recent name="centrikt.factory_monitoring.five_minute_report.filters" />
+      <recent name="centrikt.factory_monitoring.daily_report.utils.jwt" />
+      <recent name="centrikt.factory_monitoring.daily_report.filters" />
       <recent name="centrikt.factorymonitoring.authserver.controllers" />
-      <recent name="centrikt.factory_monitoring.five_minute_report.exceptions" />
-      <recent name="centrikt.factory_monitoring.daily_report.exceptions" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -218,8 +214,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.FiveMinuteReportApplication" />
         <item itemvalue="Spring Boot.ConfigServerApplication" />
+        <item itemvalue="Spring Boot.FiveMinuteReportApplication" />
         <item itemvalue="Spring Boot.DiscoveryServerApplication" />
       </list>
     </recent_temporary>
@@ -251,7 +247,8 @@
       <workItem from="1732523603732" duration="1288000" />
       <workItem from="1732524906014" duration="15581000" />
       <workItem from="1732545668923" duration="1015000" />
-      <workItem from="1732607453535" duration="20797000" />
+      <workItem from="1732607453535" duration="21092000" />
+      <workItem from="1732694152057" duration="19881000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -269,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732117051648</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="add fetch user profile data and other work with it and his organization, add filters for other microservices">
+      <option name="closed" value="true" />
+      <created>1732635898350</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1732635898350</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,7 +306,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="add auth server" />
     <MESSAGE value="add JWT authentication and authorization for microservices via auth server" />
-    <option name="LAST_COMMIT_MESSAGE" value="add JWT authentication and authorization for microservices via auth server" />
+    <MESSAGE value="add fetch user profile data and other work with it and his organization, add filters for other microservices" />
+    <option name="LAST_COMMIT_MESSAGE" value="add fetch user profile data and other work with it and his organization, add filters for other microservices" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

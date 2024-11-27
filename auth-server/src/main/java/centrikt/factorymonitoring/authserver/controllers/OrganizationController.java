@@ -2,6 +2,7 @@ package centrikt.factorymonitoring.authserver.controllers;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.services.OrganizationService;
 import lombok.extern.slf4j.Slf4j;
@@ -74,5 +75,22 @@ public class OrganizationController {
                 pageRequestDTO.getDateRanges()
         );
         return ResponseEntity.ok(organizations);
+    }
+
+    @PostMapping("/profile")
+    public ResponseEntity<OrganizationResponse> createOrganization(@RequestHeader("Authorization") String authorizationHeader, @RequestBody AuthOrganizationRequest request) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(organizationService.createOrganization(accessToken, request));
+    }
+    @PutMapping("/profile")
+    public ResponseEntity<OrganizationResponse> updateOrganization(@RequestHeader("Authorization") String authorizationHeader, @RequestBody AuthOrganizationRequest request) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(organizationService.updateOrganization(accessToken, request));
+    }
+    @DeleteMapping("/profile")
+    public ResponseEntity<OrganizationResponse> deleteOrganization(@RequestHeader("Authorization") String authorizationHeader) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        organizationService.deleteOrganization(accessToken);
+        return ResponseEntity.noContent().build();
     }
 }

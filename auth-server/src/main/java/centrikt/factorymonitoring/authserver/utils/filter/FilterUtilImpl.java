@@ -1,7 +1,7 @@
 package centrikt.factorymonitoring.authserver.utils.filter;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.DateRange;
-import centrikt.factorymonitoring.authserver.enums.Role;
+import centrikt.factorymonitoring.authserver.models.enums.Role;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.jpa.domain.Specification;

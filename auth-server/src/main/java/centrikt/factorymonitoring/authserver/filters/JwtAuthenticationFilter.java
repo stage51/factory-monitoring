@@ -50,24 +50,36 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (shouldNotFilter(request)) {
             log.info("Skipping filter for path: {}", request.getRequestURI());
         }
-        final String authorizationHeader = request.getHeader("Authorization");
-        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
-            String token = authorizationHeader.substring(7);
-            try {
+        try {
+            if (request.getHeader("x-api-key") != null) {
+                log.info("API TOKEN AUTHENTICATION");
+                String token = request.getHeader("x-api-key");
+                String username = jwtTokenUtil.extractApiUsername(token);
+                String role = jwtTokenUtil.extractApiUserRole(token);
+                log.info("USERNAME: {}, ROLE: {}", username, role);
+                User user = new User(username, "", List.of(new SimpleGrantedAuthority(role)));
+                UsernamePasswordAuthenticationToken authentication =
+                        new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
+                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+            else if (request.getHeader("Authorization") != null && request.getHeader("Authorization").startsWith("Bearer ")) {
+                log.info("ACCESS TOKEN AUTHENTICATION");
+                String token = request.getHeader("Authorization").substring(7);
                 String username = jwtTokenUtil.extractUsername(token);
                 String role = jwtTokenUtil.extractUserRole(token);
                 log.info("USERNAME: {}, ROLE: {}", username, role);
                 User user = new User(username, "", List.of(new SimpleGrantedAuthority(role)));
                 UsernamePasswordAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-
+                        new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-            } catch (InvalidTokenException e) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid token");
-                return;
+                chain.doFilter(request, response);
             }
+        } catch (InvalidTokenException e) {
+            log.error("Authentication failed. " + e.getMessage());
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
+            return;
         }
-        chain.doFilter(request, response);
     }
 }

@@ -4,10 +4,7 @@ import centrikt.factorymonitoring.authserver.dtos.requests.LoginRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.RefreshTokenRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
-import centrikt.factorymonitoring.authserver.dtos.responses.AccessRefreshTokenResponse;
-import centrikt.factorymonitoring.authserver.dtos.responses.AccessTokenResponse;
-import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
-import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
+import centrikt.factorymonitoring.authserver.dtos.responses.*;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
 import centrikt.factorymonitoring.authserver.exceptions.UserNotActiveException;
 import centrikt.factorymonitoring.authserver.mappers.OrganizationMapper;
@@ -26,6 +23,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.ZonedDateTime;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 @Service
 public class AuthServiceImpl implements AuthService {
@@ -43,28 +44,22 @@ public class AuthServiceImpl implements AuthService {
     private final long refreshTokenExpiration;
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
-    private OrganizationRepository organizationRepository;
     private RefreshTokenRepository refreshTokenRepository;
     private JwtTokenUtil jwtTokenUtil;
-    private PasswordEncoder passwordEncoder;
 
     public AuthServiceImpl(
             RefreshTokenRepository refreshTokenRepository,
             UserRepository userRepository,
-            OrganizationRepository organizationRepository,
             AuthenticationManager authenticationManager,
             JwtTokenUtil jwtTokenUtil,
-            PasswordEncoder passwordEncoder,
             @Value("${jwt.access-expiration}") long accessTokenExpiration,
             @Value("${jwt.refresh-expiration}") long refreshTokenExpiration) {
         this.refreshTokenRepository = refreshTokenRepository;
-        this.organizationRepository = organizationRepository;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.accessTokenExpiration = accessTokenExpiration;
         this.refreshTokenExpiration = refreshTokenExpiration;
-        this.passwordEncoder = passwordEncoder;
     }
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
@@ -79,28 +74,19 @@ public class AuthServiceImpl implements AuthService {
         this.refreshTokenRepository = refreshTokenRepository;
     }
     @Autowired
-    public void setOrganizationRepository(OrganizationRepository organizationRepository) {
-        this.organizationRepository = organizationRepository;
-    }
-    @Autowired
     public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
         this.jwtTokenUtil = jwtTokenUtil;
     }
-    @Autowired
-    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public AccessRefreshTokenResponse createTokens(LoginRequest loginRequest) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword())
-        );
-
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + loginRequest.getEmail()));
         if (!user.isActive()){
             throw new UserNotActiveException("User is not active");
         }
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().toString())))
+        );
         AccessRefreshTokenResponse response = new AccessRefreshTokenResponse();
         response.setAccessToken(generateAccessToken(user.getEmail(), user.getRole().toString()));
         response.setRefreshToken(createRefreshToken(user.getEmail()).getToken());
@@ -117,24 +103,6 @@ public class AuthServiceImpl implements AuthService {
         return response;
     }
 
-    public UserResponse getProfile(String accessToken) {
-        String username = jwtTokenUtil.extractUsername(accessToken);
-        return UserMapper.toResponse(
-                userRepository.findByEmail(username)
-                        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username))
-        );
-    }
-
-    @Override
-    public UserResponse updateProfile(String accessToken, UserRequest userRequest) {
-        String username = jwtTokenUtil.extractUsername(accessToken);
-        User existingUser = userRepository.findByEmail(username)
-                        .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username));
-        existingUser = UserMapper.toEntityFromUpdateRequest(existingUser, userRequest);
-        existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
-        return UserMapper.toResponse(userRepository.save(existingUser));
-    }
-
     @Transactional
     public void revokeRefreshToken(RefreshTokenRequest refreshTokenRequest) {
         if (refreshTokenRepository.existsByToken(refreshTokenRequest.getRefreshToken())) {
@@ -143,42 +111,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public OrganizationResponse createOrganization(String accessToken, AuthOrganizationRequest organizationRequest) {
-        User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
-                .orElseThrow(() -> new EntityNotFoundException("User with email "
-                        + jwtTokenUtil.extractUsername(accessToken) + " not found"));
-
-        Organization organization = OrganizationMapper.toEntityFromCreateRequest(organizationRequest, user);
-        user.setOrganization(organization);
-        organizationRepository.save(organization);
-        userRepository.save(user);
-
-        return OrganizationMapper.toResponse(organization);
+    public boolean validateToken(String token) {
+        jwtTokenUtil.validateAndExtractClaims(token);
+        return true;
     }
 
     @Override
-    public OrganizationResponse updateOrganization(String accessToken, AuthOrganizationRequest organizationRequest) {
+    public ApiTokenResponse createApiToken(String accessToken) {
         User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
-                .orElseThrow(() -> new EntityNotFoundException("User with email "
-                        + jwtTokenUtil.extractUsername(accessToken) + " not found"));
-
-        Organization existingOrganization = organizationRepository.findByUser(user)
-                .orElseThrow(() -> new EntityNotFoundException("Organization for user " + user.getEmail() + " not found"));
-
-        Organization organization = OrganizationMapper.toEntityFromUpdateRequest(existingOrganization, organizationRequest);
-        organizationRepository.save(organization);
-
-        return OrganizationMapper.toResponse(organization);
-    }
-
-    @Override
-    @Transactional
-    public void deleteOrganization(String accessToken) {
-        User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
-                .orElseThrow(() -> new EntityNotFoundException("User with email "
-                        + jwtTokenUtil.extractUsername(accessToken) + " not found"));
-
-        organizationRepository.deleteByUser(user);
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + jwtTokenUtil.extractUsername(accessToken)));
+        ApiTokenResponse response = new ApiTokenResponse();
+        response.setApiToken(generateApiToken(user.getEmail(), user.getRole().toString()));
+        return response;
     }
 
     private String generateAccessToken(String username, String role) {
@@ -190,6 +134,11 @@ public class AuthServiceImpl implements AuthService {
         return generateToken(Map.of(), username, refreshTokenExpiration);
     }
 
+    private String generateApiToken(String username, String role) {
+        Map<String, Object> claims = Map.of("role", role);
+        return generateToken(claims, username);
+    }
+
     private String generateToken(Map<String, Object> claims, String subject, long expiration) {
         return Jwts.builder()
                 .setClaims(claims)
@@ -197,6 +146,16 @@ public class AuthServiceImpl implements AuthService {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(jwtTokenUtil.getSecretKey(), SignatureAlgorithm.HS256)
+                .compact();
+    }
+
+    private String generateToken(Map<String, Object> claims, String subject) {
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(Long.MAX_VALUE))
+                .signWith(jwtTokenUtil.getApiKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
