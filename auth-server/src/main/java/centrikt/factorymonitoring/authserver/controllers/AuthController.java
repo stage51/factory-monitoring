@@ -6,10 +6,13 @@ import centrikt.factorymonitoring.authserver.dtos.responses.*;
 import centrikt.factorymonitoring.authserver.services.AuthService;
 import centrikt.factorymonitoring.authserver.services.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RestController
 @RequestMapping("/api/v1/auth-server/auth")
@@ -53,7 +56,10 @@ public class AuthController {
     @GetMapping("/check")
     public ResponseEntity<Void> checkAuth(@RequestHeader("Authorization") String authorizationHeader) {
         String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                .getRequest();
         authService.validateToken(accessToken);
+        authService.addOnline(accessToken, request);
         return ResponseEntity.ok().build();
     }
     @GetMapping("/create-api-token")

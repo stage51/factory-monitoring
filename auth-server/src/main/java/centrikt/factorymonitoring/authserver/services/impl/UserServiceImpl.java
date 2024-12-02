@@ -1,6 +1,7 @@
 package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
@@ -23,6 +24,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -73,12 +75,8 @@ public class UserServiceImpl implements UserService {
     public UserResponse create(UserRequest dto) {
         try {
             entityValidator.validate(dto);
-            User user = UserMapper.toEntity(dto);
+            User user = UserMapper.toEntityFromCreateRequest(dto);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setActive(true);
-            user.setRole(Role.ROLE_GUEST);
-            user.setCreatedAt(ZonedDateTime.now());
-            user.setUpdatedAt(ZonedDateTime.now());
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("User with email " + dto.getEmail() + " already exists");
@@ -93,13 +91,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse update(Long id, UserRequest dto) {
         entityValidator.validate(dto);
-        User existingUser = UserMapper.toEntity(dto);
-        if (userRepository.existsById(id)){
-            existingUser.setId(id);
-            existingUser.setUpdatedAt(ZonedDateTime.now());
-            existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
-        } else throw new EntityNotFoundException("User not found with id: " + id);
-        return UserMapper.toResponse(userRepository.save(existingUser));
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        return UserMapper.toResponse(userRepository.saveAndFlush(UserMapper.toEntityFromUpdateRequest(user, dto)));
     }
 
     @Override
@@ -157,6 +150,25 @@ public class UserServiceImpl implements UserService {
         existingUser = UserMapper.toEntityFromUpdateRequest(existingUser, userRequest);
         existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
         return UserMapper.toResponse(userRepository.save(existingUser));
+    }
+
+    @Override
+    public UserResponse create(AdminUserRequest adminUserRequest) {
+        try {
+            entityValidator.validate(adminUserRequest);
+            User user = UserMapper.toEntityFromCreateRequest(adminUserRequest);
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return UserMapper.toResponse(userRepository.save(user));
+        } catch (DataIntegrityViolationException e) {
+            throw new IllegalArgumentException("User with email " + adminUserRequest.getEmail() + " already exists");
+        }
+    }
+
+    @Override
+    public UserResponse update(Long id, AdminUserRequest adminUserRequest) {
+        entityValidator.validate(adminUserRequest);
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        return UserMapper.toResponse(userRepository.saveAndFlush(UserMapper.toEntityFromUpdateRequest(user, adminUserRequest)));
     }
 
 }

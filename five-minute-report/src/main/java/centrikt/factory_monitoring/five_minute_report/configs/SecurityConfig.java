@@ -2,6 +2,7 @@ package centrikt.factory_monitoring.five_minute_report.configs;
 
 import centrikt.factory_monitoring.five_minute_report.filters.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
@@ -40,7 +42,7 @@ public class SecurityConfig {
                 .and()
                 .authorizeHttpRequests(
                         authz -> authz
-                                .requestMatchers(HttpMethod.POST, "/api/v1/five-minute-report/positions/fetch", "/api/v1/five-minute-report/products/fetch").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers(HttpMethod.POST, "/api/v1/five-minute-report/positions/fetch", "/api/v1/five-minute-report/products/fetch/**").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers(HttpMethod.GET, "/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers(HttpMethod.POST,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
@@ -48,11 +50,16 @@ public class SecurityConfig {
                                 .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .and()
                                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                );
-        http.exceptionHandling()
-                .accessDeniedHandler((request, response, accessDeniedException) ->
-                        response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied"));
-
+                )
+                .exceptionHandling()
+                .authenticationEntryPoint((request, response, authException) -> {
+                    log.warn("Authentication required: {}", authException.getMessage());
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
+                })
+                .accessDeniedHandler((request, response, accessDeniedException) -> {
+                    log.warn("Access denied: {}", accessDeniedException.getMessage());
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Access denied");
+                });
         return http.build();
     }
 

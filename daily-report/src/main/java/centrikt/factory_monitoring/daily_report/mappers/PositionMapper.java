@@ -26,6 +26,7 @@ public class PositionMapper {
             return null;
         }
         Position position = new Position();
+        position.setTaxpayerNumber(positionRequest.getTaxpayerNumber());
         position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
         position.setStartDate(positionRequest.getStartDate());
         position.setEndDate(positionRequest.getEndDate());

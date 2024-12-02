@@ -1,5 +1,7 @@
 package centrikt.factory_monitoring.daily_report.enums;
 
+import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstantException;
+
 public enum Type {
     ALCOHOL_PRODUCT("Алкогольная продукция"), ALCOHOL_CONTAINING_FOOD_PRODUCT("Спиртосодержащая пищевая продукция"),
     ALCOHOL_CONTAINING_NON_FOOD_PRODUCT("Спиртосодержащая непищевая продукция"), ALCOHOL("Этиловый спирт");
@@ -20,7 +22,7 @@ public enum Type {
                 return type;
             }
         }
-        throw new IllegalArgumentException("Invalid type: " + string);
+        throw new InvalidConstantException("Invalid type: " + string);
     }
 
     @Override

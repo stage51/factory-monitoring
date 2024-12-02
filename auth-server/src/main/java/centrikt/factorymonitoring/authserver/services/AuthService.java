@@ -5,6 +5,7 @@ import centrikt.factorymonitoring.authserver.dtos.requests.RefreshTokenRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.*;
+import jakarta.servlet.http.HttpServletRequest;
 
 
 public interface AuthService {
@@ -13,4 +14,5 @@ public interface AuthService {
     void revokeRefreshToken(RefreshTokenRequest refreshTokenRequest);
     boolean validateToken(String token);
     ApiTokenResponse createApiToken(String token);
+    void addOnline(String accessToken, HttpServletRequest request);
 }

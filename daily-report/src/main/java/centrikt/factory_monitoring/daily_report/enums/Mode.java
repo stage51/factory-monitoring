@@ -1,7 +1,5 @@
 package centrikt.factory_monitoring.daily_report.enums;
 
-import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstraintException;
-
 public enum Mode {
     WASHING("Промывка АСИиУ"), CALIBRATION("Калибровка АСИиУ"), TECHNOLOGICAL_RUN("Технологический прогон"),
     PRODUCTION("Производство продукции"), SHUTDOWN("Остановка АСИиУ"),

@@ -15,6 +15,7 @@ public class PositionMapper {
         }
 
         Position position = new Position();
+        position.setTaxpayerNumber(dto.getTaxpayerNumber());
         position.setProduct(ProductMapper.toEntity(dto.getProduct()));
         position.setControlDate(dto.getControlDate());
         position.setVbsControl(dto.getVbsControl());

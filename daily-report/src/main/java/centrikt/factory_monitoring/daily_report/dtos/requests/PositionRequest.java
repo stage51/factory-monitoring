@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.validation.constraints.*;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -14,6 +15,10 @@ import java.time.ZonedDateTime;
 public class PositionRequest {
 
     private ProductRequest product;
+
+    @NotNull(message = "Taxpayer number must not be null")
+    @Length(min = 12, max = 12, message = "Taxpayer number consist of 12 characters")
+    private String taxpayerNumber;
 
     @NotNull(message = "Start date must not be null")
     private ZonedDateTime startDate;

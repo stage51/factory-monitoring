@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.enums;
 
-import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstraintException;
+import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstantException;
 
 public enum Mode {
     WASHING("Промывка АСИиУ"), CALIBRATION("Калибровка АСИиУ"), TECHNOLOGICAL_RUN("Технологический прогон"),
@@ -25,7 +25,7 @@ public enum Mode {
                 return mode;
             }
         }
-        throw new IllegalArgumentException("Invalid mode description: " + description);
+        throw new InvalidConstantException("Invalid mode description: " + description);
     }
 
     @Override

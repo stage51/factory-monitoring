@@ -17,6 +17,8 @@ public class Position extends BaseEntity{
             cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinColumn(name = "product_id")
     private Product product;
+    @Column(nullable = false, length = 12)
+    private String taxpayerNumber;
     @Column(nullable = false)
     private ZonedDateTime controlDate;
     @Column(nullable = false, precision = 18, scale = 2)

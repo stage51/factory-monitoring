@@ -1,5 +1,7 @@
 package centrikt.factory_monitoring.daily_report.enums;
 
+import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstantException;
+
 public enum Status {
     UNKNOWN("Неизвестно"), ACCEPTED_IN_RAR("Принято в РАР"), NOT_ACCEPTED_IN_RAR("Не принято в РАР"),
     ACCEPTED_IN_UTM("Принято в УТМ"), NOT_ACCEPTED_IN_UTM("Не принято в УТМ");
@@ -20,7 +22,7 @@ public enum Status {
                 return status;
             }
         }
-        throw new IllegalArgumentException("Invalid status description: " + description);
+        throw new InvalidConstantException("Invalid status description: " + description);
     }
 
     @Override

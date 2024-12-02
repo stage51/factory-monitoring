@@ -62,7 +62,7 @@ public class OrganizationController {
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<OrganizationResponse>> getPagePositions(
+    public ResponseEntity<Page<OrganizationResponse>> getPage(
             @RequestBody PageRequestDTO pageRequestDTO
     ) {
         log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());

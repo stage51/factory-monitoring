@@ -12,6 +12,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
 @RequestMapping(value = "api/v1/daily-report/positions")
 @Slf4j
@@ -64,6 +67,28 @@ public class PositionController {
     public ResponseEntity<Page<PositionResponse>> getPagePositions(
             @RequestBody PageRequestDTO pageRequestDTO
     ) {
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        Page<PositionResponse> positions = positionService.getPage(
+                pageRequestDTO.getSize(),
+                pageRequestDTO.getNumber(),
+                pageRequestDTO.getSortBy(),
+                pageRequestDTO.getSortDirection(),
+                pageRequestDTO.getFilters(),
+                pageRequestDTO.getDateRanges()
+        );
+        return ResponseEntity.ok(positions);
+    }
+
+    @PostMapping(value = "/fetch/{taxpayerNumber}",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<Page<PositionResponse>> getPagePositions(
+            @RequestBody PageRequestDTO pageRequestDTO, @PathVariable String taxpayerNumber
+    ) {
+        Map<String, String> filters = pageRequestDTO.getFilters();
+        filters.put("taxpayerNumber", taxpayerNumber);
+        pageRequestDTO.setFilters(filters);
         log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
         Page<PositionResponse> positions = positionService.getPage(
                 pageRequestDTO.getSize(),

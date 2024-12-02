@@ -2,7 +2,7 @@ package centrikt.factory_monitoring.daily_report.exceptions.handlers;
 
 import centrikt.factory_monitoring.daily_report.Message;
 import centrikt.factory_monitoring.daily_report.exceptions.EntityNotFoundException;
-import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstraintException;
+import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstantException;
 import centrikt.factory_monitoring.daily_report.exceptions.InvalidTokenException;
 import centrikt.factory_monitoring.daily_report.exceptions.ValidationException;
 import org.springframework.http.HttpStatus;
@@ -17,8 +17,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
-    @ExceptionHandler(InvalidConstraintException.class)
-    public ResponseEntity<?> handleInvalidConstraintException(InvalidConstraintException ex){
+    @ExceptionHandler(InvalidConstantException.class)
+    public ResponseEntity<?> handleInvalidConstantException(InvalidConstantException ex){
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
     @ExceptionHandler(ValidationException.class)

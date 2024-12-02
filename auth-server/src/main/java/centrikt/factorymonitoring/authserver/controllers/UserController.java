@@ -2,6 +2,7 @@ package centrikt.factorymonitoring.authserver.controllers;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.services.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class UserController {
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> createUser(@RequestBody AdminUserRequest userRequest) {
         log.info("Creating new user: {}", userRequest);
         UserResponse createdUser = userService.create(userRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
@@ -44,24 +45,24 @@ public class UserController {
 
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody UserRequest userRequest) {
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id, @RequestBody AdminUserRequest userRequest) {
         log.info("Updating user with id: {}", id);
         UserResponse updatedUser = userService.update(id, userRequest);
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         log.info("Deleting user with id: {}", id);
         userService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<UserResponse>> getPagePositions(
+    public ResponseEntity<Page<UserResponse>> getPage(
             @RequestBody PageRequestDTO pageRequestDTO
     ) {
         log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());

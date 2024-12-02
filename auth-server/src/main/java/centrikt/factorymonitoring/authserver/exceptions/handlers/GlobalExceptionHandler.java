@@ -25,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<?> handleInvalidTokenException(InvalidTokenException ex){
-        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
     }
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex){
@@ -33,6 +33,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(UserNotActiveException.class)
     public ResponseEntity<?> handleUserNotActiveException(UserNotActiveException ex){
-        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
+    }
+    @ExceptionHandler(InvalidCredentialsException.class)
+    public ResponseEntity<?> handleInvalidCredentialsException(InvalidCredentialsException ex){
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
     }
 }

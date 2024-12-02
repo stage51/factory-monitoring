@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.enums;
 
-import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstraintException;
+import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstantException;
 
 public enum UnitType {
     PACKED("Фасованная"), UNPACKED("Нефасованная");
@@ -21,7 +21,7 @@ public enum UnitType {
                 return unitType;
             }
         }
-        throw new IllegalArgumentException("Invalid unitType: " + string);
+        throw new InvalidConstantException("Invalid unitType: " + string);
     }
 
     @Override

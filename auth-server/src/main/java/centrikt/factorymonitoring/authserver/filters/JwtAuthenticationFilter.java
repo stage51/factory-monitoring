@@ -74,12 +74,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                         new UsernamePasswordAuthenticationToken(user, token, user.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                chain.doFilter(request, response);
             }
         } catch (InvalidTokenException e) {
             log.error("Authentication failed. " + e.getMessage());
-            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authentication failed");
-            return;
         }
+        chain.doFilter(request, response);
     }
 }

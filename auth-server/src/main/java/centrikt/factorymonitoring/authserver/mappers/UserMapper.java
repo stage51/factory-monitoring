@@ -1,11 +1,10 @@
 package centrikt.factorymonitoring.authserver.mappers;
 
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
-import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
+import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
-import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+import centrikt.factorymonitoring.authserver.models.enums.Role;
 
 import java.time.ZonedDateTime;
 
@@ -23,11 +22,38 @@ public class UserMapper {
         return dto;
     }
 
-    public static User toEntity(UserRequest userRequest) {
+    public static User toEntityFromCreateRequest(UserRequest userRequest) {
         if (userRequest == null) {
             return null;
         }
         User user = new User();
+
+        user.setActive(true);
+        user.setRole(Role.ROLE_GUEST);
+        user.setCreatedAt(ZonedDateTime.now());
+        user.setUpdatedAt(ZonedDateTime.now());
+
+        user.setEmail(userRequest.getEmail());
+        user.setPassword(userRequest.getPassword());
+        user.setFirstName(userRequest.getFirstName());
+        user.setLastName(userRequest.getLastName());
+        user.setMiddleName(userRequest.getMiddleName());
+        user.setTimezone(userRequest.getTimezone());
+        user.setSubscribe(userRequest.isSubscribe());
+        return user;
+    }
+
+    public static User toEntityFromCreateRequest(AdminUserRequest userRequest) {
+        if (userRequest == null) {
+            return null;
+        }
+        User user = new User();
+
+        user.setActive(userRequest.isActive());
+        user.setRole(Role.valueOf(userRequest.getRole()));
+        user.setCreatedAt(ZonedDateTime.now());
+        user.setUpdatedAt(ZonedDateTime.now());
+
         user.setEmail(userRequest.getEmail());
         user.setPassword(userRequest.getPassword());
         user.setFirstName(userRequest.getFirstName());
@@ -42,8 +68,25 @@ public class UserMapper {
         if (userRequest == null) {
             return null;
         }
+        existingUser.setUpdatedAt(ZonedDateTime.now());
         existingUser.setEmail(userRequest.getEmail());
-        existingUser.setPassword(userRequest.getPassword());
+        existingUser.setFirstName(userRequest.getFirstName());
+        existingUser.setLastName(userRequest.getLastName());
+        existingUser.setMiddleName(userRequest.getMiddleName());
+        existingUser.setTimezone(userRequest.getTimezone());
+        existingUser.setSubscribe(userRequest.isSubscribe());
+        return existingUser;
+    }
+
+    public static User toEntityFromUpdateRequest(User existingUser, AdminUserRequest userRequest) {
+        if (userRequest == null) {
+            return null;
+        }
+        existingUser.setRole(Role.valueOf(userRequest.getRole()));
+        existingUser.setActive(userRequest.isActive());
+
+        existingUser.setUpdatedAt(ZonedDateTime.now());
+        existingUser.setEmail(userRequest.getEmail());
         existingUser.setFirstName(userRequest.getFirstName());
         existingUser.setLastName(userRequest.getLastName());
         existingUser.setMiddleName(userRequest.getMiddleName());

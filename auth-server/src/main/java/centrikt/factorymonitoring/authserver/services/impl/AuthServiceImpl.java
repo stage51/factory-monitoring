@@ -6,22 +6,31 @@ import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.*;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
+import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidCredentialsException;
 import centrikt.factorymonitoring.authserver.exceptions.UserNotActiveException;
 import centrikt.factorymonitoring.authserver.mappers.OrganizationMapper;
 import centrikt.factorymonitoring.authserver.mappers.UserMapper;
+import centrikt.factorymonitoring.authserver.models.Online;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.RefreshToken;
 import centrikt.factorymonitoring.authserver.models.User;
+import centrikt.factorymonitoring.authserver.repos.OnlineRepository;
 import centrikt.factorymonitoring.authserver.repos.OrganizationRepository;
 import centrikt.factorymonitoring.authserver.repos.RefreshTokenRepository;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.AuthService;
+import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
+import centrikt.factorymonitoring.authserver.utils.iputil.IPUtil;
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -46,12 +55,16 @@ public class AuthServiceImpl implements AuthService {
     private UserRepository userRepository;
     private RefreshTokenRepository refreshTokenRepository;
     private JwtTokenUtil jwtTokenUtil;
+    private IPUtil ipUtil;
+    private OnlineRepository onlineRepository;
 
     public AuthServiceImpl(
             RefreshTokenRepository refreshTokenRepository,
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
             JwtTokenUtil jwtTokenUtil,
+            IPUtil ipUtil,
+            OnlineRepository onlineRepository,
             @Value("${jwt.access-expiration}") long accessTokenExpiration,
             @Value("${jwt.refresh-expiration}") long refreshTokenExpiration) {
         this.refreshTokenRepository = refreshTokenRepository;
@@ -60,6 +73,8 @@ public class AuthServiceImpl implements AuthService {
         this.jwtTokenUtil = jwtTokenUtil;
         this.accessTokenExpiration = accessTokenExpiration;
         this.refreshTokenExpiration = refreshTokenExpiration;
+        this.onlineRepository = onlineRepository;
+        this.ipUtil = ipUtil;
     }
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
@@ -77,6 +92,14 @@ public class AuthServiceImpl implements AuthService {
     public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
         this.jwtTokenUtil = jwtTokenUtil;
     }
+    @Autowired
+    public void setIpUtil(IPUtil ipUtil) {
+        this.ipUtil = ipUtil;
+    }
+    @Autowired
+    public void setOnlineRepository(OnlineRepository onlineRepository) {
+        this.onlineRepository = onlineRepository;
+    }
 
     public AccessRefreshTokenResponse createTokens(LoginRequest loginRequest) {
         User user = userRepository.findByEmail(loginRequest.getEmail())
@@ -84,9 +107,14 @@ public class AuthServiceImpl implements AuthService {
         if (!user.isActive()){
             throw new UserNotActiveException("User is not active");
         }
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().toString())))
-        );
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().toString())))
+            );
+        } catch (BadCredentialsException e) {
+            throw new InvalidCredentialsException("Invalid username or password");
+        }
+
         AccessRefreshTokenResponse response = new AccessRefreshTokenResponse();
         response.setAccessToken(generateAccessToken(user.getEmail(), user.getRole().toString()));
         response.setRefreshToken(createRefreshToken(user.getEmail()).getToken());
@@ -123,6 +151,15 @@ public class AuthServiceImpl implements AuthService {
         ApiTokenResponse response = new ApiTokenResponse();
         response.setApiToken(generateApiToken(user.getEmail(), user.getRole().toString()));
         return response;
+    }
+
+    @Override
+    public void addOnline(String accessToken, HttpServletRequest request) {
+        Online online = new Online();
+        online.setEmail(jwtTokenUtil.extractUsername(accessToken));
+        online.setIpAddress(ipUtil.getClientIp(request));
+        online.setActiveAt(ZonedDateTime.now());
+        onlineRepository.save(online);
     }
 
     private String generateAccessToken(String username, String role) {

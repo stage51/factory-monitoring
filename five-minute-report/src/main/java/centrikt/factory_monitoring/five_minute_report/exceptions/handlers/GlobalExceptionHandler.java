@@ -1,7 +1,7 @@
 package centrikt.factory_monitoring.five_minute_report.exceptions.handlers;
 
 import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
-import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstraintException;
+import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstantException;
 import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidTokenException;
 import centrikt.factory_monitoring.five_minute_report.exceptions.ValidationException;
 import centrikt.factory_monitoring.five_minute_report.utils.Message;
@@ -17,8 +17,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
-    @ExceptionHandler(InvalidConstraintException.class)
-    public ResponseEntity<?> handleInvalidConstraintException(InvalidConstraintException ex){
+    @ExceptionHandler(InvalidConstantException.class)
+    public ResponseEntity<?> handleInvalidConstantException(InvalidConstantException ex){
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
     @ExceptionHandler(ValidationException.class)

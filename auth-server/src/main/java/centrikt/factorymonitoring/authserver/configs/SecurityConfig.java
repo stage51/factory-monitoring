@@ -52,6 +52,7 @@ public class SecurityConfig {
                                 .requestMatchers("/api/v1/auth-server/auth/check").authenticated()
                                 .requestMatchers("/api/v1/auth-server/organizations/profile", "/api/v1/auth-server/users/profile").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers("/api/v1/auth-server/organizations/**", "/api/v1/auth-server/users/**",
+                                        "api/v1/auth-server/onlines/**", "api/v1/auth-server/refresh_tokens/**",
                                         "/api/v1/auth-server/auth/create-api-token").hasRole("ADMIN")
                                 .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .and()
@@ -60,6 +61,7 @@ public class SecurityConfig {
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> {
                     log.warn("Authentication required: {}", authException.getMessage());
+                    response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Access denied");
                 })
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     log.warn("Access denied: {}", accessDeniedException.getMessage());
