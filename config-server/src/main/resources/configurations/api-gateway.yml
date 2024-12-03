@@ -13,6 +13,10 @@ spring:
           uri: lb://DAILY-REPORT
           predicates:
             - Path=/api/v1/daily-report/**
+        - id: mode-report-service
+          uri: lb://MODE-REPORT
+          predicates:
+            - Path=/api/v1/mode-report/**
         - id: auth-server
           uri: lb://AUTH-SERVER
           predicates:

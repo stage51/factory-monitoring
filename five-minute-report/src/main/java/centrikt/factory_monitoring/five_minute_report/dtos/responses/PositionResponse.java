@@ -20,6 +20,7 @@ public class PositionResponse {
 
     private Long id;
     private ProductResponse product;
+    private String taxpayerNumber;
     private ZonedDateTime controlDate;
     private BigDecimal vbsControl;
     @JsonProperty("aControl")

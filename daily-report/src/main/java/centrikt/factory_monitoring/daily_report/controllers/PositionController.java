@@ -53,8 +53,7 @@ public class PositionController {
         return ResponseEntity.ok(updatedPosition);
     }
 
-    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deletePosition(@PathVariable Long id) {
         log.info("Deleting position with id: {}", id);
         positionService.delete(id);

@@ -1,4 +1,4 @@
-package centrikt.factory_monitoring.daily_report;
+package centrikt.factorymonitoring.modereport.utils;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

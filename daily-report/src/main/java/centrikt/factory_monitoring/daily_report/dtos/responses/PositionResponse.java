@@ -20,6 +20,7 @@ public class PositionResponse {
 
     private Long id;
     private ProductResponse product;
+    private String taxpayerNumber;
     private ZonedDateTime startDate;
     private ZonedDateTime endDate;
     private BigDecimal vbsStart;

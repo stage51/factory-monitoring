@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mode-report" />
         <module name="config-server" />
         <module name="discovery-server" />
         <module name="daily-report" />
@@ -15,6 +16,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="daily-report (1)" target="17" />
       <module name="microservice-utils" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -24,9 +26,11 @@
       <module name="auth-server" options="-parameters" />
       <module name="config-server" options="-parameters" />
       <module name="daily-report" options="-parameters" />
+      <module name="daily-report (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="five-minute-report" options="-parameters" />
       <module name="microservice-utils" options="-parameters" />
+      <module name="mode-report" options="-parameters" />
     </option>
   </component>
 </project>

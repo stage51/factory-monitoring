@@ -33,7 +33,8 @@ public class PositionMapper {
             return null;
         }
 
-        PositionResponse dto = PositionResponse.builder().id(entity.getId()).product(ProductMapper.toResponse(entity.getProduct()))
+        PositionResponse dto = PositionResponse.builder().id(entity.getId()).taxpayerNumber(entity.getTaxpayerNumber())
+                .product(ProductMapper.toResponse(entity.getProduct()))
                 .controlDate(entity.getControlDate()).vbsControl(entity.getVbsControl())
                 .aControl(entity.getAControl()).percentAlc(entity.getPercentAlc())
                 .bottleCountControl(entity.getBottleCountControl()).temperature(entity.getTemperature())

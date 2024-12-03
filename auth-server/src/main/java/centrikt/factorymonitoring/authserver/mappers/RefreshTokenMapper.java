@@ -10,7 +10,8 @@ public class RefreshTokenMapper {
             return null;
         }
         RefreshTokenResponse dto = RefreshTokenResponse.builder().id(refreshToken.getId()).token(refreshToken.getToken())
-                .expiresAt(refreshToken.getExpiresAt()).issuedAt(refreshToken.getIssuedAt()).build();
+                .userEmail(refreshToken.getUser().getEmail()).expiresAt(refreshToken.getExpiresAt()).issuedAt(refreshToken.getIssuedAt())
+                .build();
         return dto;
     }
 }

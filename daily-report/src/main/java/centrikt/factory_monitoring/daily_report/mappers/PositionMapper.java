@@ -12,7 +12,7 @@ public class PositionMapper {
         if (position == null) {
             return null;
         }
-        PositionResponse dto = PositionResponse.builder().id(position.getId()).product(ProductMapper.toResponse(position.getProduct()))
+        PositionResponse dto = PositionResponse.builder().id(position.getId()).taxpayerNumber(position.getTaxpayerNumber()).product(ProductMapper.toResponse(position.getProduct()))
                 .startDate(position.getStartDate()).endDate(position.getEndDate()).vbsStart(position.getVbsStart()).vbsEnd(position.getVbsEnd())
                 .aStart(position.getAStart()).aEnd(position.getAEnd()).percentAlc(position.getPercentAlc())
                 .bottleCountStart(position.getBottleCountStart()).bottleCountEnd(position.getBottleCountEnd())

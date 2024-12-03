@@ -11,6 +11,7 @@
         <option value="$PROJECT_DIR$/five-minute-report/pom.xml" />
         <option value="$PROJECT_DIR$/auth-server/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/mode-report/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

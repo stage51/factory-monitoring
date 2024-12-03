@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.exceptions.handlers;
 
-import centrikt.factory_monitoring.daily_report.Message;
+import centrikt.factory_monitoring.daily_report.utils.Message;
 import centrikt.factory_monitoring.daily_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.daily_report.exceptions.InvalidConstantException;
 import centrikt.factory_monitoring.daily_report.exceptions.InvalidTokenException;

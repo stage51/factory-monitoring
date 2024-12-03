@@ -34,7 +34,20 @@ services:
       POSTGRES_DB: five-minute-report
     volumes:
       - five_minute_postgres_data:/var/lib/postgresql/data
+  mode-report_db:
+    image: postgres
+    container_name: mode-report_db
+    ports:
+      - "8904:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_USER: postgres_admin
+      POSTGRES_DB: mode-report
+    volumes:
+      - mode_postgres_data:/var/lib/postgresql/data
 volumes:
+  mode_postgres_data:
+    driver: local
   daily_postgres_data:
     driver: local
   five_minute_postgres_data:

@@ -50,8 +50,7 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.info("Deleting product with id: {}", id);
         productService.delete(id);
