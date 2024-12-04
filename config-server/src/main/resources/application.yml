@@ -10,3 +10,9 @@ spring:
           search-locations: classpath:/configurations
 server:
   port: 8888
+
+jwt:
+  api-secret: api_monitoring101monitoring202monitoring303_api
+  secret: monitoring101monitoring202monitoring303
+  access-expiration: 900000 # 15 минут
+  refresh-expiration: 86400000 # 1 день
