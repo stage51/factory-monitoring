@@ -4,6 +4,7 @@ import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
+import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.services.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/auth-server/users")
@@ -33,6 +36,43 @@ public class UserController {
         log.info("Fetching user with id: {}", id);
         UserResponse user = userService.get(id);
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping(value = "/verification/fetch",
+            consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
+    )
+    public ResponseEntity<Page<UserResponse>> getNotVerifiedUserPage(
+            @RequestBody PageRequestDTO pageRequestDTO
+    ) {
+        Map<String, String> filters = pageRequestDTO.getFilters();
+        filters.put("role", Role.ROLE_GUEST.toString());
+        filters.put("active", "true");
+        pageRequestDTO.setFilters(filters);
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        Page<UserResponse> users = userService.getPage(
+                pageRequestDTO.getSize(),
+                pageRequestDTO.getNumber(),
+                pageRequestDTO.getSortBy(),
+                pageRequestDTO.getSortDirection(),
+                pageRequestDTO.getFilters(),
+                pageRequestDTO.getDateRanges()
+        );
+        return ResponseEntity.ok(users);
+    }
+
+    @GetMapping("/{id}/approve")
+    public ResponseEntity<Void> approveUser(@PathVariable Long id) {
+        log.info("Approving user with id: {}", id);
+        userService.approve(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{id}/disapprove")
+    public ResponseEntity<Void> disapproveUser(@PathVariable Long id) {
+        log.info("Disapproving user with id: {}", id);
+        userService.disapprove(id);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},

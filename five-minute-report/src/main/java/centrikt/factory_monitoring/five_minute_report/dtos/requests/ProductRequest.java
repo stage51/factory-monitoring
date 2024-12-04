@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import jakarta.validation.constraints.*;
-import lombok.Builder;
 import lombok.Data;
 
 @Data
 @JacksonXmlRootElement(localName = "product")
 public class ProductRequest {
 
-    private Long PositionId;
+    private Long positionId;
 
     @NotNull(message = "Unit type must not be null")
     private String unitType;

@@ -11,4 +11,6 @@ public interface UserService extends UserDetailsService, CrudService<UserRequest
     UserResponse updateProfile(String accessToken, UserRequest userRequest);
     UserResponse create(AdminUserRequest adminUserRequest);
     UserResponse update(Long id, AdminUserRequest adminUserRequest);
+    void approve(Long id);
+    void disapprove(Long id);
 }

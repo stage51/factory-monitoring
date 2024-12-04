@@ -171,4 +171,18 @@ public class UserServiceImpl implements UserService {
         return UserMapper.toResponse(userRepository.saveAndFlush(UserMapper.toEntityFromUpdateRequest(user, adminUserRequest)));
     }
 
+    @Override
+    public void approve(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        user.setRole(Role.ROLE_USER);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void disapprove(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        user.setActive(false);
+        userRepository.save(user);
+    }
+
 }

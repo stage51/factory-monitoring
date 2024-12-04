@@ -38,7 +38,10 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                             } else if ("role".equals(field)) {
                                 Role role = Role.valueOf(value);
                                 predicates.add(criteriaBuilder.equal(root.get(field), role));
-                            } else {
+                            } else if ("active".equals(field)) {
+                                predicates.add(criteriaBuilder.equal(root.get("active"), Boolean.parseBoolean(value)));
+                            }
+                            else {
                                 predicates.add(criteriaBuilder.equal(root.get(field), value));
                             }
                         });
