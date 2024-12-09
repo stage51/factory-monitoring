@@ -28,6 +28,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -47,6 +48,7 @@ import java.util.Map;
 import java.util.Set;
 
 @Service
+@RefreshScope
 public class AuthServiceImpl implements AuthService {
 
     private final long accessTokenExpiration;
@@ -65,8 +67,8 @@ public class AuthServiceImpl implements AuthService {
             JwtTokenUtil jwtTokenUtil,
             IPUtil ipUtil,
             OnlineRepository onlineRepository,
-            @Value("${jwt.access-expiration}") long accessTokenExpiration,
-            @Value("${jwt.refresh-expiration}") long refreshTokenExpiration) {
+            @Value("${security.access-expiration}") long accessTokenExpiration,
+            @Value("${security.refresh-expiration}") long refreshTokenExpiration) {
         this.refreshTokenRepository = refreshTokenRepository;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;

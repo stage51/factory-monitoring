@@ -1,5 +1,24 @@
 spring:
   application:
     name: discovery-server
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+        default-context: discovery-server
+      discovery:
+        enabled: true
+        register: true
+        service-name: discovery-server
   config:
-    import: optional:configserver:http://localhost:8888
+    import: "consul:"
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

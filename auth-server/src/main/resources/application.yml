@@ -1,5 +1,14 @@
 spring:
+  config:
+    import: "consul:"
   application:
     name: auth-server
-  config:
-    import: optional:configserver:http://localhost:8888
+  cloud:
+    consul:
+      host: localhost
+      port: 8500
+      discovery:
+        enabled: true
+      config:
+        enabled: true
+        format: key_value

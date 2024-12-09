@@ -45,6 +45,11 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
+  consul:
+    image: hashicorp/consul:1.20.1
+    hostname: localhost
+    ports:
+      - 8500:8500
 volumes:
   mode_postgres_data:
     driver: local

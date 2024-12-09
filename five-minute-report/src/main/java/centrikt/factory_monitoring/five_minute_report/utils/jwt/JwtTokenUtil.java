@@ -7,12 +7,14 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 
 @Getter
 @Component
+@RefreshScope
 public class JwtTokenUtil {
 
 
@@ -20,7 +22,7 @@ public class JwtTokenUtil {
 
     private final SecretKey apiKey;
 
-    public JwtTokenUtil(@Value("${jwt.secret}") String secret, @Value("${jwt.api-secret}") String apiKey) {
+    public JwtTokenUtil(@Value("${security.access-token-secret-key}") String secret, @Value("${security.api-token-secret-key}") String apiKey) {
         this.secretKey = Keys.hmacShaKeyFor(secret.getBytes());
         this.apiKey = Keys.hmacShaKeyFor(apiKey.getBytes());
     }

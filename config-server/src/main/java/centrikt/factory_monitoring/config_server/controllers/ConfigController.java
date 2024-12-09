@@ -18,32 +18,4 @@ import java.util.Map;
 @RequestMapping("/api/v1/config-server/config")
 public class ConfigController {
 
-    @PostMapping("/update")
-    public ResponseEntity<String> updateConfig(@RequestBody Map<String, Object> configData) {
-        try {
-            Path configPath = Paths.get("src/main/resources/configuration/application.yml");
-            DumperOptions options = new DumperOptions();
-            options.setDefaultFlowStyle(DumperOptions.FlowStyle.BLOCK);
-
-            Yaml yaml = new Yaml(options);
-            yaml.dump(configData, new FileWriter(configPath.toFile()));
-
-            return ResponseEntity.ok("Configuration updated successfully");
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to update configuration");
-        }
-    }
-
-    @GetMapping
-    public ResponseEntity<Map<String, Object>> getConfig() {
-        try {
-            Path configPath = Paths.get("src/main/resources/configuration/application.yml");
-            Yaml yaml = new Yaml();
-            Map<String, Object> configData = yaml.load(new FileReader(configPath.toFile()));
-
-            return ResponseEntity.ok(configData);
-        } catch (IOException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 }

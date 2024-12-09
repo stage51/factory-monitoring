@@ -4,23 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit auth and admin tools">
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/configs/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/controllers/ConfigController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/EntityNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/IllegalArgumentException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/InvalidConstraintException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/InvalidCredentialsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/UserNotActiveException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/filters/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/utils/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit config server to config access via api">
+      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/java/centrikt/factory_monitoring/discovery_server/configs/ConsulConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/discovery-server/src/main/java/centrikt/factory_monitoring/discovery_server/controllers/ConfigController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/controllers/ConfigController.java" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/java/centrikt/factory_monitoring/config_server/controllers/ConfigController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/src/main/java/centrikt/factory_monitoring/discovery_server/DiscoveryServerApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/src/main/java/centrikt/factory_monitoring/discovery_server/DiscoveryServerApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/discovery-server/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +115,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/config-server/src/main/java/centrikt/factory_monitoring/config_server",
+    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/discovery-server/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -124,11 +136,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\discovery-server\src\main\resources" />
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config-server\src\main\java\centrikt\factory_monitoring\config_server" />
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report\src\main\java\centrikt\factorymonitoring\modereport" />
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config-server\src\main\resources\configurations" />
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\five-minute-report\src\main\java\centrikt\factory_monitoring\five_minute_report" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="centrikt.factorymonitoring.authserver.controllers" />
@@ -159,19 +171,6 @@
     <configuration name="AuthServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="auth-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="centrikt.factorymonitoring.authserver.AuthServerApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ConfigServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="config-server" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="centrikt.factory_monitoring.config_server.ConfigServerApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="centrikt.factory_monitoring.config_server.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -218,9 +217,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.DiscoveryServerApplication" />
-        <item itemvalue="Spring Boot.ConfigServerApplication" />
         <item itemvalue="Spring Boot.FiveMinuteReportApplication" />
+        <item itemvalue="Spring Boot.DiscoveryServerApplication" />
         <item itemvalue="Spring Boot.FiveMinuteReportApplication" />
         <item itemvalue="Spring Boot.ConfigServerApplication" />
       </list>
@@ -258,7 +256,8 @@
       <workItem from="1733125820042" duration="24603000" />
       <workItem from="1733212330870" duration="9776000" />
       <workItem from="1733227201286" duration="8853000" />
-      <workItem from="1733298984077" duration="14687000" />
+      <workItem from="1733298984077" duration="17364000" />
+      <workItem from="1733730727898" duration="17644000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -316,7 +315,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733321798516</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="edit config server to config access via api">
+      <option name="closed" value="true" />
+      <created>1733322400276</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1733322400276</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -353,7 +360,8 @@
     <MESSAGE value="add more logs for admin panel" />
     <MESSAGE value="add mode report service and indexing via taxpayerNumber" />
     <MESSAGE value="edit auth and admin tools" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit auth and admin tools" />
+    <MESSAGE value="edit config server to config access via api" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit config server to config access via api" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
