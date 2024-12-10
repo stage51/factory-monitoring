@@ -1,5 +1,6 @@
 package centrikt.factorymonitoring.modereport.utils.filter;
 
+import centrikt.factorymonitoring.modereport.configs.DateTimeConfig;
 import centrikt.factorymonitoring.modereport.dtos.extra.DateRange;
 import centrikt.factorymonitoring.modereport.enums.Mode;
 import centrikt.factorymonitoring.modereport.enums.Status;
@@ -7,6 +8,7 @@ import centrikt.factorymonitoring.modereport.enums.Type;
 import centrikt.factorymonitoring.modereport.enums.UnitType;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +24,8 @@ import java.util.Map;
 @Component
 @Slf4j
 public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
-    private static final ZoneId USER_TIMEZONE = ZoneId.of("Europe/Moscow");
+
+    private static final ZoneId USER_TIMEZONE = ZoneId.of(DateTimeConfig.getDefaultValue());
 
     public Specification<Entity> buildSpecification(Map<String, String> filters, Map<String, String> dateRanges) {
         return (root, query, criteriaBuilder) -> {
@@ -37,6 +41,13 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                 predicates.add(criteriaBuilder.like(
                                         criteriaBuilder.lower(root.get("product").get("productVCode")),
                                         "%" + value.toLowerCase() + "%"));
+                            } else if ("sensorNumber".equals(field)) {
+                                if (field.matches("\\d+_\\d+")) {
+                                    String controllerNumber = value.split("_")[0];
+                                    String lineNumber = value.split("_")[1];
+                                    predicates.add(criteriaBuilder.equal(root.get("controllerNumber"), controllerNumber));
+                                    predicates.add(criteriaBuilder.equal(root.get("lineNumber"), lineNumber.startsWith("0") ? lineNumber.substring(1) : lineNumber));
+                                }
                             } else if ("status".equals(field)) {
                                 Status status = Status.fromDescription(value);
                                 predicates.add(criteriaBuilder.equal(root.get(field), status));

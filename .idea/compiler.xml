@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mode-report" />
         <module name="config-server" />
-        <module name="discovery-server" />
         <module name="daily-report" />
         <module name="auth-server" />
         <module name="api-gateway" />
@@ -17,6 +16,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="daily-report (1)" target="17" />
+      <module name="discovery-server" target="17" />
       <module name="microservice-utils" target="17" />
     </bytecodeTargetLevel>
   </component>

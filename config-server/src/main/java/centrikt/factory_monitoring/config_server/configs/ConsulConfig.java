@@ -1,4 +1,4 @@
-package centrikt.factory_monitoring.discovery_server.configs;
+package centrikt.factory_monitoring.config_server.configs;
 
 import com.ecwid.consul.v1.ConsulClient;
 import org.springframework.beans.factory.annotation.Value;

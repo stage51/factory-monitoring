@@ -1,5 +1,6 @@
 package centrikt.factorymonitoring.authserver.services.impl;
 
+import centrikt.factorymonitoring.authserver.configs.DateTimeConfig;
 import centrikt.factorymonitoring.authserver.dtos.requests.LoginRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.RefreshTokenRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
@@ -40,6 +41,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 import java.util.Date;
@@ -50,9 +52,10 @@ import java.util.Set;
 @Service
 @RefreshScope
 public class AuthServiceImpl implements AuthService {
-
-    private final long accessTokenExpiration;
-    private final long refreshTokenExpiration;
+    @Value("${security.access-expiration}")
+    private long accessTokenExpiration;
+    @Value("${security.refresh-expiration}")
+    private long refreshTokenExpiration;
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
     private RefreshTokenRepository refreshTokenRepository;
@@ -66,15 +69,11 @@ public class AuthServiceImpl implements AuthService {
             AuthenticationManager authenticationManager,
             JwtTokenUtil jwtTokenUtil,
             IPUtil ipUtil,
-            OnlineRepository onlineRepository,
-            @Value("${security.access-expiration}") long accessTokenExpiration,
-            @Value("${security.refresh-expiration}") long refreshTokenExpiration) {
+            OnlineRepository onlineRepository) {
         this.refreshTokenRepository = refreshTokenRepository;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.accessTokenExpiration = accessTokenExpiration;
-        this.refreshTokenExpiration = refreshTokenExpiration;
         this.onlineRepository = onlineRepository;
         this.ipUtil = ipUtil;
     }
@@ -160,7 +159,7 @@ public class AuthServiceImpl implements AuthService {
         Online online = new Online();
         online.setEmail(jwtTokenUtil.extractUsername(accessToken));
         online.setIpAddress(ipUtil.getClientIp(request));
-        online.setActiveAt(ZonedDateTime.now());
+        online.setActiveAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         onlineRepository.save(online);
     }
 
@@ -203,15 +202,15 @@ public class AuthServiceImpl implements AuthService {
         refreshToken.setUser(userRepository.findByEmail(userEmail)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + userEmail)));
         refreshToken.setToken(generateRefreshToken(userEmail));
-        refreshToken.setIssuedAt(ZonedDateTime.now());
-        refreshToken.setExpiresAt(ZonedDateTime.now().plusSeconds(refreshTokenExpiration / 1000));
+        refreshToken.setIssuedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        refreshToken.setExpiresAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())).plusSeconds(refreshTokenExpiration / 1000));
         return refreshTokenRepository.save(refreshToken);
     }
 
     private RefreshToken validateRefreshToken(String token) {
         String email = jwtTokenUtil.extractUsername(token);
         return refreshTokenRepository.findByTokenAndUserEmail(token, email)
-                .filter(rt -> rt.getExpiresAt().isAfter(ZonedDateTime.now()))
+                .filter(rt -> rt.getExpiresAt().isAfter(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue()))))
                 .orElseThrow(() -> new EntityNotFoundException("Refresh token not found with token " + token));
     }
 }

@@ -22,6 +22,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,6 @@ import java.util.stream.Collectors;
 
 @Service
 public class OrganizationServiceImpl implements OrganizationService {
-
     private UserRepository userRepository;
     private OrganizationRepository organizationRepository;
     private FilterUtil<Organization> filterUtil;
@@ -71,8 +71,6 @@ public class OrganizationServiceImpl implements OrganizationService {
     public OrganizationResponse create(OrganizationRequest dto) {
         entityValidator.validate(dto);
         Organization organization = OrganizationMapper.toEntity(dto, userRepository.findById(dto.getUserId()).orElseThrow(() -> new EntityNotFoundException("User not found with id " + dto.getUserId())));
-        organization.setCreatedAt(ZonedDateTime.now());
-        organization.setUpdatedAt(ZonedDateTime.now());
         return OrganizationMapper.toResponse(organizationRepository.save(organization));
     }
 
@@ -84,11 +82,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     public OrganizationResponse update(Long id, OrganizationRequest dto) {
         entityValidator.validate(dto);
-        Organization existingOrganization = OrganizationMapper.toEntity(dto, userRepository.findById(dto.getUserId()).orElseThrow(() -> new EntityNotFoundException("User not found with id " + dto.getUserId())));
-        if (organizationRepository.existsById(id)){
-            existingOrganization.setId(id);
-            existingOrganization.setUpdatedAt(ZonedDateTime.now());
-        } else throw new EntityNotFoundException("Organization not found with id " + id);
+        Organization existingOrganization = organizationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Organization not found with id " + id));
+        existingOrganization = OrganizationMapper.toEntityUpdate(dto, userRepository.findById(dto.getUserId()).orElseThrow(() -> new EntityNotFoundException("User not found with id " + dto.getUserId())), existingOrganization);
         return OrganizationMapper.toResponse(organizationRepository.save(existingOrganization));
     }
 

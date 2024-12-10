@@ -21,6 +21,10 @@ public class Position extends BaseEntity {
     @Column(nullable = false, length = 12)
     private String taxpayerNumber;
     @Column(nullable = false)
+    private String controllerNumber;
+    @Column(nullable = false)
+    private String lineNumber;
+    @Column(nullable = false)
     private ZonedDateTime startDate;
     @Column(nullable = false)
     private ZonedDateTime endDate;

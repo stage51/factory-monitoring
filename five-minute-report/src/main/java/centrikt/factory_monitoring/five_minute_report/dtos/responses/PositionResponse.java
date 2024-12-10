@@ -21,6 +21,7 @@ public class PositionResponse {
     private Long id;
     private ProductResponse product;
     private String taxpayerNumber;
+    private String sensorNumber;
     private ZonedDateTime controlDate;
     private BigDecimal vbsControl;
     @JsonProperty("aControl")

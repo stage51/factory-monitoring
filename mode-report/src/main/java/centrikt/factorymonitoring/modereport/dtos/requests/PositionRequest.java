@@ -3,6 +3,7 @@ package centrikt.factorymonitoring.modereport.dtos.requests;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
@@ -13,6 +14,10 @@ import java.time.ZonedDateTime;
 public class PositionRequest {
 
     private ProductRequest product;
+
+    @NotNull
+    @Pattern(regexp = "\\d+_\\d+", message = "Format must be number_number, for example 12_34")
+    private String sensorNumber;
 
     @NotNull(message = "Taxpayer number must not be null")
     @Length(min = 12, max = 12, message = "Taxpayer number consist of 12 characters")

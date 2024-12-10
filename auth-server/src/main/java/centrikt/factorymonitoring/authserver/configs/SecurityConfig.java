@@ -58,7 +58,6 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> {
-                    log.warn("Authentication required: {}", authException.getMessage());
                 })
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     log.warn("Access denied: {}", accessDeniedException.getMessage());

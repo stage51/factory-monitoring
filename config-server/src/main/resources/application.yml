@@ -1,18 +1,23 @@
 spring:
-  profiles:
-    active: native
   application:
     name: config-server
   cloud:
-    config:
-      server:
-        native:
-          search-locations: classpath:/configurations
+    consul:
+      host: localhost
+      port: 8500
+      config:
+        enabled: true
+      discovery:
+        enabled: true
+        register: true
+        service-name: config-server
+  config:
+    import: "consul:"
 server:
   port: 8888
 
-security:
-  access-token-secret-key: api_monitoring101monitoring202monitoring303_api
-  api-token-secret-key: monitoring101monitoring202monitoring303
-  access-expiration: 900000 # 15 минут
-  refresh-expiration: 86400000 # 1 день
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

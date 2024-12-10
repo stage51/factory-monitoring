@@ -42,20 +42,20 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
-                .authorizeHttpRequests(authz -> authz
-                        .requestMatchers("/api/v1/auth-server/auth/login", "/api/v1/auth-server/auth/register",
-                                "/api/v1/auth-server/auth/refresh-token", "/api/v1/auth-server/auth/logout").permitAll()
-                        .requestMatchers("/api/v1/auth-server/auth/check").authenticated()
-                        .requestMatchers("/api/v1/auth-server/organizations/profile", "/api/v1/auth-server/users/profile").hasAnyRole("ADMIN", "USER", "MANAGER")
-                        .requestMatchers("/api/v1/auth-server/organizations/**", "/api/v1/auth-server/users/**",
-                                "api/v1/auth-server/onlines/**", "api/v1/auth-server/refresh_tokens/**",
-                                "/api/v1/auth-server/auth/create-api-token").hasRole("ADMIN")
-                        .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
+                .authorizeHttpRequests(
+                        authz -> authz
+                                .requestMatchers(HttpMethod.POST, "/api/v1/mode-report/positions/fetch/**").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/api/v1/mode-report/positions/**", "api/v1/mode-report/products/**").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers(HttpMethod.POST,"/api/v1/mode-report/positions/**", "api/v1/mode-report/products/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.PUT,"/api/v1/mode-report/positions/**", "api/v1/mode-report/products/**").hasRole("ADMIN")
+                                .requestMatchers(HttpMethod.DELETE,"/api/v1/mode-report/positions/**", "api/v1/mode-report/products/**").hasRole("ADMIN")
+                                .anyRequest().hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .and()
+                                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint((request, response, authException) -> {
-                    log.warn("Authentication required: {}", authException.getMessage());
                 })
                 .accessDeniedHandler((request, response, accessDeniedException) -> {
                     log.warn("Access denied: {}", accessDeniedException.getMessage());

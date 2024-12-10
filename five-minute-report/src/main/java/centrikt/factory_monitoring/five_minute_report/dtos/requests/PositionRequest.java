@@ -21,6 +21,10 @@ public class PositionRequest {
     @Length(min = 12, max = 12, message = "Taxpayer number consist of 12 characters")
     private String taxpayerNumber;
 
+    @NotNull
+    @Pattern(regexp = "\\d+_\\d+", message = "Format must be number_number, for example 12_34")
+    private String sensorNumber;
+
     @NotNull(message = "Control date must not be null")
     private ZonedDateTime controlDate;
 

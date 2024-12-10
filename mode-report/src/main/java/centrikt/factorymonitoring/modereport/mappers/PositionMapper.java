@@ -13,7 +13,8 @@ public class PositionMapper {
         if (position == null) {
             return null;
         }
-        PositionResponse dto = PositionResponse.builder().id(position.getId()).taxpayerNumber(position.getTaxpayerNumber()).product(ProductMapper.toResponse(position.getProduct()))
+        PositionResponse dto = PositionResponse.builder().id(position.getId()).sensorNumber(position.getControllerNumber() + "_" + position.getLineNumber())
+                .taxpayerNumber(position.getTaxpayerNumber()).product(ProductMapper.toResponse(position.getProduct()))
                 .startDate(position.getStartDate()).endDate(position.getEndDate()).vbsStart(position.getVbsStart()).vbsEnd(position.getVbsEnd())
                 .aStart(position.getAStart()).aEnd(position.getAEnd()).percentAlc(position.getPercentAlc())
                 .bottleCountStart(position.getBottleCountStart()).bottleCountEnd(position.getBottleCountEnd())
@@ -27,6 +28,10 @@ public class PositionMapper {
         }
         Position position = new Position();
         position.setTaxpayerNumber(positionRequest.getTaxpayerNumber());
+        position.setControllerNumber(positionRequest.getSensorNumber().split("_")[0]);
+        position.setLineNumber(positionRequest.getSensorNumber().split("_")[1].startsWith("0")
+                ? positionRequest.getSensorNumber().split("_")[1].substring(1)
+                : positionRequest.getSensorNumber().split("_")[1]);
         position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
         position.setStartDate(positionRequest.getStartDate());
         position.setEndDate(positionRequest.getEndDate());

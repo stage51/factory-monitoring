@@ -1,9 +1,12 @@
 package centrikt.factorymonitoring.authserver.utils.filter;
 
+import centrikt.factorymonitoring.authserver.configs.DateTimeConfig;
 import centrikt.factorymonitoring.authserver.dtos.extra.DateRange;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -17,9 +20,10 @@ import java.util.Map;
 
 @Component
 @Slf4j
+@RefreshScope
 public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
 
-    private static final ZoneId USER_TIMEZONE = ZoneId.of("Europe/Moscow");
+    private static final ZoneId USER_TIMEZONE = ZoneId.of(DateTimeConfig.getDefaultValue());
 
     public Specification<Entity> buildSpecification(Map<String, String> filters, Map<String, String> dateRanges) {
         return (root, query, criteriaBuilder) -> {

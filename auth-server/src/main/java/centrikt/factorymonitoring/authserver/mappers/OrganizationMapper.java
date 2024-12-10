@@ -1,12 +1,15 @@
 package centrikt.factorymonitoring.authserver.mappers;
 
 
+import centrikt.factorymonitoring.authserver.configs.DateTimeConfig;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+import org.springframework.beans.factory.annotation.Value;
 
+import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 public class OrganizationMapper {
@@ -28,6 +31,16 @@ public class OrganizationMapper {
             return null;
         }
         Organization organization = new Organization();
+        organization.setCreatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        organization.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        return getOrganization(user, organization, organizationRequest.getShortName(), organizationRequest.getName(), organizationRequest.getType(), organizationRequest.getRegion(), organizationRequest.getTaxpayerNumber(), organizationRequest.getReasonCode(), organizationRequest.getAddress(), organizationRequest.getSpecialEmail(), organizationRequest.getSpecialPhone());
+    }
+
+    public static Organization toEntityUpdate(OrganizationRequest organizationRequest, User user, Organization organization) {
+        if (organizationRequest == null) {
+            return null;
+        }
+        organization.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         return getOrganization(user, organization, organizationRequest.getShortName(), organizationRequest.getName(), organizationRequest.getType(), organizationRequest.getRegion(), organizationRequest.getTaxpayerNumber(), organizationRequest.getReasonCode(), organizationRequest.getAddress(), organizationRequest.getSpecialEmail(), organizationRequest.getSpecialPhone());
     }
 
@@ -36,8 +49,8 @@ public class OrganizationMapper {
             return null;
         }
         Organization organization = new Organization();
-        organization.setCreatedAt(ZonedDateTime.now());
-        organization.setUpdatedAt(ZonedDateTime.now());
+        organization.setCreatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        organization.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         return getOrganization(user, organization, organizationRequest.getShortName(), organizationRequest.getName(), organizationRequest.getType(), organizationRequest.getRegion(), organizationRequest.getTaxpayerNumber(), organizationRequest.getReasonCode(), organizationRequest.getAddress(), organizationRequest.getSpecialEmail(), organizationRequest.getSpecialPhone());
     }
 
@@ -45,7 +58,7 @@ public class OrganizationMapper {
         if (organizationRequest == null) {
             return null;
         }
-        existingOrganization.setUpdatedAt(ZonedDateTime.now());
+        existingOrganization.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         existingOrganization.setShortName(organizationRequest.getShortName());
         existingOrganization.setName(organizationRequest.getName());
         existingOrganization.setType(organizationRequest.getType());

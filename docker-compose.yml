@@ -45,11 +45,44 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
-  consul:
+  consul-server:
     image: hashicorp/consul:1.20.1
-    hostname: localhost
+    container_name: consul-server
     ports:
-      - 8500:8500
+      - "8500:8500"      # HTTP интерфейс
+      - "8600:8600/udp"  # DNS
+      - "8300:8300"      # RPC
+      - "8301:8301"      # Сервер LAN
+      - "8301:8301/udp"  # Сервер LAN UDP
+      - "8302:8302"      # Сервер WAN
+      - "8302:8302/udp"  # Сервер WAN UDP
+    command: >
+      consul agent -server -bootstrap-expect=1
+      -data-dir=/consul/data
+      -node=server-1
+      -client=0.0.0.0
+      -ui
+    volumes:
+      - consul-server-data:/consul/data
+    environment:
+      CONSUL_BIND_INTERFACE: eth0
+    networks:
+      - consul-network
+
+  consul-agent:
+    image: hashicorp/consul:1.20.1
+    container_name: consul-agent
+    depends_on:
+      - consul-server
+    command: >
+      consul agent -node=agent-1
+      -data-dir=/consul/data
+      -client=0.0.0.0
+      -retry-join=consul-server
+    volumes:
+      - consul-agent-data:/consul/data
+    networks:
+      - consul-network
 volumes:
   mode_postgres_data:
     driver: local
@@ -59,3 +92,11 @@ volumes:
     driver: local
   user_postgres_data:
     driver: local
+  consul-server-data:
+    driver: local
+  consul-agent-data:
+    driver: local
+
+networks:
+  consul-network:
+    driver: bridge

@@ -9,22 +9,26 @@ import centrikt.factory_monitoring.five_minute_report.models.Position;
 public class PositionMapper {
 
 
-    public static Position toEntity(PositionRequest dto) {
-        if (dto == null) {
+    public static Position toEntity(PositionRequest positionRequest) {
+        if (positionRequest == null) {
             return null;
         }
 
         Position position = new Position();
-        position.setTaxpayerNumber(dto.getTaxpayerNumber());
-        position.setProduct(ProductMapper.toEntity(dto.getProduct()));
-        position.setControlDate(dto.getControlDate());
-        position.setVbsControl(dto.getVbsControl());
-        position.setAControl(dto.getAControl());
-        position.setPercentAlc(dto.getPercentAlc());
-        position.setBottleCountControl(dto.getBottleCountControl());
-        position.setTemperature(dto.getTemperature());
-        position.setMode(Mode.fromDescription(dto.getMode()));
-        position.setStatus(Status.fromDescription(dto.getStatus()));
+        position.setTaxpayerNumber(positionRequest.getTaxpayerNumber());
+        position.setControllerNumber(positionRequest.getSensorNumber().split("_")[0]);
+        position.setLineNumber(positionRequest.getSensorNumber().split("_")[1].startsWith("0")
+                ? positionRequest.getSensorNumber().split("_")[1].substring(1)
+                : positionRequest.getSensorNumber().split("_")[1]);
+        position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
+        position.setControlDate(positionRequest.getControlDate());
+        position.setVbsControl(positionRequest.getVbsControl());
+        position.setAControl(positionRequest.getAControl());
+        position.setPercentAlc(positionRequest.getPercentAlc());
+        position.setBottleCountControl(positionRequest.getBottleCountControl());
+        position.setTemperature(positionRequest.getTemperature());
+        position.setMode(Mode.fromDescription(positionRequest.getMode()));
+        position.setStatus(Status.fromDescription(positionRequest.getStatus()));
         return position;
     }
 
@@ -33,7 +37,8 @@ public class PositionMapper {
             return null;
         }
 
-        PositionResponse dto = PositionResponse.builder().id(entity.getId()).taxpayerNumber(entity.getTaxpayerNumber())
+        PositionResponse dto = PositionResponse.builder().id(entity.getId())
+                .taxpayerNumber(entity.getTaxpayerNumber()).sensorNumber(entity.getControllerNumber() + "_" + entity.getLineNumber())
                 .product(ProductMapper.toResponse(entity.getProduct()))
                 .controlDate(entity.getControlDate()).vbsControl(entity.getVbsControl())
                 .aControl(entity.getAControl()).percentAlc(entity.getPercentAlc())
