@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PositionServiceImpl implements PositionService {
@@ -90,5 +91,14 @@ public class PositionServiceImpl implements PositionService {
         Pageable pageable = PageRequest.of(number, size, sort);
         Specification<Position> specification = filterUtil.buildSpecification(filters, dateRanges);
         return positionRepository.findAll(specification, pageable).map(PositionMapper::toResponse);
+    }
+
+    @Override
+    public List<PositionResponse> createAll(List<PositionRequest> positionRequests) {
+        return positionRepository.saveAll(positionRequests.stream().map((e) -> {
+            entityValidator.validate(e);
+            return PositionMapper.toEntity(e);
+        }).collect(Collectors.toList()))
+                .stream().map(PositionMapper::toResponse).collect(Collectors.toList());
     }
 }

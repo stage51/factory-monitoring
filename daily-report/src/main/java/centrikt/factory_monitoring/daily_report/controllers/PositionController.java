@@ -3,6 +3,7 @@ package centrikt.factory_monitoring.daily_report.controllers;
 import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequestDTO;
 import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
+import centrikt.factory_monitoring.daily_report.dtos.responses.ReportStatusResponse;
 import centrikt.factory_monitoring.daily_report.services.PositionService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -43,6 +45,13 @@ public class PositionController {
         log.info("Creating new position: {}", positionRequest);
         PositionResponse createdPosition = positionService.create(positionRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPosition);
+    }
+
+    @PostMapping(value = "/list", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<PositionResponse>> createPositions(@RequestBody List<PositionRequest> positionRequest) {
+        log.info("Creating new positions: {}", positionRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(positionService.createAll(positionRequest));
     }
 
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -99,5 +108,8 @@ public class PositionController {
         );
         return ResponseEntity.ok(positions);
     }
-
+    @GetMapping(value = "/check")
+    public ResponseEntity<List<ReportStatusResponse>> checkLines(@RequestParam String taxpayerNumber) {
+        return ResponseEntity.ok(positionService.getReportStatuses(taxpayerNumber));
+    }
 }

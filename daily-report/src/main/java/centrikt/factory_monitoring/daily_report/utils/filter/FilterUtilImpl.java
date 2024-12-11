@@ -40,11 +40,11 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                         criteriaBuilder.lower(root.get("product").get("productVCode")),
                                         "%" + value.toLowerCase() + "%"));
                             } else if ("sensorNumber".equals(field)) {
-                                if (field.matches("\\d+_\\d+")) {
+                                if (value.matches("\\d+_\\d+")) {
                                     String controllerNumber = value.split("_")[0];
                                     String lineNumber = value.split("_")[1];
                                     predicates.add(criteriaBuilder.equal(root.get("controllerNumber"), controllerNumber));
-                                    predicates.add(criteriaBuilder.equal(root.get("lineNumber"), lineNumber.startsWith("0") ? lineNumber.substring(1) : lineNumber));
+                                    predicates.add(criteriaBuilder.equal(root.get("lineNumber"), lineNumber));
                                 }
                             } else if ("status".equals(field)) {
                                 Status status = Status.fromDescription(value);

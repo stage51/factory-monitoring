@@ -1,7 +1,11 @@
 package centrikt.factory_monitoring.daily_report.services.impl;
 
+import centrikt.factory_monitoring.daily_report.configs.DateTimeConfig;
+import centrikt.factory_monitoring.daily_report.configs.TimingConfig;
 import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
+import centrikt.factory_monitoring.daily_report.dtos.responses.ReportStatusResponse;
+import centrikt.factory_monitoring.daily_report.enums.ReportStatus;
 import centrikt.factory_monitoring.daily_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.daily_report.mappers.PositionMapper;
 import centrikt.factory_monitoring.daily_report.models.Position;
@@ -17,21 +21,27 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class PositionServiceImpl implements PositionService {
 
+    private TimingConfig timingConfig;
     private PositionRepository positionRepository;
     private EntityValidator entityValidator;
     private FilterUtil<Position> filterUtil;
 
     public PositionServiceImpl(PositionRepository positionRepository, EntityValidator entityValidator,
-                               FilterUtil<Position> filterUtil) {
+                               FilterUtil<Position> filterUtil, TimingConfig timingConfig) {
         this.positionRepository = positionRepository;
         this.entityValidator = entityValidator;
         this.filterUtil = filterUtil;
+        this.timingConfig = timingConfig;
     }
 
     @Autowired
@@ -46,12 +56,16 @@ public class PositionServiceImpl implements PositionService {
     public void setFilterUtil(FilterUtil<Position> filterUtil) {
         this.filterUtil = filterUtil;
     }
+    @Autowired
+    public void setTimingConfig(TimingConfig timingConfig) {
+        this.timingConfig = timingConfig;
+    }
+
     @Override
     public PositionResponse create(PositionRequest dto) {
         entityValidator.validate(dto);
         return PositionMapper.toResponse(positionRepository.save(PositionMapper.toEntity(dto)));
     }
-
     @Override
     public PositionResponse get(Long id) {
         return PositionMapper.toResponse(positionRepository.findById(id)
@@ -91,4 +105,37 @@ public class PositionServiceImpl implements PositionService {
         Specification<Position> specification = filterUtil.buildSpecification(filters, dateRanges);
         return positionRepository.findAll(specification, pageable).map(PositionMapper::toResponse);
     }
+
+    @Override
+    public List<PositionResponse> createAll(List<PositionRequest> positionRequests) {
+        return positionRepository.saveAll(positionRequests.stream().map((e) -> {
+                    entityValidator.validate(e);
+                    return PositionMapper.toEntity(e);
+                }).collect(Collectors.toList()))
+                .stream().map(PositionMapper::toResponse).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReportStatusResponse> getReportStatuses(String taxpayerNumber) {
+        ZoneId zoneId = ZoneId.of(DateTimeConfig.getDefaultValue());
+        ZonedDateTime now = ZonedDateTime.now(zoneId);
+
+        return positionRepository.findLatestPositionsByTaxpayerNumber(taxpayerNumber).stream().map((e) -> {
+            ReportStatusResponse reportStatusResponse = new ReportStatusResponse();
+            reportStatusResponse.setControllerNumber(e.getControllerNumber());
+            reportStatusResponse.setLineNumber(e.getLineNumber());
+            reportStatusResponse.setLastReportTime(e.getEndDate());
+            Duration duration = Duration.between(e.getEndDate(), now);
+            if (duration.toMillis() <= timingConfig.getGreenDailyTiming()) {
+                reportStatusResponse.setReportStatus(ReportStatus.OK.toString());
+            } else if (duration.toMillis() <= timingConfig.getYellowDailyTiming()){
+                reportStatusResponse.setReportStatus(ReportStatus.WARN.toString());
+            } else {
+                reportStatusResponse.setReportStatus(ReportStatus.ERROR.toString());
+            }
+            return reportStatusResponse;
+        }).collect(Collectors.toList());
+    }
+
+
 }

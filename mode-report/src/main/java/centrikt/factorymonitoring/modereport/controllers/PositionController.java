@@ -12,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -42,6 +43,13 @@ public class PositionController {
         log.info("Creating new position: {}", positionRequest);
         PositionResponse createdPosition = positionService.create(positionRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdPosition);
+    }
+
+    @PostMapping(value = "/list", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    public ResponseEntity<List<PositionResponse>> createPositions(@RequestBody List<PositionRequest> positionRequest) {
+        log.info("Creating new positions: {}", positionRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(positionService.createAll(positionRequest));
     }
 
     @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -98,5 +106,4 @@ public class PositionController {
         );
         return ResponseEntity.ok(positions);
     }
-
 }
