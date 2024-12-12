@@ -16,7 +16,10 @@ public interface PositionRepository extends JpaRepository<Position, Long> {
     Page<Position> findAll(Specification<Position> specification, Pageable pageable);
     @Query("SELECT p FROM Position p " +
             "WHERE p.taxpayerNumber = :taxpayerNumber " +
-            "AND p.endDate = (SELECT MAX(p2.endDate) FROM Position p2 WHERE p2.taxpayerNumber = :taxpayerNumber AND p2.lineNumber = p.lineNumber)")
+            "AND p.endDate = (SELECT MAX(p2.endDate) FROM Position p2 " +
+            "WHERE p2.taxpayerNumber = :taxpayerNumber " +
+            "AND p2.lineNumber = p.lineNumber " +
+            "AND p2.controllerNumber = p.controllerNumber)")
     List<Position> findLatestPositionsByTaxpayerNumber(@Param("taxpayerNumber") String taxpayerNumber);
 
 }
