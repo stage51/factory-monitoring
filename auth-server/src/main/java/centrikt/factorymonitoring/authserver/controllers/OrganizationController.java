@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth-server/organizations")
 @Slf4j
-public class OrganizationController {
+public class  OrganizationController {
     private OrganizationService organizationService;
 
     public OrganizationController(OrganizationService organizationService) {
@@ -51,8 +51,7 @@ public class OrganizationController {
         return ResponseEntity.ok(updatedOrganization);
     }
 
-    @DeleteMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> deleteOrganization(@PathVariable Long id) {
         log.info("Deleting organization with id: {}", id);
         organizationService.delete(id);

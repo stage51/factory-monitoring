@@ -49,6 +49,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(
                         authz -> authz
                                 .requestMatchers(HttpMethod.POST, "/api/v1/five-minute-report/positions/fetch/**").hasAnyRole("ADMIN", "USER", "MANAGER")
+                                .requestMatchers(HttpMethod.GET, "/api/v1/five-minute-report/positions/check").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers(HttpMethod.GET, "/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasAnyRole("ADMIN", "USER", "MANAGER")
                                 .requestMatchers(HttpMethod.POST,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
                                 .requestMatchers(HttpMethod.PUT,"/api/v1/five-minute-report/positions/**", "api/v1/five-minute-report/products/**").hasRole("ADMIN")
