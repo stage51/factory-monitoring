@@ -146,11 +146,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public ApiTokenResponse createApiToken(String accessToken) {
+    public ApiTokenResponse createApiToken(String accessToken, Long expiration) {
         User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + jwtTokenUtil.extractUsername(accessToken)));
         ApiTokenResponse response = new ApiTokenResponse();
-        response.setApiToken(generateApiToken(user.getEmail(), user.getRole().toString()));
+        response.setApiToken(generateApiToken(user.getEmail(), user.getRole().toString(), expiration));
         return response;
     }
 
@@ -172,9 +172,15 @@ public class AuthServiceImpl implements AuthService {
         return generateToken(Map.of(), username, refreshTokenExpiration);
     }
 
-    private String generateApiToken(String username, String role) {
+    private String generateApiToken(String username, String role, Long expiration) {
         Map<String, Object> claims = Map.of("role", role);
-        return generateToken(claims, username);
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(expiration))
+                .signWith(jwtTokenUtil.getApiKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 
     private String generateToken(Map<String, Object> claims, String subject, long expiration) {
@@ -184,16 +190,6 @@ public class AuthServiceImpl implements AuthService {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(jwtTokenUtil.getSecretKey(), SignatureAlgorithm.HS256)
-                .compact();
-    }
-
-    private String generateToken(Map<String, Object> claims, String subject) {
-        return Jwts.builder()
-                .setClaims(claims)
-                .setSubject(subject)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(Long.MAX_VALUE))
-                .signWith(jwtTokenUtil.getApiKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 

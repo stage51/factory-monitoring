@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("api/v1/config-server/config/client").permitAll()
                         .requestMatchers("api/v1/config-server/config/**").hasAnyRole("ADMIN")
                         .anyRequest().hasAnyRole("ADMIN")
                 )

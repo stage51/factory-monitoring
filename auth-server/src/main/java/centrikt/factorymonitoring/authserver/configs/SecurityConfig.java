@@ -46,6 +46,7 @@ public class SecurityConfig {
                 .cors().configurationSource(corsConfigurationSource())
                 .and()
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/favicon.ico", "/v3/api-docs").permitAll()
                         .requestMatchers("/api/v1/auth-server/auth/login", "/api/v1/auth-server/auth/register",
                                 "/api/v1/auth-server/auth/refresh-token", "/api/v1/auth-server/auth/logout").permitAll()
                         .requestMatchers("/api/v1/auth-server/auth/check").authenticated()

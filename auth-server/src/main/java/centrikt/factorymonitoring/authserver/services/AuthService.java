@@ -13,6 +13,6 @@ public interface AuthService {
     AccessTokenResponse refreshAccessToken(RefreshTokenRequest refreshTokenRequest);
     void revokeRefreshToken(RefreshTokenRequest refreshTokenRequest);
     boolean validateToken(String token);
-    ApiTokenResponse createApiToken(String token);
+    ApiTokenResponse createApiToken(String token, Long expiration);
     void addOnline(String accessToken, HttpServletRequest request);
 }

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/v1/auth-server/organizations")
 @Slf4j
-public class  OrganizationController {
+public class  OrganizationController implements centrikt.factorymonitoring.authserver.controllers.docs.OrganizationController {
     private OrganizationService organizationService;
 
     public OrganizationController(OrganizationService organizationService) {

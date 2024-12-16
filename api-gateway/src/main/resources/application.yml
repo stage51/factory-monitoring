@@ -13,3 +13,5 @@ spring:
         format: yaml
   config:
     import: "consul:"
+  main:
+    allow-bean-definition-overriding: true

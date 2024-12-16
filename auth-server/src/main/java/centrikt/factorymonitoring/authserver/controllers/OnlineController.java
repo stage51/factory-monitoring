@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth-server/onlines")
 @Slf4j
-public class OnlineController {
+public class OnlineController implements centrikt.factorymonitoring.authserver.controllers.docs.OnlineController {
     
     private OnlineService<OnlineResponse> onlineService;
 

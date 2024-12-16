@@ -73,6 +73,7 @@ public class UserMapper {
             return null;
         }
         existingUser.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        existingUser.setPassword(userRequest.getPassword());
         existingUser.setEmail(userRequest.getEmail());
         existingUser.setFirstName(userRequest.getFirstName());
         existingUser.setLastName(userRequest.getLastName());

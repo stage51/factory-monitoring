@@ -16,7 +16,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 @RestController
 @RequestMapping("/api/v1/auth-server/auth")
-public class AuthController {
+public class AuthController implements centrikt.factorymonitoring.authserver.controllers.docs.AuthController {
 
     private AuthService authService;
     private UserService userService;
@@ -63,9 +63,9 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
     @GetMapping("/create-api-token")
-    public ResponseEntity<ApiTokenResponse> createApiToken(@RequestHeader("Authorization") String authorizationHeader) {
+    public ResponseEntity<ApiTokenResponse> createApiToken(@RequestHeader("Authorization") String authorizationHeader, @RequestParam("expiration") Long expiration) {
         return ResponseEntity.ok(
-                authService.createApiToken(authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader)
+                authService.createApiToken(authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader, expiration)
         );
     }
 }
