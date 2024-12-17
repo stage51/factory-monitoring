@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/auth-server/roles")
 @Slf4j
-public class RoleController {
+public class RoleController implements centrikt.factorymonitoring.authserver.controllers.docs.RoleController {
     @GetMapping()
     public ResponseEntity<Page<RoleResponse>> getRoles() {
         List<RoleResponse> roles = new ArrayList<>();

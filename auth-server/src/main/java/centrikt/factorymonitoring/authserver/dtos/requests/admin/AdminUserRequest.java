@@ -1,8 +1,10 @@
 package centrikt.factorymonitoring.authserver.dtos.requests.admin;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
 
 @Getter
+@Schema(description = "Форма создания, редактирования пользователя для администратора")
 public class AdminUserRequest {
     private String email;
     private String password;

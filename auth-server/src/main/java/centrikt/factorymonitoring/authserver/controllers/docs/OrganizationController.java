@@ -53,6 +53,12 @@ public interface OrganizationController {
     )
     @DeleteMapping(value = "/{id}")
     ResponseEntity<Void> deleteOrganization(@PathVariable Long id);
+
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Просмотр организаций",
+            description = "Выводит организации постранично"
+    )
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}

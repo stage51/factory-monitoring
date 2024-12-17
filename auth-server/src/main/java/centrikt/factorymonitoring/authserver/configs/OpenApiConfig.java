@@ -7,6 +7,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import org.springframework.context.annotation.Configuration;
 
+@Configuration
 @OpenAPIDefinition(
         info = @Info(
                 title = "Auth Server",
@@ -24,6 +25,5 @@ import org.springframework.context.annotation.Configuration;
         bearerFormat = "JWT",
         scheme = "bearer"
 )
-@Configuration
 public class OpenApiConfig {
 }

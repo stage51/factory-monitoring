@@ -15,3 +15,17 @@ spring:
     import: "consul:"
   main:
     allow-bean-definition-overriding: true
+
+springdoc:
+  swagger-ui:
+    urls:
+      -   name: five-minute-report-service
+          url: five-minute-report/v3/api-docs
+      -   name: daily-report-service
+          url: daily-report/v3/api-docs
+      -   name: mode-report-service
+          url: mode-report/v3/api-docs
+      -   name: config-server
+          url: /config-server/v3/api-docs
+      -   name: auth-server
+          url: auth-server/v3/api-docs

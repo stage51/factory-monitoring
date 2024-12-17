@@ -18,7 +18,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "api/v1/mode-report/positions")
 @Slf4j
-public class PositionController {
+public class PositionController implements centrikt.factorymonitoring.modereport.controllers.docs.PositionController {
     private PositionService positionService;
 
     public PositionController(PositionService positionService) {

@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/auth-server/users")
 @Slf4j
-public class UserController {
+public class UserController implements centrikt.factorymonitoring.authserver.controllers.docs.UserController {
     private UserService userService;
 
     public UserController(UserService userService) {

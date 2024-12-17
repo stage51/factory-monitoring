@@ -12,3 +12,10 @@ spring:
       config:
         enabled: true
         format: key_value
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v3/api-docs
+  swagger-ui:
+    enabled: true

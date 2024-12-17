@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(value = "api/v1/five-minute-report/products")
 @Slf4j
-public class ProductController {
+public class ProductController implements centrikt.factory_monitoring.five_minute_report.controllers.docs.ProductController {
     private ProductService productService;
 
     public ProductController(ProductService productService) {

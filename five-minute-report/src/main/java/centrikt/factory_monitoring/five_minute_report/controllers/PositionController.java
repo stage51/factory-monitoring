@@ -19,7 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping(value = "api/v1/five-minute-report/positions")
 @Slf4j
-public class PositionController {
+public class PositionController implements centrikt.factory_monitoring.five_minute_report.controllers.docs.PositionController {
     private PositionService positionService;
 
     public PositionController(PositionService positionService) {

@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/config-server/config")
-public class ConfigController {
+public class ConfigController implements centrikt.factory_monitoring.config_server.controllers.docs.ConfigController {
 
     private ConsulClient consulClient;
 

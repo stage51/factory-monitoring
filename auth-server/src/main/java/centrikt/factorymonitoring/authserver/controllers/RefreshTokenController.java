@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/auth-server/refresh-tokens")
 @Slf4j
-public class RefreshTokenController {
+public class RefreshTokenController implements centrikt.factorymonitoring.authserver.controllers.docs.RefreshTokenController {
 
     private RefreshTokenService<RefreshTokenResponse> refreshTokenService;
 

@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .csrf().disable()
                 .cors().disable()
                 .authorizeHttpRequests(authz -> authz
+                        .requestMatchers("/swagger-ui.html", "/swagger-ui/**", "/favicon.ico", "/v3/api-docs/**").permitAll()
                         .requestMatchers("api/v1/config-server/config/client").permitAll()
                         .requestMatchers("api/v1/config-server/config/**").hasAnyRole("ADMIN")
                         .anyRequest().hasAnyRole("ADMIN")
