@@ -15,4 +15,5 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
     Page<Organization> findAll(Specification<Organization> specification, Pageable pageable);
     void deleteByUser(User user);
     Optional<Organization> findByUser(User user);
+    Optional<Organization> findByTaxpayerNumber(String taxpayerNumber);
 }

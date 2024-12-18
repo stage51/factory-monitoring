@@ -2,10 +2,12 @@ package centrikt.factory_monitoring.daily_report.services.impl;
 
 import centrikt.factory_monitoring.daily_report.configs.DateTimeConfig;
 import centrikt.factory_monitoring.daily_report.configs.TimingConfig;
+import centrikt.factory_monitoring.daily_report.dtos.messages.ReportMessage;
 import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.daily_report.dtos.responses.ReportStatusResponse;
 import centrikt.factory_monitoring.daily_report.enums.ReportStatus;
+import centrikt.factory_monitoring.daily_report.enums.Status;
 import centrikt.factory_monitoring.daily_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.daily_report.mappers.PositionMapper;
 import centrikt.factory_monitoring.daily_report.models.Position;
@@ -13,6 +15,7 @@ import centrikt.factory_monitoring.daily_report.repos.PositionRepository;
 import centrikt.factory_monitoring.daily_report.services.PositionService;
 import centrikt.factory_monitoring.daily_report.utils.filter.FilterUtil;
 import centrikt.factory_monitoring.daily_report.utils.validator.EntityValidator;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,13 +38,16 @@ public class PositionServiceImpl implements PositionService {
     private PositionRepository positionRepository;
     private EntityValidator entityValidator;
     private FilterUtil<Position> filterUtil;
+    private RabbitTemplate rabbitTemplate;
 
     public PositionServiceImpl(PositionRepository positionRepository, EntityValidator entityValidator,
-                               FilterUtil<Position> filterUtil, TimingConfig timingConfig) {
+                               FilterUtil<Position> filterUtil, TimingConfig timingConfig,
+                               RabbitTemplate rabbitTemplate) {
         this.positionRepository = positionRepository;
         this.entityValidator = entityValidator;
         this.filterUtil = filterUtil;
         this.timingConfig = timingConfig;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Autowired
@@ -60,10 +66,17 @@ public class PositionServiceImpl implements PositionService {
     public void setTimingConfig(TimingConfig timingConfig) {
         this.timingConfig = timingConfig;
     }
+    @Autowired
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @Override
     public PositionResponse create(PositionRequest dto) {
         entityValidator.validate(dto);
+        rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
+                dto.getTaxpayerNumber(), dto.getSensorNumber(), "Дневной отчет", dto.getStatus()
+        ));
         return PositionMapper.toResponse(positionRepository.save(PositionMapper.toEntity(dto)));
     }
     @Override

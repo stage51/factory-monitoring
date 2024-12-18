@@ -18,7 +18,7 @@ public class OrganizationMapper {
         if (organization == null) {
             return null;
         }
-        OrganizationResponse dto = OrganizationResponse.builder().id(organization.getId()).createdAt(organization.getCreatedAt()).updatedAt(organization.getUpdatedAt())
+        OrganizationResponse dto = OrganizationResponse.builder().id(organization.getId()).userId(organization.getUser().getId()).createdAt(organization.getCreatedAt()).updatedAt(organization.getUpdatedAt())
                 .shortName(organization.getShortName()).name(organization.getName()).type(organization.getType()).region(organization.getRegion())
                 .taxpayerNumber(organization.getTaxpayerNumber()).reasonCode(organization.getReasonCode()).address(organization.getAddress())
                 .specialEmail(organization.getSpecialEmail()).specialPhone(organization.getSpecialPhone())

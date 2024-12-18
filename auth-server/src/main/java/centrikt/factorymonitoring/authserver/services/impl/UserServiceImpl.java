@@ -1,8 +1,12 @@
 package centrikt.factorymonitoring.authserver.services.impl;
 
+import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
+import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
+import centrikt.factorymonitoring.authserver.mappers.SettingMapper;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
 import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
@@ -13,6 +17,7 @@ import centrikt.factorymonitoring.authserver.services.UserService;
 import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -26,6 +31,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.MessageFormat;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
@@ -39,15 +45,17 @@ public class UserServiceImpl implements UserService {
     private FilterUtil<User> filterUtil;
     private EntityValidator entityValidator;
     private JwtTokenUtil jwtTokenUtil;
+    private RabbitTemplate rabbitTemplate;
 
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
                            FilterUtil<User> filterUtil , EntityValidator entityValidator,
-                           JwtTokenUtil jwtTokenUtil) {
+                           JwtTokenUtil jwtTokenUtil, RabbitTemplate rabbitTemplate) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.filterUtil = filterUtil;
         this.entityValidator = entityValidator;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Autowired
@@ -70,6 +78,10 @@ public class UserServiceImpl implements UserService {
     public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
         this.jwtTokenUtil = jwtTokenUtil;
     }
+    @Autowired
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     @Override
     public UserResponse create(UserRequest dto) {
@@ -77,6 +89,12 @@ public class UserServiceImpl implements UserService {
             entityValidator.validate(dto);
             User user = UserMapper.toEntityFromCreateRequest(dto);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            rabbitTemplate.convertAndSend("emailQueue",
+                    new EmailMessage(
+                            "a.merkulov@centrikt.ru",
+                            "Factory Monitoring",
+                            String.format("Зарегистрировался новый пользователь: %s %s с почтой %s."
+                                    , user.getFirstName(), user.getLastName(), user.getEmail())));
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("User with email " + dto.getEmail() + " already exists");
@@ -96,6 +114,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
@@ -144,12 +163,24 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public UserResponse updateProfile(String accessToken, UserRequest userRequest) {
+        entityValidator.validate(userRequest);
         String username = jwtTokenUtil.extractUsername(accessToken);
         User existingUser = userRepository.findByEmail(username)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username));
         existingUser = UserMapper.toEntityFromUpdateRequest(existingUser, userRequest);
         existingUser.setPassword(passwordEncoder.encode(existingUser.getPassword()));
         return UserMapper.toResponse(userRepository.save(existingUser));
+    }
+
+    @Override
+    public SettingResponse updateSetting(String accessToken, SettingRequest settingRequest) {
+        entityValidator.validate(settingRequest);
+        String username = jwtTokenUtil.extractUsername(accessToken);
+        User existingUser = userRepository.findByEmail(username)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username));
+        existingUser.setSetting(SettingMapper.toEntity(existingUser.getSetting(), settingRequest));
+        userRepository.save(existingUser);
+        return SettingMapper.toResponse(existingUser.getSetting());
     }
 
     @Override

@@ -20,19 +20,19 @@ public class User extends BaseEntity {
     private String lastName;
     private String middleName;
     @Column(nullable = false)
-    private String timezone;
-    @Column(nullable = false)
-    private boolean subscribe;
-    @Column(nullable = false)
     private boolean active;
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
-    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @JoinColumn(name = "setting_id")
+    private Setting setting;
+
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private List<RefreshToken> refreshTokens;
 }

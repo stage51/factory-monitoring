@@ -1,8 +1,10 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.services.UserService;
@@ -126,5 +128,10 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
     public ResponseEntity<UserResponse> updateProfile(@RequestHeader("Authorization") String authorizationHeader, @RequestBody UserRequest userRequest) {
         String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
         return ResponseEntity.ok(userService.updateProfile(accessToken, userRequest));
+    }
+    @PutMapping("/profile/setting")
+    public ResponseEntity<SettingResponse> updateSetting(@RequestHeader("Authorization") String authorizationHeader, @RequestBody SettingRequest settingRequest) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        return ResponseEntity.ok(userService.updateSetting(accessToken, settingRequest));
     }
 }

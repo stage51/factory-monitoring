@@ -1,5 +1,7 @@
 package centrikt.factorymonitoring.authserver.services.impl;
 
+import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
+import centrikt.factorymonitoring.authserver.dtos.messages.ReportMessage;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
@@ -13,6 +15,8 @@ import centrikt.factorymonitoring.authserver.services.OrganizationService;
 import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -35,14 +39,17 @@ public class OrganizationServiceImpl implements OrganizationService {
     private FilterUtil<Organization> filterUtil;
     private EntityValidator entityValidator;
     private JwtTokenUtil jwtTokenUtil;
+    private RabbitTemplate rabbitTemplate;
 
     public OrganizationServiceImpl(UserRepository userRepository, OrganizationRepository organizationRepository,
-                                   FilterUtil<Organization> filterUtil , EntityValidator entityValidator, JwtTokenUtil jwtTokenUtil) {
+                                   FilterUtil<Organization> filterUtil , EntityValidator entityValidator,
+                                   JwtTokenUtil jwtTokenUtil, RabbitTemplate rabbitTemplate) {
         this.userRepository = userRepository;
         this.organizationRepository = organizationRepository;
         this.filterUtil = filterUtil;
         this.entityValidator = entityValidator;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Autowired
@@ -65,6 +72,10 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Autowired
     public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
         this.jwtTokenUtil = jwtTokenUtil;
+    }
+    @Autowired
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Override
@@ -89,9 +100,11 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public void delete(Long id) {
-        if (organizationRepository.existsById(id)) {
-            organizationRepository.deleteById(id);
-        } else throw new EntityNotFoundException("Organization not found with id " + id);
+        Organization organization = organizationRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Organization not found with id " + id));
+        User user = organization.getUser();
+        user.setOrganization(null);
+        userRepository.save(user);
+        organizationRepository.deleteById(id);
     }
 
     @Override
@@ -109,6 +122,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
     @Override
     public OrganizationResponse createOrganization(String accessToken, AuthOrganizationRequest organizationRequest) {
+        entityValidator.validate(organizationRequest);
         User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
                 .orElseThrow(() -> new EntityNotFoundException("User with email "
                         + jwtTokenUtil.extractUsername(accessToken) + " not found"));
@@ -123,6 +137,7 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     public OrganizationResponse updateOrganization(String accessToken, AuthOrganizationRequest organizationRequest) {
+        entityValidator.validate(organizationRequest);
         User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
                 .orElseThrow(() -> new EntityNotFoundException("User with email "
                         + jwtTokenUtil.extractUsername(accessToken) + " not found"));
@@ -145,5 +160,20 @@ public class OrganizationServiceImpl implements OrganizationService {
         user.setOrganization(null);
         userRepository.save(user);
         organizationRepository.deleteByUser(user);
+    }
+
+    @RabbitListener(queues = "reportQueue")
+    public void receiveReportMessageAndSendEmail(ReportMessage reportMessage) {
+        Organization organization = getOrganizationByTaxpayerNumber(reportMessage.getTaxpayerNumber());
+        rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                organization.getSpecialEmail(),
+                "Factory Monitoring",
+                String.format("%s для сенсора %s статус отчета: %s", reportMessage.getReportType(), reportMessage.getSensorNumber(), reportMessage.getMessage())
+        ));
+    }
+
+    private Organization getOrganizationByTaxpayerNumber(String taxpayerNumber) {
+        return organizationRepository.findByTaxpayerNumber(taxpayerNumber).orElseThrow(() ->
+                new EntityNotFoundException("Taxpayer number " + taxpayerNumber + " not found"));
     }
 }

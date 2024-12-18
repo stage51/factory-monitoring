@@ -83,14 +83,17 @@ services:
       - consul-agent-data:/consul/data
     networks:
       - consul-network
-  redis:
-    image: redis:7.0
-    container_name: redis
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: rabbitmq
     ports:
-      - "6379:6379"
-    volumes:
-      - redis_data:/data
-    restart: always
+      - "5672:5672"  # Порт для взаимодействия с RabbitMQ
+      - "15672:15672"  # Порт для панели управления RabbitMQ
+    environment:
+      RABBITMQ_DEFAULT_USER: admin  # Логин по умолчанию
+      RABBITMQ_DEFAULT_PASS: admin  # Пароль по умолчанию
+    networks:
+      - rabbitmq-net
 volumes:
   mode_postgres_data:
     driver: local
@@ -109,4 +112,6 @@ volumes:
 
 networks:
   consul-network:
+    driver: bridge
+  rabbitmq-net:
     driver: bridge

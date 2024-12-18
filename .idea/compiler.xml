@@ -12,6 +12,7 @@
         <module name="auth-server" />
         <module name="api-gateway" />
         <module name="five-minute-report" />
+        <module name="mail-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -29,6 +30,7 @@
       <module name="daily-report (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="five-minute-report" options="-parameters" />
+      <module name="mail-service" options="-parameters" />
       <module name="microservice-utils" options="-parameters" />
       <module name="mode-report" options="-parameters" />
     </option>

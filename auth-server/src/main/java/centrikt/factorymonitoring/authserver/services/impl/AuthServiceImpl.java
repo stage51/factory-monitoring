@@ -27,6 +27,7 @@ import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -62,6 +63,9 @@ public class AuthServiceImpl implements AuthService {
     private JwtTokenUtil jwtTokenUtil;
     private IPUtil ipUtil;
     private OnlineRepository onlineRepository;
+    private EntityValidator entityValidator;
+    private RabbitTemplate rabbitTemplate;
+
 
     public AuthServiceImpl(
             RefreshTokenRepository refreshTokenRepository,
@@ -69,13 +73,17 @@ public class AuthServiceImpl implements AuthService {
             AuthenticationManager authenticationManager,
             JwtTokenUtil jwtTokenUtil,
             IPUtil ipUtil,
-            OnlineRepository onlineRepository) {
+            OnlineRepository onlineRepository,
+            EntityValidator entityValidator,
+            RabbitTemplate rabbitTemplate) {
         this.refreshTokenRepository = refreshTokenRepository;
         this.userRepository = userRepository;
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.onlineRepository = onlineRepository;
         this.ipUtil = ipUtil;
+        this.entityValidator = entityValidator;
+        this.rabbitTemplate = rabbitTemplate;
     }
     @Autowired
     public void setAuthenticationManager(AuthenticationManager authenticationManager) {
@@ -101,8 +109,13 @@ public class AuthServiceImpl implements AuthService {
     public void setOnlineRepository(OnlineRepository onlineRepository) {
         this.onlineRepository = onlineRepository;
     }
+    @Autowired
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
 
     public AccessRefreshTokenResponse createTokens(LoginRequest loginRequest) {
+        entityValidator.validate(loginRequest);
         User user = userRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + loginRequest.getEmail()));
         if (!user.isActive()){
@@ -123,6 +136,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     public AccessTokenResponse refreshAccessToken(RefreshTokenRequest refreshTokenRequest) {
+        entityValidator.validate(refreshTokenRequest);
         RefreshToken refreshToken = validateRefreshToken(refreshTokenRequest.getRefreshToken());
         String email = refreshToken.getUser().getEmail();
         String role = refreshToken.getUser().getRole().toString();
@@ -134,6 +148,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Transactional
     public void revokeRefreshToken(RefreshTokenRequest refreshTokenRequest) {
+        entityValidator.validate(refreshTokenRequest);
         if (refreshTokenRepository.existsByToken(refreshTokenRequest.getRefreshToken())) {
             refreshTokenRepository.deleteByToken(refreshTokenRequest.getRefreshToken());
         } else throw new EntityNotFoundException("Refresh token not found with token: " + refreshTokenRequest.getRefreshToken());
@@ -208,6 +223,11 @@ public class AuthServiceImpl implements AuthService {
         return refreshTokenRepository.findByTokenAndUserEmail(token, email)
                 .filter(rt -> rt.getExpiresAt().isAfter(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue()))))
                 .orElseThrow(() -> new EntityNotFoundException("Refresh token not found with token " + token));
+    }
+
+    @Autowired
+    public void setEntityValidator(EntityValidator entityValidator) {
+        this.entityValidator = entityValidator;
     }
 }
 

@@ -1,5 +1,6 @@
 package centrikt.factorymonitoring.modereport.services.impl;
 
+import centrikt.factorymonitoring.modereport.dtos.messages.ReportMessage;
 import centrikt.factorymonitoring.modereport.dtos.requests.PositionRequest;
 import centrikt.factorymonitoring.modereport.dtos.responses.PositionResponse;
 import centrikt.factorymonitoring.modereport.exceptions.EntityNotFoundException;
@@ -9,6 +10,7 @@ import centrikt.factorymonitoring.modereport.repos.PositionRepository;
 import centrikt.factorymonitoring.modereport.services.PositionService;
 import centrikt.factorymonitoring.modereport.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.modereport.utils.validator.EntityValidator;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,12 +29,14 @@ public class PositionServiceImpl implements PositionService {
     private PositionRepository positionRepository;
     private EntityValidator entityValidator;
     private FilterUtil<Position> filterUtil;
+    private RabbitTemplate rabbitTemplate;
 
     public PositionServiceImpl(PositionRepository positionRepository, EntityValidator entityValidator,
-                               FilterUtil<Position> filterUtil) {
+                               FilterUtil<Position> filterUtil, RabbitTemplate rabbitTemplate) {
         this.positionRepository = positionRepository;
         this.entityValidator = entityValidator;
         this.filterUtil = filterUtil;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     @Autowired
@@ -47,9 +51,17 @@ public class PositionServiceImpl implements PositionService {
     public void setFilterUtil(FilterUtil<Position> filterUtil) {
         this.filterUtil = filterUtil;
     }
+    @Autowired
+    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
+        this.rabbitTemplate = rabbitTemplate;
+    }
+
     @Override
     public PositionResponse create(PositionRequest dto) {
         entityValidator.validate(dto);
+        rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
+                dto.getTaxpayerNumber(), dto.getSensorNumber(), "Отчет по режимам", dto.getStatus()
+        ));
         return PositionMapper.toResponse(positionRepository.save(PositionMapper.toEntity(dto)));
     }
 

@@ -17,9 +17,8 @@ public class UserResponse extends BaseResponse{
     private String firstName;
     private String lastName;
     private String middleName;
-    private String timezone;
-    private boolean subscribe;
     private boolean active;
     private String role;
     private OrganizationResponse organization;
+    private SettingResponse setting;
 }

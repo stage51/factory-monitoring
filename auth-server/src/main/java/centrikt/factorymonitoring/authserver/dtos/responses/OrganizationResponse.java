@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Schema(description = "Форма вывода организации пользователя")
 public class OrganizationResponse extends BaseResponse{
+    private Long userId;
     private String shortName;
     private String name;
     private String type;
