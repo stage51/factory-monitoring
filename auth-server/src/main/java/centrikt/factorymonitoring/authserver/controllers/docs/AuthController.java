@@ -64,4 +64,16 @@ public interface AuthController {
     )
     @GetMapping("/create-api-token")
     ResponseEntity<ApiTokenResponse> createApiToken(@RequestHeader("Authorization") String authorizationHeader, @RequestParam("expiration") @Parameter(description = "Время жизни в long") Long expiration);
+    @Operation(
+            summary = "Восстановление пароля",
+            description = "Получение кода восстановления по email пользователя"
+    )
+    @GetMapping("/forgot")
+    ResponseEntity<Void> forgotPassword(@RequestParam("email") String email);
+    @Operation(
+            summary = "Восстановление пароля",
+            description = "Обновление пароля пользователя на временный по коду восстановления"
+    )
+    @GetMapping("/recovery")
+    ResponseEntity<Void> recoveryPassword(@RequestParam("code") String code);
 }

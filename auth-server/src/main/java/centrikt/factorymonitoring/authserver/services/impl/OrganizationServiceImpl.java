@@ -9,6 +9,7 @@ import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
 import centrikt.factorymonitoring.authserver.mappers.OrganizationMapper;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+import centrikt.factorymonitoring.authserver.models.enums.ReportNotification;
 import centrikt.factorymonitoring.authserver.repos.OrganizationRepository;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.OrganizationService;
@@ -165,11 +166,27 @@ public class OrganizationServiceImpl implements OrganizationService {
     @RabbitListener(queues = "reportQueue")
     public void receiveReportMessageAndSendEmail(ReportMessage reportMessage) {
         Organization organization = getOrganizationByTaxpayerNumber(reportMessage.getTaxpayerNumber());
-        rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
-                organization.getSpecialEmail(),
-                "Factory Monitoring",
-                String.format("%s для сенсора %s статус отчета: %s", reportMessage.getReportType(), reportMessage.getSensorNumber(), reportMessage.getMessage())
-        ));
+        if (reportMessage.getReportType().equals("Дневной отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
+            rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                    new String[]{organization.getSpecialEmail()},
+                    "Factory Monitoring",
+                    String.format("%s для сенсора %s статус отчета: %s", reportMessage.getReportType(), reportMessage.getSensorNumber(), reportMessage.getMessage())
+            ));
+        }
+        if (reportMessage.getReportType().equals("Пятиминутный отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.FIVE_MINUTE)) {
+            rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                    new String[]{organization.getSpecialEmail()},
+                    "Factory Monitoring",
+                    String.format("%s для сенсора %s статус отчета: %s", reportMessage.getReportType(), reportMessage.getSensorNumber(), reportMessage.getMessage())
+            ));
+        }
+        if (reportMessage.getReportType().equals("Отчет по режимам") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
+            rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                    new String[]{organization.getSpecialEmail()},
+                    "Factory Monitoring",
+                    String.format("%s для сенсора %s статус отчета: %s", reportMessage.getReportType(), reportMessage.getSensorNumber(), reportMessage.getMessage())
+            ));
+        }
     }
 
     private Organization getOrganizationByTaxpayerNumber(String taxpayerNumber) {

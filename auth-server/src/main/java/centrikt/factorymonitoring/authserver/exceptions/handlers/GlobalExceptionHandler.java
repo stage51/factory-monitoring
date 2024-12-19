@@ -39,4 +39,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleInvalidCredentialsException(InvalidCredentialsException ex){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
     }
+    @ExceptionHandler(ExpiredRecoveryException.class)
+    public ResponseEntity<?> handleExpiredRecoveryException(ExpiredRecoveryException ex){
+        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
+    }
 }

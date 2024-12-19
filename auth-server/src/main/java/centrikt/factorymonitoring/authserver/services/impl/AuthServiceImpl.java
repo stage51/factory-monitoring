@@ -1,25 +1,14 @@
 package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.configs.DateTimeConfig;
+import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
 import centrikt.factorymonitoring.authserver.dtos.requests.LoginRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.RefreshTokenRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
-import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.*;
-import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
+import centrikt.factorymonitoring.authserver.exceptions.*;
 import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidCredentialsException;
-import centrikt.factorymonitoring.authserver.exceptions.UserNotActiveException;
-import centrikt.factorymonitoring.authserver.mappers.OrganizationMapper;
-import centrikt.factorymonitoring.authserver.mappers.UserMapper;
-import centrikt.factorymonitoring.authserver.models.Online;
-import centrikt.factorymonitoring.authserver.models.Organization;
-import centrikt.factorymonitoring.authserver.models.RefreshToken;
-import centrikt.factorymonitoring.authserver.models.User;
-import centrikt.factorymonitoring.authserver.repos.OnlineRepository;
-import centrikt.factorymonitoring.authserver.repos.OrganizationRepository;
-import centrikt.factorymonitoring.authserver.repos.RefreshTokenRepository;
-import centrikt.factorymonitoring.authserver.repos.UserRepository;
+import centrikt.factorymonitoring.authserver.models.*;
+import centrikt.factorymonitoring.authserver.repos.*;
 import centrikt.factorymonitoring.authserver.services.AuthService;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
 import centrikt.factorymonitoring.authserver.utils.iputil.IPUtil;
@@ -27,17 +16,15 @@ import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,18 +32,18 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RefreshScope
+@Slf4j
 public class AuthServiceImpl implements AuthService {
     @Value("${security.access-expiration}")
     private long accessTokenExpiration;
     @Value("${security.refresh-expiration}")
     private long refreshTokenExpiration;
+    @Value("${user.recovery-url-lifetime}")
+    private long recoveryUrlLifetime;
     private AuthenticationManager authenticationManager;
     private UserRepository userRepository;
     private RefreshTokenRepository refreshTokenRepository;
@@ -64,54 +51,22 @@ public class AuthServiceImpl implements AuthService {
     private IPUtil ipUtil;
     private OnlineRepository onlineRepository;
     private EntityValidator entityValidator;
+    private PasswordEncoder passwordEncoder;
     private RabbitTemplate rabbitTemplate;
+    private RecoveryRepository recoveryRepository;
 
-
-    public AuthServiceImpl(
-            RefreshTokenRepository refreshTokenRepository,
-            UserRepository userRepository,
-            AuthenticationManager authenticationManager,
-            JwtTokenUtil jwtTokenUtil,
-            IPUtil ipUtil,
-            OnlineRepository onlineRepository,
-            EntityValidator entityValidator,
-            RabbitTemplate rabbitTemplate) {
-        this.refreshTokenRepository = refreshTokenRepository;
-        this.userRepository = userRepository;
+    @Autowired
+    public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, RefreshTokenRepository refreshTokenRepository, JwtTokenUtil jwtTokenUtil, IPUtil ipUtil, OnlineRepository onlineRepository, EntityValidator entityValidator, PasswordEncoder passwordEncoder, RabbitTemplate rabbitTemplate, RecoveryRepository recoveryRepository) {
         this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.refreshTokenRepository = refreshTokenRepository;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.onlineRepository = onlineRepository;
         this.ipUtil = ipUtil;
+        this.onlineRepository = onlineRepository;
         this.entityValidator = entityValidator;
+        this.passwordEncoder = passwordEncoder;
         this.rabbitTemplate = rabbitTemplate;
-    }
-    @Autowired
-    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
-    @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-    @Autowired
-    public void setRefreshTokenRepository(RefreshTokenRepository refreshTokenRepository) {
-        this.refreshTokenRepository = refreshTokenRepository;
-    }
-    @Autowired
-    public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
-        this.jwtTokenUtil = jwtTokenUtil;
-    }
-    @Autowired
-    public void setIpUtil(IPUtil ipUtil) {
-        this.ipUtil = ipUtil;
-    }
-    @Autowired
-    public void setOnlineRepository(OnlineRepository onlineRepository) {
-        this.onlineRepository = onlineRepository;
-    }
-    @Autowired
-    public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
+        this.recoveryRepository = recoveryRepository;
     }
 
     public AccessRefreshTokenResponse createTokens(LoginRequest loginRequest) {
@@ -128,7 +83,6 @@ public class AuthServiceImpl implements AuthService {
         } catch (BadCredentialsException e) {
             throw new InvalidCredentialsException("Invalid username or password");
         }
-
         AccessRefreshTokenResponse response = new AccessRefreshTokenResponse();
         response.setAccessToken(generateAccessToken(user.getEmail(), user.getRole().toString()));
         response.setRefreshToken(createRefreshToken(user.getEmail()).getToken());
@@ -176,6 +130,50 @@ public class AuthServiceImpl implements AuthService {
         online.setIpAddress(ipUtil.getClientIp(request));
         online.setActiveAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         onlineRepository.save(online);
+    }
+
+    @Override
+    public void forgotPassword(String email) {
+        User user = userRepository.findByEmail(email).orElseThrow(
+                () -> new EntityNotFoundException("User not found with email: " + email));
+        Recovery recovery = new Recovery();
+        recovery.setUser(user);
+        recovery.setCode(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase().substring(0, 6));
+        recovery.setIssuedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        recovery.setExpiresAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())).plusMinutes(recoveryUrlLifetime));
+        recoveryRepository.save(recovery);
+        rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                new String[] {email},
+                "Восстановление пароля ЕГАИС Мониторинг",
+                "Восстановление пароля для пользователя: " + email + "\n" +
+                "Чтобы восстановить пароль, вам нужно ввести код, который истечет через " + recoveryUrlLifetime / 60 + " ч: " + recovery.getCode() + "\n" +
+                "Внимание! Если это были не вы, поменяйте пароль"
+        ));
+    }
+
+    @Override
+    public void recoveryPassword(String code) {
+        Recovery recovery = recoveryRepository.findByCode(code).orElseThrow(
+                () -> new EntityNotFoundException("Recovery not found with code: " + code));
+        if (!recovery.getCode().equals(code)) {
+            throw new IllegalArgumentException("Recovery code does not match");
+        }
+        if (ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())).isAfter(recovery.getExpiresAt())){
+            throw new ExpiredRecoveryException("Expired recovery code: " + code);
+        }
+        String tempPassword = UUID.randomUUID().toString().replaceAll("-", "").toUpperCase().substring(0, 16);
+        User user = userRepository.findByEmail(recovery.getUser().getEmail()).orElseThrow(
+                () -> new EntityNotFoundException("User not found with email: " + recovery.getUser().getEmail()));
+        user.setPassword(passwordEncoder.encode(tempPassword));
+        userRepository.save(user);
+        recoveryRepository.delete(recovery);
+        rabbitTemplate.convertAndSend("emailQueue", new EmailMessage(
+                new String[] {recovery.getUser().getEmail()},
+                "Восстановление пароля ЕГАИС Мониторинг",
+                "Восстановление пароля для пользователя: " + recovery.getUser().getEmail() + "\n" +
+                        "Для входа используйте временный пароль: " + tempPassword + "\n" +
+                        "Далее измените профиль, указав новый пароль"
+        ));
     }
 
     private String generateAccessToken(String username, String role) {

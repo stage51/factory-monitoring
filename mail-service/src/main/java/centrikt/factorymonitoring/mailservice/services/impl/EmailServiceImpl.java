@@ -6,6 +6,8 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -16,15 +18,24 @@ import org.springframework.util.ResourceUtils;
 import java.io.FileNotFoundException;
 
 @Service
+@RefreshScope
 public class EmailServiceImpl implements EmailService {
-    @Autowired
+
+    @Value("${spring.mail.username}")
+    private String username;
+
     private JavaMailSender emailSender;
 
+    @Autowired
+    public EmailServiceImpl(JavaMailSender emailSender) {
+        this.emailSender = emailSender;
+    }
+
     @Override
-    public void sendSimpleEmail(String toAddress, String subject, String message) {
+    public void sendSimpleEmail(String[] toAddresses, String subject, String message) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("monitoring.factory@centrikt.ru");
-        simpleMailMessage.setTo(toAddress);
+        simpleMailMessage.setFrom(username);
+        simpleMailMessage.setTo(toAddresses);
         simpleMailMessage.setSubject(subject);
         simpleMailMessage.setText(message);
         emailSender.send(simpleMailMessage);
@@ -34,7 +45,7 @@ public class EmailServiceImpl implements EmailService {
     public void sendEmailWithAttachment(String toAddress, String subject, String message, String attachment) throws MessagingException, FileNotFoundException {
         MimeMessage mimeMessage = emailSender.createMimeMessage();
         MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
-        messageHelper.setFrom("monitoring.factory@centrikt.ru");
+        messageHelper.setFrom(username);
         messageHelper.setTo(toAddress);
         messageHelper.setSubject(subject);
         messageHelper.setText(message);
@@ -45,6 +56,6 @@ public class EmailServiceImpl implements EmailService {
 
     @RabbitListener(queues = "emailQueue")
     public void receiveEmailMessage(EmailMessage emailMessage) {
-        sendSimpleEmail(emailMessage.getToAddress(), emailMessage.getSubject(), emailMessage.getMessage());
+        sendSimpleEmail(emailMessage.getToAddresses(), emailMessage.getSubject(), emailMessage.getMessage());
     }
 }

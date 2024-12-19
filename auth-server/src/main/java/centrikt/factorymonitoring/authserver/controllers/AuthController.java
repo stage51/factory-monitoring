@@ -68,4 +68,14 @@ public class AuthController implements centrikt.factorymonitoring.authserver.con
                 authService.createApiToken(authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader, expiration)
         );
     }
+    @GetMapping("/forgot")
+    public ResponseEntity<Void> forgotPassword(@RequestParam("email") String email) {
+        authService.forgotPassword(email);
+        return ResponseEntity.ok().build();
+    }
+    @GetMapping("/recovery")
+    public ResponseEntity<Void> recoveryPassword(@RequestParam("code") String code) {
+        authService.recoveryPassword(code);
+        return ResponseEntity.ok().build();
+    }
 }

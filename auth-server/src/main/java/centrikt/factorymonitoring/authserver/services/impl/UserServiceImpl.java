@@ -19,6 +19,8 @@ import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidat
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,7 +40,14 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
+@RefreshScope
 public class UserServiceImpl implements UserService {
+
+    @Value("${date-time.default-user-timezone}")
+    private String defaultUserTimezone;
+
+    @Value("${email.registration-notification}")
+    private Boolean registrationNotification;
 
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
@@ -87,14 +96,16 @@ public class UserServiceImpl implements UserService {
     public UserResponse create(UserRequest dto) {
         try {
             entityValidator.validate(dto);
-            User user = UserMapper.toEntityFromCreateRequest(dto);
+            User user = UserMapper.toEntityFromCreateRequest(dto, defaultUserTimezone);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            rabbitTemplate.convertAndSend("emailQueue",
-                    new EmailMessage(
-                            "a.merkulov@centrikt.ru",
-                            "Factory Monitoring",
-                            String.format("Зарегистрировался новый пользователь: %s %s с почтой %s."
-                                    , user.getFirstName(), user.getLastName(), user.getEmail())));
+            if (registrationNotification) {
+                rabbitTemplate.convertAndSend("emailQueue",
+                        new EmailMessage(
+                                getAdmins().stream().map(User::getEmail).toArray(String[]::new),
+                                "Factory Monitoring",
+                                String.format("Зарегистрировался новый пользователь: %s %s с почтой %s."
+                                        , user.getFirstName(), user.getLastName(), user.getEmail())));
+            }
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("User with email " + dto.getEmail() + " already exists");
@@ -138,17 +149,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws EntityNotFoundException {
-        User user = userRepository.findByEmail(username)
-                .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username));
-        return new org.springframework.security.core.userdetails.User(
-                user.getEmail(),
-                user.getPassword(),
-                List.of(new SimpleGrantedAuthority(user.getRole().name()))
-        );
-    }
-
-    @Override
     public UserResponse getByEmail(String email) {
         return UserMapper.toResponse(userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email)));
@@ -187,7 +187,7 @@ public class UserServiceImpl implements UserService {
     public UserResponse create(AdminUserRequest adminUserRequest) {
         try {
             entityValidator.validate(adminUserRequest);
-            User user = UserMapper.toEntityFromCreateRequest(adminUserRequest);
+            User user = UserMapper.toEntityFromCreateRequest(adminUserRequest, defaultUserTimezone);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
@@ -199,7 +199,9 @@ public class UserServiceImpl implements UserService {
     public UserResponse update(Long id, AdminUserRequest adminUserRequest) {
         entityValidator.validate(adminUserRequest);
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
-        return UserMapper.toResponse(userRepository.saveAndFlush(UserMapper.toEntityFromUpdateRequest(user, adminUserRequest)));
+        user = UserMapper.toEntityFromUpdateRequest(user, adminUserRequest);
+        user.setPassword(passwordEncoder.encode(adminUserRequest.getPassword()));
+        return UserMapper.toResponse(userRepository.saveAndFlush(user));
     }
 
     @Override
@@ -216,4 +218,11 @@ public class UserServiceImpl implements UserService {
         userRepository.save(user);
     }
 
+    private List<User> getManagers() {
+        return userRepository.findAllByRole(Role.ROLE_MANAGER);
+    }
+
+    private List<User> getAdmins() {
+        return userRepository.findAllByRole(Role.ROLE_ADMIN);
+    }
 }

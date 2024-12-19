@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class PositionServiceImpl implements PositionService {
+public class   PositionServiceImpl implements PositionService {
 
     private PositionRepository positionRepository;
     private EntityValidator entityValidator;

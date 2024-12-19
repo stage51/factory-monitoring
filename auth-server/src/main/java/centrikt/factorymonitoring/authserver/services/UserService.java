@@ -7,7 +7,7 @@ import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService extends UserDetailsService, CrudService<UserRequest, UserResponse> {
+public interface UserService extends CrudService<UserRequest, UserResponse> {
     UserResponse getByEmail(String email);
     UserResponse getProfile(String accessToken);
     UserResponse updateProfile(String accessToken, UserRequest userRequest);

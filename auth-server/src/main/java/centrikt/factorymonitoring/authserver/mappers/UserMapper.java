@@ -30,16 +30,17 @@ public class UserMapper {
         return dto;
     }
 
-    public static User toEntityFromCreateRequest(UserRequest userRequest) {
+    public static User toEntityFromCreateRequest(UserRequest userRequest, String defaultTimezone) {
         if (userRequest == null) {
             return null;
         }
         User user = new User();
 
         Setting setting = new Setting();
-        setting.setTimezone("UTC+03:00");
+        setting.setTimezone(defaultTimezone);
         setting.setSubscribe(true);
         setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE, ReportNotification.MODE));
+        setting.setUser(user);
         user.setSetting(setting);
 
         user.setActive(true);
@@ -55,14 +56,14 @@ public class UserMapper {
         return user;
     }
 
-    public static User toEntityFromCreateRequest(AdminUserRequest userRequest) {
+    public static User toEntityFromCreateRequest(AdminUserRequest userRequest, String defaultTimezone){
         if (userRequest == null) {
             return null;
         }
         User user = new User();
 
         Setting setting = new Setting();
-        setting.setTimezone("UTC+03:00");
+        setting.setTimezone(defaultTimezone);
         setting.setSubscribe(true);
         setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE, ReportNotification.MODE));
         user.setSetting(setting);
@@ -101,6 +102,7 @@ public class UserMapper {
         existingUser.setActive(userRequest.isActive());
 
         existingUser.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
+        existingUser.setPassword(userRequest.getPassword());
         existingUser.setEmail(userRequest.getEmail());
         existingUser.setFirstName(userRequest.getFirstName());
         existingUser.setLastName(userRequest.getLastName());

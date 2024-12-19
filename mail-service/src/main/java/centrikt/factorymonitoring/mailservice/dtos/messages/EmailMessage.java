@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EmailMessage{
-    private String toAddress;
+    private String[] toAddresses;
     private String subject;
     private String message;
 }

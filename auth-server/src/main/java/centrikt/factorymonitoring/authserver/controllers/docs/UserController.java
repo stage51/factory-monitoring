@@ -1,8 +1,10 @@
 package centrikt.factorymonitoring.authserver.controllers.docs;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import io.swagger.v3.oas.annotations.Operation;
@@ -112,4 +114,11 @@ public interface UserController {
     )
     @PutMapping("/profile")
     ResponseEntity<UserResponse> updateProfile(@RequestHeader("Authorization") String authorizationHeader, @RequestBody UserRequest userRequest);
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Обновление настроек",
+            description = "Обновляет настройки пользователя по access токену"
+    )
+    @PutMapping("/profile/setting")
+    ResponseEntity<SettingResponse> updateSetting(@RequestHeader("Authorization") String authorizationHeader, @RequestBody SettingRequest settingRequest);
 }
