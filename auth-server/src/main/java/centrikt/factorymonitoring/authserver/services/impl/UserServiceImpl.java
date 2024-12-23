@@ -5,7 +5,11 @@ import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
+import centrikt.factorymonitoring.authserver.dtos.responses.UploadAvatarResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
+import centrikt.factorymonitoring.authserver.dtos.responses.image.ImageHostUploadResponse;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
+import centrikt.factorymonitoring.authserver.exceptions.MethodDisabledException;
 import centrikt.factorymonitoring.authserver.mappers.SettingMapper;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
@@ -16,31 +20,41 @@ import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.UserService;
 import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
+import centrikt.factorymonitoring.authserver.utils.imageuploader.ImageUploader;
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.text.MessageFormat;
-import java.time.ZonedDateTime;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 @RefreshScope
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     @Value("${date-time.default-user-timezone}")
@@ -49,22 +63,31 @@ public class UserServiceImpl implements UserService {
     @Value("${email.registration-notification}")
     private Boolean registrationNotification;
 
+    @Value("${email.registration-notification-for}")
+    private String registrationNotificationFor;
+
+    @Value("${user.avatar-upload}")
+    private Boolean avatarUpload;
+
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
     private FilterUtil<User> filterUtil;
     private EntityValidator entityValidator;
     private JwtTokenUtil jwtTokenUtil;
     private RabbitTemplate rabbitTemplate;
+    private ImageUploader imageUploader;
 
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder,
                            FilterUtil<User> filterUtil , EntityValidator entityValidator,
-                           JwtTokenUtil jwtTokenUtil, RabbitTemplate rabbitTemplate) {
+                           JwtTokenUtil jwtTokenUtil, RabbitTemplate rabbitTemplate,
+                           ImageUploader imageUploader) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.filterUtil = filterUtil;
         this.entityValidator = entityValidator;
         this.jwtTokenUtil = jwtTokenUtil;
         this.rabbitTemplate = rabbitTemplate;
+        this.imageUploader = imageUploader;
     }
 
     @Autowired
@@ -91,6 +114,10 @@ public class UserServiceImpl implements UserService {
     public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
+    @Autowired
+    public void setImageUploader(ImageUploader imageUploader) {
+        this.imageUploader = imageUploader;
+    }
 
     @Override
     public UserResponse create(UserRequest dto) {
@@ -98,10 +125,23 @@ public class UserServiceImpl implements UserService {
             entityValidator.validate(dto);
             User user = UserMapper.toEntityFromCreateRequest(dto, defaultUserTimezone);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            List<String> emails = new ArrayList<>();
+            if (registrationNotificationFor.equals("admin-manager")) {
+                List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
+                List<String> adminsEmails = getAdmins().stream().map(User::getEmail).toList();
+                emails.addAll(managersEmails);
+                emails.addAll(adminsEmails);
+            } else if (registrationNotificationFor.equals("admin-only")) {
+                List<String> adminsEmails = getAdmins().stream().map(User::getEmail).toList();
+                emails.addAll(adminsEmails);
+            } else if (registrationNotificationFor.equals("manager-only")) {
+                List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
+                emails.addAll(managersEmails);
+            } else throw new InvalidConstraintException("Invalid registration notification for constraint " + registrationNotificationFor);
             if (registrationNotification) {
                 rabbitTemplate.convertAndSend("emailQueue",
                         new EmailMessage(
-                                getAdmins().stream().map(User::getEmail).toArray(String[]::new),
+                                emails.toArray(String[]::new),
                                 "Factory Monitoring",
                                 String.format("Зарегистрировался новый пользователь: %s %s с почтой %s."
                                         , user.getFirstName(), user.getLastName(), user.getEmail())));
@@ -202,6 +242,16 @@ public class UserServiceImpl implements UserService {
         user = UserMapper.toEntityFromUpdateRequest(user, adminUserRequest);
         user.setPassword(passwordEncoder.encode(adminUserRequest.getPassword()));
         return UserMapper.toResponse(userRepository.saveAndFlush(user));
+    }
+
+    @Override
+    public UploadAvatarResponse uploadAvatar(MultipartFile file) throws IOException {
+        if (avatarUpload){
+            String avatarUrl = imageUploader.saveFile(file);
+            return UploadAvatarResponse.builder().avatarUrl(avatarUrl).build();
+        } else {
+            throw new MethodDisabledException("Upload avatar not enabled");
+        }
     }
 
     @Override

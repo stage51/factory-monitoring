@@ -4,6 +4,7 @@ import centrikt.factorymonitoring.mailservice.services.EmailService;
 import centrikt.factorymonitoring.mailservice.dtos.messages.EmailMessage;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +20,7 @@ import java.io.FileNotFoundException;
 
 @Service
 @RefreshScope
+@Slf4j
 public class EmailServiceImpl implements EmailService {
 
     @Value("${spring.mail.username}")
@@ -41,21 +43,12 @@ public class EmailServiceImpl implements EmailService {
         emailSender.send(simpleMailMessage);
     }
 
-    @Override
-    public void sendEmailWithAttachment(String toAddress, String subject, String message, String attachment) throws MessagingException, FileNotFoundException {
-        MimeMessage mimeMessage = emailSender.createMimeMessage();
-        MimeMessageHelper messageHelper = new MimeMessageHelper(mimeMessage, true);
-        messageHelper.setFrom(username);
-        messageHelper.setTo(toAddress);
-        messageHelper.setSubject(subject);
-        messageHelper.setText(message);
-        FileSystemResource file = new FileSystemResource(ResourceUtils.getFile(attachment));
-        messageHelper.addAttachment("Файл", file);
-        emailSender.send(mimeMessage);
-    }
-
     @RabbitListener(queues = "emailQueue")
     public void receiveEmailMessage(EmailMessage emailMessage) {
+        if (emailMessage.getToAddresses().length == 0) {
+            log.warn("Email message with text (" + emailMessage.getMessage() + ") has no recipients. Skipping...");
+            return;
+        }
         sendSimpleEmail(emailMessage.getToAddresses(), emailMessage.getSubject(), emailMessage.getMessage());
     }
 }

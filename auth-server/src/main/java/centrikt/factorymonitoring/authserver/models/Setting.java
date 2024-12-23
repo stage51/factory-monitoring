@@ -22,4 +22,5 @@ public class Setting {
     private boolean subscribe;
     @Enumerated(EnumType.STRING)
     private List<ReportNotification> reportNotifications;
+    private String avatarUrl;
 }

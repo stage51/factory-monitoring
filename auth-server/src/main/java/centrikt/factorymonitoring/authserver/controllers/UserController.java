@@ -5,9 +5,11 @@ import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
+import centrikt.factorymonitoring.authserver.dtos.responses.UploadAvatarResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.services.UserService;
+import centrikt.factorymonitoring.authserver.utils.Message;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,7 +17,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Map;
 
 @RestController
@@ -133,5 +137,15 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
     public ResponseEntity<SettingResponse> updateSetting(@RequestHeader("Authorization") String authorizationHeader, @RequestBody SettingRequest settingRequest) {
         String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
         return ResponseEntity.ok(userService.updateSetting(accessToken, settingRequest));
+    }
+    @PostMapping("/profile/avatar")
+    public ResponseEntity<?> uploadAvatar(@RequestParam("file") MultipartFile file) {
+        try {
+            UploadAvatarResponse uploadAvatarResponse = userService.uploadAvatar(file);
+            return ResponseEntity.ok().body(uploadAvatarResponse);
+        } catch (IOException e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+                    new Message("error", HttpStatus.INTERNAL_SERVER_ERROR.value(), "Input/Output Error. " + e.getMessage()));
+        }
     }
 }

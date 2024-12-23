@@ -43,4 +43,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleExpiredRecoveryException(ExpiredRecoveryException ex){
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
     }
+    @ExceptionHandler(MethodDisabledException.class)
+    public ResponseEntity<?> handleMethodDisabledException(MethodDisabledException ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
+    }
 }

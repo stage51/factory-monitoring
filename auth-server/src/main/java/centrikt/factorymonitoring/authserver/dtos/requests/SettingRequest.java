@@ -19,4 +19,6 @@ public class SettingRequest {
     @Schema(description = "Список уведомлений об отчетах на почту: DAILY, FIVE_MINUTE, MODE")
     @NotNull
     private List<String> reportNotifications;
+    @Schema(description = "Ссылка на аватар")
+    private String avatarUrl;
 }

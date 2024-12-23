@@ -16,4 +16,6 @@ public class SettingResponse {
     private boolean subscribe;
     @Schema(description = "Список уведомлений об отчетах на почту: DAILY, FIVE_MINUTE, MODE")
     private List<String> reportNotifications;
+    @Schema(description = "Ссылка на аватар")
+    private String avatarUrl;
 }

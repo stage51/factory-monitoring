@@ -2,6 +2,7 @@ package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
 import centrikt.factorymonitoring.authserver.dtos.requests.HelpRequest;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
 import centrikt.factorymonitoring.authserver.models.User;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
@@ -14,15 +15,16 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RefreshScope
 public class HelpServiceImpl implements HelpService {
     @Value("${email.help-notification}")
     private Boolean helpNotification;
+
+    @Value("${email.help-notification-for}")
+    private String helpNotificationFor;
 
     private RabbitTemplate rabbitTemplate;
     private UserRepository userRepository;
@@ -45,10 +47,19 @@ public class HelpServiceImpl implements HelpService {
     @Override
     public void sendHelpRequest(HelpRequest helpRequest) {
         if (helpNotification) {
-            List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
-            List<String> adminsEmails = getAdmins().stream().map(User::getEmail).toList();
-            List<String> emails = new ArrayList<>(managersEmails);
-            emails.addAll(adminsEmails);
+            List<String> emails = new ArrayList<>();
+            if (helpNotificationFor.equals("admin-manager")) {
+                List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
+                List<String> adminsEmails = getAdmins().stream().map(User::getEmail).toList();
+                emails.addAll(managersEmails);
+                emails.addAll(adminsEmails);
+            } else if (helpNotificationFor.equals("admin-only")) {
+                List<String> adminsEmails = getAdmins().stream().map(User::getEmail).toList();
+                emails.addAll(adminsEmails);
+            } else if (helpNotificationFor.equals("manager-only")) {
+                List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
+                emails.addAll(managersEmails);
+            } else throw new InvalidConstraintException("Invalid help notification for constraint " + helpNotificationFor);
             EmailMessage emailMessage = new EmailMessage(
                     emails.toArray(String[]::new),
                     "Factory Monitoring",
