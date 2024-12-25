@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -45,6 +46,15 @@ public interface PositionController {
     @PostMapping(value = "/list", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     ResponseEntity<List<PositionResponse>> createPositions(@RequestBody List<PositionRequest> positionRequest);
+
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Загрузка файла с отчетами",
+            description = "Загрузка XML отчетов для хранения на FTP сервере"
+    )
+    @PostMapping(value = "/upload")
+    ResponseEntity<?> uploadReport(@RequestBody MultipartFile file);
+
 
     @SecurityRequirement(name = "JWT")
     @Operation(

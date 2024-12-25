@@ -191,7 +191,7 @@ public class AuthServiceImpl implements AuthService {
                 .setClaims(claims)
                 .setSubject(username)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(expiration))
+                .setExpiration(new Date(System.currentTimeMillis() + expiration))
                 .signWith(jwtTokenUtil.getApiKey(), SignatureAlgorithm.HS256)
                 .compact();
     }

@@ -1,9 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.exceptions.handlers;
 
-import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
-import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidConstantException;
-import centrikt.factory_monitoring.five_minute_report.exceptions.InvalidTokenException;
-import centrikt.factory_monitoring.five_minute_report.exceptions.ValidationException;
+import centrikt.factory_monitoring.five_minute_report.exceptions.*;
 import centrikt.factory_monitoring.five_minute_report.utils.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<?> handleInvalidTokenException(InvalidTokenException ex){
-        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+    }
+    @ExceptionHandler(MethodDisabledException.class)
+    public ResponseEntity<?> handleMethodDisabledException(MethodDisabledException ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
     }
 }

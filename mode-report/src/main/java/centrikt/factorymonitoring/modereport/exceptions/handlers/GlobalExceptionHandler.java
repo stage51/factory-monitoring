@@ -1,9 +1,6 @@
 package centrikt.factorymonitoring.modereport.exceptions.handlers;
 
-import centrikt.factorymonitoring.modereport.exceptions.EntityNotFoundException;
-import centrikt.factorymonitoring.modereport.exceptions.InvalidConstantException;
-import centrikt.factorymonitoring.modereport.exceptions.InvalidTokenException;
-import centrikt.factorymonitoring.modereport.exceptions.ValidationException;
+import centrikt.factorymonitoring.modereport.exceptions.*;
 import centrikt.factorymonitoring.modereport.utils.Message;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +24,10 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
     @ExceptionHandler(InvalidTokenException.class)
     public ResponseEntity<?> handleInvalidTokenException(InvalidTokenException ex){
-        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Message("error", HttpStatus.UNAUTHORIZED.value(), ex.getMessage()));
+    }
+    @ExceptionHandler(MethodDisabledException.class)
+    public ResponseEntity<?> handleMethodDisabledException(MethodDisabledException ex){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new Message("error", HttpStatus.FORBIDDEN.value(), ex.getMessage()));
     }
 }
