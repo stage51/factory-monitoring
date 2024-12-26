@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add ftp util for saving xml reports">
-      <change afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/auth-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config-server/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/daily-report/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/five-minute-report/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mail-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mode-report/Dockerfile" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add dockerfiles and edit docker-compose.yml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -119,11 +112,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\five-minute-report\src\main\java\centrikt\factory_monitoring\five_minute_report\utils" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report\src\main\java\centrikt\factorymonitoring\modereport\utils" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\daily-report\src\main\java\centrikt\factory_monitoring\daily_report\dtos" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mail-service\src\main\java\centrikt\factorymonitoring\mailservice\services\dtos" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report\src\main\java\centrikt\factorymonitoring\modereport\controllers" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mail-service" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\five-minute-report" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\daily-report" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config-server" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="centrikt.factorymonitoring.mailservice.services" />
@@ -254,7 +247,7 @@
       <workItem from="1734594436958" duration="24478000" />
       <workItem from="1734940254039" duration="11413000" />
       <workItem from="1735113327632" duration="19808000" />
-      <workItem from="1735200397517" duration="1285000" />
+      <workItem from="1735200397517" duration="5214000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -384,7 +377,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735141398777</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="add dockerfiles and edit docker-compose.yml">
+      <option name="closed" value="true" />
+      <created>1735202178300</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735202178300</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -431,7 +432,8 @@
     <MESSAGE value="add settings for users and password recovery" />
     <MESSAGE value="add more configs for admins" />
     <MESSAGE value="add ftp util for saving xml reports" />
-    <option name="LAST_COMMIT_MESSAGE" value="add ftp util for saving xml reports" />
+    <MESSAGE value="add dockerfiles and edit docker-compose.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add dockerfiles and edit docker-compose.yml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
