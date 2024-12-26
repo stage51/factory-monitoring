@@ -4,23 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix pom.xml for config-server">
-      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/init/AdminInitializer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/DateTimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/DateTimeConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mail-service/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mail-service/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix cors and ad admin init" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -263,7 +247,7 @@
       <workItem from="1734594436958" duration="24478000" />
       <workItem from="1734940254039" duration="11413000" />
       <workItem from="1735113327632" duration="19808000" />
-      <workItem from="1735200397517" duration="14698000" />
+      <workItem from="1735200397517" duration="16074000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -449,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735209918493</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="fix cors and ad admin init">
+      <option name="closed" value="true" />
+      <created>1735227130166</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1735227130166</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +492,8 @@
     <MESSAGE value="edit dockerfiles" />
     <MESSAGE value="edit docker-compose.yml" />
     <MESSAGE value="fix pom.xml for config-server" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix pom.xml for config-server" />
+    <MESSAGE value="fix cors and ad admin init" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix cors and ad admin init" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
