@@ -3,7 +3,7 @@ spring:
     name: five-minute-report
   cloud:
     consul:
-      host: localhost
+      host: consul-server
       port: 8500
       discovery:
         enabled: true

@@ -10,7 +10,7 @@ services:
     depends_on:
       - config-server
     networks:
-      - consul-network
+      - app-net
   auth-server:
     build:
       context: ./auth-server
@@ -21,8 +21,7 @@ services:
       - user_db
       - config-server
     networks:
-      - rabbitmq-net
-      - consul-network
+      - app-net
   config-server:
     build:
       context: ./config-server
@@ -32,7 +31,7 @@ services:
     depends_on:
       - consul-agent
     networks:
-      - consul-network
+      - app-net
   daily-report:
     build:
       context: ./daily-report
@@ -43,8 +42,7 @@ services:
       - daily-report_db
       - config-server
     networks:
-      - consul-network
-      - rabbitmq-net
+      - app-net
   five-minute-report:
     build:
       context: ./five-minute-report
@@ -55,8 +53,7 @@ services:
       - five-minute-report_db
       - config-server
     networks:
-      - consul-network
-      - rabbitmq-net
+      - app-net
   mail-service:
     build:
       context: ./mail-service
@@ -66,8 +63,7 @@ services:
     depends_on:
       - config-server
     networks:
-      - consul-network
-      - rabbitmq-net
+      - app-net
   mode-report:
     build:
       context: ./mode-report
@@ -76,9 +72,9 @@ services:
       - "8084:8084"
     depends_on:
       - mode-report_db
+      - config-server
     networks:
-      - consul-network
-      - rabbitmq-net
+      - app-net
   user_db:
     image: postgres
     container_name: user_db
@@ -90,6 +86,8 @@ services:
       POSTGRES_DB: user
     volumes:
       - user_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-net
   daily-report_db:
     image: postgres
     container_name: daily-report_db
@@ -101,6 +99,8 @@ services:
       POSTGRES_DB: daily-report
     volumes:
       - daily_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-net
   five-minute-report_db:
     image: postgres
     container_name: five-minute-report_db
@@ -112,6 +112,8 @@ services:
       POSTGRES_DB: five-minute-report
     volumes:
       - five_minute_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-net
   mode-report_db:
     image: postgres
     container_name: mode-report_db
@@ -123,6 +125,8 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
+    networks:
+      - app-net
   consul-server:
     image: hashicorp/consul:1.20.1
     container_name: consul-server
@@ -145,7 +149,7 @@ services:
     environment:
       CONSUL_BIND_INTERFACE: eth0
     networks:
-      - consul-network
+      - app-net
 
   consul-agent:
     image: hashicorp/consul:1.20.1
@@ -160,7 +164,7 @@ services:
     volumes:
       - consul-agent-data:/consul/data
     networks:
-      - consul-network
+      - app-net
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
@@ -171,7 +175,7 @@ services:
       RABBITMQ_DEFAULT_USER: admin  # Логин по умолчанию
       RABBITMQ_DEFAULT_PASS: admin  # Пароль по умолчанию
     networks:
-      - rabbitmq-net
+      - app-net
 volumes:
   mode_postgres_data:
     driver: local
@@ -189,7 +193,5 @@ volumes:
     driver: local
 
 networks:
-  consul-network:
-    driver: bridge
-  rabbitmq-net:
+  app-net:
     driver: bridge

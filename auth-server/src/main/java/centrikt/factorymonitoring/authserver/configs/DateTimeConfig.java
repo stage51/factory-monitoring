@@ -1,21 +1,14 @@
 package centrikt.factorymonitoring.authserver.configs;
 
+import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ConfigurationProperties(prefix = "date-time")
-@RefreshScope
 public class DateTimeConfig {
 
-    private static String defaultValue;
+    @Getter
+    private final static String defaultValue = "UTC+00:00";
 
-
-    public static String getDefaultValue() {
-        if (defaultValue == null) {
-            return "UTC+00:00";
-        }
-        return defaultValue;
-    }
 }
