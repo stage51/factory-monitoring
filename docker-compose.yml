@@ -3,7 +3,7 @@ version: '3.8'
 services:
   api-gateway:
     build:
-      context: .
+      context: ./api-gateway
       dockerfile: api-gateway/Dockerfile
     container_name: api-gateway
     ports:
@@ -14,7 +14,7 @@ services:
       - consul-network
   auth-server:
     build:
-      context: .
+      context: ./auth-server
       dockerfile: auth-server/Dockerfile
     container_name: auth-server
     ports:
@@ -27,7 +27,7 @@ services:
       - consul-network
   config-server:
     build:
-      context: .
+      context: ./config-server
       dockerfile: config-server/Dockerfile
     container_name: config-server
     ports:
@@ -38,7 +38,7 @@ services:
       - consul-network
   daily-report:
     build:
-      context: .
+      context: ./daily-report
       dockerfile: daily-report/Dockerfile
     container_name: daily-report
     ports:
@@ -51,7 +51,7 @@ services:
       - rabbitmq-net
   five-minute-report:
     build:
-      context: .
+      context: ./five-minute-report
       dockerfile: five-minute-report/Dockerfile
     container_name: five-minute-report
     ports:
@@ -64,7 +64,7 @@ services:
       - rabbitmq-net
   mail-service:
     build:
-      context: .
+      context: ./mail-service
       dockerfile: mail-service/Dockerfile
     container_name: mail-service
     ports:
@@ -76,7 +76,7 @@ services:
       - rabbitmq-net
   mode-report:
     build:
-      context: .
+      context: ./mode-report
       dockerfile: mode-report/Dockerfile
     container_name: mode-report
     ports:
