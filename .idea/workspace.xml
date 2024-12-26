@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add dockerfiles and edit docker-compose.yml">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit dockerfiles" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +65,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Maven.api-gateway [package].executor": "Run",
     "Maven.microservice-utils [clean].executor": "Run",
     "Maven.microservice-utils [install].executor": "Run",
     "Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
@@ -247,7 +246,7 @@
       <workItem from="1734594436958" duration="24478000" />
       <workItem from="1734940254039" duration="11413000" />
       <workItem from="1735113327632" duration="19808000" />
-      <workItem from="1735200397517" duration="5214000" />
+      <workItem from="1735200397517" duration="5649000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -385,7 +384,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735202178300</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="edit dockerfiles">
+      <option name="closed" value="true" />
+      <created>1735208827766</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1735208827766</updated>
+    </task>
+    <task id="LOCAL-00019" summary="edit dockerfiles">
+      <option name="closed" value="true" />
+      <created>1735208835323</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1735208835323</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -433,7 +448,8 @@
     <MESSAGE value="add more configs for admins" />
     <MESSAGE value="add ftp util for saving xml reports" />
     <MESSAGE value="add dockerfiles and edit docker-compose.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="add dockerfiles and edit docker-compose.yml" />
+    <MESSAGE value="edit dockerfiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit dockerfiles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
