@@ -49,7 +49,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/v1/auth-server/auth/login", "/api/v1/auth-server/auth/register",
                                 "/api/v1/auth-server/auth/refresh-token", "/api/v1/auth-server/auth/logout", "/api/v1/auth-server/auth/forgot", "/api/v1/auth-server/auth/recovery").permitAll()
                         .requestMatchers("/api/v1/auth-server/auth/check", "api/v1/auth-server/help").authenticated()
-                        .requestMatchers("/api/v1/auth-server/organizations/profile", "/api/v1/auth-server/users/profile").hasAnyRole("ADMIN", "USER", "MANAGER")
+                        .requestMatchers("/api/v1/auth-server/organizations/profile", "/api/v1/auth-server/users/profile/**").authenticated()
                         .requestMatchers("/api/v1/auth-server/organizations/**", "/api/v1/auth-server/users/**",
                                 "api/v1/auth-server/onlines/**", "api/v1/auth-server/refresh_tokens/**",
                                 "/api/v1/auth-server/auth/create-api-token").hasRole("ADMIN")
