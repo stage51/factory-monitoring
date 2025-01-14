@@ -3,8 +3,10 @@ package centrikt.factorymonitoring.modereport.dtos.responses;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
@@ -12,6 +14,8 @@ import java.time.ZonedDateTime;
 @Data
 @JacksonXmlRootElement(localName = "position")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Schema(description = "Вывод позиции")
 public class PositionResponse {
 

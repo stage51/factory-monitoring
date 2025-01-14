@@ -28,6 +28,8 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
     private static final ZoneId USER_TIMEZONE = ZoneId.of(DateTimeConfig.getDefaultValue());
 
     public Specification<Entity> buildSpecification(Map<String, String> filters, Map<String, String> dateRanges) {
+        log.trace("Entering buildSpecification with filters: {} and dateRanges: {}", filters, dateRanges);
+
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
@@ -37,31 +39,46 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                         .forEach(entry -> {
                             String field = entry.getKey();
                             String value = entry.getValue();
-                            if ("product".equals(field)) {
-                                predicates.add(criteriaBuilder.like(
-                                        criteriaBuilder.lower(root.get("product").get("productVCode")),
-                                        "%" + value.toLowerCase() + "%"));
-                            } else if ("sensorNumber".equals(field)) {
-                                if (value.matches("\\d+_\\d+")) {
-                                    String controllerNumber = value.split("_")[0];
-                                    String lineNumber = value.split("_")[1];
-                                    predicates.add(criteriaBuilder.equal(root.get("controllerNumber"), controllerNumber));
-                                    predicates.add(criteriaBuilder.equal(root.get("lineNumber"), lineNumber));
+                            log.debug("Processing filter: field={}, value={}", field, value);
+
+                            try {
+                                if ("product".equals(field)) {
+                                    predicates.add(criteriaBuilder.like(
+                                            criteriaBuilder.lower(root.get("product").get("productVCode")),
+                                            "%" + value.toLowerCase() + "%"));
+                                    log.debug("Added filter for product with value: {}", value);
+                                } else if ("sensorNumber".equals(field)) {
+                                    if (value.matches("\\d+_\\d+")) {
+                                        String controllerNumber = value.split("_")[0];
+                                        String lineNumber = value.split("_")[1];
+                                        predicates.add(criteriaBuilder.equal(root.get("controllerNumber"), controllerNumber));
+                                        predicates.add(criteriaBuilder.equal(root.get("lineNumber"), lineNumber));
+                                        log.debug("Added filter for sensorNumber with controllerNumber: {} and lineNumber: {}", controllerNumber, lineNumber);
+                                    } else {
+                                        log.warn("Invalid sensorNumber format: {}", value);
+                                    }
+                                } else if ("status".equals(field)) {
+                                    Status status = Status.fromDescription(value);
+                                    predicates.add(criteriaBuilder.equal(root.get(field), status));
+                                    log.debug("Added filter for status: {}", status);
+                                } else if ("mode".equals(field)) {
+                                    Mode mode = Mode.fromDescription(value);
+                                    predicates.add(criteriaBuilder.equal(root.get(field), mode));
+                                    log.debug("Added filter for mode: {}", mode);
+                                } else if ("type".equals(field)) {
+                                    Type type = Type.fromString(value);
+                                    predicates.add(criteriaBuilder.equal(root.get(field), type));
+                                    log.debug("Added filter for type: {}", type);
+                                } else if ("unitType".equals(field)) {
+                                    UnitType unitType = UnitType.fromString(value);
+                                    predicates.add(criteriaBuilder.equal(root.get(field), unitType));
+                                    log.debug("Added filter for unitType: {}", unitType);
+                                } else {
+                                    predicates.add(criteriaBuilder.equal(root.get(field), value));
+                                    log.debug("Added generic filter for field: {} with value: {}", field, value);
                                 }
-                            } else if ("status".equals(field)) {
-                                Status status = Status.fromDescription(value);
-                                predicates.add(criteriaBuilder.equal(root.get(field), status));
-                            } else if ("mode".equals(field)) {
-                                Mode mode = Mode.fromDescription(value);
-                                predicates.add(criteriaBuilder.equal(root.get(field), mode));
-                            } else if ("type".equals(field)) {
-                                Type type = Type.fromString(value);
-                                predicates.add(criteriaBuilder.equal(root.get(field), type));
-                            } else if ("unitType".equals(field)) {
-                                UnitType unitType = UnitType.fromString(value);
-                                predicates.add(criteriaBuilder.equal(root.get(field), unitType));
-                            } else {
-                                predicates.add(criteriaBuilder.equal(root.get(field), value));
+                            } catch (Exception e) {
+                                log.error("Error processing filter for field: {} with value: {}", field, value, e);
                             }
                         });
             }
@@ -70,7 +87,7 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                 dateRanges.entrySet().stream()
                         .filter(entry -> entry.getValue() != null)
                         .forEach(entry -> {
-                            log.info("Date range filter for: " + entry.getKey() + " => " + entry.getValue());
+                            log.debug("Processing date range filter for: {} => {}", entry.getKey(), entry.getValue());
                             String[] dates = entry.getValue().split(",");
                             if (dates.length == 2) {
                                 try {
@@ -79,6 +96,7 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                                 .withZoneSameInstant(USER_TIMEZONE);
                                         predicates.add(criteriaBuilder.greaterThanOrEqualTo(
                                                 root.get(entry.getKey()), startDate.toLocalDateTime()));
+                                        log.debug("Added start date filter for {}: {}", entry.getKey(), startDate);
                                     }
 
                                     if (!"null".equals(dates[1])) {
@@ -86,14 +104,18 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                                 .withZoneSameInstant(USER_TIMEZONE);
                                         predicates.add(criteriaBuilder.lessThanOrEqualTo(
                                                 root.get(entry.getKey()), endDate.toLocalDateTime()));
+                                        log.debug("Added end date filter for {}: {}", entry.getKey(), endDate);
                                     }
                                 } catch (DateTimeParseException e) {
-                                    log.error("Date parsing error for field " + entry.getKey() + ": " + e.getMessage());
+                                    log.error("Date parsing error for field {}: {}", entry.getKey(), e.getMessage());
                                 }
+                            } else {
+                                log.warn("Invalid date range format for field {}: {}", entry.getKey(), entry.getValue());
                             }
                         });
             }
 
+            log.trace("Exiting buildSpecification with predicates: {}", predicates);
             return criteriaBuilder.and(predicates.toArray(new Predicate[0]));
         };
     }

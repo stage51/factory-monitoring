@@ -38,74 +38,98 @@ public class FTPUtilImpl implements FTPUtil {
 
     public FTPUtilImpl() {
         this.ftpClient = new FTPClient();
+        log.trace("FTPClient instance created.");
     }
 
     @PostConstruct
     private void connect() {
+        log.trace("Entering connect method.");
         try {
-            log.info("Connecting to FTP server...");
+            log.info("Connecting to FTP server at {}:{}", ftpHost, ftpPort);
             ftpClient.connect(ftpHost, ftpPort);
+            log.debug("Attempting login with username: {}", ftpUsername);
             ftpClient.login(ftpUsername, ftpPassword);
-            log.info("Connected to FTP server");
+            log.info("Successfully connected to FTP server.");
             ftpClient.changeWorkingDirectory(ftpDirectory + "/mode");
+            log.debug("Changed working directory to: {}", ftpDirectory + "/mode");
         } catch (IOException e) {
-            log.error("Failed to connect to FTP server", e);
+            log.error("Failed to connect to FTP server.", e);
         }
+        log.trace("Exiting connect method.");
     }
 
     @PreDestroy
     private void disconnect() {
+        log.trace("Entering disconnect method.");
         try {
             if (ftpClient.isConnected()) {
                 ftpClient.logout();
                 ftpClient.disconnect();
-                log.info("Disconnected from FTP server");
+                log.info("Disconnected from FTP server.");
+            } else {
+                log.warn("Disconnect called, but FTP client is not connected.");
             }
         } catch (IOException ex) {
-            log.error("Failed to disconnect from FTP server", ex);
+            log.error("Failed to disconnect from FTP server.", ex);
         }
+        log.trace("Exiting disconnect method.");
     }
 
     @Override
-    public String saveFileLocally(MultipartFile file){
+    public String saveFileLocally(MultipartFile file) {
+        log.trace("Entering saveFileLocally method with file: {}", file.getOriginalFilename());
         try {
-            log.info("Saving file locally...");
+            log.trace("Saving file locally");
             String uploadDir = System.getProperty("java.io.tmpdir");
+            log.debug("Temporary directory resolved as: {}", uploadDir);
             File localFile = new File(uploadDir, file.getOriginalFilename());
             file.transferTo(localFile);
-            log.info("File uploaded successfully with path: " + localFile.getAbsolutePath());
+            log.info("File uploaded successfully with path: {}", localFile.getAbsolutePath());
             return localFile.getAbsolutePath();
         } catch (IOException e) {
-            log.error(e.getMessage());
+            log.error("Error occurred while saving file locally: {}", e.getMessage(), e);
         }
+        log.trace("Exiting saveFileLocally method.");
         return file.getOriginalFilename();
     }
 
     @Override
     public boolean saveFileToFTP(String localFilePath, String remoteFileName) {
+        log.trace("Entering saveFileToFTP method with localFilePath: {}, remoteFileName: {}", localFilePath, remoteFileName);
         if (modeReport) {
             return uploadFile(localFilePath, remoteFileName);
-        } else throw new MethodDisabledException("Saving file to FTP is disabled");
+        } else {
+            log.warn("Attempted to save file to FTP, but FTP uploading is disabled.");
+            throw new MethodDisabledException("Saving file to FTP is disabled");
+        }
     }
 
     private boolean uploadFile(String localFilePath, String remoteFileName) {
+        log.trace("Entering uploadFile method with localFilePath: {}, remoteFileName: {}", localFilePath, remoteFileName);
         try {
+            log.debug("Setting FTP client to passive mode and binary file type.");
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 
             File localFile = new File(localFilePath);
+            log.debug("Preparing to upload file: {}", localFile.getAbsolutePath());
+
             try (FileInputStream fis = new FileInputStream(localFile)) {
                 if (ftpClient.storeFile(remoteFileName, fis)) {
-                    log.info("File uploaded to ftp successfully with name: " + remoteFileName);
+                    log.info("File uploaded to FTP successfully with name: {}", remoteFileName);
                     return true;
                 } else {
-                    log.error("File uploading failed with name: {}, code: {}, status: {}", remoteFileName, ftpClient.getReplyCode(), ftpClient.getReplyString());
+                    log.error("File upload failed. Remote file name: {}, Reply code: {}, Reply string: {}",
+                            remoteFileName, ftpClient.getReplyCode(), ftpClient.getReplyString());
                     return false;
                 }
             }
         } catch (IOException ex) {
-            log.error("Failed to upload file to FTP server", ex);
+            log.error("Failed to upload file to FTP server.", ex);
             return false;
+        } finally {
+            log.trace("Exiting uploadFile method.");
         }
     }
 }
+

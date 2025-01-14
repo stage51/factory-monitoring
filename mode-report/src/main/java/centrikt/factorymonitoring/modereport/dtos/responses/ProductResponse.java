@@ -2,11 +2,15 @@ package centrikt.factorymonitoring.modereport.dtos.responses;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @JacksonXmlRootElement(localName = "product")
 @Schema(description = "Вывод продукта")
 public class ProductResponse {

@@ -48,10 +48,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws ServletException, IOException {
-        log.info("JWT Authentication Filter: Processing request {}", request.getRequestURI());
-
+        log.trace("JWT Authentication Filter");
+        log.debug("Processing request {}", request.getRequestURI());
         if (shouldNotFilter(request)) {
-            log.info("Skipping filter for path: {}", request.getRequestURI());
+            log.debug("Skipping filter for path: {}", request.getRequestURI());
             chain.doFilter(request, response);
             return;
         }
@@ -61,24 +61,24 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             String authHeader = request.getHeader("Authorization");
 
             if (apiKeyHeader != null) {
-                log.info("API TOKEN AUTHENTICATION");
+                log.trace("API TOKEN AUTHENTICATION");
                 String username = jwtTokenUtil.extractApiUsername(apiKeyHeader);
                 String role = jwtTokenUtil.extractApiUserRole(apiKeyHeader);
 
                 setAuthentication(username, role, apiKeyHeader, request);
             } else if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                log.info("ACCESS TOKEN AUTHENTICATION");
+                log.trace("ACCESS TOKEN AUTHENTICATION");
                 String token = authHeader.substring(7);
                 String username = jwtTokenUtil.extractUsername(token);
                 String role = jwtTokenUtil.extractUserRole(token);
 
                 setAuthentication(username, role, token, request);
             } else {
-                log.info("No valid authentication header found");
+                log.debug("No valid authentication header found");
                 throw new InvalidTokenException("No valid authentication header found");
             }
         } catch (InvalidTokenException e) {
-            log.error("Authentication failed: {}", e.getMessage());
+            log.debug("Authentication failed: {}", e.getMessage());
             SecurityContextHolder.clearContext();
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid or expired token");
             return;

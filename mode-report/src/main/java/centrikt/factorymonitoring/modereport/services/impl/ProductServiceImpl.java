@@ -20,9 +20,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
-
 
     private ProductRepository productRepository;
     private EntityValidator entityValidator;
@@ -32,62 +34,106 @@ public class ProductServiceImpl implements ProductService {
         this.productRepository = productRepository;
         this.entityValidator = entityValidator;
         this.filterUtil = filterUtil;
+        log.info("ProductServiceImpl initialized");
     }
 
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
+        log.debug("ProductRepository set");
     }
+
     @Autowired
     public void setEntityValidator(EntityValidator entityValidator) {
         this.entityValidator = entityValidator;
+        log.debug("EntityValidator set");
     }
+
     @Autowired
     public void setFilterUtil(FilterUtil<Product> filterUtil) {
         this.filterUtil = filterUtil;
+        log.debug("FilterUtil set");
     }
+
     @Override
     public ProductResponse create(ProductRequest dto) {
+        log.trace("Entering create method with dto: {}", dto);
         entityValidator.validate(dto);
-        return ProductMapper.toResponse(productRepository.save(ProductMapper.toEntity(dto)));
+        log.debug("Validated ProductRequest: {}", dto);
+        ProductResponse response = ProductMapper.toResponse(productRepository.save(ProductMapper.toEntity(dto)));
+        log.info("Product created with response: {}", response);
+        log.trace("Exiting create method");
+        return response;
     }
 
     @Override
     public ProductResponse get(Long id) {
-        return ProductMapper.toResponse(productRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Product not found with id: " + id)));
+        log.trace("Entering get method with id: {}", id);
+        ProductResponse response = ProductMapper.toResponse(productRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Product not found with id: {}", id);
+                    return new EntityNotFoundException("Product not found with id: " + id);
+                }));
+        log.info("Fetched Product with id: {}", id);
+        log.trace("Exiting get method with response: {}", response);
+        return response;
     }
 
     @Override
     public ProductResponse update(Long id, ProductRequest dto) {
+        log.trace("Entering update method with id: {} and dto: {}", id, dto);
         entityValidator.validate(dto);
-        Product existingPosition = ProductMapper.toEntity(dto);
-        if (productRepository.findById(id).isPresent()){
-            existingPosition.setId(id);
-        } else throw new EntityNotFoundException("Product not found with id: " + id);
-        return ProductMapper.toResponse(productRepository.save(existingPosition));
+        log.debug("Validated ProductRequest: {}", dto);
+        Product existingProduct = ProductMapper.toEntity(dto);
+        if (productRepository.findById(id).isPresent()) {
+            existingProduct.setId(id);
+            log.debug("Existing product found with id: {}", id);
+        } else {
+            log.error("Product not found with id: {}", id);
+            throw new EntityNotFoundException("Product not found with id: " + id);
+        }
+        ProductResponse response = ProductMapper.toResponse(productRepository.save(existingProduct));
+        log.info("Product updated with id: {}", id);
+        log.trace("Exiting update method with response: {}", response);
+        return response;
     }
 
     @Override
     public void delete(Long id) {
+        log.trace("Entering delete method with id: {}", id);
         if (!productRepository.existsById(id)) {
+            log.error("Product not found with id: {}", id);
             throw new EntityNotFoundException("Product not found with id: " + id);
         }
         productRepository.deleteById(id);
+        log.info("Product deleted with id: {}", id);
+        log.trace("Exiting delete method");
     }
 
     @Override
     public List<ProductResponse> getAll() {
-        return productRepository.findAll().stream().map(ProductMapper::toResponse).toList();
+        log.trace("Entering getAll method");
+        List<ProductResponse> responses = productRepository.findAll().stream()
+                .map(ProductMapper::toResponse)
+                .toList();
+        log.info("Fetched all products");
+        log.trace("Exiting getAll method with responses: {}", responses);
+        return responses;
     }
 
     @Override
     public Page<ProductResponse> getPage(int size, int number, String sortBy, String sortDirection,
                                          Map<String, String> filters, Map<String, String> dateRanges) {
+        log.trace("Entering getPage method with size: {}, number: {}, sortBy: {}, sortDirection: {}, filters: {}, dateRanges: {}",
+                size, number, sortBy, sortDirection, filters, dateRanges);
         Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy != null ? sortBy : "id");
         Pageable pageable = PageRequest.of(number, size, sort);
         Specification<Product> specification = filterUtil.buildSpecification(filters, dateRanges);
-        return productRepository.findAll(specification, pageable).map(ProductMapper::toResponse);
+        Page<ProductResponse> page = productRepository.findAll(specification, pageable).map(ProductMapper::toResponse);
+        log.info("Fetched paginated products with size: {}, number: {}", size, number);
+        log.trace("Exiting getPage method with page: {}", page);
+        return page;
     }
 }
+

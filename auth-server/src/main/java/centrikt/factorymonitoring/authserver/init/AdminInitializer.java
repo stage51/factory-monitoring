@@ -33,14 +33,17 @@ public class AdminInitializer implements CommandLineRunner {
     public AdminInitializer(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        log.info("AdminInitializer initialized");
     }
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+        log.debug("UserRepository set");
     }
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+        log.debug("PasswordEncoder set");
     }
 
     @Override

@@ -5,14 +5,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Data
 @JacksonXmlRootElement(localName = "product")
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Schema(description = "Вывод продукта")
 public class ProductResponse {
     private Long id;

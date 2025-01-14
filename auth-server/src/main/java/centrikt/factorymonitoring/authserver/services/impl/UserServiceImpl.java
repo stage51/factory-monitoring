@@ -88,39 +88,48 @@ public class UserServiceImpl implements UserService {
         this.jwtTokenUtil = jwtTokenUtil;
         this.rabbitTemplate = rabbitTemplate;
         this.imageUploader = imageUploader;
+        log.info("UserServiceImpl initialized");
     }
 
     @Autowired
     public void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
+        log.debug("UserRepository set");
     }
     @Autowired
     public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
         this.passwordEncoder = passwordEncoder;
+        log.debug("PasswordEncoder set");
     }
     @Autowired
     public void setFilterUtil(FilterUtil<User> filterUtil) {
         this.filterUtil = filterUtil;
+        log.debug("FilterUtil set");
     }
     @Autowired
     public void setEntityValidator(EntityValidator entityValidator) {
         this.entityValidator = entityValidator;
+        log.debug("EntityValidator set");
     }
     @Autowired
     public void setJwtTokenUtil(JwtTokenUtil jwtTokenUtil) {
         this.jwtTokenUtil = jwtTokenUtil;
+        log.debug("JwtTokenUtil set");
     }
     @Autowired
     public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
+        log.debug("RabbitTemplate set");
     }
     @Autowired
     public void setImageUploader(ImageUploader imageUploader) {
         this.imageUploader = imageUploader;
+        log.debug("ImageUploader set");
     }
 
     @Override
     public UserResponse create(UserRequest dto) {
+        log.trace("Entering create method with user request: {}", dto);
         try {
             entityValidator.validate(dto);
             User user = UserMapper.toEntityFromCreateRequest(dto, defaultUserTimezone);
@@ -137,8 +146,12 @@ public class UserServiceImpl implements UserService {
             } else if (registrationNotificationFor.equals("manager-only")) {
                 List<String> managersEmails = getManagers().stream().map(User::getEmail).toList();
                 emails.addAll(managersEmails);
-            } else throw new InvalidConstraintException("Invalid registration notification for constraint " + registrationNotificationFor);
+            } else {
+                log.warn("Invalid registration notification for constraint: {}", registrationNotificationFor);
+                throw new InvalidConstraintException("Invalid registration notification for constraint " + registrationNotificationFor);
+            }
             if (registrationNotification) {
+                log.debug("Sending registration notification to: {}", emails);
                 rabbitTemplate.convertAndSend("emailQueue",
                         new EmailMessage(
                                 emails.toArray(String[]::new),
@@ -146,41 +159,57 @@ public class UserServiceImpl implements UserService {
                                 String.format("Зарегистрировался новый пользователь: %s %s с почтой %s."
                                         , user.getFirstName(), user.getLastName(), user.getEmail())));
             }
+            log.info("User created successfully with email: {}", user.getEmail());
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
+            log.error("Error creating user with email: {}, user already exists", dto.getEmail(), e);
             throw new IllegalArgumentException("User with email " + dto.getEmail() + " already exists");
         }
     }
 
     @Override
     public UserResponse get(Long id) {
-        return UserMapper.toResponse(userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id)));
+        log.trace("Entering get method with id: {}", id);
+        return UserMapper.toResponse(userRepository.findById(id).orElseThrow(() -> {
+            log.error("User not found with id: {}", id);
+            return new EntityNotFoundException("User not found with id: " + id);
+        }));
     }
 
     @Override
     public UserResponse update(Long id, UserRequest dto) {
+        log.trace("Entering update method with id: {}, user request: {}", id, dto);
         entityValidator.validate(dto);
-        User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
+        User user = userRepository.findById(id).orElseThrow(() -> {
+            log.error("User not found with id: {}", id);
+            return new EntityNotFoundException("User not found with id: " + id);
+        });
         return UserMapper.toResponse(userRepository.saveAndFlush(UserMapper.toEntityFromUpdateRequest(user, dto)));
     }
 
     @Override
     @Transactional
     public void delete(Long id) {
+        log.trace("Entering delete method with id: {}", id);
         if (userRepository.existsById(id)) {
             userRepository.deleteById(id);
-        } else throw new EntityNotFoundException("User not found with id: " + id);
+            log.info("User with id: {} deleted successfully", id);
+        } else {
+            log.error("User not found with id: {}", id);
+            throw new EntityNotFoundException("User not found with id: " + id);
+        }
     }
 
     @Override
     public List<UserResponse> getAll() {
+        log.trace("Entering getAll method");
         return userRepository.findAll().stream().map(UserMapper::toResponse).collect(Collectors.toList());
     }
 
     @Override
     public Page<UserResponse> getPage(int size, int number, String sortBy, String sortDirection,
-                                          Map<String, String> filters, Map<String, String> dateRanges) {
-
+                                      Map<String, String> filters, Map<String, String> dateRanges) {
+        log.trace("Entering getPage method with size: {}, page number: {}, sortBy: {}, sortDirection: {}", size, number, sortBy, sortDirection);
         Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
         Sort sort = Sort.by(direction, sortBy != null ? sortBy : "firstName");
         Pageable pageable = PageRequest.of(number, size, sort);
@@ -190,19 +219,24 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getByEmail(String email) {
+        log.trace("Entering getByEmail method with email: {}", email);
         return UserMapper.toResponse(userRepository.findByEmail(email)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + email)));
     }
+
     @Override
     public UserResponse getProfile(String accessToken) {
+        log.trace("Entering getProfile method with access token: {}", accessToken);
         String username = jwtTokenUtil.extractUsername(accessToken);
         return UserMapper.toResponse(
                 userRepository.findByEmail(username)
                         .orElseThrow(() -> new EntityNotFoundException("User not found with email: " + username))
         );
     }
+
     @Override
     public UserResponse updateProfile(String accessToken, UserRequest userRequest) {
+        log.trace("Entering updateProfile method with access token: {}, user request: {}", accessToken, userRequest);
         entityValidator.validate(userRequest);
         String username = jwtTokenUtil.extractUsername(accessToken);
         User existingUser = userRepository.findByEmail(username)
@@ -214,6 +248,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public SettingResponse updateSetting(String accessToken, SettingRequest settingRequest) {
+        log.trace("Entering updateSetting method with access token: {}, setting request: {}", accessToken, settingRequest);
         entityValidator.validate(settingRequest);
         String username = jwtTokenUtil.extractUsername(accessToken);
         User existingUser = userRepository.findByEmail(username)
@@ -225,18 +260,21 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse create(AdminUserRequest adminUserRequest) {
+        log.trace("Entering create method with admin user request: {}", adminUserRequest);
         try {
             entityValidator.validate(adminUserRequest);
             User user = UserMapper.toEntityFromCreateRequest(adminUserRequest, defaultUserTimezone);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             return UserMapper.toResponse(userRepository.save(user));
         } catch (DataIntegrityViolationException e) {
+            log.error("Error creating admin user with email: {}, user already exists", adminUserRequest.getEmail(), e);
             throw new IllegalArgumentException("User with email " + adminUserRequest.getEmail() + " already exists");
         }
     }
 
     @Override
     public UserResponse update(Long id, AdminUserRequest adminUserRequest) {
+        log.trace("Entering update method with id: {}, admin user request: {}", id, adminUserRequest);
         entityValidator.validate(adminUserRequest);
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
         user = UserMapper.toEntityFromUpdateRequest(user, adminUserRequest);
@@ -246,33 +284,42 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UploadAvatarResponse uploadAvatar(MultipartFile file) throws IOException {
-        if (avatarUpload){
+        log.trace("Entering uploadAvatar method with file: {}", file.getOriginalFilename());
+        if (avatarUpload) {
             String avatarUrl = imageUploader.saveFile(file);
             return UploadAvatarResponse.builder().avatarUrl(avatarUrl).build();
         } else {
+            log.warn("Avatar upload is disabled");
             throw new MethodDisabledException("Upload avatar not enabled");
         }
     }
 
     @Override
     public void approve(Long id) {
+        log.trace("Entering approve method with id: {}", id);
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
         user.setRole(Role.ROLE_USER);
         userRepository.save(user);
+        log.info("User with id: {} approved successfully", id);
     }
 
     @Override
     public void disapprove(Long id) {
+        log.trace("Entering disapprove method with id: {}", id);
         User user = userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User not found with id: " + id));
         user.setActive(false);
         userRepository.save(user);
+        log.info("User with id: {} disapproved successfully", id);
     }
 
     private List<User> getManagers() {
+        log.trace("Entering getManagers method");
         return userRepository.findAllByRole(Role.ROLE_MANAGER);
     }
 
     private List<User> getAdmins() {
+        log.trace("Entering getAdmins method");
         return userRepository.findAllByRole(Role.ROLE_ADMIN);
     }
 }
+

@@ -2,10 +2,12 @@ package centrikt.factorymonitoring.authserver.dtos.requests.users;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Schema(description = "Форма создания, редактирования организации для пользователя")
 @Getter
+@AllArgsConstructor
 public class AuthOrganizationRequest {
     @NotNull
     private String shortName;

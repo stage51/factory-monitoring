@@ -20,10 +20,13 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
 
     public ProductController(ProductService productService) {
         this.productService = productService;
+        log.info("ProductController initialized with ProductService: {}", productService.getClass().getName());
     }
+
     @Autowired
     public void setProductService(ProductService productService) {
         this.productService = productService;
+        log.debug("ProductService set to: {}", productService.getClass().getName());
     }
 
     @GetMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
@@ -31,6 +34,7 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
     public ResponseEntity<ProductResponse> getProduct(@PathVariable Long id) {
         log.info("Fetching product with id: {}", id);
         ProductResponse product = productService.get(id);
+        log.debug("Fetched product: {}", product);
         return ResponseEntity.ok(product);
     }
 
@@ -39,6 +43,7 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
     public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest) {
         log.info("Creating new product: {}", productRequest);
         ProductResponse createdProduct = productService.create(productRequest);
+        log.debug("Created product: {}", createdProduct);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
     }
 
@@ -47,6 +52,7 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
     public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest) {
         log.info("Updating product with id: {}", id);
         ProductResponse updatedProduct = productService.update(id, productRequest);
+        log.debug("Updated product: {}", updatedProduct);
         return ResponseEntity.ok(updatedProduct);
     }
 
@@ -54,12 +60,13 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
     public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
         log.info("Deleting product with id: {}", id);
         productService.delete(id);
+        log.debug("Product with id: {} deleted", id);
         return ResponseEntity.noContent().build();
     }
+
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
-    )
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Page<ProductResponse>> getPagePositions(
             @RequestBody PageRequestDTO pageRequestDTO
     ) {
@@ -72,6 +79,7 @@ public class ProductController implements centrikt.factory_monitoring.daily_repo
                 pageRequestDTO.getFilters(),
                 pageRequestDTO.getDateRanges()
         );
+        log.debug("Fetched products page: {}", products);
         return ResponseEntity.ok(products);
     }
 }

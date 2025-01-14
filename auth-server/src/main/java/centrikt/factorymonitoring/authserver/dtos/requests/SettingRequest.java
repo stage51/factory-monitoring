@@ -2,13 +2,17 @@ package centrikt.factorymonitoring.authserver.dtos.requests;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 import java.util.List;
 
 @Data
 @Schema(description = "Запрос на обновление настроек")
+@AllArgsConstructor
+@NoArgsConstructor
 public class SettingRequest {
     @Schema(description = "Часовой пояс формата UTC+**:**")
     @NotNull
