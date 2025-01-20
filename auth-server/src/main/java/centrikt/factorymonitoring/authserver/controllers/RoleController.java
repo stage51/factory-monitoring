@@ -21,6 +21,7 @@ import java.util.List;
 public class RoleController implements centrikt.factorymonitoring.authserver.controllers.docs.RoleController {
     @GetMapping()
     public ResponseEntity<Page<RoleResponse>> getRoles() {
+        log.info("Fetching role request");
         List<RoleResponse> roles = new ArrayList<>();
         roles.add(RoleResponse.builder().role(Role.ROLE_GUEST.toString())
                 .description("Гостевая роль без какого-либо доступа к сервису для недавно зарегистрировавшихся пользователей").build());
@@ -30,6 +31,7 @@ public class RoleController implements centrikt.factorymonitoring.authserver.con
                 .description("Роль сотрудника, имеющего ограниченный доступ к средствам администрирования").build());
         roles.add(RoleResponse.builder().role(Role.ROLE_ADMIN.toString())
                 .description("Роль администратора, имеющего доступ ко всему функционалу приложения").build());
+        log.debug("Fetched role page");
         return ResponseEntity.ok(new PageImpl<>(roles));
     }
 }

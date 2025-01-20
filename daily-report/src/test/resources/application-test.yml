@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: daily-report
+  profiles:
+    active: test
+  cloud:
+    consul:
+      config:
+        enabled: false
+      discovery:
+        enabled: false
+      enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+security:
+  access-token-secret-key: test-access-token-secret-key_test-access-token-secret-key
+  api-token-secret-key: test-api-token-secret-key_test-api-token-secret-key
+xml-reports:
+  ftp-host: ftp.ru-1.storage.selcloud.ru
+  ftp-port: 21
+  ftp-username: ed0d75d6313844e0976834fdbec9559d
+  ftp-password: f92cfbba1a944c4c932867d0b2d67b9c
+  ftp-directory: /reports-cikt
+  mode-report: true
+logging:
+  level:
+    root: INFO
+    centrikt.factory_monitoring.daily_report: TRACE

@@ -2,7 +2,9 @@ package centrikt.factorymonitoring.authserver.models;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "organizations")
 @Data

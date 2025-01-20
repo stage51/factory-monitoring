@@ -17,25 +17,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/auth-server/onlines")
 @Slf4j
 public class OnlineController implements centrikt.factorymonitoring.authserver.controllers.docs.OnlineController {
-    
+
     private OnlineService<OnlineResponse> onlineService;
 
     public OnlineController(OnlineService<OnlineResponse> onlineService) {
         this.onlineService = onlineService;
+        log.info("OnlineController initialized");
     }
+
     @Autowired
     public void setOnlineService(OnlineService<OnlineResponse> onlineService) {
         this.onlineService = onlineService;
+        log.debug("OnlineService set");
     }
 
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<OnlineResponse>> getPage(
-            @RequestBody PageRequestDTO pageRequestDTO
-    ) {
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+    public ResponseEntity<Page<OnlineResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
+        log.debug("Fetching page with size: {}, number: {}, sortBy: {}, sortDirection: {}",
+                pageRequestDTO.getSize(),
+                pageRequestDTO.getNumber(),
+                pageRequestDTO.getSortBy(),
+                pageRequestDTO.getSortDirection());
+        log.info("Applying filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+
         Page<OnlineResponse> users = onlineService.getPage(
                 pageRequestDTO.getSize(),
                 pageRequestDTO.getNumber(),
@@ -44,6 +51,9 @@ public class OnlineController implements centrikt.factorymonitoring.authserver.c
                 pageRequestDTO.getFilters(),
                 pageRequestDTO.getDateRanges()
         );
+
+        log.debug("Fetched {} elements", users.getContent().size());
         return ResponseEntity.ok(users);
     }
 }
+

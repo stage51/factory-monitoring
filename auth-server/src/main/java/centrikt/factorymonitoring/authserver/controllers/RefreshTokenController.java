@@ -22,21 +22,22 @@ public class RefreshTokenController implements centrikt.factorymonitoring.authse
 
     public RefreshTokenController(RefreshTokenService<RefreshTokenResponse> refreshTokenService) {
         this.refreshTokenService = refreshTokenService;
+        log.info("RefreshTokenController initialized");
     }
+
     @Autowired
     public void setRefreshTokenService(RefreshTokenService<RefreshTokenResponse> refreshTokenService) {
         this.refreshTokenService = refreshTokenService;
+        log.debug("RefreshTokenService set");
     }
 
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<RefreshTokenResponse>> getPage(
-            @RequestBody PageRequestDTO pageRequestDTO
-    ) {
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
-        Page<RefreshTokenResponse> users = refreshTokenService.getPage(
+    public ResponseEntity<Page<RefreshTokenResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
+        log.info("Fetching refresh token page with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        Page<RefreshTokenResponse> tokens = refreshTokenService.getPage(
                 pageRequestDTO.getSize(),
                 pageRequestDTO.getNumber(),
                 pageRequestDTO.getSortBy(),
@@ -44,6 +45,7 @@ public class RefreshTokenController implements centrikt.factorymonitoring.authse
                 pageRequestDTO.getFilters(),
                 pageRequestDTO.getDateRanges()
         );
-        return ResponseEntity.ok(users);
+        log.debug("Fetched {} refresh token records", tokens.getContent().size());
+        return ResponseEntity.ok(tokens);
     }
 }

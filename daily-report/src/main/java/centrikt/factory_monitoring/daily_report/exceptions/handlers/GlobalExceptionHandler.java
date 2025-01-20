@@ -14,7 +14,7 @@ import java.io.IOException;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
-        return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Message("error", HttpStatus.NOT_FOUND.value(), ex.getMessage()));
     }
     @ExceptionHandler(InvalidConstantException.class)
     public ResponseEntity<?> handleInvalidConstantException(InvalidConstantException ex){

@@ -68,7 +68,7 @@ class ProductControllerTest {
     void getProduct_shouldReturnProductResponse_whenValidId() throws Exception {
         when(productService.get(1L)).thenReturn(productResponse);
 
-        mockMvc.perform(get("/api/v1/five-minute-report/products/1")
+        mockMvc.perform(get("/api/v1/daily-report/products/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -85,7 +85,7 @@ class ProductControllerTest {
     void createProduct_shouldReturnCreatedProductResponse() throws Exception {
         when(productService.create(any(ProductRequest.class))).thenReturn(productResponse);
 
-        mockMvc.perform(post("/api/v1/five-minute-report/products")
+        mockMvc.perform(post("/api/v1/daily-report/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(productRequest)))
                 .andExpect(status().isCreated())
@@ -103,7 +103,7 @@ class ProductControllerTest {
     void updateProduct_shouldReturnUpdatedProductResponse() throws Exception {
         when(productService.update(eq(1L), any(ProductRequest.class))).thenReturn(productResponse);
 
-        mockMvc.perform(put("/api/v1/five-minute-report/products/1")
+        mockMvc.perform(put("/api/v1/daily-report/products/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(productRequest)))
                 .andExpect(status().isOk())
@@ -121,7 +121,7 @@ class ProductControllerTest {
     void deleteProduct_shouldReturnNoContent() throws Exception {
         doNothing().when(productService).delete(1L);
 
-        mockMvc.perform(delete("/api/v1/five-minute-report/products/1"))
+        mockMvc.perform(delete("/api/v1/daily-report/products/1"))
                 .andExpect(status().isNoContent());
 
         verify(productService, times(1)).delete(1L);
@@ -141,7 +141,7 @@ class ProductControllerTest {
 
         when(productService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(productPage);
 
-        mockMvc.perform(post("/api/v1/five-minute-report/products/fetch")
+        mockMvc.perform(post("/api/v1/daily-report/products/fetch")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(pageRequestDTO))
                         .accept(MediaType.APPLICATION_JSON))

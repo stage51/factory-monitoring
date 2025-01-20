@@ -88,7 +88,7 @@ class PositionControllerTest {
 
         when(positionService.get(1L)).thenReturn(positionResponse);
 
-        mockMvc.perform(get("/api/v1/five-minute-report/positions/1")
+        mockMvc.perform(get("/api/v1/daily-report/positions/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
@@ -106,7 +106,7 @@ class PositionControllerTest {
 
         when(positionService.create(any(PositionRequest.class))).thenReturn(positionResponse);
 
-        mockMvc.perform(post("/api/v1/five-minute-report/positions")
+        mockMvc.perform(post("/api/v1/daily-report/positions")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(positionRequest)))
                 .andExpect(status().isCreated())
@@ -123,7 +123,7 @@ class PositionControllerTest {
 
         when(positionService.update(eq(1L), any(PositionRequest.class))).thenReturn(positionResponse);
 
-        mockMvc.perform(put("/api/v1/five-minute-report/positions/1")
+        mockMvc.perform(put("/api/v1/daily-report/positions/1")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(positionRequest)))
                 .andExpect(status().isOk())
@@ -142,7 +142,7 @@ class PositionControllerTest {
     void deletePosition_shouldReturnNoContent() throws Exception {
         doNothing().when(positionService).delete(1L);
 
-        mockMvc.perform(delete("/api/v1/five-minute-report/positions/1"))
+        mockMvc.perform(delete("/api/v1/daily-report/positions/1"))
                 .andExpect(status().isNoContent());
 
         verify(positionService, times(1)).delete(1L);
@@ -155,7 +155,7 @@ class PositionControllerTest {
         when(ftpUtil.saveFileLocally(any(MultipartFile.class))).thenReturn("/tmp/report.csv");
         when(ftpUtil.saveFileToFTP(anyString(), anyString())).thenReturn(true);
 
-        mockMvc.perform(multipart("/api/v1/five-minute-report/positions/upload").file(file))
+        mockMvc.perform(multipart("/api/v1/daily-report/positions/upload").file(file))
                 .andExpect(status().isOk());
 
         verify(ftpUtil, times(1)).saveFileLocally(any(MultipartFile.class));
@@ -169,7 +169,7 @@ class PositionControllerTest {
         when(ftpUtil.saveFileLocally(any(MultipartFile.class))).thenReturn("/tmp/report.csv");
         when(ftpUtil.saveFileToFTP(anyString(), anyString())).thenReturn(false);
 
-        mockMvc.perform(multipart("/api/v1/five-minute-report/positions/upload").file(file).accept(MediaType.APPLICATION_JSON))
+        mockMvc.perform(multipart("/api/v1/daily-report/positions/upload").file(file).accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.message").value("Failed to upload file"));
@@ -192,7 +192,7 @@ class PositionControllerTest {
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
-        mockMvc.perform(post("/api/v1/five-minute-report/positions/fetch")
+        mockMvc.perform(post("/api/v1/daily-report/positions/fetch")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(pageRequestDTO))
                         .accept(MediaType.APPLICATION_JSON))
@@ -220,7 +220,7 @@ class PositionControllerTest {
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
-        mockMvc.perform(post("/api/v1/five-minute-report/positions/fetch/" + positionRequest.getTaxpayerNumber())
+        mockMvc.perform(post("/api/v1/daily-report/positions/fetch/" + positionRequest.getTaxpayerNumber())
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(pageRequestDTO))
                         .accept(MediaType.APPLICATION_JSON))

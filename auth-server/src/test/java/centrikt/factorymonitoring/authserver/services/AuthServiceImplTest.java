@@ -93,7 +93,6 @@ class AuthServiceImplTest {
         when(userRepository.findByEmail(loginRequest.getEmail())).thenReturn(Optional.of(user));
         when(refreshTokenRepository.save(any(RefreshToken.class))).thenAnswer(AdditionalAnswers.returnsFirstArg());
         when(jwtTokenUtil.getSecretKey()).thenReturn(Keys.hmacShaKeyFor("secret_secret_secret_secret_secret_secret_secret".getBytes()));
-        when(jwtTokenUtil.getApiKey()).thenReturn(Keys.hmacShaKeyFor("apiKey_apiKey_apiKey_apiKey_apiKey_apiKey_apiKey_apiKey".getBytes()));
 
         // Act
         AccessRefreshTokenResponse response = authService.createTokens(loginRequest);
@@ -141,7 +140,6 @@ class AuthServiceImplTest {
         when(refreshTokenRepository.findByTokenAndUserEmail("valid_refresh_token", "test@example.com"))
                 .thenReturn(Optional.of(refreshToken));
         when(jwtTokenUtil.getSecretKey()).thenReturn(Keys.hmacShaKeyFor("secret_secret_secret_secret_secret_secret_secret".getBytes()));
-        when(jwtTokenUtil.getApiKey()).thenReturn(Keys.hmacShaKeyFor("apiKey_apiKey_apiKey_apiKey_apiKey_apiKey_apiKey_apiKey".getBytes()));
 
         // Act
         AccessTokenResponse response = authService.refreshAccessToken(request);

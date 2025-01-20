@@ -1,9 +1,7 @@
 package centrikt.factorymonitoring.modereport.utils.jwt;
 
 import centrikt.factorymonitoring.modereport.exceptions.InvalidTokenException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
-import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,14 +13,9 @@ import javax.crypto.SecretKey;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.stereotype.Component;
 
-import javax.crypto.SecretKey;
+import java.util.Date;
 
 @Slf4j
 @Getter
@@ -86,5 +79,20 @@ public class JwtTokenUtil {
     public String extractApiUserRole(String token) {
         log.trace("Extracting API user role from token: {}", token);
         return validateApiTokenAndExtractClaims(token).get("role", String.class);
+    }
+
+    public String generateTokenForTest(String username, String role) {
+        log.trace("Generating token for test for user: {}, role: {}", username, role);
+        long expirationTime = 1000 * 60 * 60;
+        Date now = new Date();
+        Date expirationDate = new Date(now.getTime() + expirationTime);
+
+        return Jwts.builder()
+                .setSubject(username)
+                .claim("role", role)
+                .setIssuedAt(now)
+                .setExpiration(expirationDate)
+                .signWith(this.getSecretKey(), SignatureAlgorithm.HS256)
+                .compact();
     }
 }
