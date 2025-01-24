@@ -29,7 +29,7 @@ services:
       - "8083:8083"
     privileged: true
     environment:
-      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_HOST: tcp://docker-dind:2375
       DOCKER_TLS_CERTDIR: ""
     depends_on:
       - user_db
@@ -59,7 +59,7 @@ services:
       - app-net
     privileged: true
     environment:
-      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_HOST: tcp://docker-dind:2375
       DOCKER_TLS_CERTDIR: ""
     command: [ "dockerd-entrypoint.sh" ]
   five-minute-report:
@@ -70,7 +70,7 @@ services:
       - "8081:8081"
     privileged: true
     environment:
-      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_HOST: tcp://docker-dind:2375
       DOCKER_TLS_CERTDIR: ""
     depends_on:
       - five-minute-report_db
@@ -95,7 +95,7 @@ services:
       - "8084:8084"
     privileged: true
     environment:
-      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_HOST: tcp://docker-dind:2375
       DOCKER_TLS_CERTDIR: ""
     depends_on:
       - mode-report_db
