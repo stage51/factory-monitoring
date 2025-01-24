@@ -7,8 +7,7 @@ WORKDIR /build
 COPY pom.xml .
 COPY src ./src
 
-RUN service docker start && \
-    mvn clean package
+RUN mvn clean package
 
 FROM openjdk:17-jdk-slim
 
