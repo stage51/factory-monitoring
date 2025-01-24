@@ -406,7 +406,7 @@
       <workItem from="1737365639078" duration="8538000" />
       <workItem from="1737374708491" duration="808000" />
       <workItem from="1737448786705" duration="926000" />
-      <workItem from="1737723064733" duration="1289000" />
+      <workItem from="1737723064733" duration="2088000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -672,7 +672,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737723935123</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="edit docker dependency for services in docker-compose.yml">
+      <option name="closed" value="true" />
+      <created>1737724523138</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1737724523138</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

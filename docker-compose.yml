@@ -1,6 +1,16 @@
 version: '3.8'
 
 services:
+  docker-dind:
+    image: docker:dind
+    container_name: docker-dind
+    privileged: true
+    ports:
+      - "2375:2375"
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+    networks:
+      - app-net
   api-gateway:
     build:
       context: ./api-gateway
@@ -17,10 +27,10 @@ services:
     container_name: auth-server
     ports:
       - "8083:8083"
+    privileged: true
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_TLS_CERTDIR: ""
     depends_on:
       - user_db
       - config-server
@@ -42,25 +52,26 @@ services:
     container_name: daily-report
     ports:
       - "8082:8082"
-    environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - daily-report_db
       - config-server
     networks:
       - app-net
+    privileged: true
+    environment:
+      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_TLS_CERTDIR: ""
+    command: [ "dockerd-entrypoint.sh" ]
   five-minute-report:
     build:
       context: ./five-minute-report
     container_name: five-minute-report
     ports:
       - "8081:8081"
+    privileged: true
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_TLS_CERTDIR: ""
     depends_on:
       - five-minute-report_db
       - config-server
@@ -82,10 +93,10 @@ services:
     container_name: mode-report
     ports:
       - "8084:8084"
+    privileged: true
     environment:
-      DOCKER_HOST: unix:///var/run/docker.sock
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      DOCKER_HOST: tcp://localhost:2375
+      DOCKER_TLS_CERTDIR: ""
     depends_on:
       - mode-report_db
       - config-server
