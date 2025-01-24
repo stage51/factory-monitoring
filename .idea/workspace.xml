@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="remove -DskipTests for services">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add docker dependency for services in docker-compose.yml" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -409,6 +406,7 @@
       <workItem from="1737365639078" duration="8538000" />
       <workItem from="1737374708491" duration="808000" />
       <workItem from="1737448786705" duration="926000" />
+      <workItem from="1737723064733" duration="468000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -650,7 +648,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737375432318</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="add docker dependency for services in docker-compose.yml">
+      <option name="closed" value="true" />
+      <created>1737723297224</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1737723297224</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -680,7 +686,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add fetch user profile data and other work with it and his organization, add filters for other microservices" />
     <MESSAGE value="add auth with api token" />
     <MESSAGE value="add more logs for admin panel" />
     <MESSAGE value="add mode report service and indexing via taxpayerNumber" />
@@ -705,7 +710,8 @@
     <MESSAGE value="add unit tests and 5-level logs for all microservices" />
     <MESSAGE value="add integration tests" />
     <MESSAGE value="remove -DskipTests for services" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove -DskipTests for services" />
+    <MESSAGE value="add docker dependency for services in docker-compose.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add docker dependency for services in docker-compose.yml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
