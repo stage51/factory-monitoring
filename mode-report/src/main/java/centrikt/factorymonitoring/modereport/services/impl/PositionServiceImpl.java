@@ -142,7 +142,7 @@ public class PositionServiceImpl implements PositionService {
         log.trace("Entering getPage method with size: {}, number: {}, sortBy: {}, sortDirection: {}, filters: {}, dateRanges: {}",
                 size, number, sortBy, sortDirection, filters, dateRanges);
         Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
-        Sort sort = Sort.by(direction, sortBy != null ? sortBy : "controlDate");
+        Sort sort = Sort.by(direction, sortBy != null ? sortBy : "startDate");
         Pageable pageable = PageRequest.of(number, size, sort);
         Specification<Position> specification = filterUtil.buildSpecification(filters, dateRanges);
         Page<PositionResponse> page = positionRepository.findAll(specification, pageable).map(PositionMapper::toResponse);
