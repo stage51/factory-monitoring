@@ -140,7 +140,7 @@ services:
       - "8302:8302/udp"  # Сервер WAN UDP
     volumes:
       - consul-server-data:/consul/data
-      - ./config/config.json:/consul/config/config.json
+      - ./config/config.json:/consul/config/config.json:ro
     environment:
       CONSUL_BIND_INTERFACE: eth0
     networks:
