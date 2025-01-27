@@ -144,9 +144,10 @@ services:
       -node=server-1
       -client=0.0.0.0
       -ui
+      consul kv import config.json
     volumes:
       - consul-server-data:/consul/data
-      - ./config.json:/config.json
+      - ./config/config.json:config.json
     environment:
       CONSUL_BIND_INTERFACE: eth0
     networks:
