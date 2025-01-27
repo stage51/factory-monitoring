@@ -138,12 +138,6 @@ services:
       - "8301:8301/udp"  # Сервер LAN UDP
       - "8302:8302"      # Сервер WAN
       - "8302:8302/udp"  # Сервер WAN UDP
-    command: >
-      consul agent -server -bootstrap-expect=1
-      -data-dir=/consul/data
-      -node=server-1
-      -client=0.0.0.0
-      -ui
     volumes:
       - consul-server-data:/consul/data
       - ./config/config.json:/consul/config/config.json
@@ -152,14 +146,16 @@ services:
     networks:
       - app-net
     entrypoint: >
-      sh -c "consul agent -server -bootstrap-expect=1
-             -data-dir=/consul/data
-             -node=server-1
-             -client=0.0.0.0
-             -ui &
-             sleep 5 &&
-             consul kv import /consul/config/config.json &&
-             fg"
+      sh -c "
+        consul agent -server -bootstrap-expect=1 \
+        -data-dir=/consul/data \
+        -node=server-1 \
+        -client=0.0.0.0 \
+        -ui &
+        sleep 5 &&
+        consul kv import @/consul/config/config.json &&
+        fg
+      "
   consul-agent:
     image: hashicorp/consul:1.20.1
     container_name: consul-agent
