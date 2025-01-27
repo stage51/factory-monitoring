@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix docker-compose" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix consul docker-compose" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -408,7 +408,7 @@
       <workItem from="1737374708491" duration="808000" />
       <workItem from="1737448786705" duration="926000" />
       <workItem from="1737723064733" duration="5728000" />
-      <workItem from="1737964766177" duration="5126000" />
+      <workItem from="1737964766177" duration="6521000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -754,7 +754,39 @@
       <option name="project" value="LOCAL" />
       <updated>1737970176537</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="fix consul docker-compose">
+      <option name="closed" value="true" />
+      <created>1737970408930</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1737970408930</updated>
+    </task>
+    <task id="LOCAL-00045" summary="fix consul docker-compose">
+      <option name="closed" value="true" />
+      <created>1737970553084</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1737970553084</updated>
+    </task>
+    <task id="LOCAL-00046" summary="fix consul docker-compose">
+      <option name="closed" value="true" />
+      <created>1737970697854</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1737970697854</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fix consul docker-compose">
+      <option name="closed" value="true" />
+      <created>1737973669951</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1737973669951</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -784,7 +816,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change eureka and config server to consul" />
     <MESSAGE value="deletediscovery server and add sensor field to report enities" />
     <MESSAGE value="delete discovery server and add sensor field to report enities" />
     <MESSAGE value="add redis" />
@@ -809,7 +840,8 @@
     <MESSAGE value="change test execution without docker context" />
     <MESSAGE value="fix dockerfiles" />
     <MESSAGE value="fix docker-compose" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix docker-compose" />
+    <MESSAGE value="fix consul docker-compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix consul docker-compose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

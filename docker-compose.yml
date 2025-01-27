@@ -144,7 +144,6 @@ services:
       -node=server-1
       -client=0.0.0.0
       -ui
-      consul kv import /consul/config/config.json
     volumes:
       - consul-server-data:/consul/data
       - ./config/config.json:/consul/config/config.json
