@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix dockerfiles">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix docker-compose" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -410,7 +408,7 @@
       <workItem from="1737374708491" duration="808000" />
       <workItem from="1737448786705" duration="926000" />
       <workItem from="1737723064733" duration="5728000" />
-      <workItem from="1737964766177" duration="4767000" />
+      <workItem from="1737964766177" duration="5126000" />
     </task>
     <task id="LOCAL-00001" summary="add auth server">
       <option name="closed" value="true" />
@@ -748,7 +746,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737969385787</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="fix docker-compose">
+      <option name="closed" value="true" />
+      <created>1737970176537</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1737970176537</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -778,7 +784,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit config server to config access via api" />
     <MESSAGE value="change eureka and config server to consul" />
     <MESSAGE value="deletediscovery server and add sensor field to report enities" />
     <MESSAGE value="delete discovery server and add sensor field to report enities" />
@@ -803,7 +808,8 @@
     <MESSAGE value="edit dockerfiles add volume to dockerfiles and docker-compose.yml" />
     <MESSAGE value="change test execution without docker context" />
     <MESSAGE value="fix dockerfiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix dockerfiles" />
+    <MESSAGE value="fix docker-compose" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix docker-compose" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

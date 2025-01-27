@@ -144,15 +144,14 @@ services:
       -node=server-1
       -client=0.0.0.0
       -ui
-      consul kv import config.json
+      consul kv import /consul/config/config.json
     volumes:
       - consul-server-data:/consul/data
-      - ./config/config.json:config.json
+      - ./config/config.json:/consul/config/config.json
     environment:
       CONSUL_BIND_INTERFACE: eth0
     networks:
       - app-net
-
   consul-agent:
     image: hashicorp/consul:1.20.1
     container_name: consul-agent
