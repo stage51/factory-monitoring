@@ -28,3 +28,12 @@ springdoc:
           url: /config-server/v3/api-docs
       -   name: auth-server
           url: auth-server/v3/api-docs
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    key-alias: server
+    key-password: changeit

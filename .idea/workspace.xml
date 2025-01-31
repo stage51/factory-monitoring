@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix filters for position services" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix filters for position service">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,7 +155,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/auth-server/src/test&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/Documents/events/api&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -410,23 +412,18 @@
       <workItem from="1737723064733" duration="5728000" />
       <workItem from="1737964766177" duration="8327000" />
       <workItem from="1737981236261" duration="32000" />
-      <workItem from="1737990075902" duration="381000" />
-    </task>
-    <task id="LOCAL-00001" summary="add auth server">
-      <option name="closed" value="true" />
-      <created>1731944506453</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1731944506453</updated>
-    </task>
-    <task id="LOCAL-00002" summary="add JWT authentication and authorization for microservices via auth server">
-      <option name="closed" value="true" />
-      <created>1732117051648</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1732117051648</updated>
+      <workItem from="1737990075902" duration="1360000" />
+      <workItem from="1737991746339" duration="8000" />
+      <workItem from="1737991978376" duration="54000" />
+      <workItem from="1738059724227" duration="963000" />
+      <workItem from="1738064148224" duration="59000" />
+      <workItem from="1738067305915" duration="716000" />
+      <workItem from="1738070603684" duration="57000" />
+      <workItem from="1738070712555" duration="28000" />
+      <workItem from="1738073876605" duration="92000" />
+      <workItem from="1738074105139" duration="21000" />
+      <workItem from="1738074167850" duration="27000" />
+      <workItem from="1738142197609" duration="1000" />
     </task>
     <task id="LOCAL-00003" summary="add fetch user profile data and other work with it and his organization, add filters for other microservices">
       <option name="closed" value="true" />
@@ -804,7 +801,23 @@
       <option name="project" value="LOCAL" />
       <updated>1737990312352</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="fix filters for position service">
+      <option name="closed" value="true" />
+      <created>1737990942099</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1737990942099</updated>
+    </task>
+    <task id="LOCAL-00051" summary="fix filters for position service">
+      <option name="closed" value="true" />
+      <created>1737991083830</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1737991083830</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -834,7 +847,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add redis" />
     <MESSAGE value="fix bug with password and add swagger" />
     <MESSAGE value="add swagger" />
     <MESSAGE value="add settings for users and password recovery" />
@@ -859,7 +871,8 @@
     <MESSAGE value="fix consul docker-compose" />
     <MESSAGE value="fix filters" />
     <MESSAGE value="fix filters for position services" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix filters for position services" />
+    <MESSAGE value="fix filters for position service" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix filters for position service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
