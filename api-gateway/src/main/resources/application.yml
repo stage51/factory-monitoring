@@ -6,6 +6,9 @@ spring:
       host: consul-server
       port: 8500
       discovery:
+        health-check-path: /actuator/health
+        health-check-tls-skip-verify: true
+        scheme: https
         enabled: true
       config:
         enabled: true
