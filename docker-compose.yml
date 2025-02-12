@@ -144,16 +144,11 @@ services:
       -node=server-1
       -client=0.0.0.0
       -ui
-      -enable-script-checks=true
-      -datacenter=dc1
-      -encrypt="your-gossip-key"
-      -acl-default-policy="deny"
-      -acl-enable-token-persistence=true
-      -acl-master-token="your-master-token"
-      -acl-enable=true
+      -config-file=/consul/config/consul_acl.json
     volumes:
       - consul-server-data:/consul/data
       - ./config/config.json:/consul/config/config.json
+      - ./config/consul_acl.json:/consul/config/consul_acl.json
     environment:
       CONSUL_BIND_INTERFACE: eth0
     networks:
@@ -168,9 +163,10 @@ services:
       -data-dir=/consul/data
       -client=0.0.0.0
       -retry-join=consul-server
-      -acl-enabled=true
+      -config-file=/consul/config/consul_acl.json
     volumes:
       - consul-agent-data:/consul/data
+      - ./config/consul_acl.json:/consul/config/consul_acl.json
     networks:
       - app-net
   rabbitmq:
