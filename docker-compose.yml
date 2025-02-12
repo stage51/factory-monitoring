@@ -29,7 +29,7 @@ services:
     ports:
       - "8888:8888"
     depends_on:
-      - consul-agent
+      - consul-server
     networks:
       - app-net
   daily-report:

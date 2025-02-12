@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix filters for position service">
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="change api gateway to https">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -424,14 +424,12 @@
       <workItem from="1738074105139" duration="21000" />
       <workItem from="1738074167850" duration="27000" />
       <workItem from="1738142197609" duration="1000" />
-    </task>
-    <task id="LOCAL-00003" summary="add fetch user profile data and other work with it and his organization, add filters for other microservices">
-      <option name="closed" value="true" />
-      <created>1732635898350</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1732635898350</updated>
+      <workItem from="1738316986915" duration="2613000" />
+      <workItem from="1738326355763" duration="537000" />
+      <workItem from="1738747290409" duration="819000" />
+      <workItem from="1738760904385" duration="3000" />
+      <workItem from="1738837647778" duration="118000" />
+      <workItem from="1739179047898" duration="11000" />
     </task>
     <task id="LOCAL-00004" summary="add auth with api token">
       <option name="closed" value="true" />
@@ -817,7 +815,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737991083830</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="change api gateway to https">
+      <option name="closed" value="true" />
+      <created>1738317357044</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1738317357044</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -847,7 +853,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix bug with password and add swagger" />
     <MESSAGE value="add swagger" />
     <MESSAGE value="add settings for users and password recovery" />
     <MESSAGE value="add more configs for admins" />
@@ -872,7 +877,8 @@
     <MESSAGE value="fix filters" />
     <MESSAGE value="fix filters for position services" />
     <MESSAGE value="fix filters for position service" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix filters for position service" />
+    <MESSAGE value="change api gateway to https" />
+    <option name="LAST_COMMIT_MESSAGE" value="change api gateway to https" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

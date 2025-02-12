@@ -1,5 +1,3 @@
-server:
-  port: 8888
 spring:
   application:
     name: config-server
@@ -9,14 +7,13 @@ spring:
       port: 8500
       config:
         enabled: true
-        acl-token: "3a4ecff8-c781-4103-8911-355fb51e4a6c"
+        acl-token: "61a2b669-7242-27c0-5314-9fad53bb5a8e"
       discovery:
         enabled: true
         register: true
-        service-name: config-server
-        acl-token: "3a4ecff8-c781-4103-8911-355fb51e4a6c"
+        acl-token: "61a2b669-7242-27c0-5314-9fad53bb5a8e"
   config:
-    import: "optional:consul:"
+    import: "consul:"
 management:
   endpoints:
     web:
