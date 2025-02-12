@@ -35,7 +35,6 @@ springdoc:
           url: auth-server/v3/api-docs
 
 server:
-  port: 8443
   ssl:
     enabled: true
     key-store: classpath:keystore.p12

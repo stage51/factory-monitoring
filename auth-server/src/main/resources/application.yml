@@ -9,11 +9,11 @@ spring:
       port: 8500
       discovery:
         enabled: true
-        acl-token: "7b3fe245-8649-4071-4f14-e4d187760647"
+        acl-token: "3a4ecff8-c781-4103-8911-355fb51e4a6c"
       config:
         enabled: true
         format: key_value
-        acl-token: "7b3fe245-8649-4071-4f14-e4d187760647"
+        acl-token: "3a4ecff8-c781-4103-8911-355fb51e4a6c"
 
 springdoc:
   api-docs:

@@ -7,9 +7,9 @@ spring:
       port: 8500
       discovery:
         enabled: true
-        acl-token: "7b3fe245-8649-4071-4f14-e4d187760647"
+        acl-token: "3bcb67bb-7d6f-8261-b8e6-e40b31483124"
       config:
         enabled: true
-        acl-token: "7b3fe245-8649-4071-4f14-e4d187760647"
+        acl-token: "3bcb67bb-7d6f-8261-b8e6-e40b31483124"
   config:
     import: "consul:"
