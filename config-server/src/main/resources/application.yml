@@ -7,6 +7,7 @@ spring:
       port: 8500
       config:
         enabled: true
+        format: key_value
         acl-token: "61a2b669-7242-27c0-5314-9fad53bb5a8e"
       discovery:
         enabled: true
@@ -15,9 +16,6 @@ spring:
         acl-token: "61a2b669-7242-27c0-5314-9fad53bb5a8e"
   config:
     import: "consul:"
-server:
-  port: 8888
-
 management:
   endpoints:
     web:

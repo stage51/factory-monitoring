@@ -10,6 +10,7 @@ spring:
         acl-token: "6d2bce06-9955-c681-4afb-c1754e9ffc83"
       config:
         enabled: true
+        format: key_value
         acl-token: "6d2bce06-9955-c681-4afb-c1754e9ffc83"
   config:
     import: "consul:"
