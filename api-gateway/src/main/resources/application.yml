@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: api-gateway
@@ -41,3 +42,4 @@ server:
     key-store-password: changeit
     key-alias: server
     key-password: changeit
+  port: 8080
