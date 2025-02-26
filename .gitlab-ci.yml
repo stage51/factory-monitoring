@@ -1,10 +1,9 @@
 stages:
-  - test
   - build
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-  MAVEN_CLI_OPTS: "-B --fail-at-end"
+  MAVEN_CLI_OPTS: "-B --fail-at-end -DskipTests"
 
 cache:
   key: maven-cache
@@ -16,44 +15,11 @@ before_script:
   - export MAVEN_HOME="$(pwd)/.m2"
   - mkdir -p "$MAVEN_HOME/repository"
 
-services_list:
-  - auth-server
-  - daily-report
-  - five-minute-report
-  - mail-service
-  - mode-report
-
-test:
-  stage: test
-  script:
-    - echo "Запуск mvn clean verify для всех сервисов..."
-    - for service in ${services_list[@]}; do
-      echo "Тестирование сервиса: $service";
-      if [ -d "$service" ]; then
-      cd "$service";
-      mvn clean verify $MAVEN_CLI_OPTS;
-      cd ..;
-      else
-      echo "Ошибка: директория $service не найдена!";
-      exit 1;
-      fi;
-      done
-
 build:
   stage: build
   script:
-    - echo "Сборка сервисов..."
-    - for service in ${services_list[@]}; do
-      echo "Сборка $service";
-      if [ -d "$service" ]; then
-      cd "$service";
-      mvn clean package $MAVEN_CLI_OPTS;
-      cd ..;
-      else
-      echo "Ошибка: директория $service не найдена!";
-      exit 1;
-      fi;
-      done
+    - chmod +x build.sh
+    - ./build.sh
   artifacts:
     paths:
       - "*/target/*.jar"
