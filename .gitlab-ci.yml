@@ -23,7 +23,7 @@ cache:
 build_api_gateway:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd api-gateway
   only:
@@ -32,7 +32,7 @@ build_api_gateway:
 build_auth_server:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd auth-server
   only:
@@ -41,7 +41,7 @@ build_auth_server:
 build_config_server:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd config-server
   only:
@@ -50,7 +50,7 @@ build_config_server:
 build_daily_report:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd daily-report
   only:
@@ -59,7 +59,7 @@ build_daily_report:
 build_five_minute_report:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd five-minute-report
   only:
@@ -68,7 +68,7 @@ build_five_minute_report:
 build_mail_service:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd mail-service
   only:
@@ -77,7 +77,7 @@ build_mail_service:
 build_mode_report:
   <<: *build_template
   tags:
-    - docker
+    - factory-monitoring-api
   before_script:
     - cd mode-report
   only:
