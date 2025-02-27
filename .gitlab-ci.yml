@@ -3,24 +3,82 @@ stages:
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
-  MAVEN_CLI_OPTS: "-B --fail-at-end -DskipTests"
+  CACHE_PATH: ".m2/repository"
 
 cache:
   key: maven-cache
   paths:
-    - .m2/repository
+    - $CACHE_PATH
 
-before_script:
-  - echo "Настройка окружения"
-  - export MAVEN_HOME="$(pwd)/.m2"
-  - mkdir -p "$MAVEN_HOME/repository"
-
-build:
+.build_template: &build_template
   stage: build
   script:
     - chmod +x build.sh
     - ./build.sh
   artifacts:
     paths:
-      - "*/target/*.jar"
-    expire_in: 1h
+      - target/*.jar
+    expire_in: 1 day
+
+build_api_gateway:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd api-gateway
+  only:
+    - main
+
+build_auth_server:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd auth-server
+  only:
+    - main
+
+build_config_server:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd config-server
+  only:
+    - main
+
+build_daily_report:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd daily-report
+  only:
+    - main
+
+build_five_minute_report:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd five-minute-report
+  only:
+    - main
+
+build_mail_service:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd mail-service
+  only:
+    - main
+
+build_mode_report:
+  <<: *build_template
+  tags:
+    - docker
+  before_script:
+    - cd mode-report
+  only:
+    - main
