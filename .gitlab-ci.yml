@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 variables:
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
@@ -15,20 +16,28 @@ cache:
   script:
     - chmod +x build.sh
     - ./build.sh
-  artifacts:
-    paths:
-      - api-gateway/target/*.jar
-      - auth-server/target/*.jar
-      - config-server/target/*.jar
-      - daily-report/target/*.jar
-      - five-minute-report/target/*.jar
-      - mail-service/target/*.jar
-      - mode-report/target/*.jar
-    expire_in: 1 day
 
+.test_template: &test_template
+  stage: test
+  script:
+    - chmod +x test.sh
+    - ./test.sh
 
 build_api_gateway:
   <<: *build_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd api-gateway
+  artifacts:
+    paths:
+      - api-gateway/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_api_gateway:
+  <<: *test_template
   tags:
     - factory-monitoring-api
   before_script:
@@ -42,11 +51,37 @@ build_auth_server:
     - factory-monitoring-api
   before_script:
     - cd auth-server
+  artifacts:
+    paths:
+      - auth-server/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_auth_server:
+  <<: *test_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd auth-server
   only:
     - main
 
 build_config_server:
   <<: *build_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd config-server
+  artifacts:
+    paths:
+      - config-server/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_config_server:
+  <<: *test_template
   tags:
     - factory-monitoring-api
   before_script:
@@ -60,11 +95,37 @@ build_daily_report:
     - factory-monitoring-api
   before_script:
     - cd daily-report
+  artifacts:
+    paths:
+      - daily-report/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_daily_report:
+  <<: *test_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd daily-report
   only:
     - main
 
 build_five_minute_report:
   <<: *build_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd five-minute-report
+  artifacts:
+    paths:
+      - five-minute-report/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_five_minute_report:
+  <<: *test_template
   tags:
     - factory-monitoring-api
   before_script:
@@ -78,11 +139,37 @@ build_mail_service:
     - factory-monitoring-api
   before_script:
     - cd mail-service
+  artifacts:
+    paths:
+      - mail-service/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_mail_service:
+  <<: *test_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd mail-service
   only:
     - main
 
 build_mode_report:
   <<: *build_template
+  tags:
+    - factory-monitoring-api
+  before_script:
+    - cd mode-report
+  artifacts:
+    paths:
+      - mode-report/target/*.jar
+    expire_in: 1 day
+  only:
+    - main
+
+test_mode_report:
+  <<: *test_template
   tags:
     - factory-monitoring-api
   before_script:
