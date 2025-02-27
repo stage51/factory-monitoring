@@ -17,8 +17,15 @@ cache:
     - ./build.sh
   artifacts:
     paths:
-      - target/*.jar
+      - api-gateway/target/*.jar
+      - auth-server/target/*.jar
+      - config-server/target/*.jar
+      - daily-report/target/*.jar
+      - five-minute-report/target/*.jar
+      - mail-service/target/*.jar
+      - mode-report/target/*.jar
     expire_in: 1 day
+
 
 build_api_gateway:
   <<: *build_template
