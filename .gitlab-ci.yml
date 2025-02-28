@@ -165,15 +165,23 @@ deploy:
   script:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
+    - docker-compose down
     - docker-compose build
     - docker-compose up -d
   only:
     - main
   needs:
-    - test_api_gateway
-    - test_auth_server
-    - test_config_server
-    - test_daily_report
-    - test_five_minute_report
-    - test_mail_service
-    - test_mode_report
+    - job: test_api_gateway
+      optional: true
+    - job: test_auth_server
+      optional: true
+    - job: test_config_server
+      optional: true
+    - job: test_daily_report
+      optional: true
+    - job: test_five_minute_report
+      optional: true
+    - job: test_mail_service
+      optional: true
+    - job: test_mode_report
+      optional: true
