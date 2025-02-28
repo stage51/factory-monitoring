@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="update gitlab-ci">
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="optimize ci/cd for gitlab">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail-service/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mail-service/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/test.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -450,15 +458,7 @@
       <workItem from="1740493671677" duration="1574000" />
       <workItem from="1740576615306" duration="5194000" />
       <workItem from="1740653290700" duration="5477000" />
-      <workItem from="1740738731004" duration="3649000" />
-    </task>
-    <task id="LOCAL-00015" summary="add more configs for admins">
-      <option name="closed" value="true" />
-      <created>1734964764396</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1734964764396</updated>
+      <workItem from="1740738731004" duration="3954000" />
     </task>
     <task id="LOCAL-00016" summary="add ftp util for saving xml reports">
       <option name="closed" value="true" />
@@ -844,7 +844,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740746591320</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="optimize ci/cd for gitlab">
+      <option name="closed" value="true" />
+      <created>1740751708163</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1740751708163</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -874,7 +882,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add unit tests and 5-level logs for all microservices" />
     <MESSAGE value="add integration tests" />
     <MESSAGE value="remove -DskipTests for services" />
     <MESSAGE value="add docker dependency for services in docker-compose.yml" />
@@ -899,7 +906,8 @@
     <MESSAGE value="add test stage for gitlab ci" />
     <MESSAGE value="edit test stage and add deploy stage for gitlab ci" />
     <MESSAGE value="update gitlab-ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="update gitlab-ci" />
+    <MESSAGE value="optimize ci/cd for gitlab" />
+    <option name="LAST_COMMIT_MESSAGE" value="optimize ci/cd for gitlab" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
