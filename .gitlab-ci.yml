@@ -13,6 +13,8 @@ cache:
     - $CACHE_PATH
 
 .build_template: &build_template
+  tags:
+    - factory-monitoring-api
   stage: build
   script:
     - chmod +x build.sh
@@ -23,6 +25,8 @@ cache:
     expire_in: 1 day
 
 .test_template: &test_template
+  tags:
+    - factory-monitoring-api
   stage: test
   script:
     - chmod +x test.sh
@@ -161,6 +165,8 @@ test_mode_report:
 # ----------------- DEPLOY JOB -----------------
 
 deploy:
+  tags:
+    - factory-monitoring-api
   stage: deploy
   script:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
