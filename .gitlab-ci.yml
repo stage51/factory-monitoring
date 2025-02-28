@@ -17,6 +17,10 @@ cache:
   script:
     - chmod +x build.sh
     - ./build.sh
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 .test_template: &test_template
   stage: test
@@ -24,164 +28,140 @@ cache:
     - chmod +x test.sh
     - ./test.sh
 
+# ----------------- BUILD JOBS -----------------
+
 build_api_gateway:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd api-gateway
-  artifacts:
-    paths:
-      - api-gateway/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_api_gateway:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd api-gateway
   only:
-    - main
+    changes:
+      - api-gateway/**
 
 build_auth_server:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd auth-server
-  artifacts:
-    paths:
-      - auth-server/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_auth_server:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd auth-server
   only:
-    - main
+    changes:
+      - auth-server/**
 
 build_config_server:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd config-server
-  artifacts:
-    paths:
-      - config-server/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_config_server:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd config-server
   only:
-    - main
+    changes:
+      - config-server/**
 
 build_daily_report:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd daily-report
-  artifacts:
-    paths:
-      - daily-report/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_daily_report:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd daily-report
   only:
-    - main
+    changes:
+      - daily-report/**
 
 build_five_minute_report:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd five-minute-report
-  artifacts:
-    paths:
-      - five-minute-report/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_five_minute_report:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd five-minute-report
   only:
-    - main
+    changes:
+      - five-minute-report/**
 
 build_mail_service:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
-  before_script:
-    - cd mail-service
-  artifacts:
-    paths:
-      - mail-service/target/*.jar
-    expire_in: 1 day
-  only:
-    - main
-
-test_mail_service:
-  <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd mail-service
   only:
-    - main
+    changes:
+      - mail-service/**
 
 build_mode_report:
   <<: *build_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd mode-report
-  artifacts:
-    paths:
-      - mode-report/target/*.jar
-    expire_in: 1 day
   only:
-    - main
+    changes:
+      - mode-report/**
+
+# ----------------- TEST JOBS -----------------
+
+test_api_gateway:
+  <<: *test_template
+  before_script:
+    - cd api-gateway
+  needs:
+    - build_api_gateway
+  only:
+    changes:
+      - api-gateway/**
+
+test_auth_server:
+  <<: *test_template
+  before_script:
+    - cd auth-server
+  needs:
+    - build_auth_server
+  only:
+    changes:
+      - auth-server/**
+
+test_config_server:
+  <<: *test_template
+  before_script:
+    - cd config-server
+  needs:
+    - build_config_server
+  only:
+    changes:
+      - config-server/**
+
+test_daily_report:
+  <<: *test_template
+  before_script:
+    - cd daily-report
+  needs:
+    - build_daily_report
+  only:
+    changes:
+      - daily-report/**
+
+test_five_minute_report:
+  <<: *test_template
+  before_script:
+    - cd five-minute-report
+  needs:
+    - build_five_minute_report
+  only:
+    changes:
+      - five-minute-report/**
+
+test_mail_service:
+  <<: *test_template
+  before_script:
+    - cd mail-service
+  needs:
+    - build_mail_service
+  only:
+    changes:
+      - mail-service/**
 
 test_mode_report:
   <<: *test_template
-  tags:
-    - factory-monitoring-api
   before_script:
     - cd mode-report
+  needs:
+    - build_mode_report
   only:
-    - main
+    changes:
+      - mode-report/**
+
+# ----------------- DEPLOY JOB -----------------
 
 deploy:
   stage: deploy
-  tags:
-    - factory-monitoring-api
   script:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
@@ -190,4 +170,11 @@ deploy:
     - docker-compose up -d
   only:
     - main
-
+  needs:
+    - test_api_gateway
+    - test_auth_server
+    - test_config_server
+    - test_daily_report
+    - test_five_minute_report
+    - test_mail_service
+    - test_mode_report

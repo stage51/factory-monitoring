@@ -4,6 +4,6 @@ set -e
 
 echo "Тестирование сервиса daily-report.."
 
-mvn verify -DskipTests=false -DskipRepackage
+mvn verify -DskipCompile -DskipRepackage
 
 echo "Тестирование завершено"
