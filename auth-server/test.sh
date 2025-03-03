@@ -4,7 +4,7 @@ set -e
 
 echo "Тестирование сервиса auth-server..."
 
-mvn verify -DskipCompile -DskipRepackage
+mvn test
 
 
 echo "Тестирование завершено"
