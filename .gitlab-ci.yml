@@ -39,7 +39,7 @@ build_api_gateway:
       - api-gateway/**
   artifacts:
     paths:
-      - target/*.jar
+      - api-gateway/target/*.jar
     expire_in: 1 day
 
 build_auth_server:
@@ -51,7 +51,7 @@ build_auth_server:
       - auth-server/**
   artifacts:
     paths:
-      - target/*.jar
+      - auth-server/target/*.jar
     expire_in: 1 day
 
 build_config_server:
@@ -63,7 +63,7 @@ build_config_server:
       - config-server/**
   artifacts:
     paths:
-      - target/*.jar
+      - config-server/target/*.jar
     expire_in: 1 day
 
 build_daily_report:
@@ -75,7 +75,7 @@ build_daily_report:
       - daily-report/**
   artifacts:
     paths:
-      - target/*.jar
+      - daily-report/target/*.jar
     expire_in: 1 day
 
 build_five_minute_report:
@@ -87,7 +87,7 @@ build_five_minute_report:
       - five-minute-report/**
   artifacts:
     paths:
-      - target/*.jar
+      - five-minute-report/target/*.jar
     expire_in: 1 day
 
 build_mail_service:
@@ -99,7 +99,7 @@ build_mail_service:
       - mail-service/**
   artifacts:
     paths:
-      - target/*.jar
+      - mail-service/target/*.jar
     expire_in: 1 day
 
 build_mode_report:
@@ -111,7 +111,7 @@ build_mode_report:
       - mode-report/**
   artifacts:
     paths:
-      - target/*.jar
+      - mode-report/target/*.jar
     expire_in: 1 day
 
 # ----------------- TEST JOBS -----------------
