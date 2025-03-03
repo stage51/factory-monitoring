@@ -33,6 +33,8 @@ cache:
 build_api_gateway:
   <<: *build_template
   before_script:
+    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
+    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
     - cd api-gateway
   only:
     changes:
@@ -193,9 +195,6 @@ deploy:
     - factory-monitoring-api
   stage: deploy
   script:
-    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
-    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
-    - docker-compose down
     - docker-compose build
     - docker-compose up -d
   only:

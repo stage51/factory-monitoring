@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit maven command for ci/cd test for all services" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix artefacts in gitlab ci/cd">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -80,114 +82,116 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests$AuthControllerTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DailyReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FiveMinuteReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.testCreatePosition.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.api-gateway [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-server [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.config-server [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.daily-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.five-minute-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DailyReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.FiveMinuteReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MailServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ModeReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/mode-report&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.14941406&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor": "Run",
+    "JUnit.AuthServerApplicationTests$AuthControllerTests.executor": "Run",
+    "JUnit.AuthServerApplicationTests.executor": "Run",
+    "JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor": "Run",
+    "JUnit.AuthServiceImplTest.executor": "Debug",
+    "JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor": "Run",
+    "JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor": "Run",
+    "JUnit.DailyReportApplicationTests.executor": "Run",
+    "JUnit.EmailServiceImplTest.executor": "Run",
+    "JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor": "Run",
+    "JUnit.FilterUtilImplTest.executor": "Run",
+    "JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor": "Run",
+    "JUnit.FiveMinuteReportApplicationTests.executor": "Run",
+    "JUnit.HelpServiceImplTest.executor": "Run",
+    "JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor": "Run",
+    "JUnit.ModeReportApplicationTests.contextLoads.executor": "Run",
+    "JUnit.ModeReportApplicationTests.executor": "Run",
+    "JUnit.ModeReportApplicationTests.testCreatePosition.executor": "Run",
+    "JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor": "Run",
+    "JUnit.OrganizationControllerTest.executor": "Run",
+    "JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor": "Run",
+    "JUnit.PositionControllerIntegrationTest.executor": "Run",
+    "JUnit.PositionControllerTest (1).executor": "Run",
+    "JUnit.PositionControllerTest.executor": "Run",
+    "JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor": "Run",
+    "JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor": "Run",
+    "JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor": "Run",
+    "JUnit.PositionServiceImplTest (1).executor": "Run",
+    "JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor": "Run",
+    "JUnit.PositionServiceImplTest.executor": "Run",
+    "JUnit.ProductControllerTest.executor": "Run",
+    "JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor": "Run",
+    "JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor": "Run",
+    "JUnit.ProductServiceImplTest.executor": "Run",
+    "JUnit.RoleControllerTest.executor": "Run",
+    "JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor": "Run",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor": "Run",
+    "JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor": "Run",
+    "JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor": "Run",
+    "JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor": "Run",
+    "Maven.api-gateway [package].executor": "Run",
+    "Maven.auth-server [compile].executor": "Run",
+    "Maven.auth-server [test].executor": "Run",
+    "Maven.config-server [package].executor": "Run",
+    "Maven.daily-report [test].executor": "Run",
+    "Maven.five-minute-report [test].executor": "Run",
+    "Maven.microservice-utils [clean].executor": "Run",
+    "Maven.microservice-utils [install].executor": "Run",
+    "Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
+    "Maven.mode-report [package].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.AuthServerApplication.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.DailyReportApplication.executor": "Run",
+    "Spring Boot.DiscoveryServerApplication.executor": "Run",
+    "Spring Boot.FiveMinuteReportApplication.executor": "Run",
+    "Spring Boot.MailServiceApplication.executor": "Run",
+    "Spring Boot.ModeReportApplication.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "CSV-Groovy.csv.groovy",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/mode-report",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.14941406",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -451,22 +455,6 @@
       <workItem from="1740738731004" duration="4858000" />
       <workItem from="1740988550632" duration="694000" />
       <workItem from="1740992293917" duration="611000" />
-    </task>
-    <task id="LOCAL-00021" summary="edit docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1735209621731</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1735209621731</updated>
-    </task>
-    <task id="LOCAL-00022" summary="edit docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1735209703116</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1735209703116</updated>
     </task>
     <task id="LOCAL-00023" summary="fix pom.xml for config-server">
       <option name="closed" value="true" />
@@ -844,7 +832,23 @@
       <option name="project" value="LOCAL" />
       <updated>1740992467511</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="edit test method for ci/cd">
+      <option name="closed" value="true" />
+      <created>1741012053531</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012053531</updated>
+    </task>
+    <task id="LOCAL-00071" summary="fix artefacts in gitlab ci/cd">
+      <option name="closed" value="true" />
+      <created>1741012460696</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012460696</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -874,9 +878,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit dockerfiles add volume to dockerfiles and docker-compose.yml" />
-    <MESSAGE value="change test execution without docker context" />
-    <MESSAGE value="fix dockerfiles" />
     <MESSAGE value="fix docker-compose" />
     <MESSAGE value="fix consul docker-compose" />
     <MESSAGE value="fix filters" />
@@ -899,7 +900,10 @@
     <MESSAGE value="add tags in gitlab ci/cd" />
     <MESSAGE value="ci/cd test for all services" />
     <MESSAGE value="edit maven command for ci/cd test for all services" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit maven command for ci/cd test for all services" />
+    <MESSAGE value="edit gitlab artefacts" />
+    <MESSAGE value="edit test method for ci/cd" />
+    <MESSAGE value="fix artefacts in gitlab ci/cd" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix artefacts in gitlab ci/cd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
