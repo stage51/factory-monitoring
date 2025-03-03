@@ -37,9 +37,13 @@ build_api_gateway:
   only:
     changes:
       - api-gateway/**
+  cache:
+    - key: cache_api_gateway
+      paths:
+        - api-gateway/target
   artifacts:
     paths:
-      - target/*.jar
+      - api-gateway/target/*.jar
     expire_in: 1 day
 
 build_auth_server:
@@ -49,9 +53,13 @@ build_auth_server:
   only:
     changes:
       - auth-server/**
+  cache:
+    - key: cache_auth_server
+      paths:
+        - auth_server/target
   artifacts:
     paths:
-      - target/*.jar
+      - auth-server/target/*.jar
     expire_in: 1 day
 
 build_config_server:
@@ -61,9 +69,13 @@ build_config_server:
   only:
     changes:
       - config-server/**
+  cache:
+    - key: cache_config_server
+      paths:
+        - config_server/target
   artifacts:
     paths:
-      - target/*.jar
+      - config-server/target/*.jar
     expire_in: 1 day
 
 build_daily_report:
@@ -73,9 +85,13 @@ build_daily_report:
   only:
     changes:
       - daily-report/**
+  cache:
+    - key: cache_daily_report
+      paths:
+        - daily_report/target
   artifacts:
     paths:
-      - target/*.jar
+      - daily-report/target/*.jar
     expire_in: 1 day
 
 build_five_minute_report:
@@ -85,9 +101,13 @@ build_five_minute_report:
   only:
     changes:
       - five-minute-report/**
+  cache:
+    - key: cache_five_minute_report
+      paths:
+        - five_minute_report/target
   artifacts:
     paths:
-      - target/*.jar
+      - five-minute-report/target/*.jar
     expire_in: 1 day
 
 build_mail_service:
@@ -97,9 +117,13 @@ build_mail_service:
   only:
     changes:
       - mail-service/**
+  cache:
+    - key: cache_mail_service
+      paths:
+        - mail_service/target
   artifacts:
     paths:
-      - target/*.jar
+      - mail-service/target/*.jar
     expire_in: 1 day
 
 build_mode_report:
@@ -109,9 +133,13 @@ build_mode_report:
   only:
     changes:
       - mode-report/**
+  cache:
+    - key: cache_mode_report
+      paths:
+        - mode_report/target
   artifacts:
     paths:
-      - target/*.jar
+      - mode-report/target/*.jar
     expire_in: 1 day
 
 # ----------------- TEST JOBS -----------------
@@ -195,7 +223,6 @@ deploy:
   script:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
-    - docker-compose down
     - docker-compose build
     - docker-compose up -d
   only:
