@@ -4,7 +4,6 @@ set -e
 
 echo "Тестирование сервиса config-server.."
 
-mvn test
-
+java -jar targer/config-server-0.0.1-SNAPSHOT.jar --tests
 
 echo "Тестирование завершено"

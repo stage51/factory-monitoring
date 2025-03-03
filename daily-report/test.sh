@@ -4,7 +4,6 @@ set -e
 
 echo "Тестирование сервиса daily-report.."
 
-mvn test
-
+java -jar targer/daily-report-0.0.1-SNAPSHOT.jar --tests
 
 echo "Тестирование завершено"

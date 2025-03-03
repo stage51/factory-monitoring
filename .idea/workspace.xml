@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="ci/cd test for all services">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit maven command for ci/cd test for all services" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -452,14 +450,7 @@
       <workItem from="1740653290700" duration="5477000" />
       <workItem from="1740738731004" duration="4858000" />
       <workItem from="1740988550632" duration="694000" />
-    </task>
-    <task id="LOCAL-00020" summary="edit dockerfiles">
-      <option name="closed" value="true" />
-      <created>1735209308997</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1735209308997</updated>
+      <workItem from="1740992293917" duration="611000" />
     </task>
     <task id="LOCAL-00021" summary="edit docker-compose.yml">
       <option name="closed" value="true" />
@@ -845,7 +836,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740752097233</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="edit maven command for ci/cd test for all services">
+      <option name="closed" value="true" />
+      <created>1740992467511</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1740992467511</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -875,7 +874,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit dockerfiles" />
     <MESSAGE value="edit dockerfiles add volume to dockerfiles and docker-compose.yml" />
     <MESSAGE value="change test execution without docker context" />
     <MESSAGE value="fix dockerfiles" />
@@ -900,7 +898,8 @@
     <MESSAGE value="edit deploy in gitlab ci/cd" />
     <MESSAGE value="add tags in gitlab ci/cd" />
     <MESSAGE value="ci/cd test for all services" />
-    <option name="LAST_COMMIT_MESSAGE" value="ci/cd test for all services" />
+    <MESSAGE value="edit maven command for ci/cd test for all services" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit maven command for ci/cd test for all services" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
