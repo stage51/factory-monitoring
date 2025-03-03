@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix artefacts in gitlab ci/cd">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="test ci/cd">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config-server/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/config-server/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail-service/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mail-service/test.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/test.sh" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/test.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -456,22 +463,6 @@
       <workItem from="1740988550632" duration="694000" />
       <workItem from="1740992293917" duration="611000" />
     </task>
-    <task id="LOCAL-00023" summary="fix pom.xml for config-server">
-      <option name="closed" value="true" />
-      <created>1735209918493</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1735209918493</updated>
-    </task>
-    <task id="LOCAL-00024" summary="fix cors and ad admin init">
-      <option name="closed" value="true" />
-      <created>1735227130166</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1735227130166</updated>
-    </task>
     <task id="LOCAL-00025" summary="fix docker-compose.yml">
       <option name="closed" value="true" />
       <created>1735228481773</created>
@@ -848,7 +839,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741012460696</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="test ci/cd">
+      <option name="closed" value="true" />
+      <created>1741012652179</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012652179</updated>
+    </task>
+    <task id="LOCAL-00073" summary="test ci/cd">
+      <option name="closed" value="true" />
+      <created>1741012776663</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012776663</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -878,7 +885,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix docker-compose" />
     <MESSAGE value="fix consul docker-compose" />
     <MESSAGE value="fix filters" />
     <MESSAGE value="fix filters for position services" />
@@ -903,7 +909,8 @@
     <MESSAGE value="edit gitlab artefacts" />
     <MESSAGE value="edit test method for ci/cd" />
     <MESSAGE value="fix artefacts in gitlab ci/cd" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix artefacts in gitlab ci/cd" />
+    <MESSAGE value="test ci/cd" />
+    <option name="LAST_COMMIT_MESSAGE" value="test ci/cd" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
