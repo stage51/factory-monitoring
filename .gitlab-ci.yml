@@ -1,6 +1,5 @@
 stages:
-  - build
-  - test
+  - build_test
   - deploy
 
 variables:
@@ -12,26 +11,18 @@ cache:
   paths:
     - $CACHE_PATH
 
-.build_template: &build_template
+.build_test_template: &build_test_template
   tags:
     - factory-monitoring-api
-  stage: build
+  stage: build_test
   script:
-    - chmod +x build.sh
-    - ./build.sh
+    - chmod +x build-test.sh
+    - ./build-test.sh
 
-.test_template: &test_template
-  tags:
-    - factory-monitoring-api
-  stage: test
-  script:
-    - chmod +x test.sh
-    - ./test.sh
+# ----------------- BUILD + TEST JOBS -----------------
 
-# ----------------- BUILD JOBS -----------------
-
-build_api_gateway:
-  <<: *build_template
+build_test_api_gateway:
+  <<: *build_test_template
   before_script:
     - cd api-gateway
   only:
@@ -42,8 +33,8 @@ build_api_gateway:
       - api-gateway/target/*.jar
     expire_in: 1 day
 
-build_auth_server:
-  <<: *build_template
+build_test_auth_server:
+  <<: *build_test_template
   before_script:
     - cd auth-server
   only:
@@ -54,8 +45,8 @@ build_auth_server:
       - auth-server/target/*.jar
     expire_in: 1 day
 
-build_config_server:
-  <<: *build_template
+build_test_config_server:
+  <<: *build_test_template
   before_script:
     - cd config-server
   only:
@@ -66,8 +57,8 @@ build_config_server:
       - config-server/target/*.jar
     expire_in: 1 day
 
-build_daily_report:
-  <<: *build_template
+build_test_daily_report:
+  <<: *build_test_template
   before_script:
     - cd daily-report
   only:
@@ -78,8 +69,8 @@ build_daily_report:
       - daily-report/target/*.jar
     expire_in: 1 day
 
-build_five_minute_report:
-  <<: *build_template
+build_test_five_minute_report:
+  <<: *build_test_template
   before_script:
     - cd five-minute-report
   only:
@@ -90,8 +81,8 @@ build_five_minute_report:
       - five-minute-report/target/*.jar
     expire_in: 1 day
 
-build_mail_service:
-  <<: *build_template
+build_test_mail_service:
+  <<: *build_test_template
   before_script:
     - cd mail-service
   only:
@@ -102,8 +93,8 @@ build_mail_service:
       - mail-service/target/*.jar
     expire_in: 1 day
 
-build_mode_report:
-  <<: *build_template
+build_test_mode_report:
+  <<: *build_test_template
   before_script:
     - cd mode-report
   only:
@@ -113,78 +104,6 @@ build_mode_report:
     paths:
       - mode-report/target/*.jar
     expire_in: 1 day
-
-# ----------------- TEST JOBS -----------------
-
-test_api_gateway:
-  <<: *test_template
-  before_script:
-    - cd api-gateway
-  needs:
-    - build_api_gateway
-  only:
-    changes:
-      - api-gateway/**
-
-test_auth_server:
-  <<: *test_template
-  before_script:
-    - cd auth-server
-  needs:
-    - build_auth_server
-  only:
-    changes:
-      - auth-server/**
-
-test_config_server:
-  <<: *test_template
-  before_script:
-    - cd config-server
-  needs:
-    - build_config_server
-  only:
-    changes:
-      - config-server/**
-
-test_daily_report:
-  <<: *test_template
-  before_script:
-    - cd daily-report
-  needs:
-    - build_daily_report
-  only:
-    changes:
-      - daily-report/**
-
-test_five_minute_report:
-  <<: *test_template
-  before_script:
-    - cd five-minute-report
-  needs:
-    - build_five_minute_report
-  only:
-    changes:
-      - five-minute-report/**
-
-test_mail_service:
-  <<: *test_template
-  before_script:
-    - cd mail-service
-  needs:
-    - build_mail_service
-  only:
-    changes:
-      - mail-service/**
-
-test_mode_report:
-  <<: *test_template
-  before_script:
-    - cd mode-report
-  needs:
-    - build_mode_report
-  only:
-    changes:
-      - mode-report/**
 
 # ----------------- DEPLOY JOB -----------------
 
@@ -200,17 +119,17 @@ deploy:
   only:
     - main
   needs:
-    - job: test_api_gateway
+    - job: build_test_api_gateway
       optional: true
-    - job: test_auth_server
+    - job: build_test_auth_server
       optional: true
-    - job: test_config_server
+    - job: build_test_config_server
       optional: true
-    - job: test_daily_report
+    - job: build_test_daily_report
       optional: true
-    - job: test_five_minute_report
+    - job: build_test_five_minute_report
       optional: true
-    - job: test_mail_service
+    - job: build_test_mail_service
       optional: true
-    - job: test_mode_report
+    - job: build_test_mode_report
       optional: true

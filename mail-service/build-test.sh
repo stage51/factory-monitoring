@@ -4,6 +4,6 @@ set -e
 
 echo "Сборка сервиса mail-service.."
 
-mvn clean package -DskipTests
+mvn clean package
 
 echo "Сборка завершена."
