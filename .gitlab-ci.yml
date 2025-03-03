@@ -19,10 +19,6 @@ cache:
   script:
     - chmod +x build.sh
     - ./build.sh
-  artifacts:
-    paths:
-      - target/*.jar
-    expire_in: 1 day
 
 .test_template: &test_template
   tags:
@@ -41,6 +37,10 @@ build_api_gateway:
   only:
     changes:
       - api-gateway/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_auth_server:
   <<: *build_template
@@ -49,6 +49,10 @@ build_auth_server:
   only:
     changes:
       - auth-server/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_config_server:
   <<: *build_template
@@ -57,6 +61,10 @@ build_config_server:
   only:
     changes:
       - config-server/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_daily_report:
   <<: *build_template
@@ -65,6 +73,10 @@ build_daily_report:
   only:
     changes:
       - daily-report/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_five_minute_report:
   <<: *build_template
@@ -73,6 +85,10 @@ build_five_minute_report:
   only:
     changes:
       - five-minute-report/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_mail_service:
   <<: *build_template
@@ -81,6 +97,10 @@ build_mail_service:
   only:
     changes:
       - mail-service/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 build_mode_report:
   <<: *build_template
@@ -89,6 +109,10 @@ build_mode_report:
   only:
     changes:
       - mode-report/**
+  artifacts:
+    paths:
+      - target/*.jar
+    expire_in: 1 day
 
 # ----------------- TEST JOBS -----------------
 

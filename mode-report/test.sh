@@ -4,7 +4,7 @@ set -e
 
 echo "Тестирование сервиса mode-report.."
 
-mvn verify -DskipCompile -DskipRepackage
+mvn test
 
 
 echo "Тестирование завершено"
