@@ -4,6 +4,6 @@ set -e
 
 echo "Сборка и тестирование сервиса mode-report.."
 
-mvn clean package
+mvn clean verify
 
 echo "Сборка и тестирование завершены."

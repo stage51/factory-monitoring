@@ -2,8 +2,9 @@
 
 set -e
 
-echo "Сборка сервиса mail-service.."
+echo "Сборка и тестирование сервиса mail-service.."
 
-mvn clean package
+mvn clean verify
 
-echo "Сборка завершена."
+echo "Сборка и тестирование завершены."
+
