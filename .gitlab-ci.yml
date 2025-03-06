@@ -28,6 +28,14 @@ cache:
     - chmod +x test.sh
     - ./test.sh
 
+include:
+  - template: Security/SAST.gitlab-ci.yml
+
+sast:
+  stage: test
+  tags:
+    - factory-monitoring-api
+
 # ----------------- BUILD JOBS -----------------
 
 build_api_gateway:

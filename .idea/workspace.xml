@@ -4,52 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="test ci/cd">
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="deploy test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/requests/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/requests/PositionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/responses/PositionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/responses/PositionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/PositionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Position.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/filter/FilterUtilImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/filter/FilterUtilImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/DailyReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/DailyReportApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/PositionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/PositionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/PositionServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/extra/PageRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/extra/PageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/PositionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/ProductRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/PositionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/PositionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/ProductResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/PositionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/ProductMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/filter/FilterUtilImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/filter/FilterUtilImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/PositionServiceImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/PositionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/extra/PageRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/extra/PageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/requests/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/requests/PositionRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/responses/PositionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/responses/PositionResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Mode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/PositionMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/filter/FilterUtilImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/filter/FilterUtilImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/ModeReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/ModeReportApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/PositionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/PositionControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/ProductControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/PositionServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,23 +458,8 @@
       <workItem from="1740992293917" duration="611000" />
       <workItem from="1741078082223" duration="2055000" />
       <workItem from="1741177068300" duration="3408000" />
-      <workItem from="1741250474878" duration="5782000" />
-    </task>
-    <task id="LOCAL-00027" summary="edit SecurityConfig for auth server">
-      <option name="closed" value="true" />
-      <created>1735298229467</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1735298229467</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add unit tests and 5-level logs for all microservices">
-      <option name="closed" value="true" />
-      <created>1736871172428</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1736871172428</updated>
+      <workItem from="1741250474878" duration="6647000" />
+      <workItem from="1741275627089" duration="12000" />
     </task>
     <task id="LOCAL-00029" summary="add integration tests">
       <option name="closed" value="true" />
@@ -896,7 +837,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741020491038</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="edit report schemes">
+      <option name="closed" value="true" />
+      <created>1741260332297</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1741260332297</updated>
+    </task>
+    <task id="LOCAL-00077" summary="deploy test">
+      <option name="closed" value="true" />
+      <created>1741260525537</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1741260525537</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -926,8 +883,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix filters" />
-    <MESSAGE value="fix filters for position services" />
     <MESSAGE value="fix filters for position service" />
     <MESSAGE value="change api gateway to https" />
     <MESSAGE value="add ports in configuration for services" />
@@ -951,7 +906,9 @@
     <MESSAGE value="fix artefacts in gitlab ci/cd" />
     <MESSAGE value="fix scripts error" />
     <MESSAGE value="test ci/cd" />
-    <option name="LAST_COMMIT_MESSAGE" value="test ci/cd" />
+    <MESSAGE value="edit report schemes" />
+    <MESSAGE value="deploy test" />
+    <option name="LAST_COMMIT_MESSAGE" value="deploy test" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
