@@ -22,8 +22,6 @@ public class ProductMapper {
         product.setCapacity(dto.getCapacity());
         product.setAlcVolume(dto.getAlcVolume());
         product.setProductVCode(dto.getProductVCode());
-        product.setCrotonaldehyde(dto.getCrotonaldehyde());
-        product.setToluene(dto.getToluene());
 
         return product;
     }
@@ -35,8 +33,7 @@ public class ProductMapper {
         ProductResponse dto = ProductResponse.builder().id(entity.getId()).unitType(entity.getUnitType().toString())
                 .type(entity.getType().toString()).fullName(entity.getFullName()).shortName(entity.getShortName())
                 .alcCode(entity.getAlcCode()).capacity(entity.getCapacity()).alcVolume(entity.getAlcVolume())
-                .productVCode(entity.getProductVCode()).crotonaldehyde(entity.getCrotonaldehyde())
-                .toluene(entity.getToluene()).build();
+                .productVCode(entity.getProductVCode()).build();
         return dto;
     }
 }

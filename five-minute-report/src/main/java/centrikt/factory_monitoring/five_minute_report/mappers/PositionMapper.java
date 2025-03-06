@@ -25,7 +25,7 @@ public class PositionMapper {
         position.setPercentAlc(positionRequest.getPercentAlc());
         position.setBottleCountControl(positionRequest.getBottleCountControl());
         position.setTemperature(positionRequest.getTemperature());
-        position.setMode(Mode.fromDescription(positionRequest.getMode()));
+        position.setMode(Mode.fromCode(positionRequest.getMode()));
         position.setStatus(Status.fromDescription(positionRequest.getStatus()));
         return position;
     }
@@ -41,8 +41,7 @@ public class PositionMapper {
                 .controlDate(entity.getControlDate()).vbsControl(entity.getVbsControl())
                 .aControl(entity.getAControl()).percentAlc(entity.getPercentAlc())
                 .bottleCountControl(entity.getBottleCountControl()).temperature(entity.getTemperature())
-                .mode(entity.getMode().toString()).status(entity.getStatus().toString()).build();
-
+                .mode(entity.getMode().getDescription()).status(entity.getStatus().getDescription()).build();
         return dto;
     }
 }

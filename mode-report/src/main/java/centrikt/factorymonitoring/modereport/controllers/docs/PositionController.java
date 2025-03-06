@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.modereport.controllers.docs;
 
-import centrikt.factorymonitoring.modereport.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.modereport.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.modereport.dtos.requests.PositionRequest;
 import centrikt.factorymonitoring.modereport.dtos.responses.PositionResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -83,7 +83,7 @@ public interface PositionController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<PositionResponse>> getPagePositions(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     );
 
     @SecurityRequirement(name = "JWT")
@@ -96,6 +96,6 @@ public interface PositionController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<PositionResponse>> getPagePositions(
-            @RequestBody PageRequestDTO pageRequestDTO, @PathVariable String taxpayerNumber
+            @RequestBody PageRequest pageRequest, @PathVariable String taxpayerNumber
     );
 }

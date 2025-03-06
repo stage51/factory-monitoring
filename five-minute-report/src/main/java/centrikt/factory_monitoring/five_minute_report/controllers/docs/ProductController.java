@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.controllers.docs;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,6 +62,6 @@ public interface ProductController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<ProductResponse>> getPagePositions(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     );
 }

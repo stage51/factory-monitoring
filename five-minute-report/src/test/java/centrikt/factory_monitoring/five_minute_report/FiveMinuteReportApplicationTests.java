@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
@@ -124,8 +124,6 @@ class FiveMinuteReportApplicationTests {
 			productRequest.setCapacity(new BigDecimal("100"));
 			productRequest.setAlcVolume(new BigDecimal("100"));
 			productRequest.setProductVCode("B456");
-			productRequest.setCrotonaldehyde(new BigDecimal("10.00"));
-			productRequest.setToluene(new BigDecimal("10.00"));
 			positionRequest.setProduct(productRequest);
 
 			positionRequest.setTaxpayerNumber("123456789012");
@@ -136,7 +134,7 @@ class FiveMinuteReportApplicationTests {
 			positionRequest.setPercentAlc(new BigDecimal("96.5"));
 			positionRequest.setBottleCountControl(new BigDecimal("1000"));
 			positionRequest.setTemperature(new BigDecimal("25.5"));
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
@@ -184,8 +182,6 @@ class FiveMinuteReportApplicationTests {
 			productRequest.setCapacity(new BigDecimal("100"));
 			productRequest.setAlcVolume(new BigDecimal("100"));
 			productRequest.setProductVCode("B456");
-			productRequest.setCrotonaldehyde(new BigDecimal("10.00"));
-			productRequest.setToluene(new BigDecimal("10.00"));
 			positionRequest.setProduct(productRequest);
 
 			positionRequest.setTaxpayerNumber("123456789013");
@@ -196,7 +192,7 @@ class FiveMinuteReportApplicationTests {
 			positionRequest.setPercentAlc(new BigDecimal("96.7"));
 			positionRequest.setBottleCountControl(new BigDecimal("1100"));
 			positionRequest.setTemperature(new BigDecimal("26.5"));
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
@@ -286,7 +282,7 @@ class FiveMinuteReportApplicationTests {
 				positionRequest.setPercentAlc(new BigDecimal("96.7"));
 				positionRequest.setBottleCountControl(new BigDecimal("1100"));
 				positionRequest.setTemperature(new BigDecimal("26.5"));
-				positionRequest.setMode("Производство продукции");
+				positionRequest.setMode("009");
 				positionRequest.setStatus("Принято в РАР");
 
 				list.add(positionRequest);
@@ -310,16 +306,16 @@ class FiveMinuteReportApplicationTests {
 		}
 
 		void testGetPagePositions(HttpHeaders headers) {
-			PageRequestDTO pageRequestDTO = new PageRequestDTO();
-			pageRequestDTO.setSize(10);
-			pageRequestDTO.setNumber(0);
-			pageRequestDTO.setSortBy("id");
-			pageRequestDTO.setSortDirection("ASC");
+			PageRequest pageRequest = new PageRequest();
+			pageRequest.setSize(10);
+			pageRequest.setNumber(0);
+			pageRequest.setSortBy("id");
+			pageRequest.setSortDirection("ASC");
 
-			pageRequestDTO.setFilters(new HashMap<>());
-			pageRequestDTO.setDateRanges(new HashMap<>());
+			pageRequest.setFilters(new HashMap<>());
+			pageRequest.setDateRanges(new HashMap<>());
 
-			HttpEntity<PageRequestDTO> entity = new HttpEntity<>(pageRequestDTO, headers);
+			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
 
 			ResponseEntity<TestPage<PositionResponse>> responseWithoutTaxpayer = restTemplate.exchange(
 					"/api/v1/five-minute-report/positions/fetch",
@@ -367,8 +363,6 @@ class FiveMinuteReportApplicationTests {
 			productRequest.setCapacity(new BigDecimal("100"));
 			productRequest.setAlcVolume(new BigDecimal("100"));
 			productRequest.setProductVCode("B456");
-			productRequest.setCrotonaldehyde(new BigDecimal("10.00"));
-			productRequest.setToluene(new BigDecimal("10.00"));
 
 			HttpEntity<ProductRequest> entity = new HttpEntity<>(productRequest, headers);
 			ResponseEntity<ProductResponse> response = restTemplate.exchange(
@@ -419,8 +413,6 @@ class FiveMinuteReportApplicationTests {
 			productRequest.setCapacity(new BigDecimal("100"));
 			productRequest.setAlcVolume(new BigDecimal("100"));
 			productRequest.setProductVCode("B456");
-			productRequest.setCrotonaldehyde(new BigDecimal("10.00"));
-			productRequest.setToluene(new BigDecimal("10.00"));
 
 			HttpEntity<ProductRequest> entity = new HttpEntity<>(productRequest, headers);
 			ResponseEntity<ProductResponse> response = restTemplate.exchange(
@@ -470,13 +462,13 @@ class FiveMinuteReportApplicationTests {
 		void testFetchPageProducts() {
 			HttpHeaders headers = createAuthorizationHeaders();
 
-			PageRequestDTO pageRequestDTO = new PageRequestDTO();
-			pageRequestDTO.setSize(10);
-			pageRequestDTO.setNumber(0);
-			pageRequestDTO.setSortBy("id");
-			pageRequestDTO.setSortDirection("ASC");
+			PageRequest pageRequest = new PageRequest();
+			pageRequest.setSize(10);
+			pageRequest.setNumber(0);
+			pageRequest.setSortBy("id");
+			pageRequest.setSortDirection("ASC");
 
-			HttpEntity<PageRequestDTO> entity = new HttpEntity<>(pageRequestDTO, headers);
+			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
 
 			ResponseEntity<TestPage<ProductResponse>> response = restTemplate.exchange(
 					"/api/v1/five-minute-report/products/fetch",

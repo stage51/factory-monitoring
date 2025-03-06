@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.modereport;
 
-import centrikt.factorymonitoring.modereport.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.modereport.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.modereport.dtos.requests.PositionRequest;
 import centrikt.factorymonitoring.modereport.dtos.requests.ProductRequest;
 import centrikt.factorymonitoring.modereport.dtos.responses.PositionResponse;
@@ -15,17 +15,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
-import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.PostgreSQLContainer;
@@ -134,7 +131,7 @@ class ModeReportApplicationTests {
 			positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 			positionRequest.setTemperature(new BigDecimal("25.5"));
 
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
@@ -189,7 +186,7 @@ class ModeReportApplicationTests {
 			positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 			positionRequest.setTemperature(new BigDecimal("25.5"));
 
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
@@ -288,7 +285,7 @@ class ModeReportApplicationTests {
 				positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 				positionRequest.setTemperature(new BigDecimal("25.5"));
 
-				positionRequest.setMode("Производство продукции");
+				positionRequest.setMode("009");
 				positionRequest.setStatus("Принято в РАР");
 
 				list.add(positionRequest);
@@ -312,16 +309,16 @@ class ModeReportApplicationTests {
 		}
 
 		void testGetPagePositions(HttpHeaders headers) {
-			PageRequestDTO pageRequestDTO = new PageRequestDTO();
-			pageRequestDTO.setSize(10);
-			pageRequestDTO.setNumber(0);
-			pageRequestDTO.setSortBy("id");
-			pageRequestDTO.setSortDirection("ASC");
+			PageRequest pageRequest = new PageRequest();
+			pageRequest.setSize(10);
+			pageRequest.setNumber(0);
+			pageRequest.setSortBy("id");
+			pageRequest.setSortDirection("ASC");
 
-			pageRequestDTO.setFilters(new HashMap<>());
-			pageRequestDTO.setDateRanges(new HashMap<>());
+			pageRequest.setFilters(new HashMap<>());
+			pageRequest.setDateRanges(new HashMap<>());
 
-			HttpEntity<PageRequestDTO> entity = new HttpEntity<>(pageRequestDTO, headers);
+			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
 
 			ResponseEntity<TestPage<PositionResponse>> responseWithoutTaxpayer = restTemplate.exchange(
 					"/api/v1/mode-report/positions/fetch",
@@ -460,13 +457,13 @@ class ModeReportApplicationTests {
 		void testFetchPageProducts() {
 			HttpHeaders headers = createAuthorizationHeaders();
 
-			PageRequestDTO pageRequestDTO = new PageRequestDTO();
-			pageRequestDTO.setSize(10);
-			pageRequestDTO.setNumber(0);
-			pageRequestDTO.setSortBy("id");
-			pageRequestDTO.setSortDirection("ASC");
+			PageRequest pageRequest = new PageRequest();
+			pageRequest.setSize(10);
+			pageRequest.setNumber(0);
+			pageRequest.setSortBy("id");
+			pageRequest.setSortDirection("ASC");
 
-			HttpEntity<PageRequestDTO> entity = new HttpEntity<>(pageRequestDTO, headers);
+			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
 
 			ResponseEntity<TestPage<ProductResponse>> response = restTemplate.exchange(
 					"/api/v1/mode-report/products/fetch",

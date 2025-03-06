@@ -66,15 +66,8 @@ public class PositionResponse {
     @Schema(description = "Температура")
     private BigDecimal temperature;
 
-    @Schema(description = "Режим: Промывка АСИиУ, Калибровка АСИиУ, Технологический прогон, Производство продукции, Остановка АСИиУ, " +
-            "Прием (возврат), Прием (закупка), Внутреннее перемещение, Отгрузка (покупателю), Отгрузка (возврат)")
+    @Schema(description = "Режимы: наименования кодов")
     private String mode;
-
-    @Schema(description = "Кротоноальдегид")
-    private BigDecimal crotonaldehyde;
-
-    @Schema(description = "Толуол")
-    private BigDecimal toluene;
 
     @Schema(description = "Статус: Неизвестно, Принято в РАР, Не принято в РАР, Принято в УТМ, Не принято в УТМ")
     private String status;

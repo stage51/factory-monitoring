@@ -52,12 +52,5 @@ public class ProductRequest {
     @Size(min = 1, max = 5, message = "Product VCode must be between 1 and 5 characters")
     private String productVCode;
 
-    @Schema(description = "Кротоноальдегид")
-    @Digits(integer = 2, fraction = 2, message = "Crotonaldehyde must be a valid decimal number with up to 2 digits and 2 decimal places")
-    private BigDecimal crotonaldehyde;
-
-    @Schema(description = "Толуол")
-    @Digits(integer = 2, fraction = 2, message = "Toluene must be a valid decimal number with up to 2 digits and 2 decimal places")
-    private BigDecimal toluene;
 }
 

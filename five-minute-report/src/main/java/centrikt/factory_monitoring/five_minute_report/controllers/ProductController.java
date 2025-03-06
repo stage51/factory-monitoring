@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.controllers;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.services.ProductService;
@@ -68,16 +68,16 @@ public class ProductController implements centrikt.factory_monitoring.five_minut
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<Page<ProductResponse>> getPagePositions(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     ) {
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<ProductResponse> products = productService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched products page: {}", products);
         return ResponseEntity.ok(products);

@@ -79,8 +79,7 @@ public class PositionRequest {
     @Digits(integer = 3, fraction = 1, message = "Temperature must be a valid decimal number with up to 3 digits and 1 decimal place")
     private BigDecimal temperature;
 
-    @Schema(description = "Режим: Промывка АСИиУ, Калибровка АСИиУ, Технологический прогон, Производство продукции, Остановка АСИиУ, " +
-            "Прием (возврат), Прием (закупка), Внутреннее перемещение, Отгрузка (покупателю), Отгрузка (возврат)")
+    @Schema(description = "Режимы: кодовые обозначения")
     @NotNull(message = "Mode must not be null")
     private String mode;
 

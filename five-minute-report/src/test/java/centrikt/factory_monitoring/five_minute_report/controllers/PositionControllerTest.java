@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.five_minute_report.controllers;
 
-import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.five_minute_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.five_minute_report.enums.Mode;
@@ -19,7 +19,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -64,8 +63,8 @@ class PositionControllerTest {
         positionRequest = new PositionRequest();
         positionRequest.setTaxpayerNumber("123456789012");
         positionRequest.setSensorNumber("67_03");
-        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionRequest.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionRequest.setMode(Mode.SHIPMENT.getCode());
 
         position = new Position();
         position.setId(1L);
@@ -73,14 +72,14 @@ class PositionControllerTest {
         position.setLineNumber("67");
         position.setControllerNumber("03");
         position.setStatus(Status.ACCEPTED_IN_RAR);
-        position.setMode(Mode.ACCEPTANCE_RETURN);
+        position.setMode(Mode.SHIPMENT);
 
         positionResponse = new PositionResponse();
         positionResponse.setId(1L);
         positionResponse.setTaxpayerNumber("123456789012");
         positionResponse.setSensorNumber("67_03");
-        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionResponse.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionResponse.setMode(Mode.SHIPMENT.getDescription());
     }
 
     @Test
@@ -96,7 +95,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).get(1L);
     }
@@ -114,7 +114,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).create(any(PositionRequest.class));
     }
@@ -131,8 +132,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()))
-                .andExpect(jsonPath("$.mode").value(Mode.ACCEPTANCE_RETURN.getMode()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).update(eq(1L), any(PositionRequest.class));
     }
@@ -180,56 +181,58 @@ class PositionControllerTest {
 
     @Test
     void getPagePositions_shouldReturnPagedPositions() throws Exception {
-        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), PageRequest.of(0, 10), 1);
+        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("taxpayerNumber");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("taxpayerNumber");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
         mockMvc.perform(post("/api/v1/five-minute-report/positions/fetch")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO))
+                        .content(objectMapper.writeValueAsString(pageRequest))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.content[0].id").value(1))
                 .andExpect(jsonPath("$.content[0].taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.content[0].sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.content[0].mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).getPage(anyInt(), anyInt(), any(), any(), any(), any());
     }
 
     @Test
     void getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions() throws Exception {
-        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), PageRequest.of(0, 10), 1);
+        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("taxpayerNumber");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("taxpayerNumber");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
         mockMvc.perform(post("/api/v1/five-minute-report/positions/fetch/" + positionRequest.getTaxpayerNumber())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO))
+                        .content(objectMapper.writeValueAsString(pageRequest))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.content[0].id").value(1))
                 .andExpect(jsonPath("$.content[0].taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.content[0].sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.content[0].mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).getPage(anyInt(), anyInt(), any(), any(), any(), any());
     }

@@ -46,11 +46,5 @@ public class ProductResponse {
 
     @Schema(description = "Код продукта")
     private String productVCode;
-
-    @Schema(description = "Кротоноальдегид")
-    private BigDecimal crotonaldehyde;
-
-    @Schema(description = "Толуол")
-    private BigDecimal toluene;
 }
 

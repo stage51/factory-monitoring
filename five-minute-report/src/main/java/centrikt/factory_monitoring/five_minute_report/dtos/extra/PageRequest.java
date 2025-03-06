@@ -14,7 +14,7 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 @Schema(description = "Запрос на оправку страницы")
-public class PageRequestDTO {
+public class PageRequest {
     @Schema(description = "Размер страницы")
     private int size;
     @Schema(description = "Номер страницы с 0")

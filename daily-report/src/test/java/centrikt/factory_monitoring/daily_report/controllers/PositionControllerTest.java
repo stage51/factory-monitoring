@@ -64,8 +64,8 @@ class PositionControllerTest {
         positionRequest = new PositionRequest();
         positionRequest.setTaxpayerNumber("123456789012");
         positionRequest.setSensorNumber("67_03");
-        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionRequest.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionRequest.setMode(Mode.SHIPMENT.getCode());
 
         position = new Position();
         position.setId(1L);
@@ -73,14 +73,14 @@ class PositionControllerTest {
         position.setLineNumber("67");
         position.setControllerNumber("03");
         position.setStatus(Status.ACCEPTED_IN_RAR);
-        position.setMode(Mode.ACCEPTANCE_RETURN);
+        position.setMode(Mode.SHIPMENT);
 
         positionResponse = new PositionResponse();
         positionResponse.setId(1L);
         positionResponse.setTaxpayerNumber("123456789012");
         positionResponse.setSensorNumber("67_03");
-        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionResponse.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionResponse.setMode(Mode.SHIPMENT.getDescription());
     }
 
     @Test
@@ -96,7 +96,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).get(1L);
     }
@@ -114,7 +115,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).create(any(PositionRequest.class));
     }
@@ -131,8 +133,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.id").value(1))
                 .andExpect(jsonPath("$.taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getStatus()))
-                .andExpect(jsonPath("$.mode").value(Mode.ACCEPTANCE_RETURN.getMode()));
+                .andExpect(jsonPath("$.status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).update(eq(1L), any(PositionRequest.class));
     }
@@ -201,7 +203,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.content[0].id").value(1))
                 .andExpect(jsonPath("$.content[0].taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.content[0].sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.content[0].mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).getPage(anyInt(), anyInt(), any(), any(), any(), any());
     }
@@ -229,7 +232,8 @@ class PositionControllerTest {
                 .andExpect(jsonPath("$.content[0].id").value(1))
                 .andExpect(jsonPath("$.content[0].taxpayerNumber").value("123456789012"))
                 .andExpect(jsonPath("$.content[0].sensorNumber").value("67_03"))
-                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getStatus()));
+                .andExpect(jsonPath("$.content[0].status").value(Status.ACCEPTED_IN_RAR.getDescription()))
+                .andExpect(jsonPath("$.content[0].mode").value(Mode.SHIPMENT.getDescription()));
 
         verify(positionService, times(1)).getPage(anyInt(), anyInt(), any(), any(), any(), any());
     }

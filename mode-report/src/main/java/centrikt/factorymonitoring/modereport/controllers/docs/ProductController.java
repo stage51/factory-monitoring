@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.modereport.controllers.docs;
 
-import centrikt.factorymonitoring.modereport.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.modereport.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.modereport.dtos.requests.ProductRequest;
 import centrikt.factorymonitoring.modereport.dtos.responses.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -62,6 +62,6 @@ public interface ProductController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<ProductResponse>> getPagePositions(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     );
 }

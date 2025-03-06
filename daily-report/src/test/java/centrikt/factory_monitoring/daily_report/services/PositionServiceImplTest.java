@@ -58,8 +58,8 @@ class PositionServiceImplTest {
         positionRequest = new PositionRequest();
         positionRequest.setTaxpayerNumber("123456789012");
         positionRequest.setSensorNumber("67_03");
-        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionRequest.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionRequest.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionRequest.setMode(Mode.SHIPMENT.getCode());
 
         position = new Position();
         position.setId(1L);
@@ -67,14 +67,14 @@ class PositionServiceImplTest {
         position.setLineNumber("67");
         position.setControllerNumber("03");
         position.setStatus(Status.ACCEPTED_IN_RAR);
-        position.setMode(Mode.ACCEPTANCE_RETURN);
+        position.setMode(Mode.SHIPMENT);
 
         positionResponse = new PositionResponse();
         positionResponse.setId(1L);
         positionResponse.setTaxpayerNumber("123456789012");
         positionResponse.setSensorNumber("67_03");
-        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getStatus());
-        positionResponse.setMode(Mode.ACCEPTANCE_RETURN.getMode());
+        positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
+        positionResponse.setMode(Mode.SHIPMENT.getDescription());
     }
 
     @Test

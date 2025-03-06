@@ -60,7 +60,7 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                     predicates.add(criteriaBuilder.equal(root.get(field), status));
                                     log.debug("Added filter for status: {}", status);
                                 } else if ("mode".equals(field)) {
-                                    Mode mode = Mode.fromDescription(value);
+                                    Mode mode = Mode.fromCode(value);
                                     predicates.add(criteriaBuilder.equal(root.get(field), mode));
                                     log.debug("Added filter for mode: {}", mode);
                                 } else if ("type".equals(field)) {

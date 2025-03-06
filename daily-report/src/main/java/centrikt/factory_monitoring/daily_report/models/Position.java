@@ -47,10 +47,6 @@ public class Position extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.ORDINAL)
     private Mode mode;
-    @Column(precision = 4, scale = 2)
-    private BigDecimal crotonaldehyde;
-    @Column(precision = 4, scale = 2)
-    private BigDecimal toluene;
     @Enumerated(EnumType.ORDINAL)
     private Status status;
 }

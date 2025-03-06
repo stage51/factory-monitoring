@@ -29,8 +29,4 @@ public class Product extends BaseEntity{
     private BigDecimal alcVolume;
     @Column(nullable = false)
     private String productVCode;
-    @Column(precision = 4, scale = 2)
-    private BigDecimal crotonaldehyde;
-    @Column(precision = 4, scale = 2)
-    private BigDecimal toluene;
 }

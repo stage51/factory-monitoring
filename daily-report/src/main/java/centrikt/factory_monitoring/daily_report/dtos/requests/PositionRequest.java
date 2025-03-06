@@ -78,18 +78,9 @@ public class PositionRequest {
     @Digits(integer = 3, fraction = 1, message = "Temperature must be a valid decimal number with up to 3 digits and 1 decimal place")
     private BigDecimal temperature;
 
-    @Schema(description = "Режим: Промывка АСИиУ, Калибровка АСИиУ, Технологический прогон, Производство продукции, Остановка АСИиУ, " +
-            "Прием (возврат), Прием (закупка), Внутреннее перемещение, Отгрузка (покупателю), Отгрузка (возврат)")
+    @Schema(description = "Режимы: кодовые обозначения")
     @NotNull(message = "Mode must not be null")
     private String mode;
-
-    @Schema(description = "Кротоноальдегид")
-    @Digits(integer = 1, fraction = 2, message = "Crotonaldehyde must be a valid decimal number with up to 1 digit and 2 decimal places")
-    private BigDecimal crotonaldehyde;
-
-    @Schema(description = "Толуол")
-    @Digits(integer = 1, fraction = 2, message = "Toluene must be a valid decimal number with up to 1 digit and 2 decimal places")
-    private BigDecimal toluene;
 
     @Schema(description = "Статус: Неизвестно, Принято в РАР, Не принято в РАР, Принято в УТМ, Не принято в УТМ")
     @NotNull(message = "Status must not be null")

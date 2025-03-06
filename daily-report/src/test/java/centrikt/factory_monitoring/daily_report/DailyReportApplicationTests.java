@@ -141,7 +141,7 @@ class DailyReportApplicationTests {
 			positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 			positionRequest.setTemperature(new BigDecimal("25.5"));
 
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
 			ResponseEntity<PositionResponse> response = restTemplate.exchange(
@@ -206,7 +206,7 @@ class DailyReportApplicationTests {
 			positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 			positionRequest.setTemperature(new BigDecimal("25.5"));
 
-			positionRequest.setMode("Производство продукции");
+			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
 
 			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
@@ -303,7 +303,7 @@ class DailyReportApplicationTests {
 				positionRequest.setBottleCountEnd(new BigDecimal("1200"));
 				positionRequest.setTemperature(new BigDecimal("25.5"));
 
-				positionRequest.setMode("Производство продукции");
+				positionRequest.setMode("009");
 				positionRequest.setStatus("Принято в РАР");
 
 				list.add(positionRequest);

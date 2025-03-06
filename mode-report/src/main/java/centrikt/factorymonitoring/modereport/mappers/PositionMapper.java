@@ -18,7 +18,7 @@ public class PositionMapper {
                 .startDate(position.getStartDate()).endDate(position.getEndDate()).vbsStart(position.getVbsStart()).vbsEnd(position.getVbsEnd())
                 .aStart(position.getAStart()).aEnd(position.getAEnd()).percentAlc(position.getPercentAlc())
                 .bottleCountStart(position.getBottleCountStart()).bottleCountEnd(position.getBottleCountEnd())
-                .temperature(position.getTemperature()).mode(position.getMode().toString()).status(position.getStatus().toString()).build();
+                .temperature(position.getTemperature()).mode(position.getMode().getDescription()).status(position.getStatus().getDescription()).build();
         return dto;
     }
 
@@ -41,7 +41,7 @@ public class PositionMapper {
         position.setBottleCountStart(positionRequest.getBottleCountStart());
         position.setBottleCountEnd(positionRequest.getBottleCountEnd());
         position.setTemperature(positionRequest.getTemperature());
-        position.setMode(Mode.fromDescription(positionRequest.getMode()));
+        position.setMode(Mode.fromCode(positionRequest.getMode()));
         position.setStatus(Status.fromDescription(positionRequest.getStatus()));
         return position;
     }
