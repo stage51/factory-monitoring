@@ -244,7 +244,7 @@ test_api_gateway:
   before_script:
     - cd api-gateway
   needs:
-    - sast_api_gateway
+    - build_api_gateway
   only:
     changes:
       - api-gateway/**
@@ -254,7 +254,7 @@ test_auth_server:
   before_script:
     - cd auth-server
   needs:
-    - sast_auth_server
+    - build_auth_server
   only:
     changes:
       - auth-server/**
@@ -264,7 +264,7 @@ test_config_server:
   before_script:
     - cd config-server
   needs:
-    - sast_config_server
+    - build_config_server
   only:
     changes:
       - config-server/**
@@ -274,7 +274,7 @@ test_daily_report:
   before_script:
     - cd daily-report
   needs:
-    - sast_daily_report
+    - build_daily_report
   only:
     changes:
       - daily-report/**
@@ -284,7 +284,7 @@ test_five_minute_report:
   before_script:
     - cd five-minute-report
   needs:
-    - sast_five_minute_report
+    - build_five_minute_report
   only:
     changes:
       - five-minute-report/**
@@ -294,7 +294,7 @@ test_mail_service:
   before_script:
     - cd mail-service
   needs:
-    - sast_mail_service
+    - build_mail_service
   only:
     changes:
       - mail-service/**
@@ -304,7 +304,7 @@ test_mode_report:
   before_script:
     - cd mode-report
   needs:
-    - sast_mode_report
+    - build_mode_report
   only:
     changes:
       - mode-report/**
@@ -323,18 +323,18 @@ deploy:
   only:
     - main
   needs:
-    - job: test_api_gateway
+    - job: sast_api_gateway
       optional: true
-    - job: test_auth_server
+    - job: sast_auth_server
       optional: true
-    - job: test_config_server
+    - job: sast_config_server
       optional: true
-    - job: test_daily_report
+    - job: sast_daily_report
       optional: true
-    - job: test_five_minute_report
+    - job: sast_five_minute_report
       optional: true
-    - job: test_mail_service
+    - job: sast_mail_service
       optional: true
-    - job: test_mode_report
+    - job: sast_mode_report
       optional: true
 
