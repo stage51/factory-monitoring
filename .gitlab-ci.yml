@@ -62,7 +62,7 @@ sast_auth_server:
     - cd auth-server
   only:
     changes:
-      - api-gateway/**
+      - auth-server/**
   needs:
     - build_auth_server
 
@@ -72,7 +72,7 @@ sast_config_server:
     - cd config-server
   only:
     changes:
-      - api-gateway/**
+      - config-server/**
   needs:
     - build_config_server
 
@@ -82,7 +82,7 @@ sast_daily_report:
     - cd daily-report
   only:
     changes:
-      - api-gateway/**
+      - daily-report/**
   needs:
     - build_daily_report
 
@@ -92,7 +92,7 @@ sast_five_minute_report:
     - cd five-minute-report
   only:
     changes:
-      - api-gateway/**
+      - five-minute-report/**
   needs:
     - build_five_minute_report
 
@@ -102,7 +102,7 @@ sast_mail_service:
     - cd mail-service
   only:
     changes:
-      - api-gateway/**
+      - mail-service/**
   needs:
     - build_mail_service
 
@@ -112,7 +112,7 @@ sast_mode_report:
     - cd mode-report
   only:
     changes:
-      - api-gateway/**
+      - mode-report/**
   needs:
     - build_mode_report
 
