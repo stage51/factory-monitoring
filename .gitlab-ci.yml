@@ -38,7 +38,6 @@ cache:
   script:
     sonar-scanner \
     -Dsonar.projectKey=$CI_PROJECT_NAME \
-    -Dsonar.sources=. \
     -Dsonar.java.binaries=target/classes \
     -Dsonar.host.url=$SONAR_HOST_URL \
     -Dsonar.login=$SONAR_TOKEN
