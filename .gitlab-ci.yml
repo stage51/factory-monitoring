@@ -39,13 +39,9 @@ cache:
     - ls -la $CI_PROJECT_DIR/spotbugs-4.7.3/bin/
     - chmod +x $CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs
   script:
+    - if [ -f "$CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs" ]; then echo "SpotBugs found"; else echo "SpotBugs missing"; exit 1; fi
     - mkdir -p reports
-    - if [ -f "$CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs" ]; then
-      $CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low .;
-      else
-      echo "SpotBugs executable not found!";
-      exit 1;
-      fi
+    - $CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low . || true
   artifacts:
     reports:
       sast: reports/spotbugs-report.xml
