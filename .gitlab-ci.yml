@@ -35,14 +35,21 @@ cache:
   stage: sast
   before_script:
     - sudo apt-get update && sudo apt-get install -y default-jdk
-    - wget -qO- https://github.com/spotbugs/spotbugs/releases/download/4.7.3/spotbugs-4.7.3.tgz | tar xz
-    - chmod +x spotbugs-4.7.3/bin/spotbugs
+    - wget -qO- https://github.com/spotbugs/spotbugs/releases/download/4.7.3/spotbugs-4.7.3.tgz | tar xz -C $CI_PROJECT_DIR
+    - ls -la $CI_PROJECT_DIR/spotbugs-4.7.3/bin/
+    - chmod +x $CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs
   script:
     - mkdir -p reports
-    - ./spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low . || true
+    - if [ -f "$CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs" ]; then
+      $CI_PROJECT_DIR/spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low .;
+      else
+      echo "SpotBugs executable not found!";
+      exit 1;
+      fi
   artifacts:
     reports:
       sast: reports/spotbugs-report.xml
+
 
 # ----------------- SAST JOBS -----------------
 
@@ -301,3 +308,32 @@ test_mode_report:
   only:
     changes:
       - mode-report/**
+
+# ----------------- DEPLOY JOB -----------------
+
+deploy:
+  tags:
+    - factory-monitoring-api
+  stage: deploy
+  script:
+    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
+    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
+    - docker-compose build
+    - docker-compose up -d
+  only:
+    - main
+  needs:
+    - job: test_api_gateway
+      optional: true
+    - job: test_auth_server
+      optional: true
+    - job: test_config_server
+      optional: true
+    - job: test_daily_report
+      optional: true
+    - job: test_five_minute_report
+      optional: true
+    - job: test_mail_service
+      optional: true
+    - job: test_mode_report
+      optional: true
