@@ -1,7 +1,7 @@
 stages:
   - build
-  - test
   - sast
+  - test
   - deploy
 
 variables:
@@ -49,7 +49,7 @@ sast_api_gateway:
     changes:
       - api-gateway/**
   needs:
-    - test_api_gateway
+    - build_api_gateway
 
 sast_auth_server:
   <<: *sast_template
@@ -61,7 +61,7 @@ sast_auth_server:
     changes:
       - auth-server/**
   needs:
-    - test_auth_server
+    - build_auth_server
 
 sast_config_server:
   <<: *sast_template
@@ -73,7 +73,7 @@ sast_config_server:
     changes:
       - config-server/**
   needs:
-    - test_config_server
+    - build_config_server
 
 sast_daily_report:
   <<: *sast_template
@@ -85,7 +85,7 @@ sast_daily_report:
     changes:
       - daily-report/**
   needs:
-    - test_daily_report
+    - build_daily_report
 
 sast_five_minute_report:
   <<: *sast_template
@@ -97,7 +97,7 @@ sast_five_minute_report:
     changes:
       - five-minute-report/**
   needs:
-    - test_five_minute_report
+    - build_five_minute_report
 
 sast_mail_service:
   <<: *sast_template
@@ -109,7 +109,7 @@ sast_mail_service:
     changes:
       - mail-service/**
   needs:
-    - test_mail_service
+    - build_mail_service
 
 sast_mode_report:
   <<: *sast_template
@@ -121,7 +121,7 @@ sast_mode_report:
     changes:
       - mode-report/**
   needs:
-    - test_mode_report
+    - build_mode_report
 
 # ----------------- BUILD JOBS -----------------
 
@@ -323,18 +323,18 @@ deploy:
   only:
     - main
   needs:
-    - job: sast_api_gateway
+    - job: test_api_gateway
       optional: true
-    - job: sast_auth_server
+    - job: test_auth_server
       optional: true
-    - job: sast_config_server
+    - job: test_config_server
       optional: true
-    - job: sast_daily_report
+    - job: test_daily_report
       optional: true
-    - job: sast_five_minute_report
+    - job: test_five_minute_report
       optional: true
-    - job: sast_mail_service
+    - job: test_mail_service
       optional: true
-    - job: sast_mode_report
+    - job: test_mode_report
       optional: true
 
