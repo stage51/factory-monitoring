@@ -44,10 +44,15 @@ cache:
     reports:
       sast: reports/spotbugs-report.xml
 
+# ----------------- SAST JOBS -----------------
+
 sast_api_gateway:
   <<: *sast_template
   before_script:
     - cd api-gateway
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_api_gateway
 
@@ -55,6 +60,9 @@ sast_auth_server:
   <<: *sast_template
   before_script:
     - cd auth-server
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_auth_server
 
@@ -62,6 +70,9 @@ sast_config_server:
   <<: *sast_template
   before_script:
     - cd config-server
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_config_server
 
@@ -69,6 +80,9 @@ sast_daily_report:
   <<: *sast_template
   before_script:
     - cd daily-report
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_daily_report
 
@@ -76,6 +90,9 @@ sast_five_minute_report:
   <<: *sast_template
   before_script:
     - cd five-minute-report
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_five_minute_report
 
@@ -83,6 +100,9 @@ sast_mail_service:
   <<: *sast_template
   before_script:
     - cd mail-service
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_mail_service
 
@@ -90,6 +110,9 @@ sast_mode_report:
   <<: *sast_template
   before_script:
     - cd mode-report
+  only:
+    changes:
+      - api-gateway/**
   needs:
     - build_mode_report
 
