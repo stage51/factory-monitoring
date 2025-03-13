@@ -1,5 +1,6 @@
 stages:
   - build
+  - sast
   - test
   - deploy
 
@@ -28,22 +29,69 @@ cache:
     - chmod +x test.sh
     - ./test.sh
 
-include:
-  - template: Security/SAST.gitlab-ci.yml
-
-sast_java:
-  stage: test
+.sast_template: &sast_template
   tags:
     - factory-monitoring-api
+  stage: sast
   before_script:
     - sudo apt-get update && sudo apt-get install -y default-jdk
     - wget -qO- https://github.com/spotbugs/spotbugs/releases/download/4.7.3/spotbugs-4.7.3.tgz | tar xz
+    - chmod +x spotbugs-4.7.3/bin/spotbugs
   script:
     - mkdir -p reports
     - ./spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low . || true
   artifacts:
     reports:
       sast: reports/spotbugs-report.xml
+
+sast_api_gateway:
+  <<: *sast_template
+  before_script:
+    - cd api-gateway
+  needs:
+    - build_api_gateway
+
+sast_auth_server:
+  <<: *sast_template
+  before_script:
+    - cd auth-server
+  needs:
+    - build_auth_server
+
+sast_config_server:
+  <<: *sast_template
+  before_script:
+    - cd config-server
+  needs:
+    - build_config_server
+
+sast_daily_report:
+  <<: *sast_template
+  before_script:
+    - cd daily-report
+  needs:
+    - build_daily_report
+
+sast_five_minute_report:
+  <<: *sast_template
+  before_script:
+    - cd five-minute-report
+  needs:
+    - build_five_minute_report
+
+sast_mail_service:
+  <<: *sast_template
+  before_script:
+    - cd mail-service
+  needs:
+    - build_mail_service
+
+sast_mode_report:
+  <<: *sast_template
+  before_script:
+    - cd mode-report
+  needs:
+    - build_mode_report
 
 # ----------------- BUILD JOBS -----------------
 
@@ -166,7 +214,7 @@ test_api_gateway:
   before_script:
     - cd api-gateway
   needs:
-    - build_api_gateway
+    - sast_api_gateway
   only:
     changes:
       - api-gateway/**
@@ -176,7 +224,7 @@ test_auth_server:
   before_script:
     - cd auth-server
   needs:
-    - build_auth_server
+    - sast_auth_server
   only:
     changes:
       - auth-server/**
@@ -186,7 +234,7 @@ test_config_server:
   before_script:
     - cd config-server
   needs:
-    - build_config_server
+    - sast_config_server
   only:
     changes:
       - config-server/**
@@ -196,7 +244,7 @@ test_daily_report:
   before_script:
     - cd daily-report
   needs:
-    - build_daily_report
+    - sast_daily_report
   only:
     changes:
       - daily-report/**
@@ -206,7 +254,7 @@ test_five_minute_report:
   before_script:
     - cd five-minute-report
   needs:
-    - build_five_minute_report
+    - sast_five_minute_report
   only:
     changes:
       - five-minute-report/**
@@ -216,7 +264,7 @@ test_mail_service:
   before_script:
     - cd mail-service
   needs:
-    - build_mail_service
+    - sast_mail_service
   only:
     changes:
       - mail-service/**
@@ -226,36 +274,7 @@ test_mode_report:
   before_script:
     - cd mode-report
   needs:
-    - build_mode_report
+    - sast_mode_report
   only:
     changes:
       - mode-report/**
-
-# ----------------- DEPLOY JOB -----------------
-
-deploy:
-  tags:
-    - factory-monitoring-api
-  stage: deploy
-  script:
-    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
-    - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
-    - docker-compose build
-    - docker-compose up -d
-  only:
-    - main
-  needs:
-    - job: test_api_gateway
-      optional: true
-    - job: test_auth_server
-      optional: true
-    - job: test_config_server
-      optional: true
-    - job: test_daily_report
-      optional: true
-    - job: test_five_minute_report
-      optional: true
-    - job: test_mail_service
-      optional: true
-    - job: test_mode_report
-      optional: true
