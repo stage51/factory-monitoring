@@ -31,10 +31,19 @@ cache:
 include:
   - template: Security/SAST.gitlab-ci.yml
 
-sast:
+sast_java:
   stage: test
   tags:
     - factory-monitoring-api
+  before_script:
+    - sudo apt-get update && sudo apt-get install -y default-jdk
+    - wget -qO- https://github.com/spotbugs/spotbugs/releases/download/4.7.3/spotbugs-4.7.3.tgz | tar xz
+  script:
+    - mkdir -p reports
+    - ./spotbugs-4.7.3/bin/spotbugs -textui -output reports/spotbugs-report.xml -low . || true
+  artifacts:
+    reports:
+      sast: reports/spotbugs-report.xml
 
 # ----------------- BUILD JOBS -----------------
 

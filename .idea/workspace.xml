@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="deploy test">
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="test sast">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -460,14 +461,9 @@
       <workItem from="1741177068300" duration="3408000" />
       <workItem from="1741250474878" duration="6647000" />
       <workItem from="1741275627089" duration="12000" />
-    </task>
-    <task id="LOCAL-00029" summary="add integration tests">
-      <option name="closed" value="true" />
-      <created>1737375214542</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1737375214542</updated>
+      <workItem from="1741278120662" duration="646000" />
+      <workItem from="1741334674094" duration="197000" />
+      <workItem from="1741691947120" duration="1466000" />
     </task>
     <task id="LOCAL-00030" summary="remove -DskipTests for services">
       <option name="closed" value="true" />
@@ -853,7 +849,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741260525537</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="test sast">
+      <option name="closed" value="true" />
+      <created>1741278240584</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1741278240584</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -883,7 +887,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix filters for position service" />
     <MESSAGE value="change api gateway to https" />
     <MESSAGE value="add ports in configuration for services" />
     <MESSAGE value="add actuator in mail service" />
@@ -908,7 +911,8 @@
     <MESSAGE value="test ci/cd" />
     <MESSAGE value="edit report schemes" />
     <MESSAGE value="deploy test" />
-    <option name="LAST_COMMIT_MESSAGE" value="deploy test" />
+    <MESSAGE value="test sast" />
+    <option name="LAST_COMMIT_MESSAGE" value="test sast" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
