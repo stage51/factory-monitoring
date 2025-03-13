@@ -36,11 +36,7 @@ cache:
   before_script:
     - export SONAR_TOKEN=${SONAR_TOKEN}
   script:
-    sonar-scanner \
-    -Dsonar.projectKey=$CI_PROJECT_NAME \
-    -Dsonar.java.binaries=target/classes \
-    -Dsonar.host.url=$SONAR_HOST_URL \
-    -Dsonar.login=$SONAR_TOKEN
+    sonar-scanner -Dsonar.projectKey=$CI_PROJECT_NAME -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
   artifacts:
     reports:
       sast: reports/sonarqube-report.xml
@@ -132,7 +128,7 @@ build_api_gateway:
         - api-gateway/target
   artifacts:
     paths:
-      - api-gateway/target/*.jar
+      - api-gateway/target/*
     expire_in: 1 day
 
 build_auth_server:
@@ -148,7 +144,7 @@ build_auth_server:
         - auth_server/target
   artifacts:
     paths:
-      - auth-server/target/*.jar
+      - auth-server/target/*
     expire_in: 1 day
 
 build_config_server:
@@ -164,7 +160,7 @@ build_config_server:
         - config_server/target
   artifacts:
     paths:
-      - config-server/target/*.jar
+      - config-server/target/*
     expire_in: 1 day
 
 build_daily_report:
@@ -180,7 +176,7 @@ build_daily_report:
         - daily_report/target
   artifacts:
     paths:
-      - daily-report/target/*.jar
+      - daily-report/target/*
     expire_in: 1 day
 
 build_five_minute_report:
@@ -196,7 +192,7 @@ build_five_minute_report:
         - five_minute_report/target
   artifacts:
     paths:
-      - five-minute-report/target/*.jar
+      - five-minute-report/target/*
     expire_in: 1 day
 
 build_mail_service:
@@ -212,7 +208,7 @@ build_mail_service:
         - mail_service/target
   artifacts:
     paths:
-      - mail-service/target/*.jar
+      - mail-service/target/*
     expire_in: 1 day
 
 build_mode_report:
@@ -228,7 +224,7 @@ build_mode_report:
         - mode_report/target
   artifacts:
     paths:
-      - mode-report/target/*.jar
+      - mode-report/target/*
     expire_in: 1 day
 
 # ----------------- TEST JOBS -----------------
