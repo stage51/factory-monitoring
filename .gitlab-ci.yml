@@ -1,7 +1,7 @@
 stages:
   - build
-  - sast
   - test
+  - sast
   - deploy
 
 variables:
@@ -33,11 +33,6 @@ cache:
   tags:
     - factory-monitoring-api
   stage: sast
-  before_script:
-    - export SONAR_TOKEN=${SONAR_TOKEN}
-  script:
-    sonar-scanner -Dsonar.projectKey=$CI_PROJECT_NAME -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-
   artifacts:
     reports:
       sast: reports/sonarqube-report.xml
@@ -48,71 +43,85 @@ sast_api_gateway:
   <<: *sast_template
   before_script:
     - cd api-gateway
+  script:
+    - sonar-scanner -Dsonar.projectKey=api-gateway -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - api-gateway/**
   needs:
-    - build_api_gateway
+    - test_api_gateway
 
 sast_auth_server:
   <<: *sast_template
   before_script:
     - cd auth-server
+  script:
+    - sonar-scanner -Dsonar.projectKey=auth-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - auth-server/**
   needs:
-    - build_auth_server
+    - test_auth_server
 
 sast_config_server:
   <<: *sast_template
   before_script:
     - cd config-server
+  script:
+    - sonar-scanner -Dsonar.projectKey=config-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - config-server/**
   needs:
-    - build_config_server
+    - test_config_server
 
 sast_daily_report:
   <<: *sast_template
   before_script:
     - cd daily-report
+  script:
+    - sonar-scanner -Dsonar.projectKey=daily-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - daily-report/**
   needs:
-    - build_daily_report
+    - test_daily_report
 
 sast_five_minute_report:
   <<: *sast_template
   before_script:
     - cd five-minute-report
+  script:
+    - sonar-scanner -Dsonar.projectKey=five-minute-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - five-minute-report/**
   needs:
-    - build_five_minute_report
+    - test_five_minute_report
 
 sast_mail_service:
   <<: *sast_template
   before_script:
     - cd mail-service
+  script:
+    - sonar-scanner -Dsonar.projectKey=mail-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - mail-service/**
   needs:
-    - build_mail_service
+    - test_mail_service
 
 sast_mode_report:
   <<: *sast_template
   before_script:
     - cd mode-report
+  script:
+    - sonar-scanner -Dsonar.projectKey=mode-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.java.libraries=target/dependency/*.jar -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   only:
     changes:
       - mode-report/**
   needs:
-    - build_mode_report
+    - test_mode_report
 
 # ----------------- BUILD JOBS -----------------
 
