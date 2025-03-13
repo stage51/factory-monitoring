@@ -34,15 +34,12 @@ cache:
     - factory-monitoring-api
   stage: sast
   before_script:
-    - sudo apt-get update && sudo apt-get install -y default-jdk
-    - wget -qO- https://github.com/spotbugs/spotbugs/releases/download/4.7.3/spotbugs-4.7.3.tgz | tar xz -C $CI_PROJECT_DIR
+    - export SONAR_TOKEN=${SONAR_TOKEN}
   script:
-    - cd $CI_PROJECT_DIR
-    - if [ -f "spotbugs-4.7.3/bin/spotbugs" ]; then echo "SpotBugs found"; else echo "SpotBugs missing"; exit 1; fi
+    - sonar-scanner -Dsonar.projectKey=$CI_PROJECT_NAME -Dsonar.sources=. -Dsonar.host.url=$SONAR_HOST_URL
   artifacts:
     reports:
-      sast: reports/spotbugs-report.xml
-
+      sast: reports/sonarqube-report.xml
 
 # ----------------- SAST JOBS -----------------
 
@@ -330,3 +327,4 @@ deploy:
       optional: true
     - job: test_mode_report
       optional: true
+
