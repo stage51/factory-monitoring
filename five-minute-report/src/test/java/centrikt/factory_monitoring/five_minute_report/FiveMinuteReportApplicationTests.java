@@ -7,9 +7,7 @@ import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionRes
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.utils.jwt.JwtTokenUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -90,6 +88,8 @@ class FiveMinuteReportApplicationTests {
 	private HttpHeaders createAuthorizationHeaders() {
 		String jwtToken = getValidJwtToken();
 		HttpHeaders headers = new HttpHeaders();
+		headers.add("Accept", "application/json");
+		headers.add("Content-Type", "application/json");
 		headers.set("Authorization", "Bearer " + jwtToken);
 		return headers;
 	}
@@ -102,20 +102,18 @@ class FiveMinuteReportApplicationTests {
 	}
 
 	@Nested
-	class PositionControllerTests {
-		@Test
-		void testPositionCRUDOperations() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			testCreatePosition(headers);
-			testGetPosition(headers);
-			testUpdatePosition(headers);
-			testDeletePosition(headers);
-		}
+	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	class PositionProductIntegrationTests {
 
-		void testCreatePosition(HttpHeaders headers) {
-			PositionRequest positionRequest = new PositionRequest();
+		private HttpHeaders headers;
+		private PositionRequest positionRequest;
+		private ProductRequest productRequest;
 
-			ProductRequest productRequest = new ProductRequest();
+		@BeforeEach
+		void setup() {
+			headers = createAuthorizationHeaders();
+
+			productRequest = new ProductRequest();
 			productRequest.setUnitType("Нефасованная");
 			productRequest.setType("Алкогольная продукция");
 			productRequest.setFullName("Вино Белое");
@@ -124,67 +122,11 @@ class FiveMinuteReportApplicationTests {
 			productRequest.setCapacity(new BigDecimal("100"));
 			productRequest.setAlcVolume(new BigDecimal("100"));
 			productRequest.setProductVCode("B456");
+
+			positionRequest = new PositionRequest();
 			positionRequest.setProduct(productRequest);
 
 			positionRequest.setTaxpayerNumber("123456789012");
-			positionRequest.setSensorNumber("12_34");
-			positionRequest.setControlDate(ZonedDateTime.now());
-			positionRequest.setVbsControl(new BigDecimal("1200.00"));
-			positionRequest.setAControl(new BigDecimal("800.00"));
-			positionRequest.setPercentAlc(new BigDecimal("96.5"));
-			positionRequest.setBottleCountControl(new BigDecimal("1000"));
-			positionRequest.setTemperature(new BigDecimal("25.5"));
-			positionRequest.setMode("009");
-			positionRequest.setStatus("Принято в РАР");
-
-			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
-			ResponseEntity<PositionResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions",
-					HttpMethod.POST,
-					entity,
-					PositionResponse.class
-			);
-
-			Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertNotNull(response.getBody().getId());
-		}
-
-		void testGetPosition(HttpHeaders headers) {
-			Long id = 1L;
-
-			HttpEntity<Void> entity = new HttpEntity<>(headers);
-
-			ResponseEntity<PositionResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/{id}",
-					HttpMethod.GET,
-					entity,
-					PositionResponse.class,
-					id
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertEquals(id, response.getBody().getId());
-		}
-
-		void testUpdatePosition(HttpHeaders headers) {
-			Long id = 1L;
-
-			PositionRequest positionRequest = new PositionRequest();
-
-			ProductRequest productRequest = new ProductRequest();
-			productRequest.setUnitType("Нефасованная");
-			productRequest.setType("Алкогольная продукция");
-			productRequest.setFullName("Вино Белое");
-			productRequest.setShortName("Вино");
-			productRequest.setAlcCode("654321");
-			productRequest.setCapacity(new BigDecimal("100"));
-			productRequest.setAlcVolume(new BigDecimal("100"));
-			productRequest.setProductVCode("B456");
-			positionRequest.setProduct(productRequest);
-
-			positionRequest.setTaxpayerNumber("123456789013");
 			positionRequest.setSensorNumber("12_55");
 			positionRequest.setControlDate(ZonedDateTime.now());
 			positionRequest.setVbsControl(new BigDecimal("1300.00"));
@@ -194,47 +136,143 @@ class FiveMinuteReportApplicationTests {
 			positionRequest.setTemperature(new BigDecimal("26.5"));
 			positionRequest.setMode("009");
 			positionRequest.setStatus("Принято в РАР");
-
-			HttpEntity<PositionRequest> entity = new HttpEntity<>(positionRequest, headers);
-
-			ResponseEntity<PositionResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/{id}",
-					HttpMethod.PUT,
-					entity,
-					PositionResponse.class,
-					id
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertEquals(id, response.getBody().getId());
-			Assertions.assertEquals(positionRequest.getTaxpayerNumber(), response.getBody().getTaxpayerNumber());
-			Assertions.assertEquals(positionRequest.getSensorNumber(), response.getBody().getSensorNumber());
 		}
 
-		void testDeletePosition(HttpHeaders headers) {
-			Long id = 1L;
 
-			HttpEntity<PositionRequest> entity = new HttpEntity<>(headers);
-
-			ResponseEntity<Void> deleteResponse = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/{id}",
-					HttpMethod.DELETE,
-					entity,
-					Void.class,
-					id
+		@Test
+		void testCRUDAndProductRemovalWithPosition() {
+			// CREATE
+			HttpEntity<PositionRequest> createEntity = new HttpEntity<>(positionRequest, headers);
+			ResponseEntity<PositionResponse> createResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions",
+					HttpMethod.POST,
+					createEntity,
+					PositionResponse.class
 			);
+			Assertions.assertEquals(HttpStatus.CREATED, createResponse.getStatusCode());
+			Long positionId = createResponse.getBody().getId();
+			Long productId = createResponse.getBody().getProduct().getId();
 
+			// READ position
 			ResponseEntity<PositionResponse> getResponse = restTemplate.exchange(
 					"/api/v1/five-minute-report/positions/{id}",
 					HttpMethod.GET,
-					entity,
+					new HttpEntity<>(headers),
 					PositionResponse.class,
-					id
+					positionId
+			);
+			Assertions.assertEquals(HttpStatus.OK, getResponse.getStatusCode());
+			Assertions.assertEquals(positionId, getResponse.getBody().getId());
+
+			// READ product
+			ResponseEntity<ProductResponse> productResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/products/{id}",
+					HttpMethod.GET,
+					new HttpEntity<>(headers),
+					ProductResponse.class,
+					productId
+			);
+			Assertions.assertEquals(HttpStatus.OK, productResponse.getStatusCode());
+			Assertions.assertEquals(productRequest.getFullName(), productResponse.getBody().getFullName());
+
+			// UPDATE position
+			positionRequest.setSensorNumber("123_123");
+			productRequest.setAlcCode("000111");
+			positionRequest.setProduct(productRequest);
+
+			HttpEntity<PositionRequest> updateEntity = new HttpEntity<>(positionRequest, headers);
+			ResponseEntity<PositionResponse> updatePositionResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions/{id}",
+					HttpMethod.PUT,
+					updateEntity,
+					PositionResponse.class,
+					positionId
+			);
+			Assertions.assertEquals(HttpStatus.OK, updatePositionResponse.getStatusCode());
+			Assertions.assertEquals("123_123", updatePositionResponse.getBody().getSensorNumber());
+			Assertions.assertEquals("000111", updatePositionResponse.getBody().getProduct().getAlcCode());
+
+			ResponseEntity<ProductResponse> updateProductResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/products/{id}",
+					HttpMethod.GET,
+					new HttpEntity<>(headers),
+					ProductResponse.class,
+					productId
+			);
+			Assertions.assertEquals(HttpStatus.OK, updateProductResponse.getStatusCode());
+			Assertions.assertEquals("000111", updatePositionResponse.getBody().getProduct().getAlcCode());
+
+			// DELETE position
+			ResponseEntity<Void> deleteResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions/{id}",
+					HttpMethod.DELETE,
+					new HttpEntity<>(headers),
+					Void.class,
+					positionId
+			);
+			Assertions.assertEquals(HttpStatus.NO_CONTENT, deleteResponse.getStatusCode());
+
+			// CHECK position is gone
+			ResponseEntity<PositionResponse> deletedPositionCheck = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions/{id}",
+					HttpMethod.GET,
+					new HttpEntity<>(headers),
+					PositionResponse.class,
+					positionId
+			);
+			Assertions.assertEquals(HttpStatus.NOT_FOUND, deletedPositionCheck.getStatusCode());
+
+			// CHECK product is also gone
+			ResponseEntity<ProductResponse> deletedProductCheck = restTemplate.exchange(
+					"/api/v1/five-minute-report/products/{id}",
+					HttpMethod.GET,
+					new HttpEntity<>(headers),
+					ProductResponse.class,
+					productId
+			);
+			Assertions.assertEquals(HttpStatus.NOT_FOUND, deletedProductCheck.getStatusCode());
+		}
+
+		@Test
+		void testBatchCreation() {
+			List<PositionRequest> batch = new ArrayList<>();
+			for (int i = 0; i < 5; i++) {
+				PositionRequest req = new PositionRequest();
+				req.setTaxpayerNumber("1234567890" + (i + 10));
+				req.setSensorNumber((5 - i) + "_" + i);
+				req.setControlDate(ZonedDateTime.now().plusMinutes(i));
+				req.setVbsControl(BigDecimal.valueOf(1300 + i));
+				req.setAControl(BigDecimal.valueOf(900 + i));
+				req.setPercentAlc(BigDecimal.valueOf(96.7));
+				req.setBottleCountControl(BigDecimal.valueOf(1100 + i));
+				req.setTemperature(BigDecimal.valueOf(26 + i));
+				req.setMode("009");
+				req.setStatus("Принято в РАР");
+
+				ProductRequest prod = new ProductRequest();
+				prod.setUnitType("Нефасованная");
+				prod.setType("Алкогольная продукция");
+				prod.setFullName("Вино Белое " + i);
+				prod.setShortName("Вино");
+				prod.setAlcCode("65432" + i);
+				prod.setCapacity(new BigDecimal("100"));
+				prod.setAlcVolume(new BigDecimal("100"));
+				prod.setProductVCode("B45" + i);
+
+				req.setProduct(prod);
+				batch.add(req);
+			}
+
+			HttpEntity<List<PositionRequest>> entity = new HttpEntity<>(batch, headers);
+			ResponseEntity<List<PositionResponse>> response = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions/list",
+					HttpMethod.POST,
+					entity,
+					new ParameterizedTypeReference<>() {}
 			);
 
-			Assertions.assertEquals(HttpStatus.NO_CONTENT, deleteResponse.getStatusCode());
-			Assertions.assertEquals(HttpStatus.NOT_FOUND, getResponse.getStatusCode());
+			Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
+			Assertions.assertEquals(5, response.getBody().size());
 		}
 
 		@Test
@@ -245,6 +283,7 @@ class FiveMinuteReportApplicationTests {
 			body.add("file", file.getResource());
 
 			HttpHeaders headers = createAuthorizationHeaders();
+			headers.set("Content-Type", "multipart/form-data");
 
 			HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
 
@@ -259,241 +298,103 @@ class FiveMinuteReportApplicationTests {
 
 			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
 		}
-
-		@Test
-		void TestPatchCreationAndPagesFetching() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			testPatchCreation(headers);
-			testGetPagePositions(headers);
-		}
-
-		void testPatchCreation(HttpHeaders headers) {
-
-			List<PositionRequest> list = new ArrayList<>();
-
-			for (int i = 0; i < 9; i++) {
-				PositionRequest positionRequest = new PositionRequest();
-
-				positionRequest.setTaxpayerNumber("12345678901" + i);
-				positionRequest.setSensorNumber("12_5" + i);
-				positionRequest.setControlDate(ZonedDateTime.now());
-				positionRequest.setVbsControl(new BigDecimal("1300.00"));
-				positionRequest.setAControl(new BigDecimal("900.00"));
-				positionRequest.setPercentAlc(new BigDecimal("96.7"));
-				positionRequest.setBottleCountControl(new BigDecimal("1100"));
-				positionRequest.setTemperature(new BigDecimal("26.5"));
-				positionRequest.setMode("009");
-				positionRequest.setStatus("Принято в РАР");
-
-				list.add(positionRequest);
-			}
-
-			HttpEntity<List<PositionRequest>> entity = new HttpEntity<>(list, headers);
-
-			ResponseEntity<List<PositionResponse>> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/list",
-					HttpMethod.POST,
-					entity,
-					new ParameterizedTypeReference<>() {}
-			);
-			List<PositionResponse> positionResponses = response.getBody();
-
-			Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertEquals(9, positionResponses.size());
-			Assertions.assertEquals(1, positionResponses.get(0).getId());
-			Assertions.assertEquals(9, positionResponses.get(8).getId());
-		}
-
-		void testGetPagePositions(HttpHeaders headers) {
-			PageRequest pageRequest = new PageRequest();
-			pageRequest.setSize(10);
-			pageRequest.setNumber(0);
-			pageRequest.setSortBy("id");
-			pageRequest.setSortDirection("ASC");
-
-			pageRequest.setFilters(new HashMap<>());
-			pageRequest.setDateRanges(new HashMap<>());
-
-			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
-
-			ResponseEntity<TestPage<PositionResponse>> responseWithoutTaxpayer = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/fetch",
-					HttpMethod.POST,
-					entity,
-					new ParameterizedTypeReference<TestPage<PositionResponse>>() {}
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, responseWithoutTaxpayer.getStatusCode());
-			Assertions.assertNotNull(responseWithoutTaxpayer.getBody());
-			Assertions.assertFalse(responseWithoutTaxpayer.getBody().getContent().isEmpty());
-
-			String taxpayerNumber = "123456789012";
-			ResponseEntity<TestPage<PositionResponse>> responseWithTaxpayer = restTemplate.exchange(
-					"/api/v1/five-minute-report/positions/fetch/{taxpayerNumber}",
-					HttpMethod.POST,
-					entity,
-					new ParameterizedTypeReference<TestPage<PositionResponse>>() {},
-					taxpayerNumber
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, responseWithTaxpayer.getStatusCode());
-			Assertions.assertNotNull(responseWithTaxpayer.getBody());
-			Assertions.assertFalse(responseWithTaxpayer.getBody().getContent().isEmpty());
-
-			List<PositionResponse> content = responseWithTaxpayer.getBody().getContent();
-			for (PositionResponse position : content) {
-				Assertions.assertEquals(taxpayerNumber, position.getTaxpayerNumber());
-			}
-		}
 	}
 
 	@Nested
-	class ProductControllerTests {
+	@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+	class PositionProductPaginationTests {
 
-		@Test
-		void testCreateProduct() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			ProductRequest productRequest = new ProductRequest();
-			productRequest.setUnitType("Нефасованная");
-			productRequest.setType("Алкогольная продукция");
-			productRequest.setFullName("Вино Белое");
-			productRequest.setShortName("Вино");
-			productRequest.setAlcCode("654321");
-			productRequest.setCapacity(new BigDecimal("100"));
-			productRequest.setAlcVolume(new BigDecimal("100"));
-			productRequest.setProductVCode("B456");
+		private HttpHeaders headers;
+		private PageRequest pageRequest;
+		private PositionRequest positionRequest;
+		private ProductRequest productRequest;
 
-			HttpEntity<ProductRequest> entity = new HttpEntity<>(productRequest, headers);
-			ResponseEntity<ProductResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/products",
-					HttpMethod.POST,
-					entity,
-					ProductResponse.class
-			);
 
-			Assertions.assertEquals(HttpStatus.CREATED, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertNotNull(response.getBody().getId());
-			Assertions.assertEquals(productRequest.getFullName(), response.getBody().getFullName());
-		}
+		@BeforeEach
+		void setup() {
+			headers = createAuthorizationHeaders();
 
-		@Test
-		void testGetProductById() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			headers.add("Accept", "application/json");
-			headers.add("Content-Type", "application/json");
-			Long productId = 1L;
-
-			HttpEntity<Void> entity = new HttpEntity<>(headers);
-			ResponseEntity<ProductResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/products/{id}",
-					HttpMethod.GET,
-					entity,
-					ProductResponse.class,
-					productId
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertEquals(productId, response.getBody().getId());
-		}
-
-		@Test
-		void testUpdateProduct() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			Long productId = 1L;
-
-			ProductRequest productRequest = new ProductRequest();
-			productRequest.setUnitType("Нефасованная");
-			productRequest.setType("Алкогольная продукция");
-			productRequest.setFullName("Вино Белое");
-			productRequest.setShortName("Вино");
-			productRequest.setAlcCode("654321");
-			productRequest.setCapacity(new BigDecimal("100"));
-			productRequest.setAlcVolume(new BigDecimal("100"));
-			productRequest.setProductVCode("B456");
-
-			HttpEntity<ProductRequest> entity = new HttpEntity<>(productRequest, headers);
-			ResponseEntity<ProductResponse> response = restTemplate.exchange(
-					"/api/v1/five-minute-report/products/{id}",
-					HttpMethod.PUT,
-					entity,
-					ProductResponse.class,
-					productId
-			);
-
-			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertEquals(productRequest.getFullName(), response.getBody().getFullName());
-			Assertions.assertEquals(productId, response.getBody().getId());
-		}
-
-		@Test
-		void testDeleteProduct() {
-			HttpHeaders headers = createAuthorizationHeaders();
-			headers.add("Accept", "application/json");
-			headers.add("Content-Type", "application/json");
-			Long productId = 1L;
-
-			HttpEntity<Void> entity = new HttpEntity<>(headers);
-			ResponseEntity<Void> deleteResponse = restTemplate.exchange(
-					"/api/v1/five-minute-report/products/{id}",
-					HttpMethod.DELETE,
-					entity,
-					Void.class,
-					productId
-			);
-
-			Assertions.assertEquals(HttpStatus.NO_CONTENT, deleteResponse.getStatusCode());
-
-			ResponseEntity<ProductResponse> getResponse = restTemplate.exchange(
-					"/api/v1/five-minute-report/products/{id}",
-					HttpMethod.GET,
-					entity,
-					ProductResponse.class,
-					productId
-			);
-
-			Assertions.assertEquals(HttpStatus.NOT_FOUND, getResponse.getStatusCode());
-		}
-
-		@Test
-		void testFetchPageProducts() {
-			HttpHeaders headers = createAuthorizationHeaders();
-
-			PageRequest pageRequest = new PageRequest();
-			pageRequest.setSize(10);
+			pageRequest = new PageRequest();
+			pageRequest.setSize(5);
 			pageRequest.setNumber(0);
-			pageRequest.setSortBy("id");
 			pageRequest.setSortDirection("ASC");
 
-			HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
+			productRequest = new ProductRequest();
+			productRequest.setUnitType("Нефасованная");
+			productRequest.setType("Алкогольная продукция");
+			productRequest.setFullName("Вино Белое");
+			productRequest.setShortName("Вино");
+			productRequest.setAlcCode("654321");
+			productRequest.setCapacity(new BigDecimal("100"));
+			productRequest.setAlcVolume(new BigDecimal("100"));
+			productRequest.setProductVCode("B456");
 
-			ResponseEntity<TestPage<ProductResponse>> response = restTemplate.exchange(
+			positionRequest = new PositionRequest();
+			positionRequest.setTaxpayerNumber("123456789012");
+			positionRequest.setSensorNumber("12_55");
+			positionRequest.setControlDate(ZonedDateTime.now());
+			positionRequest.setVbsControl(new BigDecimal("1300.00"));
+			positionRequest.setAControl(new BigDecimal("900.00"));
+			positionRequest.setPercentAlc(new BigDecimal("96.7"));
+			positionRequest.setBottleCountControl(new BigDecimal("1100"));
+			positionRequest.setTemperature(new BigDecimal("26.5"));
+			positionRequest.setMode("009");
+			positionRequest.setStatus("Принято в РАР");
+			positionRequest.setProduct(productRequest);
+		}
+
+
+		@Test
+		void testCreatePositionAndProductPagination() {
+			HttpEntity<PositionRequest> createEntity = new HttpEntity<>(positionRequest, headers);
+			ResponseEntity<PositionResponse> createResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions",
+					HttpMethod.POST,
+					createEntity,
+					PositionResponse.class
+			);
+			Assertions.assertEquals(HttpStatus.CREATED, createResponse.getStatusCode());
+			Long positionId = createResponse.getBody().getId();
+			Long productId = createResponse.getBody().getProduct().getId();
+
+			HttpEntity<PageRequest> requestEntity = new HttpEntity<>(pageRequest, headers);
+			ResponseEntity<TestPage<PositionResponse>> positionPageResponse = restTemplate.exchange(
+					"/api/v1/five-minute-report/positions/fetch/{taxpayerNumber}",
+					HttpMethod.POST,
+					requestEntity,
+					new ParameterizedTypeReference<TestPage<PositionResponse>>() {},
+					"123456789012"
+			);
+
+			Assertions.assertEquals(HttpStatus.OK, positionPageResponse.getStatusCode());
+			Assertions.assertNotNull(positionPageResponse.getBody());
+			Assertions.assertFalse(positionPageResponse.getBody().getContent().isEmpty());
+
+			HttpEntity<PageRequest> productRequestEntity = new HttpEntity<>(pageRequest, headers);
+			ResponseEntity<TestPage<ProductResponse>> productPageResponse = restTemplate.exchange(
 					"/api/v1/five-minute-report/products/fetch",
 					HttpMethod.POST,
-					entity,
+					productRequestEntity,
 					new ParameterizedTypeReference<TestPage<ProductResponse>>() {}
 			);
 
-			Assertions.assertEquals(HttpStatus.OK, response.getStatusCode());
-			Assertions.assertNotNull(response.getBody());
-			Assertions.assertFalse(response.getBody().getContent().isEmpty());
-		}
-	}
-
-	private static class TestPage<T> extends PageImpl<T> {
-		@JsonIgnore
-		private Pageable pageable;
-
-		TestPage(List<T> content, Pageable pageable, long total) {
-			super(content, pageable, total);
-			this.pageable = pageable;
+			Assertions.assertEquals(HttpStatus.OK, productPageResponse.getStatusCode());
+			Assertions.assertNotNull(productPageResponse.getBody());
+			Assertions.assertFalse(productPageResponse.getBody().getContent().isEmpty());
 		}
 
-		public TestPage() {
-			super(new ArrayList<>(), Pageable.unpaged(), 0);
+		private static class TestPage<T> extends PageImpl<T> {
+			@JsonIgnore
+			private Pageable pageable;
+
+			TestPage(List<T> content, Pageable pageable, long total) {
+				super(content, pageable, total);
+				this.pageable = pageable;
+			}
+
+			public TestPage() {
+				super(new ArrayList<>(), Pageable.unpaged(), 0);
+			}
 		}
 	}
 }

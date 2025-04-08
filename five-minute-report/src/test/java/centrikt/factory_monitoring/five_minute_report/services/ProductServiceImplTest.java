@@ -73,19 +73,6 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void create_ShouldSaveProduct() {
-        when(productRepository.save(any(Product.class))).thenReturn(product);
-
-        ProductResponse response = productService.create(productRequest);
-
-        verify(entityValidator, times(1)).validate(productRequest);
-        verify(productRepository, times(1)).save(any(Product.class));
-
-        assertNotNull(response);
-        assertEquals(productResponse.getId(), response.getId());
-    }
-
-    @Test
     void get_ShouldReturnProductResponse_WhenProductExists() {
         when(productRepository.findById(1L)).thenReturn(Optional.of(product));
 
@@ -100,43 +87,6 @@ class ProductServiceImplTest {
         when(productRepository.findById(1L)).thenReturn(Optional.empty());
 
         assertThrows(EntityNotFoundException.class, () -> productService.get(1L));
-    }
-
-    @Test
-    void update_ShouldUpdateProduct_WhenProductExists() {
-        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-        when(productRepository.save(any(Product.class))).thenReturn(product);
-
-        ProductResponse response = productService.update(1L, productRequest);
-
-        verify(entityValidator, times(1)).validate(productRequest);
-        verify(productRepository, times(1)).save(any(Product.class));
-
-        assertNotNull(response);
-        assertEquals(productResponse.getId(), response.getId());
-    }
-
-    @Test
-    void update_ShouldThrowException_WhenProductNotFound() {
-        when(productRepository.findById(1L)).thenReturn(Optional.empty());
-
-        assertThrows(EntityNotFoundException.class, () -> productService.update(1L, productRequest));
-    }
-
-    @Test
-    void delete_ShouldDeleteProduct_WhenProductExists() {
-        when(productRepository.existsById(1L)).thenReturn(true);
-
-        productService.delete(1L);
-
-        verify(productRepository, times(1)).deleteById(1L);
-    }
-
-    @Test
-    void delete_ShouldThrowException_WhenProductNotFound() {
-        when(productRepository.existsById(1L)).thenReturn(false);
-
-        assertThrows(EntityNotFoundException.class, () -> productService.delete(1L));
     }
 
     @Test

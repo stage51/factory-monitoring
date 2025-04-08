@@ -55,16 +55,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponse create(ProductRequest dto) {
-        log.trace("Entering create method with dto: {}", dto);
-        entityValidator.validate(dto);
-        log.debug("Validated dto: {}", dto);
-        ProductResponse response = ProductMapper.toResponse(productRepository.save(ProductMapper.toEntity(dto)));
-        log.trace("Exiting create method with response: {}", response);
-        return response;
-    }
-
-    @Override
     public ProductResponse get(Long id) {
         log.trace("Entering get method with id: {}", id);
         ProductResponse response = ProductMapper.toResponse(productRepository.findById(id)
@@ -74,34 +64,6 @@ public class ProductServiceImpl implements ProductService {
                 }));
         log.trace("Exiting get method with response: {}", response);
         return response;
-    }
-
-    @Override
-    public ProductResponse update(Long id, ProductRequest dto) {
-        log.trace("Entering update method with id: {} and dto: {}", id, dto);
-        entityValidator.validate(dto);
-        log.debug("Validated dto: {}", dto);
-        Product existingProduct = ProductMapper.toEntity(dto);
-        if (productRepository.findById(id).isPresent()) {
-            existingProduct.setId(id);
-        } else {
-            log.error("Product not found with id: {}", id);
-            throw new EntityNotFoundException("Product not found with id: " + id);
-        }
-        ProductResponse response = ProductMapper.toResponse(productRepository.save(existingProduct));
-        log.trace("Exiting update method with response: {}", response);
-        return response;
-    }
-
-    @Override
-    public void delete(Long id) {
-        log.trace("Entering delete method with id: {}", id);
-        if (!productRepository.existsById(id)) {
-            log.error("Product not found with id: {}", id);
-            throw new EntityNotFoundException("Product not found with id: " + id);
-        }
-        productRepository.deleteById(id);
-        log.info("Deleted product with id: {}", id);
     }
 
     @Override

@@ -8,6 +8,7 @@ import centrikt.factorymonitoring.modereport.exceptions.MessageSendingException;
 import centrikt.factorymonitoring.modereport.mappers.PositionMapper;
 import centrikt.factorymonitoring.modereport.models.Position;
 import centrikt.factorymonitoring.modereport.repos.PositionRepository;
+import centrikt.factorymonitoring.modereport.repos.ProductRepository;
 import centrikt.factorymonitoring.modereport.services.PositionService;
 import centrikt.factorymonitoring.modereport.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.modereport.utils.validator.EntityValidator;
@@ -31,13 +32,18 @@ import lombok.extern.slf4j.Slf4j;
 public class PositionServiceImpl implements PositionService {
 
     private PositionRepository positionRepository;
+    private ProductRepository productRepository;
     private EntityValidator entityValidator;
     private FilterUtil<Position> filterUtil;
     private RabbitTemplate rabbitTemplate;
 
-    public PositionServiceImpl(PositionRepository positionRepository, EntityValidator entityValidator,
-                               FilterUtil<Position> filterUtil, RabbitTemplate rabbitTemplate) {
+    public PositionServiceImpl(PositionRepository positionRepository,
+                               ProductRepository productRepository,
+                               EntityValidator entityValidator,
+                               FilterUtil<Position> filterUtil,
+                               RabbitTemplate rabbitTemplate) {
         this.positionRepository = positionRepository;
+        this.productRepository = productRepository;
         this.entityValidator = entityValidator;
         this.filterUtil = filterUtil;
         this.rabbitTemplate = rabbitTemplate;
@@ -48,6 +54,10 @@ public class PositionServiceImpl implements PositionService {
     public void setPositionRepository(PositionRepository positionRepository) {
         this.positionRepository = positionRepository;
         log.debug("PositionRepository set");
+    }
+    @Autowired
+    public void setProductRepository(ProductRepository productRepository) {
+        this.productRepository = productRepository;
     }
 
     @Autowired
@@ -103,13 +113,12 @@ public class PositionServiceImpl implements PositionService {
         log.trace("Entering update method with id: {} and dto: {}", id, dto);
         entityValidator.validate(dto);
         log.debug("Validated dto: {}", dto);
-        Position existingPosition = PositionMapper.toEntity(dto);
-        if (positionRepository.findById(id).isPresent()) {
-            existingPosition.setId(id);
-        } else {
-            log.error("Position not found with id: {}", id);
-            throw new EntityNotFoundException("Position not found with id: " + id);
-        }
+        Position existingPosition = PositionMapper.toEntity(dto,
+                positionRepository.findById(id).orElseThrow(
+                        () -> new EntityNotFoundException("Position not found with id: " + id)),
+                productRepository.findById(id).orElseThrow(
+                        () -> new EntityNotFoundException("Product not found with id: " + id)
+                ));
         PositionResponse response = PositionMapper.toResponse(positionRepository.save(existingPosition));
         log.trace("Exiting update method with response: {}", response);
         return response;

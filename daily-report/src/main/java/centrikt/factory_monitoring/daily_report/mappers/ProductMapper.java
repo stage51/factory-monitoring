@@ -5,6 +5,7 @@ import centrikt.factory_monitoring.daily_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.daily_report.enums.Type;
 import centrikt.factory_monitoring.daily_report.enums.UnitType;
 import centrikt.factory_monitoring.daily_report.models.Product;
+import jakarta.validation.constraints.NotNull;
 
 public class ProductMapper {
 
@@ -24,6 +25,18 @@ public class ProductMapper {
             return null;
         }
         Product product = new Product();
+        return setFields(productRequest, product);
+    }
+
+    public static Product toEntity(ProductRequest productRequest, Product product) {
+        if (productRequest == null) {
+            return null;
+        }
+        return setFields(productRequest, product);
+    }
+
+    @NotNull
+    private static Product setFields(ProductRequest productRequest, Product product) {
         product.setUnitType(UnitType.fromString(productRequest.getUnitType()));
         product.setType(Type.fromString(productRequest.getType()));
         product.setFullName(productRequest.getFullName());

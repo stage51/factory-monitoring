@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.daily_report.dtos.responses.ReportStatusResponse;
@@ -110,15 +110,15 @@ public class PositionController implements centrikt.factory_monitoring.daily_rep
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<Page<PositionResponse>> getPagePositions(@RequestBody PageRequestDTO pageRequestDTO) {
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+    public ResponseEntity<Page<PositionResponse>> getPagePositions(@RequestBody PageRequest pageRequest) {
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<PositionResponse> positions = positionService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched positions page: {}", positions);
         return ResponseEntity.ok(positions);
@@ -127,18 +127,18 @@ public class PositionController implements centrikt.factory_monitoring.daily_rep
     @PostMapping(value = "/fetch/{taxpayerNumber}",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<Page<PositionResponse>> getPagePositions(@RequestBody PageRequestDTO pageRequestDTO, @PathVariable String taxpayerNumber) {
-        Map<String, String> filters = pageRequestDTO.getFilters();
+    public ResponseEntity<Page<PositionResponse>> getPagePositions(@RequestBody PageRequest pageRequest, @PathVariable String taxpayerNumber) {
+        Map<String, String> filters = pageRequest.getFilters();
         filters.put("taxpayerNumber", taxpayerNumber);
-        pageRequestDTO.setFilters(filters);
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        pageRequest.setFilters(filters);
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<PositionResponse> positions = positionService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched positions page: {}", positions);
         return ResponseEntity.ok(positions);

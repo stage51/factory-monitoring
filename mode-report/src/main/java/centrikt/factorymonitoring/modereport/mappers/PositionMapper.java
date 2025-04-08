@@ -6,6 +6,8 @@ import centrikt.factorymonitoring.modereport.dtos.responses.PositionResponse;
 import centrikt.factorymonitoring.modereport.enums.Mode;
 import centrikt.factorymonitoring.modereport.enums.Status;
 import centrikt.factorymonitoring.modereport.models.Position;
+import centrikt.factorymonitoring.modereport.models.Product;
+import jakarta.validation.constraints.NotNull;
 
 public class PositionMapper {
 
@@ -27,10 +29,31 @@ public class PositionMapper {
             return null;
         }
         Position position = new Position();
+        position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
+        return setFields(positionRequest, position);
+    }
+
+    public static Position toEntity(PositionRequest positionRequest, Position position) {
+        if (positionRequest == null) {
+            return null;
+        }
+        position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
+        return setFields(positionRequest, position);
+    }
+
+    public static Position toEntity(PositionRequest positionRequest, Position position, Product product) {
+        if (positionRequest == null) {
+            return null;
+        }
+        position.setProduct(ProductMapper.toEntity(positionRequest.getProduct(), product));
+        return setFields(positionRequest, position);
+    }
+
+    @NotNull
+    private static Position setFields(PositionRequest positionRequest, Position position) {
         position.setTaxpayerNumber(positionRequest.getTaxpayerNumber());
         position.setControllerNumber(positionRequest.getSensorNumber().split("_")[0]);
         position.setLineNumber(positionRequest.getSensorNumber().split("_")[1]);
-        position.setProduct(ProductMapper.toEntity(positionRequest.getProduct()));
         position.setStartDate(positionRequest.getStartDate());
         position.setEndDate(positionRequest.getEndDate());
         position.setVbsStart(positionRequest.getVbsStart());

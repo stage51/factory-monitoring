@@ -12,8 +12,6 @@ import lombok.Data;
 @Schema(description = "Форма на создание, редактирование продукта")
 public class ProductRequest {
 
-    private Long positionId;
-
     @Schema(description = "Тип фасовки продукции: Фасованная, Нефасованная")
     @NotNull(message = "Unit type must not be null")
     private String unitType;

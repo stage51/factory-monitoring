@@ -38,32 +38,6 @@ public class ProductController implements centrikt.factory_monitoring.five_minut
         return ResponseEntity.ok(product);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest) {
-        log.info("Creating new product: {}", productRequest);
-        ProductResponse createdProduct = productService.create(productRequest);
-        log.debug("Created product: {}", createdProduct);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
-    }
-
-    @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest) {
-        log.info("Updating product with id: {}", id);
-        ProductResponse updatedProduct = productService.update(id, productRequest);
-        log.debug("Updated product: {}", updatedProduct);
-        return ResponseEntity.ok(updatedProduct);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        log.info("Deleting product with id: {}", id);
-        productService.delete(id);
-        log.debug("Product with id: {} deleted", id);
-        return ResponseEntity.noContent().build();
-    }
-
     @PostMapping(value = "/fetch",
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})

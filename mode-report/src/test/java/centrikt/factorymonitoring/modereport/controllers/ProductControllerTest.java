@@ -81,52 +81,6 @@ class ProductControllerTest {
     }
 
     @Test
-    void createProduct_shouldReturnCreatedProductResponse() throws Exception {
-        when(productService.create(any(ProductRequest.class))).thenReturn(productResponse);
-
-        mockMvc.perform(post("/api/v1/mode-report/products")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productRequest)))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.fullName").value("Product Name"))
-                .andExpect(jsonPath("$.alcCode").value("12345"))
-                .andExpect(jsonPath("$.productVCode").value("54321"))
-                .andExpect(jsonPath("$.unitType").value(UnitType.PACKED.getUnitType()));
-
-        verify(productService, times(1)).create(any(ProductRequest.class));
-    }
-
-    @Test
-    void updateProduct_shouldReturnUpdatedProductResponse() throws Exception {
-        when(productService.update(eq(1L), any(ProductRequest.class))).thenReturn(productResponse);
-
-        mockMvc.perform(put("/api/v1/mode-report/products/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productRequest)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.fullName").value("Product Name"))
-                .andExpect(jsonPath("$.alcCode").value("12345"))
-                .andExpect(jsonPath("$.productVCode").value("54321"))
-                .andExpect(jsonPath("$.unitType").value(UnitType.PACKED.getUnitType()));
-
-        verify(productService, times(1)).update(eq(1L), any(ProductRequest.class));
-    }
-
-    @Test
-    void deleteProduct_shouldReturnNoContent() throws Exception {
-        doNothing().when(productService).delete(1L);
-
-        mockMvc.perform(delete("/api/v1/mode-report/products/1"))
-                .andExpect(status().isNoContent());
-
-        verify(productService, times(1)).delete(1L);
-    }
-
-    @Test
     void getPagePositions_shouldReturnPagedProducts() throws Exception {
         Page<ProductResponse> productPage = new TestPage<>(Collections.singletonList(productResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 

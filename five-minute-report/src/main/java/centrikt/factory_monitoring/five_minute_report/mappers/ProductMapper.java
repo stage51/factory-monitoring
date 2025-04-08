@@ -5,26 +5,11 @@ import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResp
 import centrikt.factory_monitoring.five_minute_report.enums.Type;
 import centrikt.factory_monitoring.five_minute_report.enums.UnitType;
 import centrikt.factory_monitoring.five_minute_report.models.Product;
+import jakarta.validation.constraints.NotNull;
 import org.aspectj.weaver.Position;
 
 
 public class ProductMapper {
-    public static Product toEntity(ProductRequest dto) {
-        if (dto == null) {
-            return null;
-        }
-        Product product = new Product();
-        product.setUnitType(UnitType.fromString(dto.getUnitType()));
-        product.setType(Type.fromString(dto.getType()));
-        product.setFullName(dto.getFullName());
-        product.setShortName(dto.getShortName());
-        product.setAlcCode(dto.getAlcCode());
-        product.setCapacity(dto.getCapacity());
-        product.setAlcVolume(dto.getAlcVolume());
-        product.setProductVCode(dto.getProductVCode());
-
-        return product;
-    }
 
     public static ProductResponse toResponse(Product entity) {
         if (entity == null) {
@@ -35,5 +20,33 @@ public class ProductMapper {
                 .alcCode(entity.getAlcCode()).capacity(entity.getCapacity()).alcVolume(entity.getAlcVolume())
                 .productVCode(entity.getProductVCode()).build();
         return dto;
+    }
+
+    public static Product toEntity(ProductRequest productRequest) {
+        if (productRequest == null) {
+            return null;
+        }
+        Product product = new Product();
+        return setFields(productRequest, product);
+    }
+
+    public static Product toEntity(ProductRequest productRequest, Product product) {
+        if (productRequest == null) {
+            return null;
+        }
+        return setFields(productRequest, product);
+    }
+
+    @NotNull
+    private static Product setFields(ProductRequest productRequest, Product product) {
+        product.setUnitType(UnitType.fromString(productRequest.getUnitType()));
+        product.setType(Type.fromString(productRequest.getType()));
+        product.setFullName(productRequest.getFullName());
+        product.setShortName(productRequest.getShortName());
+        product.setAlcCode(productRequest.getAlcCode());
+        product.setCapacity(productRequest.getCapacity());
+        product.setAlcVolume(productRequest.getAlcVolume());
+        product.setProductVCode(productRequest.getProductVCode());
+        return product;
     }
 }

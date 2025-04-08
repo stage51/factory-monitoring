@@ -28,32 +28,6 @@ public interface ProductController {
 
     @SecurityRequirement(name = "JWT")
     @Operation(
-            summary = "Создание продукта",
-            description = "Создает продукт"
-    )
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    ResponseEntity<ProductResponse> createProduct(@RequestBody ProductRequest productRequest);
-
-    @SecurityRequirement(name = "JWT")
-    @Operation(
-            summary = "Обновление продукта",
-            description = "Обновляет продукт по заданному id"
-    )
-    @PutMapping(value = "/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
-            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @RequestBody ProductRequest productRequest);
-
-    @SecurityRequirement(name = "JWT")
-    @Operation(
-            summary = "Удаление продукта",
-            description = "Удаляет продукт по заданному id"
-    )
-    @DeleteMapping(value = "/{id}")
-    ResponseEntity<Void> deleteProduct(@PathVariable Long id);
-
-    @SecurityRequirement(name = "JWT")
-    @Operation(
             summary = "Просмотр продуктов",
             description = "Выводит продукты постранично"
     )

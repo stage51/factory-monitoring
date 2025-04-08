@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.daily_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.daily_report.enums.UnitType;
@@ -15,7 +15,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -82,68 +81,22 @@ class ProductControllerTest {
     }
 
     @Test
-    void createProduct_shouldReturnCreatedProductResponse() throws Exception {
-        when(productService.create(any(ProductRequest.class))).thenReturn(productResponse);
-
-        mockMvc.perform(post("/api/v1/daily-report/products")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productRequest)))
-                .andExpect(status().isCreated())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.fullName").value("Product Name"))
-                .andExpect(jsonPath("$.alcCode").value("12345"))
-                .andExpect(jsonPath("$.productVCode").value("54321"))
-                .andExpect(jsonPath("$.unitType").value(UnitType.PACKED.getUnitType()));
-
-        verify(productService, times(1)).create(any(ProductRequest.class));
-    }
-
-    @Test
-    void updateProduct_shouldReturnUpdatedProductResponse() throws Exception {
-        when(productService.update(eq(1L), any(ProductRequest.class))).thenReturn(productResponse);
-
-        mockMvc.perform(put("/api/v1/daily-report/products/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(productRequest)))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.fullName").value("Product Name"))
-                .andExpect(jsonPath("$.alcCode").value("12345"))
-                .andExpect(jsonPath("$.productVCode").value("54321"))
-                .andExpect(jsonPath("$.unitType").value(UnitType.PACKED.getUnitType()));
-
-        verify(productService, times(1)).update(eq(1L), any(ProductRequest.class));
-    }
-
-    @Test
-    void deleteProduct_shouldReturnNoContent() throws Exception {
-        doNothing().when(productService).delete(1L);
-
-        mockMvc.perform(delete("/api/v1/daily-report/products/1"))
-                .andExpect(status().isNoContent());
-
-        verify(productService, times(1)).delete(1L);
-    }
-
-    @Test
     void getPagePositions_shouldReturnPagedProducts() throws Exception {
-        Page<ProductResponse> productPage = new TestPage<>(Collections.singletonList(productResponse), PageRequest.of(0, 10), 1);
+        Page<ProductResponse> productPage = new TestPage<>(Collections.singletonList(productResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("fullName");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("fullName");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(productService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(productPage);
 
         mockMvc.perform(post("/api/v1/daily-report/products/fetch")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO))
+                        .content(objectMapper.writeValueAsString(pageRequest))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

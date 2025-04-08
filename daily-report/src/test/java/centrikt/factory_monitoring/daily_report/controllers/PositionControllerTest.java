@@ -1,6 +1,6 @@
 package centrikt.factory_monitoring.daily_report.controllers;
 
-import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequestDTO;
+import centrikt.factory_monitoring.daily_report.dtos.extra.PageRequest;
 import centrikt.factory_monitoring.daily_report.dtos.requests.PositionRequest;
 import centrikt.factory_monitoring.daily_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.daily_report.enums.Mode;
@@ -19,7 +19,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -182,21 +181,21 @@ class PositionControllerTest {
 
     @Test
     void getPagePositions_shouldReturnPagedPositions() throws Exception {
-        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), PageRequest.of(0, 10), 1);
+        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("taxpayerNumber");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("taxpayerNumber");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
         mockMvc.perform(post("/api/v1/daily-report/positions/fetch")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO))
+                        .content(objectMapper.writeValueAsString(pageRequest))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -211,21 +210,21 @@ class PositionControllerTest {
 
     @Test
     void getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions() throws Exception {
-        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), PageRequest.of(0, 10), 1);
+        Page<PositionResponse> positionPage = new TestPage<>(Collections.singletonList(positionResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("taxpayerNumber");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("taxpayerNumber");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(positionService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(positionPage);
 
         mockMvc.perform(post("/api/v1/daily-report/positions/fetch/" + positionRequest.getTaxpayerNumber())
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO))
+                        .content(objectMapper.writeValueAsString(pageRequest))
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))

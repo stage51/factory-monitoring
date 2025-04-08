@@ -2,12 +2,18 @@ package centrikt.factory_monitoring.five_minute_report.services;
 
 import centrikt.factory_monitoring.five_minute_report.dtos.messages.ReportMessage;
 import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequest;
+import centrikt.factory_monitoring.five_minute_report.dtos.requests.ProductRequest;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
+import centrikt.factory_monitoring.five_minute_report.dtos.responses.ProductResponse;
 import centrikt.factory_monitoring.five_minute_report.enums.Mode;
 import centrikt.factory_monitoring.five_minute_report.enums.Status;
+import centrikt.factory_monitoring.five_minute_report.enums.Type;
+import centrikt.factory_monitoring.five_minute_report.enums.UnitType;
 import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.five_minute_report.models.Position;
+import centrikt.factory_monitoring.five_minute_report.models.Product;
 import centrikt.factory_monitoring.five_minute_report.repos.PositionRepository;
+import centrikt.factory_monitoring.five_minute_report.repos.ProductRepository;
 import centrikt.factory_monitoring.five_minute_report.services.impl.PositionServiceImpl;
 import centrikt.factory_monitoring.five_minute_report.utils.filter.FilterUtil;
 import centrikt.factory_monitoring.five_minute_report.utils.validator.EntityValidator;
@@ -36,6 +42,9 @@ class PositionServiceImplTest {
     private PositionRepository positionRepository;
 
     @Mock
+    private ProductRepository productRepository;
+
+    @Mock
     private EntityValidator entityValidator;
 
     @Mock
@@ -50,6 +59,10 @@ class PositionServiceImplTest {
     private PositionRequest positionRequest;
     private Position position;
     private PositionResponse positionResponse;
+
+    private ProductRequest productRequest;
+    private Product product;
+    private ProductResponse productResponse;
 
     @BeforeEach
     void setUp() {
@@ -75,6 +88,33 @@ class PositionServiceImplTest {
         positionResponse.setSensorNumber("67_03");
         positionResponse.setStatus(Status.ACCEPTED_IN_RAR.getDescription());
         positionResponse.setMode(Mode.SHIPMENT.getDescription());
+
+        productRequest = new ProductRequest();
+        productRequest.setFullName("Product Name");
+        productRequest.setAlcCode("12345");
+        productRequest.setProductVCode("54321");
+        productRequest.setUnitType(UnitType.PACKED.getUnitType());
+        productRequest.setType(Type.ALCOHOL.getType());
+
+        product = new Product();
+        product.setId(1L);
+        product.setFullName("Product Name");
+        product.setAlcCode("12345");
+        product.setProductVCode("54321");
+        product.setUnitType(UnitType.PACKED);
+        product.setType(Type.ALCOHOL);
+
+        productResponse = new ProductResponse();
+        productResponse.setId(1L);
+        productResponse.setFullName("Product Name");
+        productResponse.setAlcCode("12345");
+        productResponse.setProductVCode("54321");
+        productResponse.setUnitType(UnitType.PACKED.getUnitType());
+        productResponse.setType(Type.ALCOHOL.getType());
+
+        positionRequest.setProduct(productRequest);
+        position.setProduct(product);
+        positionResponse.setProduct(productResponse);
     }
 
     @Test
@@ -102,6 +142,7 @@ class PositionServiceImplTest {
     @Test
     void update_ShouldUpdatePosition_WhenPositionExists() {
         when(positionRepository.findById(1L)).thenReturn(Optional.of(position));
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(positionRepository.save(any(Position.class))).thenReturn(position);
 
         PositionResponse response = positionService.update(1L, positionRequest);

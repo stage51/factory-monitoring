@@ -13,8 +13,7 @@ import java.time.ZonedDateTime;
 @Entity
 @Table(name = "positions")
 public class Position extends BaseEntity{
-    @ManyToOne(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.REMOVE})
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "product_id")
     private Product product;
     @Column(nullable = false)

@@ -4,9 +4,56 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="test sast">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="configure log journal">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/PositionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/PositionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/PositionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/extra/PageRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/extra/PageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/PositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/CrudService.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/ReadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/PositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/PositionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/PositionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/PositionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/DailyReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/DailyReportApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/PositionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/PositionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/PositionServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/ProductServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/ProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/PositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/CrudService.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/ReadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/PositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/PositionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/PositionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/PositionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/PositionServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/ProductServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/PositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/PositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/ProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/ProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/models/Position.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/CrudService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/ReadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/PositionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/PositionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/PositionServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/PositionServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/ModeReportApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/ModeReportApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/ProductControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/ProductControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/PositionServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/PositionServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/ProductServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/ProductServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,117 +130,121 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests$AuthControllerTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DailyReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FiveMinuteReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.testCreatePosition.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.api-gateway [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-server [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-server [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.config-server [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.daily-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.five-minute-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mode-report [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mode-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DailyReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.FiveMinuteReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MailServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ModeReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/mode-report&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.14941406&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor": "Run",
+    "JUnit.AuthServerApplicationTests$AuthControllerTests.executor": "Run",
+    "JUnit.AuthServerApplicationTests.executor": "Run",
+    "JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor": "Run",
+    "JUnit.AuthServiceImplTest.executor": "Debug",
+    "JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor": "Run",
+    "JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor": "Run",
+    "JUnit.DailyReportApplicationTests.executor": "Run",
+    "JUnit.EmailServiceImplTest.executor": "Run",
+    "JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor": "Run",
+    "JUnit.FilterUtilImplTest.executor": "Run",
+    "JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor": "Run",
+    "JUnit.FiveMinuteReportApplicationTests.executor": "Run",
+    "JUnit.HelpServiceImplTest.executor": "Run",
+    "JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor": "Run",
+    "JUnit.ModeReportApplicationTests.contextLoads.executor": "Run",
+    "JUnit.ModeReportApplicationTests.executor": "Run",
+    "JUnit.ModeReportApplicationTests.testCreatePosition.executor": "Run",
+    "JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor": "Run",
+    "JUnit.OrganizationControllerTest.executor": "Run",
+    "JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor": "Run",
+    "JUnit.PositionControllerIntegrationTest.executor": "Run",
+    "JUnit.PositionControllerTest (1).executor": "Run",
+    "JUnit.PositionControllerTest.executor": "Run",
+    "JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor": "Run",
+    "JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor": "Run",
+    "JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor": "Run",
+    "JUnit.PositionServiceImplTest (1).executor": "Run",
+    "JUnit.PositionServiceImplTest (2).executor": "Run",
+    "JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor": "Run",
+    "JUnit.PositionServiceImplTest.executor": "Run",
+    "JUnit.ProductControllerTest (1).executor": "Run",
+    "JUnit.ProductControllerTest.executor": "Run",
+    "JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor": "Run",
+    "JUnit.ProductServiceImplTest (1).executor": "Run",
+    "JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor": "Run",
+    "JUnit.ProductServiceImplTest.executor": "Run",
+    "JUnit.ProductServiceImplTest.update_ShouldUpdateProduct_WhenProductExists.executor": "Run",
+    "JUnit.RoleControllerTest.executor": "Run",
+    "JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor": "Run",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor": "Run",
+    "JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor": "Run",
+    "JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor": "Run",
+    "JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor": "Run",
+    "Maven.api-gateway [package].executor": "Run",
+    "Maven.auth-server [compile].executor": "Run",
+    "Maven.auth-server [test].executor": "Run",
+    "Maven.config-server [package].executor": "Run",
+    "Maven.daily-report [test].executor": "Run",
+    "Maven.five-minute-report [test].executor": "Run",
+    "Maven.microservice-utils [clean].executor": "Run",
+    "Maven.microservice-utils [install].executor": "Run",
+    "Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
+    "Maven.mode-report [package].executor": "Run",
+    "Maven.mode-report [test].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.AuthServerApplication.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.DailyReportApplication.executor": "Run",
+    "Spring Boot.DiscoveryServerApplication.executor": "Run",
+    "Spring Boot.FiveMinuteReportApplication.executor": "Run",
+    "Spring Boot.MailServiceApplication.executor": "Run",
+    "Spring Boot.ModeReportApplication.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "CSV-Groovy.csv.groovy",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/mode-report",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.14941406",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -212,11 +263,11 @@
       <recent name="centrikt.factorymonitoring.mailservice.services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="centrikt.factorymonitoring.modereport.dtos.requests" />
       <recent name="centrikt.factorymonitoring.authserver.exceptions" />
       <recent name="centrikt.factory_monitoring.daily_report.exceptions" />
       <recent name="centrikt.factory_monitoring.five_minute_report.exceptions" />
       <recent name="centrikt.factorymonitoring.modereport.exceptions" />
-      <recent name="centrikt.factory_monitoring.five_minute_report.exceptions.handlers" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -229,78 +280,77 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.PositionControllerTest">
-    <configuration name="AuthServerApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="centrikt.factorymonitoring.authserver.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factorymonitoring.authserver" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factorymonitoring.authserver.AuthServerApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="centrikt.factorymonitoring.authserver.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factorymonitoring.authserver.services" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factorymonitoring.authserver.services.AuthServiceImplTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="auth-server" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="centrikt.factorymonitoring.authserver.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factorymonitoring.authserver.services" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factorymonitoring.authserver.services.AuthServiceImplTest" />
-      <option name="METHOD_NAME" value="refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PositionControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DailyReportApplicationTests">
+    <configuration name="DailyReportApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="daily-report" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="centrikt.factory_monitoring.daily_report.controllers.*" />
+          <option name="PATTERN" value="centrikt.factory_monitoring.daily_report.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.daily_report.controllers" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.daily_report.controllers.PositionControllerTest" />
+      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.daily_report" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.daily_report.DailyReportApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="daily-report" />
+    <configuration name="PositionServiceImplTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="five-minute-report" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="centrikt.factory_monitoring.daily_report.controllers.*" />
+          <option name="PATTERN" value="centrikt.factory_monitoring.five_minute_report.services.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.daily_report.controllers" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.daily_report.controllers.ProductControllerTest" />
+      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.five_minute_report.services" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.five_minute_report.services.PositionServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PositionServiceImplTest (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="mode-report" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="centrikt.factorymonitoring.modereport.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="centrikt.factorymonitoring.modereport.services" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factorymonitoring.modereport.services.PositionServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="five-minute-report" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="centrikt.factory_monitoring.five_minute_report.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.five_minute_report.services" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.five_minute_report.services.ProductServiceImplTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ProductServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="daily-report" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="centrikt.factory_monitoring.daily_report.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.daily_report.services" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.daily_report.services.ProductServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -357,11 +407,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ProductControllerTest" />
-        <item itemvalue="JUnit.PositionControllerTest" />
-        <item itemvalue="JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken" />
-        <item itemvalue="JUnit.AuthServiceImplTest" />
-        <item itemvalue="JUnit.AuthServerApplicationTests" />
+        <item itemvalue="JUnit.DailyReportApplicationTests" />
+        <item itemvalue="JUnit.PositionServiceImplTest (1)" />
+        <item itemvalue="JUnit.PositionServiceImplTest (2)" />
+        <item itemvalue="JUnit.ProductServiceImplTest (1)" />
+        <item itemvalue="JUnit.ProductServiceImplTest" />
       </list>
     </recent_temporary>
   </component>
@@ -464,22 +514,18 @@
       <workItem from="1741278120662" duration="646000" />
       <workItem from="1741334674094" duration="197000" />
       <workItem from="1741691947120" duration="1466000" />
-    </task>
-    <task id="LOCAL-00030" summary="remove -DskipTests for services">
-      <option name="closed" value="true" />
-      <created>1737375432318</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1737375432318</updated>
-    </task>
-    <task id="LOCAL-00031" summary="add docker dependency for services in docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1737723297224</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1737723297224</updated>
+      <workItem from="1741938765537" duration="931000" />
+      <workItem from="1742288439887" duration="4452000" />
+      <workItem from="1742460349299" duration="1052000" />
+      <workItem from="1742547587842" duration="2783000" />
+      <workItem from="1743163546728" duration="3818000" />
+      <workItem from="1743172984712" duration="360000" />
+      <workItem from="1743419625462" duration="2301000" />
+      <workItem from="1743499901014" duration="387000" />
+      <workItem from="1743595442399" duration="2350000" />
+      <workItem from="1743753954104" duration="9014000" />
+      <workItem from="1744012518812" duration="12607000" />
+      <workItem from="1744099577532" duration="14954000" />
     </task>
     <task id="LOCAL-00032" summary="edit docker dependency for services in docker-compose.yml">
       <option name="closed" value="true" />
@@ -857,7 +903,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741278240584</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="test sast">
+      <option name="closed" value="true" />
+      <created>1741938955426</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1741938955427</updated>
+    </task>
+    <task id="LOCAL-00080" summary="configure log journal">
+      <option name="closed" value="true" />
+      <created>1743173343836</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1743173343836</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -887,7 +949,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change api gateway to https" />
     <MESSAGE value="add ports in configuration for services" />
     <MESSAGE value="add actuator in mail service" />
     <MESSAGE value="add gitlab ci script" />
@@ -912,7 +973,8 @@
     <MESSAGE value="edit report schemes" />
     <MESSAGE value="deploy test" />
     <MESSAGE value="test sast" />
-    <option name="LAST_COMMIT_MESSAGE" value="test sast" />
+    <MESSAGE value="configure log journal" />
+    <option name="LAST_COMMIT_MESSAGE" value="configure log journal" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
