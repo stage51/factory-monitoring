@@ -45,11 +45,9 @@ sast_api_gateway:
     - cd api-gateway
   script:
     - sonar-scanner -Dsonar.projectKey=api-gateway -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - api-gateway/**
-  needs:
-    - build_api_gateway
+  rules:
+    - changes:
+        - api-gateway/**
 
 sast_auth_server:
   <<: *sast_template
@@ -57,11 +55,9 @@ sast_auth_server:
     - cd auth-server
   script:
     - sonar-scanner -Dsonar.projectKey=auth-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - auth-server/**
-  needs:
-    - build_auth_server
+  rules:
+    - changes:
+        - auth-server/**
 
 sast_config_server:
   <<: *sast_template
@@ -69,11 +65,9 @@ sast_config_server:
     - cd config-server
   script:
     - sonar-scanner -Dsonar.projectKey=config-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - config-server/**
-  needs:
-    - build_config_server
+  rules:
+    - changes:
+        - config-server/**
 
 sast_daily_report:
   <<: *sast_template
@@ -81,11 +75,9 @@ sast_daily_report:
     - cd daily-report
   script:
     - sonar-scanner -Dsonar.projectKey=daily-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - daily-report/**
-  needs:
-    - build_daily_report
+  rules:
+    - changes:
+        - daily-report/**
 
 sast_five_minute_report:
   <<: *sast_template
@@ -93,11 +85,9 @@ sast_five_minute_report:
     - cd five-minute-report
   script:
     - sonar-scanner -Dsonar.projectKey=five-minute-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - five-minute-report/**
-  needs:
-    - build_five_minute_report
+  rules:
+    - changes:
+        - five-minute-report/**
 
 sast_mail_service:
   <<: *sast_template
@@ -105,11 +95,9 @@ sast_mail_service:
     - cd mail-service
   script:
     - sonar-scanner -Dsonar.projectKey=mail-server -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - mail-service/**
-  needs:
-    - build_mail_service
+  rules:
+    - changes:
+        - mail-service/**
 
 sast_mode_report:
   <<: *sast_template
@@ -117,11 +105,9 @@ sast_mode_report:
     - cd mode-report
   script:
     - sonar-scanner -Dsonar.projectKey=mode-report -Dsonar.sources=. -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
-  only:
-    changes:
-      - mode-report/**
-  needs:
-    - build_mode_report
+  rules:
+    - changes:
+        - mode-report/**
 
 # ----------------- BUILD JOBS -----------------
 
@@ -129,9 +115,9 @@ build_api_gateway:
   <<: *build_template
   before_script:
     - cd api-gateway
-  only:
-    changes:
-      - api-gateway/**
+  rules:
+    - changes:
+        - api-gateway/**
   cache:
     - key: cache_api_gateway
       paths:
@@ -145,9 +131,9 @@ build_auth_server:
   <<: *build_template
   before_script:
     - cd auth-server
-  only:
-    changes:
-      - auth-server/**
+  rules:
+    - changes:
+        - auth-server/**
   cache:
     - key: cache_auth_server
       paths:
@@ -161,9 +147,9 @@ build_config_server:
   <<: *build_template
   before_script:
     - cd config-server
-  only:
-    changes:
-      - config-server/**
+  rules:
+    - changes:
+        - config-server/**
   cache:
     - key: cache_config_server
       paths:
@@ -177,9 +163,9 @@ build_daily_report:
   <<: *build_template
   before_script:
     - cd daily-report
-  only:
-    changes:
-      - daily-report/**
+  rules:
+    - changes:
+        - daily-report/**
   cache:
     - key: cache_daily_report
       paths:
@@ -193,9 +179,9 @@ build_five_minute_report:
   <<: *build_template
   before_script:
     - cd five-minute-report
-  only:
-    changes:
-      - five-minute-report/**
+  rules:
+    - changes:
+        - five-minute-report/**
   cache:
     - key: cache_five_minute_report
       paths:
@@ -209,9 +195,9 @@ build_mail_service:
   <<: *build_template
   before_script:
     - cd mail-service
-  only:
-    changes:
-      - mail-service/**
+  rules:
+    - changes:
+        - mail-service/**
   cache:
     - key: cache_mail_service
       paths:
@@ -225,9 +211,9 @@ build_mode_report:
   <<: *build_template
   before_script:
     - cd mode-report
-  only:
-    changes:
-      - mode-report/**
+  rules:
+    - changes:
+        - mode-report/**
   cache:
     - key: cache_mode_report
       paths:
@@ -245,9 +231,9 @@ test_api_gateway:
     - cd api-gateway
   needs:
     - build_api_gateway
-  only:
-    changes:
-      - api-gateway/**
+  rules:
+    - changes:
+        - api-gateway/**
 
 test_auth_server:
   <<: *test_template
@@ -255,9 +241,9 @@ test_auth_server:
     - cd auth-server
   needs:
     - build_auth_server
-  only:
-    changes:
-      - auth-server/**
+  rules:
+    - changes:
+        - auth-server/**
 
 test_config_server:
   <<: *test_template
@@ -265,9 +251,9 @@ test_config_server:
     - cd config-server
   needs:
     - build_config_server
-  only:
-    changes:
-      - config-server/**
+  rules:
+    - changes:
+        - config-server/**
 
 test_daily_report:
   <<: *test_template
@@ -275,9 +261,9 @@ test_daily_report:
     - cd daily-report
   needs:
     - build_daily_report
-  only:
-    changes:
-      - daily-report/**
+  rules:
+    - changes:
+        - daily-report/**
 
 test_five_minute_report:
   <<: *test_template
@@ -285,9 +271,9 @@ test_five_minute_report:
     - cd five-minute-report
   needs:
     - build_five_minute_report
-  only:
-    changes:
-      - five-minute-report/**
+  rules:
+    - changes:
+        - five-minute-report/**
 
 test_mail_service:
   <<: *test_template
@@ -295,9 +281,9 @@ test_mail_service:
     - cd mail-service
   needs:
     - build_mail_service
-  only:
-    changes:
-      - mail-service/**
+  rules:
+    - changes:
+        - mail-service/**
 
 test_mode_report:
   <<: *test_template
@@ -305,9 +291,9 @@ test_mode_report:
     - cd mode-report
   needs:
     - build_mode_report
-  only:
-    changes:
-      - mode-report/**
+  rules:
+    - changes:
+        - mode-report/**
 
 # ----------------- DEPLOY JOB -----------------
 
@@ -320,8 +306,8 @@ deploy:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
     - docker-compose build
     - docker-compose up -d
-  only:
-    - main
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
   needs:
     - job: test_api_gateway
       optional: true
@@ -337,4 +323,3 @@ deploy:
       optional: true
     - job: test_mode_report
       optional: true
-
