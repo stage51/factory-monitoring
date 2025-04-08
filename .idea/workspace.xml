@@ -475,15 +475,7 @@
       <workItem from="1743595442399" duration="2350000" />
       <workItem from="1743753954104" duration="9014000" />
       <workItem from="1744012518812" duration="12607000" />
-      <workItem from="1744099577532" duration="15531000" />
-    </task>
-    <task id="LOCAL-00034" summary="edit docker dependency for services in docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1737724523138</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1737724523138</updated>
+      <workItem from="1744099577532" duration="15875000" />
     </task>
     <task id="LOCAL-00035" summary="edit docker dependency for services in docker-compose.yml">
       <option name="closed" value="true" />
@@ -869,7 +861,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744122816063</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="fix gitlab-ci for checking changes in services">
+      <option name="closed" value="true" />
+      <created>1744123173433</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1744123173433</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
