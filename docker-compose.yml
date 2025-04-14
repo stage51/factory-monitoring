@@ -182,7 +182,7 @@ services:
       - app-net
   pg-dump-backup:
     build:
-      context: ./pg-dump-backup
+      context: pg-dump-backup
     container_name: pg-dump-backup
     environment:
       PGPASSWORD: postgres_password
@@ -208,8 +208,6 @@ volumes:
   consul-server-data:
     driver: local
   consul-agent-data:
-    driver: local
-  redis_data:
     driver: local
 networks:
   app-net:

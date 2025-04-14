@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup utilities via pgbackrest" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit backup method via pgdump">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/entrypoint.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/entrypoint.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/pgbackrest.conf" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/pgbackrest.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backup/scripts/cronjob" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/cronjob" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -484,15 +492,7 @@
       <workItem from="1744012518812" duration="12607000" />
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
-      <workItem from="1744617200347" duration="10721000" />
-    </task>
-    <task id="LOCAL-00041" summary="change test execution without docker context">
-      <option name="closed" value="true" />
-      <created>1737968696034</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1737968696034</updated>
+      <workItem from="1744617200347" duration="11049000" />
     </task>
     <task id="LOCAL-00042" summary="fix dockerfiles">
       <option name="closed" value="true" />
@@ -878,7 +878,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744645960009</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="edit backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744646521043</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1744646521043</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -908,7 +916,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change build method for gitlab" />
     <MESSAGE value="change tags for gitlab" />
     <MESSAGE value="change artifacts for gitlab" />
     <MESSAGE value="add test stage for gitlab ci" />
@@ -933,7 +940,8 @@
     <MESSAGE value="fix gitlab-ci for checking changes in services" />
     <MESSAGE value="add backup utilities via pgbackrest" />
     <MESSAGE value="fix backup utilities via pgbackrest" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix backup utilities via pgbackrest" />
+    <MESSAGE value="edit backup method via pgdump" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit backup method via pgdump" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
