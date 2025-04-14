@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix gitlab-ci for checking changes in services">
-      <change afterPath="$PROJECT_DIR$/backup/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup/pgbackrest.conf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backup/scripts/backup.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add backup utilities via pgbackrest">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -493,15 +486,7 @@
       <workItem from="1744012518812" duration="12607000" />
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
-      <workItem from="1744617200347" duration="8744000" />
-    </task>
-    <task id="LOCAL-00036" summary="edit docker dependency for services in docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1737727809808</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1737727809808</updated>
+      <workItem from="1744617200347" duration="9416000" />
     </task>
     <task id="LOCAL-00037" summary="edit dockerfiles">
       <option name="closed" value="true" />
@@ -887,7 +872,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744123263871</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="add backup utilities via pgbackrest">
+      <option name="closed" value="true" />
+      <created>1744644566210</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1744644566210</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -917,7 +910,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add gitlab ci script" />
     <MESSAGE value="change gitlab ci script only for build" />
     <MESSAGE value="change build method for gitlab" />
     <MESSAGE value="change tags for gitlab" />
@@ -942,7 +934,8 @@
     <MESSAGE value="configure log journal" />
     <MESSAGE value="edit architecture, domain model is only position, not product" />
     <MESSAGE value="fix gitlab-ci for checking changes in services" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix gitlab-ci for checking changes in services" />
+    <MESSAGE value="add backup utilities via pgbackrest" />
+    <option name="LAST_COMMIT_MESSAGE" value="add backup utilities via pgbackrest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

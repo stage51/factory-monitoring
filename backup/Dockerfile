@@ -12,6 +12,6 @@ COPY scripts/cronjob /etc/cron.d/pgbackrest-cron
 COPY entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /usr/local/bin/backup.sh /entrypoint.sh
-RUN chmod 0644 /etc/cron.d/pgbackrest-cron && crontab /etc/cron.d/pgbackrest-cron
+RUN chmod 0644 /etc/cron.d/pgbackrest-cron
 
 ENTRYPOINT ["/entrypoint.sh"]
