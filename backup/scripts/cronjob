@@ -1,1 +1,0 @@
-0 5 * * * root /usr/local/bin/backup.sh >> /var/log/pgbackrest/backup.log 2>&1

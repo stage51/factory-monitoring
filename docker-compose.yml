@@ -180,13 +180,14 @@ services:
       RABBITMQ_DEFAULT_PASS: admin  # Пароль по умолчанию
     networks:
       - app-net
-  pgbackrest-backup:
+  pg-dump-backup:
     build:
-      context: ./backup
-    container_name: pgbackrest-backup
+      context: ./pg-dump-backup
+    container_name: pg-dump-backup
+    environment:
+      PGPASSWORD: postgres_password
     volumes:
-      - user_postgres_data:/var/lib/postgresql/data:ro
-      - ./backups:/backups
+      - pg_dumps:/backups
     depends_on:
       - user_db
       - daily-report_db
@@ -194,7 +195,6 @@ services:
       - mode-report_db
     networks:
       - app-net
-
 
 volumes:
   mode_postgres_data:

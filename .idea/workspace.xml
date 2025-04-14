@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup utilities via pgbackrest">
-      <change beforePath="$PROJECT_DIR$/backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/backup/scripts/backup.sh" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup utilities via pgbackrest" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -486,23 +484,7 @@
       <workItem from="1744012518812" duration="12607000" />
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
-      <workItem from="1744617200347" duration="10319000" />
-    </task>
-    <task id="LOCAL-00039" summary="edit dockerfiles">
-      <option name="closed" value="true" />
-      <created>1737730831686</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1737730831686</updated>
-    </task>
-    <task id="LOCAL-00040" summary="edit dockerfiles add volume to dockerfiles and docker-compose.yml">
-      <option name="closed" value="true" />
-      <created>1737965081878</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1737965081878</updated>
+      <workItem from="1744617200347" duration="10721000" />
     </task>
     <task id="LOCAL-00041" summary="change test execution without docker context">
       <option name="closed" value="true" />
@@ -880,7 +862,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744645566911</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="fix backup utilities via pgbackrest">
+      <option name="closed" value="true" />
+      <created>1744645810750</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1744645810750</updated>
+    </task>
+    <task id="LOCAL-00089" summary="fix backup utilities via pgbackrest">
+      <option name="closed" value="true" />
+      <created>1744645960009</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1744645960009</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

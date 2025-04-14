@@ -1,0 +1,2 @@
+0 5 * * * root /scripts/backup.sh >> /var/log/pgdump.log 2>&1
+
