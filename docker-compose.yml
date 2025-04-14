@@ -209,7 +209,7 @@ volumes:
     driver: local
   consul-agent-data:
     driver: local
-  pg-dumps:
+  pg_dumps:
     driver: local
 networks:
   app-net:
