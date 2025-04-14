@@ -16,7 +16,7 @@ STANZAS=(user daily-report five-minute-report mode-report)
 
 for STANZA in "${STANZAS[@]}"; do
   echo ">>> Backing up stanza: $STANZA"
-  pgbackrest --stanza="$STANZA" backup --type
+  pgbackrest --stanza="$STANZA" --type="$BACKUP_TYPE" backup
 done
 
 echo ">>> Backup completed."
