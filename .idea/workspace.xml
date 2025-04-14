@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add backup utilities via pgbackrest">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup utilities via pgbackrest" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -486,15 +484,7 @@
       <workItem from="1744012518812" duration="12607000" />
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
-      <workItem from="1744617200347" duration="9416000" />
-    </task>
-    <task id="LOCAL-00037" summary="edit dockerfiles">
-      <option name="closed" value="true" />
-      <created>1737728354162</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1737728354162</updated>
+      <workItem from="1744617200347" duration="10007000" />
     </task>
     <task id="LOCAL-00038" summary="edit dockerfiles">
       <option name="closed" value="true" />
@@ -880,7 +870,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744644566210</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="fix backup utilities via pgbackrest">
+      <option name="closed" value="true" />
+      <created>1744645036064</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1744645036064</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -910,7 +908,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="change gitlab ci script only for build" />
     <MESSAGE value="change build method for gitlab" />
     <MESSAGE value="change tags for gitlab" />
     <MESSAGE value="change artifacts for gitlab" />
@@ -935,7 +932,8 @@
     <MESSAGE value="edit architecture, domain model is only position, not product" />
     <MESSAGE value="fix gitlab-ci for checking changes in services" />
     <MESSAGE value="add backup utilities via pgbackrest" />
-    <option name="LAST_COMMIT_MESSAGE" value="add backup utilities via pgbackrest" />
+    <MESSAGE value="fix backup utilities via pgbackrest" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix backup utilities via pgbackrest" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
