@@ -18,6 +18,7 @@
     <bytecodeTargetLevel>
       <module name="daily-report (1)" target="17" />
       <module name="discovery-server" target="17" />
+      <module name="ftp-client" target="17" />
       <module name="microservice-utils" target="17" />
     </bytecodeTargetLevel>
   </component>
@@ -30,6 +31,7 @@
       <module name="daily-report (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="five-minute-report" options="-parameters" />
+      <module name="ftp-client" options="-parameters" />
       <module name="mail-service" options="-parameters" />
       <module name="microservice-utils" options="-parameters" />
       <module name="mode-report" options="-parameters" />
