@@ -12,7 +12,17 @@ for db in "${databases[@]}"; do
   pg_dump -h "${db}_db" -d "$db" | gzip > "/backups/${db}_$(date +%Y-%m-%d).sql.gz"
 done
 
-echo ">>> Cleaning up old backups (older than 30 days)"
+echo ">>> Starting physical base backup"
+for db in "${databases[@]}"; do
+  basebackup_dir="/backups/${db}_basebackup_$(date +%Y-%m-%d)"
+  mkdir -p "$basebackup_dir"
+  pg_basebackup -h user_db -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P
+done
+
+echo ">>> Cleaning up old logical backups (*.sql.gz, older than 30 days)"
 find /backups -name "*.sql.gz" -mtime +30 -exec rm {} \;
+
+echo ">>> Cleaning up old physical backups (*_basebackup_*, older than 30 days)"
+find /backups -type d -name "*_basebackup_*" -mtime +30 -exec rm -rf {} \;
 
 echo ">>> Backup finished: $(date)"

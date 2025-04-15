@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -485,23 +488,7 @@
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
-      <workItem from="1744707199543" duration="3526000" />
-    </task>
-    <task id="LOCAL-00046" summary="fix consul docker-compose">
-      <option name="closed" value="true" />
-      <created>1737970697854</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1737970697854</updated>
-    </task>
-    <task id="LOCAL-00047" summary="fix consul docker-compose">
-      <option name="closed" value="true" />
-      <created>1737973669951</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1737973669951</updated>
+      <workItem from="1744707199543" duration="5596000" />
     </task>
     <task id="LOCAL-00048" summary="fix consul docker-compose">
       <option name="closed" value="true" />
@@ -879,7 +866,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744711138879</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="fix backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744711332149</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1744711332149</updated>
+    </task>
+    <task id="LOCAL-00096" summary="fix backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744711484362</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1744711484362</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
