@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -485,6 +489,7 @@
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
+      <workItem from="1744707199543" duration="3153000" />
     </task>
     <task id="LOCAL-00043" summary="fix docker-compose">
       <option name="closed" value="true" />
