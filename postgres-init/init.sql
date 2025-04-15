@@ -1,0 +1,1 @@
+ALTER ROLE postgres_admin WITH REPLICATION;

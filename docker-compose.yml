@@ -76,7 +76,7 @@ services:
     networks:
       - app-net
   user_db:
-    image: postgres
+    image: postgres:17.2
     container_name: user_db
     ports:
       - "8903:5432"
@@ -86,10 +86,15 @@ services:
       POSTGRES_DB: user
     volumes:
       - user_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
+
   daily-report_db:
-    image: postgres
+    image: postgres:17.2
     container_name: daily-report_db
     ports:
       - "8902:5432"
@@ -99,10 +104,15 @@ services:
       POSTGRES_DB: daily-report
     volumes:
       - daily_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
+
   five-minute-report_db:
-    image: postgres
+    image: postgres:17.2
     container_name: five-minute-report_db
     ports:
       - "8901:5432"
@@ -112,10 +122,15 @@ services:
       POSTGRES_DB: five-minute-report
     volumes:
       - five_minute_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
+
   mode-report_db:
-    image: postgres
+    image: postgres:17.2
     container_name: mode-report_db
     ports:
       - "8904:5432"
@@ -125,6 +140,10 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
   consul-server:
