@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix backup method via pgdump" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -489,31 +485,7 @@
       <workItem from="1744099577532" duration="17517000" />
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
-      <workItem from="1744707199543" duration="3153000" />
-    </task>
-    <task id="LOCAL-00043" summary="fix docker-compose">
-      <option name="closed" value="true" />
-      <created>1737970176537</created>
-      <option name="number" value="00043" />
-      <option name="presentableId" value="LOCAL-00043" />
-      <option name="project" value="LOCAL" />
-      <updated>1737970176537</updated>
-    </task>
-    <task id="LOCAL-00044" summary="fix consul docker-compose">
-      <option name="closed" value="true" />
-      <created>1737970408930</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1737970408930</updated>
-    </task>
-    <task id="LOCAL-00045" summary="fix consul docker-compose">
-      <option name="closed" value="true" />
-      <created>1737970553084</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1737970553084</updated>
+      <workItem from="1744707199543" duration="3526000" />
     </task>
     <task id="LOCAL-00046" summary="fix consul docker-compose">
       <option name="closed" value="true" />
@@ -883,7 +855,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744646738495</updated>
     </task>
-    <option name="localTasksCounter" value="92" />
+    <task id="LOCAL-00092" summary="fix backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744710822718</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1744710822719</updated>
+    </task>
+    <task id="LOCAL-00093" summary="fix backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744710852062</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1744710852062</updated>
+    </task>
+    <task id="LOCAL-00094" summary="fix backup method via pgdump">
+      <option name="closed" value="true" />
+      <created>1744711138879</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1744711138879</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

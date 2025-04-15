@@ -185,8 +185,8 @@ services:
       context: pg-dump-backup
     container_name: pg-dump-backup
     environment:
-      PGUSER: postgres_user
-      PGPASSWORD: postgres_admin
+      PGUSER: postgres_admin
+      PGPASSWORD: postgres_password
     volumes:
       - pg_dumps:/backups
     depends_on:
