@@ -207,6 +207,7 @@ services:
     environment:
       PGUSER: postgres_admin
       PGPASSWORD: postgres_password
+      PGSSLMODE: disable
     volumes:
       - pg_dumps:/backups
       - /var/run/docker.sock:/var/run/docker.sock

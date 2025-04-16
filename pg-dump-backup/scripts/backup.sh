@@ -2,6 +2,7 @@
 
 export PGUSER
 export PGPASSWORD
+export PGSSLMODE
 
 echo ">>> Starting pg_dump backup: $(date)"
 
@@ -16,7 +17,7 @@ echo ">>> Starting physical base backup"
 for db in "${databases[@]}"; do
   basebackup_dir="/backups/${db}_basebackup_$(date +%Y-%m-%d)"
   mkdir -p "$basebackup_dir"
-  pg_basebackup -h "${db}_db" -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P --no-ssl
+  pg_basebackup -h "${db}_db" -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P
 done
 
 echo ">>> Cleaning up old logical backups (*.sql.gz, older than 30 days)"
