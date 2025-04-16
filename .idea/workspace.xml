@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
-      <change beforePath="$PROJECT_DIR$/postgres-init/postgres.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/postgres.conf" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -488,15 +486,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
-      <workItem from="1744800592903" duration="1652000" />
-    </task>
-    <task id="LOCAL-00051" summary="fix filters for position service">
-      <option name="closed" value="true" />
-      <created>1737991083830</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1737991083830</updated>
+      <workItem from="1744800592903" duration="1957000" />
     </task>
     <task id="LOCAL-00052" summary="change api gateway to https">
       <option name="closed" value="true" />
@@ -882,7 +872,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744803566530</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744807384647</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1744807384647</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

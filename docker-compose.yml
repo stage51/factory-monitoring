@@ -90,7 +90,7 @@ services:
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
     command: >
-      chmod 777 /etc/postgresql/postgresql.conf
+      chmod 777 /etc/postgresql/postgresql.conf &&
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -110,7 +110,7 @@ services:
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
     command: >
-      chmod 777 /etc/postgresql/postgresql.conf
+      chmod 777 /etc/postgresql/postgresql.conf &&
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -130,7 +130,7 @@ services:
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
     command: >
-      chmod 777 /etc/postgresql/postgresql.conf
+      chmod 777 /etc/postgresql/postgresql.conf &&
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -150,7 +150,7 @@ services:
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
     command: >
-      chmod 777 /etc/postgresql/postgresql.conf
+      chmod 777 /etc/postgresql/postgresql.conf &&
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
