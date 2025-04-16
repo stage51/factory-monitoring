@@ -89,8 +89,7 @@ services:
       - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: >
-      chmod 777 /etc/postgresql/postgresql.conf &&
+    command:
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -109,8 +108,7 @@ services:
       - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: >
-      chmod 777 /etc/postgresql/postgresql.conf &&
+    command:
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -129,8 +127,7 @@ services:
       - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: >
-      chmod 777 /etc/postgresql/postgresql.conf &&
+    command:
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
@@ -149,8 +146,7 @@ services:
       - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
       - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: >
-      chmod 777 /etc/postgresql/postgresql.conf &&
+    command:
       postgres -c config_file=/etc/postgresql/postgresql.conf
     networks:
       - app-net
