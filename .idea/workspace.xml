@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add physical backup" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add physical backup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-init/postgres.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/postgres.conf" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="c96077eeb5b18e453dd6750c99765f06c9968ac0" />
+        <entry key="$PROJECT_DIR$" value="1aaa3d27cc610ffe41443c197ac70af384fdb113" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -364,11 +367,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.DailyReportApplicationTests" />
-        <item itemvalue="JUnit.PositionServiceImplTest (1)" />
-        <item itemvalue="JUnit.PositionServiceImplTest (2)" />
         <item itemvalue="JUnit.ProductServiceImplTest (1)" />
         <item itemvalue="JUnit.ProductServiceImplTest" />
+        <item itemvalue="JUnit.PositionServiceImplTest (2)" />
+        <item itemvalue="JUnit.PositionServiceImplTest (1)" />
+        <item itemvalue="JUnit.DailyReportApplicationTests" />
       </list>
     </recent_temporary>
   </component>
