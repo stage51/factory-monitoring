@@ -17,7 +17,7 @@ echo ">>> Starting physical base backup"
 for db in "${databases[@]}"; do
   basebackup_dir="/backups/${db}_basebackup_$(date +%Y-%m-%d)"
   mkdir -p "$basebackup_dir"
-  pg_basebackup -h "${db}_db" -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P
+  pg_basebackup -h "${db}_db" -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P --sslmode=disable
 done
 
 echo ">>> Cleaning up old logical backups (*.sql.gz, older than 30 days)"
