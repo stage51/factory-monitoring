@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -486,23 +489,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
-      <workItem from="1744800592903" duration="1957000" />
-    </task>
-    <task id="LOCAL-00052" summary="change api gateway to https">
-      <option name="closed" value="true" />
-      <created>1738317357044</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1738317357044</updated>
-    </task>
-    <task id="LOCAL-00053" summary="add ports in configuration for services">
-      <option name="closed" value="true" />
-      <created>1739444444920</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1739444444920</updated>
+      <workItem from="1744800592903" duration="3201000" />
     </task>
     <task id="LOCAL-00054" summary="add actuator in mail service">
       <option name="closed" value="true" />
@@ -880,7 +867,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744807384647</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744807565062</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1744807565062</updated>
+    </task>
+    <task id="LOCAL-00102" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744807778746</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1744807778746</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

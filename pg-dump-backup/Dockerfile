@@ -1,7 +1,7 @@
 FROM postgres:17.2
 
 RUN apt-get update && \
-    apt-get install -y cron gzip && \
+    apt-get install -y cron gzip docker.io && \
     rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /backups /scripts
