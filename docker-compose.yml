@@ -207,9 +207,12 @@ services:
     environment:
       PGUSER: postgres_admin
       PGPASSWORD: postgres_password
-      PGSSLMODE: disable
     volumes:
       - pg_dumps:/backups
+      - user_postgres_data:/pgdata/user
+      - daily_postgres_data:/pgdata/daily
+      - five_minute_postgres_data:/pgdata/five
+      - mode_postgres_data:/pgdata/mode
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - user_db
@@ -218,6 +221,7 @@ services:
       - mode-report_db
     networks:
       - app-net
+
 
 
 volumes:
