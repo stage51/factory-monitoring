@@ -7,6 +7,7 @@
     <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/postgres-init/pg_hba.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/pg_hba.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-init/postgresql.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/postgresql.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -489,6 +490,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
+      <workItem from="1744887343186" duration="2186000" />
     </task>
     <task id="LOCAL-00055" summary="add gitlab ci script">
       <option name="closed" value="true" />
