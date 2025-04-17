@@ -17,3 +17,4 @@ RUN crontab /etc/cron.d/pgdump-cron
 VOLUME /backups
 
 ENTRYPOINT ["/entrypoint.sh"]
+

@@ -27,3 +27,4 @@ echo ">>> Cleaning up old physical backups (*_basebackup_*, older than 30 days)"
 find /backups -type d -name "*_basebackup_*" -mtime +30 -exec rm -rf {} \;
 
 echo ">>> Backup finished: $(date)"
+
