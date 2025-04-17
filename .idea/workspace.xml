@@ -488,15 +488,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
-      <workItem from="1744887343186" duration="4549000" />
-    </task>
-    <task id="LOCAL-00056" summary="change gitlab ci script only for build">
-      <option name="closed" value="true" />
-      <created>1740582002449</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1740582002449</updated>
+      <workItem from="1744887343186" duration="5328000" />
     </task>
     <task id="LOCAL-00057" summary="change build method for gitlab">
       <option name="closed" value="true" />
@@ -882,7 +874,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744889648632</updated>
     </task>
-    <option name="localTasksCounter" value="105" />
+    <task id="LOCAL-00105" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744893331448</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1744893331448</updated>
+    </task>
+    <option name="localTasksCounter" value="106" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
