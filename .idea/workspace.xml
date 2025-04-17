@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/cronjob" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/cronjob" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -493,22 +490,6 @@
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
     </task>
-    <task id="LOCAL-00064" summary="optimize ci/cd for gitlab">
-      <option name="closed" value="true" />
-      <created>1740751708163</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1740751708163</updated>
-    </task>
-    <task id="LOCAL-00065" summary="delete docker-compose down in gitlab-ci">
-      <option name="closed" value="true" />
-      <created>1740751760443</created>
-      <option name="number" value="00065" />
-      <option name="presentableId" value="LOCAL-00065" />
-      <option name="project" value="LOCAL" />
-      <updated>1740751760443</updated>
-    </task>
     <task id="LOCAL-00066" summary="edit deploy in gitlab ci/cd">
       <option name="closed" value="true" />
       <created>1740751867706</created>
@@ -885,7 +866,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744907540644</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744907624192</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1744907624192</updated>
+    </task>
+    <task id="LOCAL-00114" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744907662757</created>
+      <option name="number" value="00114" />
+      <option name="presentableId" value="LOCAL-00114" />
+      <option name="project" value="LOCAL" />
+      <updated>1744907662757</updated>
+    </task>
+    <option name="localTasksCounter" value="115" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
