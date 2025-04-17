@@ -86,7 +86,7 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: user
     volumes:
-      - mode_postgres_data:/var/lib/postgresql/data
+      - user_postgres_data:/var/lib/postgresql/data
       - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
       - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -104,7 +104,7 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: daily-report
     volumes:
-      - mode_postgres_data:/var/lib/postgresql/data
+      - daily_postgres_data:/var/lib/postgresql/data
       - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
       - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -122,7 +122,7 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: five-minute-report
     volumes:
-      - mode_postgres_data:/var/lib/postgresql/data
+      - five_minute_postgres_data:/var/lib/postgresql/data
       - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
       - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
@@ -207,9 +207,12 @@ services:
     environment:
       PGUSER: postgres_admin
       PGPASSWORD: postgres_password
-      PGSSLMODE: disable
     volumes:
       - pg_dumps:/backups
+      - user_postgres_data:/pgdata/user
+      - daily_postgres_data:/pgdata/daily
+      - five_minute_postgres_data:/pgdata/five
+      - mode_postgres_data:/pgdata/mode
       - /var/run/docker.sock:/var/run/docker.sock
     depends_on:
       - user_db
@@ -218,6 +221,7 @@ services:
       - mode-report_db
     networks:
       - app-net
+
 
 
 volumes:
