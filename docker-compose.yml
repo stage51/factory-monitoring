@@ -50,7 +50,7 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - five_minute-report_db
+      - five-minute-report_db
       - config-server
     networks:
       - app-net
@@ -122,7 +122,7 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: five-minute-report
     volumes:
-      - five-minute_postgres_data:/var/lib/postgresql/data
+      - five_minute_postgres_data:/var/lib/postgresql/data
       - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
       - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
