@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
-      <change beforePath="$PROJECT_DIR$/postgres-init/pg_hba.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/pg_hba.conf" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -488,15 +486,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
-      <workItem from="1744887343186" duration="5986000" />
-    </task>
-    <task id="LOCAL-00058" summary="change tags for gitlab">
-      <option name="closed" value="true" />
-      <created>1740654356722</created>
-      <option name="number" value="00058" />
-      <option name="presentableId" value="LOCAL-00058" />
-      <option name="project" value="LOCAL" />
-      <updated>1740654356722</updated>
+      <workItem from="1744887343186" duration="6592000" />
     </task>
     <task id="LOCAL-00059" summary="change artifacts for gitlab">
       <option name="closed" value="true" />
@@ -882,7 +872,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744894134567</updated>
     </task>
-    <option name="localTasksCounter" value="107" />
+    <task id="LOCAL-00107" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744894858111</created>
+      <option name="number" value="00107" />
+      <option name="presentableId" value="LOCAL-00107" />
+      <option name="project" value="LOCAL" />
+      <updated>1744894858111</updated>
+    </task>
+    <option name="localTasksCounter" value="108" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
