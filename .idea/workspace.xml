@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
-      <change afterPath="$PROJECT_DIR$/pg-dump-backup/pgbackrest-entrypoint.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pg-dump-backup/pgbackrest.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/entrypoint.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/backup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/backup.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/scripts/cronjob" beforeDir="false" afterPath="$PROJECT_DIR$/pg-dump-backup/cronjob" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -494,23 +489,7 @@
       <workItem from="1744383249926" duration="2033000" />
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
-      <workItem from="1744887343186" duration="10328000" />
-    </task>
-    <task id="LOCAL-00060" summary="add test stage for gitlab ci">
-      <option name="closed" value="true" />
-      <created>1740665535511</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1740665535511</updated>
-    </task>
-    <task id="LOCAL-00061" summary="edit test stage and add deploy stage for gitlab ci">
-      <option name="closed" value="true" />
-      <created>1740739101279</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1740739101279</updated>
+      <workItem from="1744887343186" duration="10639000" />
     </task>
     <task id="LOCAL-00062" summary="update gitlab-ci">
       <option name="closed" value="true" />
@@ -888,7 +867,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744895326527</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744904152194</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1744904152194</updated>
+    </task>
+    <task id="LOCAL-00110" summary="fix physical backup">
+      <option name="closed" value="true" />
+      <created>1744904227216</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1744904227216</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
