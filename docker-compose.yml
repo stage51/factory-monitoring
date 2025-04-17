@@ -86,11 +86,11 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: user
     volumes:
-      - user_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - mode_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
     networks:
       - app-net
 
@@ -104,11 +104,11 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: daily-report
     volumes:
-      - daily_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - mode_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
     networks:
       - app-net
 
@@ -122,11 +122,11 @@ services:
       POSTGRES_USER: postgres_admin
       POSTGRES_DB: five-minute-report
     volumes:
-      - five_minute_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - mode_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
     networks:
       - app-net
 
@@ -141,10 +141,10 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/etc/postgresql/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/etc/postgresql/postgresql.conf
+      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
+      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/etc/postgresql/postgresql.conf
+    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
     networks:
       - app-net
   consul-server:
