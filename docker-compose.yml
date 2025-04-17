@@ -50,7 +50,7 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - five-minute-report_db
+      - five_minute-report_db
       - config-server
     networks:
       - app-net
