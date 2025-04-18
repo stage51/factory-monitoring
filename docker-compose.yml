@@ -11,6 +11,7 @@ services:
       - config-server
     networks:
       - app-net
+
   auth-server:
     build:
       context: ./auth-server
@@ -22,6 +23,7 @@ services:
       - config-server
     networks:
       - app-net
+
   config-server:
     build:
       context: ./config-server
@@ -32,6 +34,7 @@ services:
       - consul-server
     networks:
       - app-net
+
   daily-report:
     build:
       context: ./daily-report
@@ -43,6 +46,7 @@ services:
       - config-server
     networks:
       - app-net
+
   five-minute-report:
     build:
       context: ./five-minute-report
@@ -54,6 +58,7 @@ services:
       - config-server
     networks:
       - app-net
+
   mail-service:
     build:
       context: ./mail-service
@@ -64,6 +69,7 @@ services:
       - config-server
     networks:
       - app-net
+
   mode-report:
     build:
       context: ./mode-report
@@ -87,10 +93,9 @@ services:
       POSTGRES_DB: user
     volumes:
       - user_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
 
@@ -105,10 +110,9 @@ services:
       POSTGRES_DB: daily-report
     volumes:
       - daily_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
 
@@ -123,10 +127,9 @@ services:
       POSTGRES_DB: five-minute-report
     volumes:
       - five_minute_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
 
@@ -141,23 +144,23 @@ services:
       POSTGRES_DB: mode-report
     volumes:
       - mode_postgres_data:/var/lib/postgresql/data
-      - ./postgres-init/pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
-      - ./postgres-init/postgresql.conf:/var/lib/postgresql/data/postgresql.conf
+      - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
-    command: postgres -c config_file=/var/lib/postgresql/data/postgresql.conf
+    command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
+
   consul-server:
     image: hashicorp/consul:1.20.1
     container_name: consul-server
     ports:
-      - "8500:8500"      # HTTP интерфейс
-      - "8600:8600/udp"  # DNS
-      - "8300:8300"      # RPC
-      - "8301:8301"      # Сервер LAN
-      - "8301:8301/udp"  # Сервер LAN UDP
-      - "8302:8302"      # Сервер WAN
-      - "8302:8302/udp"  # Сервер WAN UDP
+      - "8500:8500"
+      - "8600:8600/udp"
+      - "8300:8300"
+      - "8301:8301"
+      - "8301:8301/udp"
+      - "8302:8302"
+      - "8302:8302/udp"
     command: >
       consul agent -server -bootstrap-expect=1
       -data-dir=/consul/data
@@ -173,6 +176,7 @@ services:
       CONSUL_BIND_INTERFACE: eth0
     networks:
       - app-net
+
   consul-agent:
     image: hashicorp/consul:1.20.1
     container_name: consul-agent
@@ -189,17 +193,19 @@ services:
       - ./config/consul_acl.json:/consul/config/consul_acl.json
     networks:
       - app-net
+
   rabbitmq:
     image: rabbitmq:management
     container_name: rabbitmq
     ports:
-      - "5672:5672"  # Порт для взаимодействия с RabbitMQ
-      - "15672:15672"  # Порт для панели управления RabbitMQ
+      - "5672:5672"
+      - "15672:15672"
     environment:
-      RABBITMQ_DEFAULT_USER: admin  # Логин по умолчанию
-      RABBITMQ_DEFAULT_PASS: admin  # Пароль по умолчанию
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
     networks:
       - app-net
+
   pg-dump-backup:
     build:
       context: pg-dump-backup
@@ -210,10 +216,6 @@ services:
       PGSSLMODE: disable
     volumes:
       - pg_dumps:/backups
-      - user_postgres_data:/pgdata/user
-      - daily_postgres_data:/pgdata/daily
-      - five_minute_postgres_data:/pgdata/five
-      - mode_postgres_data:/pgdata/mode
     depends_on:
       - user_db
       - daily-report_db
@@ -222,22 +224,15 @@ services:
     networks:
       - app-net
 
-
 volumes:
   mode_postgres_data:
-    driver: local
   daily_postgres_data:
-    driver: local
   five_minute_postgres_data:
-    driver: local
   user_postgres_data:
-    driver: local
   consul-server-data:
-    driver: local
   consul-agent-data:
-    driver: local
   pg_dumps:
-    driver: local
+
 networks:
   app-net:
     driver: bridge
