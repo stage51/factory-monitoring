@@ -95,6 +95,7 @@ services:
       - user_postgres_data:/var/lib/postgresql/data
       - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - user_wal_archive:/var/lib/postgresql/wal_archive
     command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
@@ -112,6 +113,7 @@ services:
       - daily_postgres_data:/var/lib/postgresql/data
       - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - daily_wal_archive:/var/lib/postgresql/wal_archive
     command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
@@ -129,6 +131,7 @@ services:
       - five_minute_postgres_data:/var/lib/postgresql/data
       - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - five_minute_wal_archive:/var/lib/postgresql/wal_archive
     command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
@@ -146,6 +149,7 @@ services:
       - mode_postgres_data:/var/lib/postgresql/data
       - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - mode_wal_archive:/var/lib/postgresql/wal_archive
     command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
     networks:
       - app-net
@@ -226,9 +230,13 @@ services:
 
 volumes:
   mode_postgres_data:
+  mode_wal_archive:
   daily_postgres_data:
+  daily__wal_archive:
   five_minute_postgres_data:
+  five_minute_wal_archive:
   user_postgres_data:
+  user_wal_archive:
   consul-server-data:
   consul-agent-data:
   pg_dumps:
