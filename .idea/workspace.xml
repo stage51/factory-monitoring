@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix wal archive write">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix consul acl mount" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -491,15 +489,7 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
-      <workItem from="1744963593195" duration="10761000" />
-    </task>
-    <task id="LOCAL-00079" summary="test sast">
-      <option name="closed" value="true" />
-      <created>1741938955426</created>
-      <option name="number" value="00079" />
-      <option name="presentableId" value="LOCAL-00079" />
-      <option name="project" value="LOCAL" />
-      <updated>1741938955427</updated>
+      <workItem from="1744963593195" duration="11064000" />
     </task>
     <task id="LOCAL-00080" summary="configure log journal">
       <option name="closed" value="true" />
@@ -885,7 +875,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744978852877</updated>
     </task>
-    <option name="localTasksCounter" value="128" />
+    <task id="LOCAL-00128" summary="fix consul acl mount">
+      <option name="closed" value="true" />
+      <created>1744979815260</created>
+      <option name="number" value="00128" />
+      <option name="presentableId" value="LOCAL-00128" />
+      <option name="project" value="LOCAL" />
+      <updated>1744979815260</updated>
+    </task>
+    <option name="localTasksCounter" value="129" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -915,7 +913,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="ci/cd test for all services" />
     <MESSAGE value="edit maven command for ci/cd test for all services" />
     <MESSAGE value="edit gitlab artefacts" />
     <MESSAGE value="edit test method for ci/cd" />
@@ -940,7 +937,8 @@
     <MESSAGE value="fix incr dependency for postgres" />
     <MESSAGE value="fix initdb" />
     <MESSAGE value="fix wal archive write" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix wal archive write" />
+    <MESSAGE value="fix consul acl mount" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix consul acl mount" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
