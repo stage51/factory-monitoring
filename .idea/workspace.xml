@@ -489,15 +489,7 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
-      <workItem from="1744963593195" duration="3430000" />
-    </task>
-    <task id="LOCAL-00070" summary="edit test method for ci/cd">
-      <option name="closed" value="true" />
-      <created>1741012053531</created>
-      <option name="number" value="00070" />
-      <option name="presentableId" value="LOCAL-00070" />
-      <option name="project" value="LOCAL" />
-      <updated>1741012053531</updated>
+      <workItem from="1744963593195" duration="3803000" />
     </task>
     <task id="LOCAL-00071" summary="fix artefacts in gitlab ci/cd">
       <option name="closed" value="true" />
@@ -883,7 +875,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744972119254</updated>
     </task>
-    <option name="localTasksCounter" value="119" />
+    <task id="LOCAL-00119" summary="fix incr dependency for postgres">
+      <option name="closed" value="true" />
+      <created>1744972423734</created>
+      <option name="number" value="00119" />
+      <option name="presentableId" value="LOCAL-00119" />
+      <option name="project" value="LOCAL" />
+      <updated>1744972423734</updated>
+    </task>
+    <option name="localTasksCounter" value="120" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

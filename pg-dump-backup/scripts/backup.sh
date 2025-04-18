@@ -20,17 +20,26 @@ for db in "${databases[@]}"; do
     pg_basebackup \
       -h "${db}_db" -D "$full_dir" -U "$PGUSER" \
       -Fp -Xs -P --write-recovery-conf
-    manifest="${full_dir}/backup_manifest"
 
   else
     echo ">>> [${db}] INCREMENTAL backup"
     last_manifest=$(ls -d /backups/${db}_{full,incr}_* | sort | tail -n1)/backup_manifest
-    incr_dir="/backups/${db}_incr_$(date +%F)"
-    mkdir -p "$incr_dir"
-    pg_basebackup \
-      --incremental="$last_manifest" \
-      -h "${db}_db" -D "$incr_dir" -U "$PGUSER" \
-      -Fp -Xs -P --write-recovery-conf
+    if [ -f "$last_manifest" ]; then
+      echo ">>> [${db}] INCREMENTAL backup using manifest: $last_manifest"
+      incr_dir="/backups/${db}_incr_$(date +%F)"
+      mkdir -p "$incr_dir"
+      pg_basebackup \
+            --incremental="$last_manifest" \
+            -h "${db}_db" -D "$incr_dir" -U "$PGUSER" \
+            -Fp -Xs -P --write-recovery-conf
+    else
+      echo ">>> [${db}] No manifest found — performing FULL backup instead"
+      full_dir="/backups/${db}_full_$(date +%F)"
+      mkdir -p "$full_dir"
+      pg_basebackup \
+            -h "${db}_db" -D "$full_dir" -U "$PGUSER" \
+            -Fp -Xs -P --write-recovery-conf
+    fi
   fi
 done
 
