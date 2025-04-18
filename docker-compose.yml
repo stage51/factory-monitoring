@@ -77,8 +77,7 @@ services:
       - app-net
 
   user_db:
-    build:
-      context: ./postgres-init
+    image: postgres:17.2
     container_name: user_db
     ports:
       - "8903:5432"
@@ -96,8 +95,7 @@ services:
       - app-net
 
   daily-report_db:
-    build:
-      context: ./postgres-init
+    image: postgres:17.2
     container_name: daily-report_db
     ports:
       - "8902:5432"
@@ -115,8 +113,7 @@ services:
       - app-net
 
   five-minute-report_db:
-    build:
-      context: ./postgres-init
+    image: postgres:17.2
     container_name: five-minute-report_db
     ports:
       - "8901:5432"
@@ -134,8 +131,7 @@ services:
       - app-net
 
   mode-report_db:
-    build:
-      context: ./postgres-init
+    image: postgres:17.2
     container_name: mode-report_db
     ports:
       - "8904:5432"
@@ -214,7 +210,10 @@ services:
       PGSSLMODE: disable
     volumes:
       - pg_dumps:/backups
-      - /var/run/docker.sock:/var/run/docker.sock
+      - user_postgres_data:/pgdata/user
+      - daily_postgres_data:/pgdata/daily
+      - five_minute_postgres_data:/pgdata/five
+      - mode_postgres_data:/pgdata/mode
     depends_on:
       - user_db
       - daily-report_db
