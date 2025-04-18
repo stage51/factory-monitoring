@@ -232,7 +232,7 @@ volumes:
   mode_postgres_data:
   mode_wal_archive:
   daily_postgres_data:
-  daily__wal_archive:
+  daily_wal_archive:
   five_minute_postgres_data:
   five_minute_wal_archive:
   user_postgres_data:
