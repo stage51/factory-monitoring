@@ -1,8 +1,17 @@
-FROM postgres:17.2
+FROM debian:bullseye-slim
+
+ENV PG_VERSION=17.2
+ENV PATH="/usr/local/pgsql/bin:$PATH"
 
 RUN apt-get update && \
-    apt-get install -y cron gzip && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y build-essential libreadline-dev zlib1g-dev wget git cron gzip
+
+WORKDIR /usr/src
+RUN wget https://ftp.postgresql.org/pub/source/v$PG_VERSION/postgresql-$PG_VERSION.tar.gz && \
+    tar -xzf postgresql-$PG_VERSION.tar.gz && \
+    cd postgresql-$PG_VERSION && \
+    ./configure --with-includes=/usr/include --with-libraries=/usr/lib --with-incremental-backup && \
+    make && make install
 
 RUN mkdir -p /backups /scripts
 
