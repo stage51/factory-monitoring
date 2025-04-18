@@ -77,7 +77,7 @@ services:
       - app-net
 
   user_db:
-    image: postgres:17.2
+    image: postgres:17.2-bookworm
     container_name: user_db
     ports:
       - "8903:5432"
@@ -95,7 +95,7 @@ services:
       - app-net
 
   daily-report_db:
-    image: postgres:17.2
+    image: postgres:17.2-bookworm
     container_name: daily-report_db
     ports:
       - "8902:5432"
@@ -113,7 +113,7 @@ services:
       - app-net
 
   five-minute-report_db:
-    image: postgres:17.2
+    image: postgres:17.2-bookworm
     container_name: five-minute-report_db
     ports:
       - "8901:5432"
@@ -131,7 +131,7 @@ services:
       - app-net
 
   mode-report_db:
-    image: postgres:17.2
+    image: postgres:17.2-bookworm
     container_name: mode-report_db
     ports:
       - "8904:5432"
