@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix initdb">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix wal archive write" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -491,23 +489,7 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
-      <workItem from="1744963593195" duration="9244000" />
-    </task>
-    <task id="LOCAL-00076" summary="edit report schemes">
-      <option name="closed" value="true" />
-      <created>1741260332297</created>
-      <option name="number" value="00076" />
-      <option name="presentableId" value="LOCAL-00076" />
-      <option name="project" value="LOCAL" />
-      <updated>1741260332297</updated>
-    </task>
-    <task id="LOCAL-00077" summary="deploy test">
-      <option name="closed" value="true" />
-      <created>1741260525537</created>
-      <option name="number" value="00077" />
-      <option name="presentableId" value="LOCAL-00077" />
-      <option name="project" value="LOCAL" />
-      <updated>1741260525537</updated>
+      <workItem from="1744963593195" duration="9703000" />
     </task>
     <task id="LOCAL-00078" summary="test sast">
       <option name="closed" value="true" />
@@ -885,7 +867,23 @@
       <option name="project" value="LOCAL" />
       <updated>1744977763163</updated>
     </task>
-    <option name="localTasksCounter" value="125" />
+    <task id="LOCAL-00125" summary="fix wal archive write">
+      <option name="closed" value="true" />
+      <created>1744978338307</created>
+      <option name="number" value="00125" />
+      <option name="presentableId" value="LOCAL-00125" />
+      <option name="project" value="LOCAL" />
+      <updated>1744978338307</updated>
+    </task>
+    <task id="LOCAL-00126" summary="fix wal archive write">
+      <option name="closed" value="true" />
+      <created>1744978518823</created>
+      <option name="number" value="00126" />
+      <option name="presentableId" value="LOCAL-00126" />
+      <option name="project" value="LOCAL" />
+      <updated>1744978518823</updated>
+    </task>
+    <option name="localTasksCounter" value="127" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -915,7 +913,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tags in gitlab ci/cd" />
     <MESSAGE value="ci/cd test for all services" />
     <MESSAGE value="edit maven command for ci/cd test for all services" />
     <MESSAGE value="edit gitlab artefacts" />
@@ -940,7 +937,8 @@
     <MESSAGE value="add incr dependency for postgres" />
     <MESSAGE value="fix incr dependency for postgres" />
     <MESSAGE value="fix initdb" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix initdb" />
+    <MESSAGE value="fix wal archive write" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix wal archive write" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
