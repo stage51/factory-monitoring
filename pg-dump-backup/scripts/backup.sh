@@ -1,30 +1,44 @@
 #!/bin/bash
 
-export PGUSER
-export PGPASSWORD
-export PGSSLMODE
+export PGUSER=postgres_admin
+export PGPASSWORD=your_password
+export PGSSLMODE=disable
 
-echo ">>> Starting pg_dump backup: $(date)"
+echo ">>> Backup started at: $(date)"
 
 databases=("user" "daily-report" "five-minute-report" "mode-report")
 
-for db in "${databases[@]}"; do
-  echo ">>> Dumping database: $db"
-  pg_dump -h "${db}_db" -d "$db" | gzip > "/backups/${db}_$(date +%Y-%m-%d).sql.gz"
-done
+day_of_week=$(date +%u)
 
-echo ">>> Starting physical base backup"
-for db in "${databases[@]}"; do
-  basebackup_dir="/backups/${db}_basebackup_$(date +%Y-%m-%d)"
-  mkdir -p "$basebackup_dir"
-  pg_basebackup -h "${db}_db" -D "$basebackup_dir" -U "$PGUSER" -Fp -Xs -P
-done
+if [ "$day_of_week" -eq 7 ]; then
+  echo ">>> Performing FULL backups (logical + physical)"
+
+  for db in "${databases[@]}"; do
+    echo ">>> Dumping database: $db"
+    pg_dump -h "${db}_db" -d "$db" | gzip > "/backups/${db}_dump_full_$(date +%F).sql.gz"
+  done
+
+  for db in "${databases[@]}"; do
+    backup_dir="/backups/${db}_backup_full_$(date +%F)"
+    mkdir -p "$backup_dir"
+    pg_basebackup -h "${db}_db" -D "$backup_dir" -U "$PGUSER" -Fp -Xs -P --write-recovery-conf
+  done
+
+else
+  echo ">>> Performing INCREMENTAL physical backups only"
+
+  for db in "${databases[@]}"; do
+    backup_dir="/backups/${db}_backup_incr_$(date +%F)"
+    mkdir -p "$backup_dir"
+    pg_basebackup -h "${db}_db" -D "$backup_dir" -U "$PGUSER" -Fp -Xs -P \
+      --incremental-mode=delta --write-recovery-conf
+  done
+fi
 
 echo ">>> Cleaning up old logical backups (*.sql.gz, older than 30 days)"
 find /backups -name "*.sql.gz" -mtime +30 -exec rm {} \;
 
-echo ">>> Cleaning up old physical backups (*_basebackup_*, older than 30 days)"
-find /backups -type d -name "*_basebackup_*" -mtime +30 -exec rm -rf {} \;
+echo ">>> Cleaning up old physical backups (*_backup_*, older than 30 days)"
+find /backups -type d -name "*_backup_*" -mtime +30 -exec rm -rf {} \;
 
-echo ">>> Backup finished: $(date)"
-
+echo ">>> Backup completed at: $(date)"

@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix physical backup">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/backup.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/pgbackrest-entrypoint.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pg-dump-backup/pgbackrest.conf" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -489,6 +494,7 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
+      <workItem from="1744963593195" duration="1316000" />
     </task>
     <task id="LOCAL-00066" summary="edit deploy in gitlab ci/cd">
       <option name="closed" value="true" />
