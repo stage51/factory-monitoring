@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add incr physical backup" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add incr dependency for postgres" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -489,15 +489,7 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
-      <workItem from="1744963593195" duration="1622000" />
-    </task>
-    <task id="LOCAL-00067" summary="add tags in gitlab ci/cd">
-      <option name="closed" value="true" />
-      <created>1740751973043</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1740751973043</updated>
+      <workItem from="1744963593195" duration="2026000" />
     </task>
     <task id="LOCAL-00068" summary="ci/cd test for all services">
       <option name="closed" value="true" />
@@ -883,7 +875,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744970316207</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="add incr dependency for postgres">
+      <option name="closed" value="true" />
+      <created>1744970758637</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1744970758637</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -913,7 +913,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="optimize ci/cd for gitlab" />
     <MESSAGE value="delete docker-compose down in gitlab-ci" />
     <MESSAGE value="edit deploy in gitlab ci/cd" />
     <MESSAGE value="add tags in gitlab ci/cd" />
@@ -938,7 +937,8 @@
     <MESSAGE value="Revert &quot;fix physical backup&quot;&#10;&#10;This reverts commit 43a6b6a807cc68aee39eae0fb809fbf5eb198e4b.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="fix physical backup" />
     <MESSAGE value="add incr physical backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="add incr physical backup" />
+    <MESSAGE value="add incr dependency for postgres" />
+    <option name="LAST_COMMIT_MESSAGE" value="add incr dependency for postgres" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

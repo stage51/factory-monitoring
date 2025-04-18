@@ -1,7 +1,9 @@
 FROM debian:bullseye-slim
 
 RUN apt-get update && \
-    apt-get install -y build-essential libreadline-dev zlib1g-dev wget git
+    apt-get install -y build-essential libreadline-dev zlib1g-dev wget git \
+    libicu-dev pkg-config cron gzip && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src
 RUN wget https://ftp.postgresql.org/pub/source/v17.2/postgresql-17.2.tar.gz && \

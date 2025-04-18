@@ -4,7 +4,9 @@ ENV PG_VERSION=17.2
 ENV PATH="/usr/local/pgsql/bin:$PATH"
 
 RUN apt-get update && \
-    apt-get install -y build-essential libreadline-dev zlib1g-dev wget git cron gzip
+    apt-get install -y build-essential libreadline-dev zlib1g-dev wget git \
+    libicu-dev pkg-config cron gzip && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /usr/src
 RUN wget https://ftp.postgresql.org/pub/source/v$PG_VERSION/postgresql-$PG_VERSION.tar.gz && \
