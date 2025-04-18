@@ -304,6 +304,7 @@ deploy:
   script:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/keystore.p12 api-gateway/src/main/resources/keystore.p12
+    - cp /home/sysadm/factory-monitoring/config/* config
     - docker-compose build
     - docker-compose up -d
   rules:
