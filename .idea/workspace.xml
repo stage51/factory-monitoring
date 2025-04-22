@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix consul acl mount" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix consul acl mount">
+      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -489,15 +493,14 @@
       <workItem from="1744617200347" duration="11360000" />
       <workItem from="1744707199543" duration="5930000" />
       <workItem from="1744887343186" duration="11735000" />
-      <workItem from="1744963593195" duration="11064000" />
-    </task>
-    <task id="LOCAL-00080" summary="configure log journal">
-      <option name="closed" value="true" />
-      <created>1743173343836</created>
-      <option name="number" value="00080" />
-      <option name="presentableId" value="LOCAL-00080" />
-      <option name="project" value="LOCAL" />
-      <updated>1743173343836</updated>
+      <workItem from="1744963593195" duration="11382000" />
+      <workItem from="1745223364132" duration="87000" />
+      <workItem from="1745230432778" duration="132000" />
+      <workItem from="1745232928858" duration="179000" />
+      <workItem from="1745241802711" duration="1177000" />
+      <workItem from="1745245701814" duration="28000" />
+      <workItem from="1745247385813" duration="930000" />
+      <workItem from="1745307988206" duration="147000" />
     </task>
     <task id="LOCAL-00081" summary="edit architecture, domain model is only position, not product">
       <option name="closed" value="true" />
@@ -883,7 +886,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744979815260</updated>
     </task>
-    <option name="localTasksCounter" value="129" />
+    <task id="LOCAL-00129" summary="fix consul acl mount">
+      <option name="closed" value="true" />
+      <created>1744980222577</created>
+      <option name="number" value="00129" />
+      <option name="presentableId" value="LOCAL-00129" />
+      <option name="project" value="LOCAL" />
+      <updated>1744980222578</updated>
+    </task>
+    <option name="localTasksCounter" value="130" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
