@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="fix consul acl mount">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-    </list>
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add new keystore for gateway" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -501,30 +497,7 @@
       <workItem from="1745245701814" duration="28000" />
       <workItem from="1745247385813" duration="930000" />
       <workItem from="1745307988206" duration="147000" />
-    </task>
-    <task id="LOCAL-00081" summary="edit architecture, domain model is only position, not product">
-      <option name="closed" value="true" />
-      <created>1744122361774</created>
-      <option name="number" value="00081" />
-      <option name="presentableId" value="LOCAL-00081" />
-      <option name="project" value="LOCAL" />
-      <updated>1744122361774</updated>
-    </task>
-    <task id="LOCAL-00082" summary="fix gitlab-ci for checking changes in services">
-      <option name="closed" value="true" />
-      <created>1744122816063</created>
-      <option name="number" value="00082" />
-      <option name="presentableId" value="LOCAL-00082" />
-      <option name="project" value="LOCAL" />
-      <updated>1744122816063</updated>
-    </task>
-    <task id="LOCAL-00083" summary="fix gitlab-ci for checking changes in services">
-      <option name="closed" value="true" />
-      <created>1744123173433</created>
-      <option name="number" value="00083" />
-      <option name="presentableId" value="LOCAL-00083" />
-      <option name="project" value="LOCAL" />
-      <updated>1744123173433</updated>
+      <workItem from="1745311869149" duration="1546000" />
     </task>
     <task id="LOCAL-00084" summary="fix gitlab-ci for checking changes in services">
       <option name="closed" value="true" />
@@ -894,7 +867,31 @@
       <option name="project" value="LOCAL" />
       <updated>1744980222578</updated>
     </task>
-    <option name="localTasksCounter" value="130" />
+    <task id="LOCAL-00130" summary="update keystore">
+      <option name="closed" value="true" />
+      <created>1745311904444</created>
+      <option name="number" value="00130" />
+      <option name="presentableId" value="LOCAL-00130" />
+      <option name="project" value="LOCAL" />
+      <updated>1745311904444</updated>
+    </task>
+    <task id="LOCAL-00131" summary="add new keystore for gateway">
+      <option name="closed" value="true" />
+      <created>1745312388585</created>
+      <option name="number" value="00131" />
+      <option name="presentableId" value="LOCAL-00131" />
+      <option name="project" value="LOCAL" />
+      <updated>1745312388585</updated>
+    </task>
+    <task id="LOCAL-00132" summary="add new keystore for gateway">
+      <option name="closed" value="true" />
+      <created>1745312399216</created>
+      <option name="number" value="00132" />
+      <option name="presentableId" value="LOCAL-00132" />
+      <option name="project" value="LOCAL" />
+      <updated>1745312399216</updated>
+    </task>
+    <option name="localTasksCounter" value="133" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -924,8 +921,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit maven command for ci/cd test for all services" />
-    <MESSAGE value="edit gitlab artefacts" />
     <MESSAGE value="edit test method for ci/cd" />
     <MESSAGE value="fix artefacts in gitlab ci/cd" />
     <MESSAGE value="fix scripts error" />
@@ -949,7 +944,9 @@
     <MESSAGE value="fix initdb" />
     <MESSAGE value="fix wal archive write" />
     <MESSAGE value="fix consul acl mount" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix consul acl mount" />
+    <MESSAGE value="update keystore" />
+    <MESSAGE value="add new keystore for gateway" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new keystore for gateway" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
