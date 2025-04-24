@@ -305,8 +305,6 @@ deploy:
     - cp /home/sysadm/factory-monitoring/api-gateway/src/main/resources/application.yml api-gateway/src/main/resources/application.yml
     - cp /home/sysadm/factory-monitoring/certs/keystore.p12 api-gateway/src/main/resources/keystore.p12
     - cp -r /home/sysadm/factory-monitoring/config ./
-    - cp -r ./* /home/gitlab-runner/factory-monitoring
-    - cd /home/gitlab-runner/factory-monitoring
     - docker-compose build
     - docker-compose up -d
   rules:
