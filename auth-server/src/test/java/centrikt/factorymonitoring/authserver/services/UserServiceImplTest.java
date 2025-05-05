@@ -91,7 +91,7 @@ class UserServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
 
         ReflectionTestUtils.setField(userService, "registrationNotificationFor", "admin-only");
@@ -122,7 +122,7 @@ class UserServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
 
         when(userRepository.findById(userId)).thenReturn(Optional.of(user));
@@ -161,7 +161,7 @@ class UserServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
 
         when(userRepository.findAll()).thenReturn(List.of(user));
@@ -205,7 +205,7 @@ class UserServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
 
         Page<User> userPage = new PageImpl<>(Collections.singletonList(user));
