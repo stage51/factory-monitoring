@@ -237,14 +237,21 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void receiveReportMessageAndSendEmail(ReportMessage reportMessage) {
         log.trace("Entering receiveReportMessageAndSendEmail method with reportMessage: {}", reportMessage);
         Organization organization = getOrganizationByTaxpayerNumber(reportMessage.getTaxpayerNumber());
-        if (reportMessage.getReportType().equals("Дневной отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
-            sendEmailReport(reportMessage, organization);
-        }
-        if (reportMessage.getReportType().equals("Пятиминутный отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.FIVE_MINUTE)) {
-            sendEmailReport(reportMessage, organization);
-        }
-        if (reportMessage.getReportType().equals("Отчет по режимам") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
-            sendEmailReport(reportMessage, organization);
+        if (organization.getUser().getSetting().isSubscribe()) {
+            if (reportMessage.getReportType().equals("Дневной отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
+                sendEmailReport(reportMessage, organization);
+                log.debug("Send daily report to mail service");
+            }
+            if (reportMessage.getReportType().equals("Пятиминутный отчет") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.FIVE_MINUTE)) {
+                sendEmailReport(reportMessage, organization);
+                log.debug("Send five minute report to mail service");
+            }
+            if (reportMessage.getReportType().equals("Отчет по режимам") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
+                sendEmailReport(reportMessage, organization);
+                log.debug("Send mode report to mail service");
+            }
+        } else {
+            log.debug("User is not subscribed. Skipping email report.");
         }
         log.trace("Exiting receiveReportMessageAndSendEmail method");
     }

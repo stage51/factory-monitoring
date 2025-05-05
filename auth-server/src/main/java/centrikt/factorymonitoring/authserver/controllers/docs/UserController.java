@@ -1,22 +1,18 @@
 package centrikt.factorymonitoring.authserver.controllers.docs;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
-import centrikt.factorymonitoring.authserver.models.enums.Role;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Map;
 
 @Tag(
         name = "Контроллер пользователей",
@@ -42,7 +38,7 @@ public interface UserController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<UserResponse>> getNotVerifiedUserPage(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     );
 
     @SecurityRequirement(name = "JWT")
@@ -97,7 +93,7 @@ public interface UserController {
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
     ResponseEntity<Page<UserResponse>> getPage(
-            @RequestBody PageRequestDTO pageRequestDTO
+            @RequestBody PageRequest pageRequest
     );
 
     @SecurityRequirement(name = "JWT")

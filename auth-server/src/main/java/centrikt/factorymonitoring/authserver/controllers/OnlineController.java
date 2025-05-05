@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OnlineResponse;
 import centrikt.factorymonitoring.authserver.services.OnlineService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,21 +35,21 @@ public class OnlineController implements centrikt.factorymonitoring.authserver.c
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<OnlineResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
+    public ResponseEntity<Page<OnlineResponse>> getPage(@RequestBody PageRequest pageRequest) {
         log.debug("Fetching page with size: {}, number: {}, sortBy: {}, sortDirection: {}",
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection());
-        log.info("Applying filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection());
+        log.info("Applying filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
 
         Page<OnlineResponse> users = onlineService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
 
         log.debug("Fetched {} elements", users.getContent().size());

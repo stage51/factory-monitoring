@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
@@ -20,7 +20,6 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
@@ -182,21 +181,21 @@ class UserControllerTest {
 
     @Test
     void getNotVerifiedUserPage_shouldReturnPage() throws Exception {
-        Page<UserResponse> userPage = new TestPage<>(Collections.singletonList(userResponse), PageRequest.of(0, 10), 1);
+        Page<UserResponse> userPage = new TestPage<>(Collections.singletonList(userResponse), org.springframework.data.domain.PageRequest.of(0, 10), 1);
 
-        PageRequestDTO pageRequestDTO = new PageRequestDTO();
-        pageRequestDTO.setNumber(0);
-        pageRequestDTO.setSize(10);
-        pageRequestDTO.setSortBy("firstName");
-        pageRequestDTO.setSortDirection("ASC");
-        pageRequestDTO.setFilters(new HashMap<>());
-        pageRequestDTO.setDateRanges(new HashMap<>());
+        PageRequest pageRequest = new PageRequest();
+        pageRequest.setNumber(0);
+        pageRequest.setSize(10);
+        pageRequest.setSortBy("firstName");
+        pageRequest.setSortDirection("ASC");
+        pageRequest.setFilters(new HashMap<>());
+        pageRequest.setDateRanges(new HashMap<>());
 
         when(userService.getPage(anyInt(), anyInt(), any(), any(), any(), any())).thenReturn(userPage);
         mockMvc.perform(post("/api/v1/auth-server/users/verification/fetch")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(pageRequestDTO)))
+                        .content(objectMapper.writeValueAsString(pageRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.content[0].id").value(1))
                 .andExpect(jsonPath("$.content[0].firstName").value("John"));

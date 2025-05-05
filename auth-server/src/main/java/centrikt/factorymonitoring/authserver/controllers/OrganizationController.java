@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
@@ -69,15 +69,15 @@ public class OrganizationController implements centrikt.factorymonitoring.authse
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<OrganizationResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
-        log.info("Fetching page with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+    public ResponseEntity<Page<OrganizationResponse>> getPage(@RequestBody PageRequest pageRequest) {
+        log.info("Fetching page with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<OrganizationResponse> organizations = organizationService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched page with {} organizations", organizations.getContent().size());
         return ResponseEntity.ok(organizations);

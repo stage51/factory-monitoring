@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.SettingRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.UserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
@@ -54,19 +54,19 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<UserResponse>> getNotVerifiedUserPage(@RequestBody PageRequestDTO pageRequestDTO) {
-        Map<String, String> filters = pageRequestDTO.getFilters();
+    public ResponseEntity<Page<UserResponse>> getNotVerifiedUserPage(@RequestBody PageRequest pageRequest) {
+        Map<String, String> filters = pageRequest.getFilters();
         filters.put("role", Role.ROLE_GUEST.toString());
         filters.put("active", "true");
-        pageRequestDTO.setFilters(filters);
-        log.info("Fetching not verified user page with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+        pageRequest.setFilters(filters);
+        log.info("Fetching not verified user page with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<UserResponse> users = userService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched {} user records", users.getContent().size());
         return ResponseEntity.ok(users);
@@ -118,15 +118,15 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<UserResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
-        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+    public ResponseEntity<Page<UserResponse>> getPage(@RequestBody PageRequest pageRequest) {
+        log.info("Fetching page positions with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<UserResponse> users = userService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched {} user records", users.getContent().size());
         return ResponseEntity.ok(users);

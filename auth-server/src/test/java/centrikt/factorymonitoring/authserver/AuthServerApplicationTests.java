@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.*;
 import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
@@ -13,7 +13,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.*;
@@ -380,11 +379,11 @@ class AuthServerApplicationTests {
         }
 
         private void testGetPage() {
-            PageRequestDTO pageRequest = new PageRequestDTO();
+            PageRequest pageRequest = new PageRequest();
             pageRequest.setSize(10);
             pageRequest.setNumber(0);
 
-            HttpEntity<PageRequestDTO> entity = new HttpEntity<>(pageRequest, headers);
+            HttpEntity<PageRequest> entity = new HttpEntity<>(pageRequest, headers);
 
             ResponseEntity<TestPage<OrganizationResponse>> response = restTemplate.exchange(
                     "/api/v1/auth-server/organizations/fetch",
@@ -474,12 +473,12 @@ class AuthServerApplicationTests {
     class OnlineControllerTests {
         @Test
         void testGetOnlineUsers() {
-            PageRequestDTO pageRequestDTO = new PageRequestDTO();
-            pageRequestDTO.setSize(10);
-            pageRequestDTO.setNumber(0);
+            PageRequest pageRequest = new PageRequest();
+            pageRequest.setSize(10);
+            pageRequest.setNumber(0);
 
             HttpHeaders headers = createAuthorizationHeaders();
-            HttpEntity<PageRequestDTO> request = new HttpEntity<>(pageRequestDTO, headers);
+            HttpEntity<PageRequest> request = new HttpEntity<>(pageRequest, headers);
 
             ResponseEntity<TestPage<OnlineResponse>> response = restTemplate.exchange(
                     "/api/v1/auth-server/onlines/fetch",
@@ -498,12 +497,12 @@ class AuthServerApplicationTests {
 
         @Test
         void testGetPage() {
-            PageRequestDTO pageRequestDTO = new PageRequestDTO();
-            pageRequestDTO.setSize(10);
-            pageRequestDTO.setNumber(0);
+            PageRequest pageRequest = new PageRequest();
+            pageRequest.setSize(10);
+            pageRequest.setNumber(0);
 
             HttpHeaders headers = createAuthorizationHeaders();
-            HttpEntity<PageRequestDTO> request = new HttpEntity<>(pageRequestDTO, headers);
+            HttpEntity<PageRequest> request = new HttpEntity<>(pageRequest, headers);
 
             ResponseEntity<TestPage<RefreshTokenResponse>> response = restTemplate.exchange(
                     "/api/v1/auth-server/refresh-tokens/fetch",
@@ -621,14 +620,14 @@ class AuthServerApplicationTests {
         }
 
         private void testGetPage() {
-            PageRequestDTO pageRequestDTO = new PageRequestDTO();
-            pageRequestDTO.setSize(10);
-            pageRequestDTO.setNumber(0);
+            PageRequest pageRequest = new PageRequest();
+            pageRequest.setSize(10);
+            pageRequest.setNumber(0);
 
             ResponseEntity<TestPage<UserResponse>> response = restTemplate.exchange(
                     "/api/v1/auth-server/users/fetch",
                     HttpMethod.POST,
-                    new HttpEntity<>(pageRequestDTO, createAuthorizationHeaders()),
+                    new HttpEntity<>(pageRequest, createAuthorizationHeaders()),
                     new ParameterizedTypeReference<TestPage<UserResponse>>() {}
             );
 

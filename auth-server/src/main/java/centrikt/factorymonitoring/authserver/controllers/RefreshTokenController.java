@@ -1,6 +1,6 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
-import centrikt.factorymonitoring.authserver.dtos.extra.PageRequestDTO;
+import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
 import centrikt.factorymonitoring.authserver.dtos.responses.RefreshTokenResponse;
 import centrikt.factorymonitoring.authserver.services.RefreshTokenService;
 import lombok.extern.slf4j.Slf4j;
@@ -35,15 +35,15 @@ public class RefreshTokenController implements centrikt.factorymonitoring.authse
             consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE}
     )
-    public ResponseEntity<Page<RefreshTokenResponse>> getPage(@RequestBody PageRequestDTO pageRequestDTO) {
-        log.info("Fetching refresh token page with filters: {}, dateRanges: {}", pageRequestDTO.getFilters(), pageRequestDTO.getDateRanges());
+    public ResponseEntity<Page<RefreshTokenResponse>> getPage(@RequestBody PageRequest pageRequest) {
+        log.info("Fetching refresh token page with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
         Page<RefreshTokenResponse> tokens = refreshTokenService.getPage(
-                pageRequestDTO.getSize(),
-                pageRequestDTO.getNumber(),
-                pageRequestDTO.getSortBy(),
-                pageRequestDTO.getSortDirection(),
-                pageRequestDTO.getFilters(),
-                pageRequestDTO.getDateRanges()
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
         );
         log.debug("Fetched {} refresh token records", tokens.getContent().size());
         return ResponseEntity.ok(tokens);

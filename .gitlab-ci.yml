@@ -17,6 +17,8 @@ cache:
   tags:
     - factory-monitoring-api
   stage: build
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
   script:
     - chmod +x build.sh
     - ./build.sh
@@ -25,6 +27,8 @@ cache:
   tags:
     - factory-monitoring-api
   stage: test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
   script:
     - chmod +x test.sh
     - ./test.sh
@@ -33,6 +37,8 @@ cache:
   tags:
     - factory-monitoring-api
   stage: sast
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
   artifacts:
     reports:
       sast: reports/sonarqube-report.xml

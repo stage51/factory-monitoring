@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add new keystore for gateway">
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit project directory in gitlab-ci">
       <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OnlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OnlineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/RefreshTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/RefreshTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/extra/PageRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/extra/PageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/AuthServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/AuthServerApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/controllers/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/controllers/UserControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -502,23 +514,10 @@
       <workItem from="1745307988206" duration="147000" />
       <workItem from="1745311869149" duration="1546000" />
       <workItem from="1745313838148" duration="2603000" />
-      <workItem from="1745503967473" duration="339000" />
-    </task>
-    <task id="LOCAL-00085" summary="add backup utilities via pgbackrest">
-      <option name="closed" value="true" />
-      <created>1744644566210</created>
-      <option name="number" value="00085" />
-      <option name="presentableId" value="LOCAL-00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1744644566210</updated>
-    </task>
-    <task id="LOCAL-00086" summary="fix backup utilities via pgbackrest">
-      <option name="closed" value="true" />
-      <created>1744645036064</created>
-      <option name="number" value="00086" />
-      <option name="presentableId" value="LOCAL-00086" />
-      <option name="project" value="LOCAL" />
-      <updated>1744645036064</updated>
+      <workItem from="1745503967473" duration="776000" />
+      <workItem from="1745939880130" duration="23000" />
+      <workItem from="1746004315303" duration="1023000" />
+      <workItem from="1746445857185" duration="1329000" />
     </task>
     <task id="LOCAL-00087" summary="fix backup utilities via pgbackrest">
       <option name="closed" value="true" />
@@ -896,7 +895,23 @@
       <option name="project" value="LOCAL" />
       <updated>1745314743039</updated>
     </task>
-    <option name="localTasksCounter" value="134" />
+    <task id="LOCAL-00134" summary="edit project directory in gitlab-ci">
+      <option name="closed" value="true" />
+      <created>1745504581408</created>
+      <option name="number" value="00134" />
+      <option name="presentableId" value="LOCAL-00134" />
+      <option name="project" value="LOCAL" />
+      <updated>1745504581408</updated>
+    </task>
+    <task id="LOCAL-00135" summary="edit project directory in gitlab-ci">
+      <option name="closed" value="true" />
+      <created>1745504745169</created>
+      <option name="number" value="00135" />
+      <option name="presentableId" value="LOCAL-00135" />
+      <option name="project" value="LOCAL" />
+      <updated>1745504745169</updated>
+    </task>
+    <option name="localTasksCounter" value="136" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -926,7 +941,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="edit test method for ci/cd" />
     <MESSAGE value="fix artefacts in gitlab ci/cd" />
     <MESSAGE value="fix scripts error" />
     <MESSAGE value="test ci/cd" />
@@ -951,7 +965,8 @@
     <MESSAGE value="fix consul acl mount" />
     <MESSAGE value="update keystore" />
     <MESSAGE value="add new keystore for gateway" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new keystore for gateway" />
+    <MESSAGE value="edit project directory in gitlab-ci" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit project directory in gitlab-ci" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
