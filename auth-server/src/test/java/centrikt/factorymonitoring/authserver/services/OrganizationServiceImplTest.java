@@ -78,7 +78,7 @@ class OrganizationServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
         organization.setUser(user);
 
@@ -145,7 +145,7 @@ class OrganizationServiceImplTest {
         setting.setUser(user);
         setting.setTimezone("UTC+03:00");
         setting.setAvatarUrl("image.com");
-        setting.setReportNotifications(List.of(ReportNotification.MODE, ReportNotification.DAILY));
+        setting.setReportNotifications(List.of(ReportNotification.FIVE_MINUTE, ReportNotification.DAILY));
         user.setSetting(setting);
         organization.setUser(user);
 
