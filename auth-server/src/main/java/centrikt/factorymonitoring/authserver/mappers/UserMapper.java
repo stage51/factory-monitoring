@@ -39,7 +39,7 @@ public class UserMapper {
         Setting setting = new Setting();
         setting.setTimezone(defaultTimezone);
         setting.setSubscribe(true);
-        setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE, ReportNotification.MODE));
+        setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE));
         setting.setUser(user);
         user.setSetting(setting);
 
@@ -65,7 +65,7 @@ public class UserMapper {
         Setting setting = new Setting();
         setting.setTimezone(defaultTimezone);
         setting.setSubscribe(true);
-        setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE, ReportNotification.MODE));
+        setting.setReportNotifications(List.of(ReportNotification.DAILY, ReportNotification.FIVE_MINUTE));
         user.setSetting(setting);
 
         user.setActive(userRequest.isActive());
