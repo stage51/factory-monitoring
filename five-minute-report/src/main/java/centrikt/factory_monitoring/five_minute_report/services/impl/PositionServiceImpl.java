@@ -7,6 +7,7 @@ import centrikt.factory_monitoring.five_minute_report.dtos.requests.PositionRequ
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.PositionResponse;
 import centrikt.factory_monitoring.five_minute_report.dtos.responses.ReportStatusResponse;
 import centrikt.factory_monitoring.five_minute_report.enums.ReportStatus;
+import centrikt.factory_monitoring.five_minute_report.enums.Status;
 import centrikt.factory_monitoring.five_minute_report.exceptions.EntityNotFoundException;
 import centrikt.factory_monitoring.five_minute_report.exceptions.MessageSendingException;
 import centrikt.factory_monitoring.five_minute_report.mappers.PositionMapper;
@@ -103,7 +104,7 @@ public class PositionServiceImpl implements PositionService {
         log.debug("Validated dto: {}", dto);
         try {
             rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
-                    dto.getTaxpayerNumber(), dto.getSensorNumber(), "Отчет по режимам", dto.getStatus()
+                    dto.getTaxpayerNumber(), dto.getSensorNumber(), "Создан пятиминутный отчет", dto.getStatus()
             ));
             log.info("Sent report message for dto: {}", dto);
         } catch (MessageSendingException e) {
@@ -137,6 +138,16 @@ public class PositionServiceImpl implements PositionService {
                 productRepository.findById(id).orElseThrow(
                         () -> new EntityNotFoundException("Product not found with id: " + id)
                 ));
+        if (existingPosition.getStatus().equals(Status.NOT_ACCEPTED_IN_RAR) || existingPosition.getStatus().equals(Status.NOT_ACCEPTED_IN_UTM)){
+            try {
+                rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
+                        dto.getTaxpayerNumber(), dto.getSensorNumber(), "Не принят пятиминутный отчет", dto.getStatus()
+                ));
+                log.info("Sent report message for dto: {}", dto);
+            } catch (MessageSendingException e) {
+                log.error("Could not send report: {}", e.getMessage());
+            }
+        }
         PositionResponse response = PositionMapper.toResponse(positionRepository.save(existingPosition));
         log.trace("Exiting update method with response: {}", response);
         return response;
