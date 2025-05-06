@@ -246,7 +246,7 @@ public class OrganizationServiceImpl implements OrganizationService {
                 sendEmailReport(reportMessage, organization);
                 log.debug("Send five minute report to mail service");
             }
-            if (reportMessage.getReportType().equals("Отчет по режимам") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.DAILY)) {
+            if (reportMessage.getReportType().equals("Отчет по режимам") && organization.getUser().getSetting().getReportNotifications().contains(ReportNotification.MODE)) {
                 sendEmailReport(reportMessage, organization);
                 log.debug("Send mode report to mail service");
             }

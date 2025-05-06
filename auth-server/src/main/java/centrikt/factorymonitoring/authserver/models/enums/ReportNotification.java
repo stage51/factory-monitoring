@@ -1,7 +1,7 @@
 package centrikt.factorymonitoring.authserver.models.enums;
 
 public enum ReportNotification {
-    DAILY(0), FIVE_MINUTE(1);
+    DAILY(0), FIVE_MINUTE(1), MODE(2);
 
     private final int reportNotification;
 
