@@ -134,7 +134,7 @@ public class PositionServiceImpl implements PositionService {
                 productRepository.findById(id).orElseThrow(
                         () -> new EntityNotFoundException("Product not found with id: " + id)
                 ));
-        if (existingPosition.getStatus().equals(Status.NOT_ACCEPTED_IN_RAR) || existingPosition.getStatus().equals(Status.NOT_ACCEPTED_IN_UTM)){
+        if (dto.getStatus().equals(Status.NOT_ACCEPTED_IN_RAR.toString()) || dto.getStatus().equals(Status.NOT_ACCEPTED_IN_UTM.toString())){
             try {
                 rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
                         dto.getTaxpayerNumber(), dto.getSensorNumber(), "Не принят дневной отчет", dto.getStatus()
