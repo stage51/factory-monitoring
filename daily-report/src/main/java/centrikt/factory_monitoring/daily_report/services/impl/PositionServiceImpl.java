@@ -211,10 +211,10 @@ public class PositionServiceImpl implements PositionService {
             reportStatusResponse.setLineNumber(e.getLineNumber());
             reportStatusResponse.setLastReportTime(e.getEndDate());
             Duration duration = Duration.between(e.getEndDate(), now);
-            if (duration.toMillis() <= timingConfig.getGreenFiveminuteTiming()) {
+            if (duration.toMillis() <= timingConfig.getGreenDailyTiming()) {
                 reportStatusResponse.setReportStatus(ReportStatus.OK.toString());
                 log.debug("For controller {}, line {}, with last report time {}, status: {}", reportStatusResponse.getControllerNumber(), reportStatusResponse.getLineNumber(), reportStatusResponse.getLastReportTime(), reportStatusResponse.getReportStatus());
-            } else if (duration.toMillis() <= timingConfig.getYellowFiveminuteTiming()) {
+            } else if (duration.toMillis() <= timingConfig.getYellowDailyTiming()) {
                 reportStatusResponse.setReportStatus(ReportStatus.WARN.toString());
                 log.debug("For controller {}, line {}, with last report time {}, status: {}", reportStatusResponse.getControllerNumber(), reportStatusResponse.getLineNumber(), reportStatusResponse.getLastReportTime(), reportStatusResponse.getReportStatus());
             } else {
