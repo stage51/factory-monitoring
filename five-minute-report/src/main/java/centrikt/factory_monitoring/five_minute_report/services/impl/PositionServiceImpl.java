@@ -132,12 +132,11 @@ public class PositionServiceImpl implements PositionService {
         log.trace("Entering update method with id: {} and dto: {}", id, dto);
         entityValidator.validate(dto);
         log.debug("Validated dto: {}", dto);
+        Position repoPosition = positionRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Position not found with id: " + id));
         Position existingPosition = PositionMapper.toEntity(dto,
-                positionRepository.findById(id).orElseThrow(
-                        () -> new EntityNotFoundException("Position not found with id: " + id)),
-                productRepository.findById(id).orElseThrow(
-                        () -> new EntityNotFoundException("Product not found with id: " + id)
-                ));
+                repoPosition,
+                repoPosition.getProduct());
         if (dto.getStatus().equals(Status.NOT_ACCEPTED_IN_RAR.toString()) || dto.getStatus().equals(Status.NOT_ACCEPTED_IN_UTM.toString())){
             try {
                 rabbitTemplate.convertAndSend("reportQueue", new ReportMessage(
