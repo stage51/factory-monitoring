@@ -142,7 +142,6 @@ class PositionServiceImplTest {
     @Test
     void update_ShouldUpdatePosition_WhenPositionExists() {
         when(positionRepository.findById(1L)).thenReturn(Optional.of(position));
-        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
         when(positionRepository.save(any(Position.class))).thenReturn(position);
 
         PositionResponse response = positionService.update(1L, positionRequest);
