@@ -8,7 +8,6 @@ import centrikt.factorymonitoring.modereport.enums.Type;
 import centrikt.factorymonitoring.modereport.enums.UnitType;
 import jakarta.persistence.criteria.Predicate;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +15,6 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -62,7 +60,7 @@ public class FilterUtilImpl<Entity> implements FilterUtil<Entity> {
                                     predicates.add(criteriaBuilder.equal(root.get(field), status));
                                     log.debug("Added filter for status: {}", status);
                                 } else if ("mode".equals(field)) {
-                                    Mode mode = Mode.fromCode(value);
+                                    Mode mode = Mode.fromCodeOrDescription(value);
                                     predicates.add(criteriaBuilder.equal(root.get(field), mode));
                                     log.debug("Added filter for mode: {}", mode);
                                 } else if ("type".equals(field)) {

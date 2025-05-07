@@ -31,22 +31,15 @@ public enum Mode {
         return description;
     }
 
-    public static Mode fromCode(String code) {
+    public static Mode fromCodeOrDescription(String value) {
         for (Mode mode : values()) {
-            if (mode.getCode().equals(code)) {
+            if (mode.getCode().equals(value)) {
+                return mode;
+            } else if (mode.getDescription().equals(value)){
                 return mode;
             }
         }
-        throw new InvalidConstantException("Invalid mode code: " + code);
-    }
-
-    public static Mode fromDescription(String description) {
-        for (Mode mode : values()) {
-            if (mode.getDescription().equals(description)) {
-                return mode;
-            }
-        }
-        throw new InvalidConstantException("Invalid mode description: " + description);
+        throw new InvalidConstantException("Invalid mode code or description: " + value);
     }
 
     @Override

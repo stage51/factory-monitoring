@@ -61,7 +61,7 @@ public class PositionMapper {
         position.setPercentAlc(positionRequest.getPercentAlc());
         position.setBottleCountControl(positionRequest.getBottleCountControl());
         position.setTemperature(positionRequest.getTemperature());
-        position.setMode(Mode.fromCode(positionRequest.getMode()));
+        position.setMode(Mode.fromCodeOrDescription(positionRequest.getMode()));
         position.setStatus(Status.fromDescription(positionRequest.getStatus()));
         return position;
     }
