@@ -3,13 +3,16 @@ package centrikt.factory_monitoring.five_minute_report.models;
 import centrikt.factory_monitoring.five_minute_report.enums.Mode;
 import centrikt.factory_monitoring.five_minute_report.enums.Status;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "positions")
 public class Position extends BaseEntity{

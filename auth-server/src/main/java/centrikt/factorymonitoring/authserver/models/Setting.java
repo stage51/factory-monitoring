@@ -2,14 +2,16 @@ package centrikt.factorymonitoring.authserver.models;
 
 import centrikt.factorymonitoring.authserver.models.enums.ReportNotification;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "settings")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Setting {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

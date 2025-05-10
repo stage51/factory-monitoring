@@ -1,12 +1,15 @@
 package centrikt.factorymonitoring.authserver.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.time.ZonedDateTime;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "onlines")
 public class Online {
     @Id

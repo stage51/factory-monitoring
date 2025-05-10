@@ -101,6 +101,34 @@ public class HelpServiceImplTest {
     }
 
     @Test
+    void sendHelpRequest_shouldSendEmailsToManagers_whenHelpNotificationForIsManagerOnly() {
+        // Arrange
+        HelpRequest helpRequest = new HelpRequest();
+        helpRequest.setEmail("test@example.com");
+        helpRequest.setMessage("Test message");
+
+        User manager = new User();
+        manager.setEmail("manager@example.com");
+
+        when(userRepository.findAllByRole(Role.ROLE_MANAGER)).thenReturn(Arrays.asList(manager));
+
+        ReflectionTestUtils.setField(helpService, "helpNotificationFor", "manager-only");
+        ReflectionTestUtils.setField(helpService, "helpNotification", true);
+
+        // Act
+        helpService.sendHelpRequest(helpRequest);
+
+        // Assert
+        EmailMessage expectedEmailMessage = new EmailMessage(
+                new String[]{"manager@example.com"},
+                "Factory Monitoring",
+                "Новое заявление в сервис\nот: test@example.com\nсообщение: Test message"
+        );
+
+        verify(rabbitTemplate).convertAndSend("emailQueue", expectedEmailMessage);
+    }
+
+    @Test
     void sendHelpRequest_shouldThrowException_whenHelpNotificationForIsInvalid() {
         // Arrange
         HelpRequest helpRequest = new HelpRequest();

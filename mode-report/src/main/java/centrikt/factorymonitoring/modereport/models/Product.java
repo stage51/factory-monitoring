@@ -3,11 +3,14 @@ package centrikt.factorymonitoring.modereport.models;
 import centrikt.factorymonitoring.modereport.enums.Type;
 import centrikt.factorymonitoring.modereport.enums.UnitType;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name="products")
 public class Product extends BaseEntity {

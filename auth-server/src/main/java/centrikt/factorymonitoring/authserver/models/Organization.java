@@ -1,13 +1,15 @@
 package centrikt.factorymonitoring.authserver.models;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "organizations")
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Organization extends BaseEntity {
     private String shortName;
     private String name;

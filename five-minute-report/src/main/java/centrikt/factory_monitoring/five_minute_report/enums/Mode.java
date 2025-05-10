@@ -33,9 +33,7 @@ public enum Mode {
 
     public static Mode fromCodeOrDescription(String value) {
         for (Mode mode : values()) {
-            if (mode.getCode().equals(value)) {
-                return mode;
-            } else if (mode.getDescription().equals(value)){
+            if (mode.getCode().equals(value) || mode.getDescription().equals(value)) {
                 return mode;
             }
         }
