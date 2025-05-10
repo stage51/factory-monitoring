@@ -50,7 +50,7 @@ sast_api_gateway:
   before_script:
     - cd api-gateway
   script:
-    - sonar-scanner -Dsonar.projectKey=api-gateway Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
+    - sonar-scanner -Dsonar.projectKey=api-gateway -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   rules:
     - changes:
         - api-gateway/**/*
@@ -60,7 +60,7 @@ sast_auth_server:
   before_script:
     - cd auth-server
   script:
-    - sonar-scanner -Dsonar.projectKey=auth-server Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
+    - sonar-scanner -Dsonar.projectKey=auth-server -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
   rules:
     - changes:
         - auth-server/**/*
@@ -70,7 +70,7 @@ sast_config_server:
   before_script:
     - cd config-server
   script:
-    - sonar-scanner -Dsonar.projectKey=config-server Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
+    - sonar-scanner -Dsonar.projectKey=config-server -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml
   rules:
     - changes:
         - config-server/**/*
@@ -80,7 +80,7 @@ sast_daily_report:
   before_script:
     - cd daily-report
   script:
-    - sonar-scanner -Dsonar.projectKey=daily-report Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
+    - sonar-scanner -Dsonar.projectKey=daily-report -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
   rules:
     - changes:
         - daily-report/**/*
@@ -90,7 +90,7 @@ sast_five_minute_report:
   before_script:
     - cd five-minute-report
   script:
-    - sonar-scanner -Dsonar.projectKey=five-minute-report Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
+    - sonar-scanner -Dsonar.projectKey=five-minute-report -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
   rules:
     - changes:
         - five-minute-report/**/*
@@ -100,7 +100,7 @@ sast_mail_service:
   before_script:
     - cd mail-service
   script:
-    - sonar-scanner -Dsonar.projectKey=mail-server Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
+    - sonar-scanner -Dsonar.projectKey=mail-server -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
   rules:
     - changes:
         - mail-service/**/*
@@ -110,7 +110,7 @@ sast_mode_report:
   before_script:
     - cd mode-report
   script:
-    - sonar-scanner -Dsonar.projectKey=mode-report Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
+    - sonar-scanner -Dsonar.projectKey=mode-report -Dsonar.sources=src/main/java -Dsonar.java.binaries=target/classes -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN -Dsonar.qualitygate.wait=true -Dsonar.report.export.path=reports/sonarqube-report.xml -Dsonar.tests=src/test/java
   rules:
     - changes:
         - mode-report/**/*
