@@ -202,7 +202,7 @@ public class AuthServiceImpl implements AuthService {
 
         Recovery recovery = new Recovery();
         recovery.setUser(user);
-        recovery.setCode(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase().substring(0, 6));
+        recovery.setCode(UUID.randomUUID().toString().replaceAll("-", "").toUpperCase().substring(0, 16));
         recovery.setIssuedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         recovery.setExpiresAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())).plusMinutes(recoveryUrlLifetime));
         recoveryRepository.save(recovery);
