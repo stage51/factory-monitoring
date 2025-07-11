@@ -4,21 +4,139 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit project directory in gitlab-ci">
-      <change beforePath="$PROJECT_DIR$/.gitlab-ci.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.gitlab-ci.yml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit recovery code size">
+      <change afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/consul_acl.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DailyReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DateTimeConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/FiveMinuteReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/ModeReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/OpenApiConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/RabbitMQConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/TimingConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/SensorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyPositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinutePositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModePositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/AbstractService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/DailyReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/FiveMinuteReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/ModeReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/DailyReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/FiveMinuteReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/ModeReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/FilterUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/FilterUtilImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/CustomDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/CustomFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportEndDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportStartDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportModeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportProductFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportSensorNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportStatusFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/dateranges/FiveMinuteReportControlDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportModeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportProductFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportSensorNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportStatusFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportEndDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportStartDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportModeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportProductFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportSensorNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPReportType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPUtilImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/validator/EntityValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/validator/EntityValidatorImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Mode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/ReportStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Status.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Type.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/UnitType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/EntityMappingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/EntityNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileDownloadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileUploadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/InvalidConstantException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/InvalidTokenException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/MessageSendingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/MethodDisabledException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/ValidationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/BaseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/Sensor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyPosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/Product.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinutePosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModePosition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/DailyReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/FiveMinuteReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/ModeReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractDailyReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractFiveMinuteReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractModeReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/extra/DateRange.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/extra/PageRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/messages/ReportMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/SensorRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/PositionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/ProductRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/PositionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/ProductRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModeReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/PositionRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ProductRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/ReportStatusResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/SensorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyPositionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyProductResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyReportResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinutePositionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinuteProductResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinuteReportResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModePositionResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModeProductResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModeReportResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OnlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OnlineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/RefreshTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/RefreshTokenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/extra/PageRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/extra/PageRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/AuthServerApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/AuthServerApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/controllers/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/controllers/UserControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/resources/application-test.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postgres-init/pg_hba.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/pg_hba.conf" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,9 +148,9 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Exception" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -191,7 +309,7 @@
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/mode-report&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/factory-monitoring-service&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -201,7 +319,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.14941406&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.gitlab.GitLabSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -215,26 +333,28 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mail-service" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\five-minute-report" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\daily-report" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config-server" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\resources" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers\fiveminute" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers\mode" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\mappers\mode" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\pg-dump-backup\scripts" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\pg-dump-backup" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\mode-report\src\test\resources" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers\daily" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\mappers" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\presentation" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="centrikt.factorymonitoring.mailservice.services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="centrikt.factorymonitoring.modereport.dtos.requests" />
-      <recent name="centrikt.factorymonitoring.authserver.exceptions" />
-      <recent name="centrikt.factory_monitoring.daily_report.exceptions" />
-      <recent name="centrikt.factory_monitoring.five_minute_report.exceptions" />
-      <recent name="centrikt.factorymonitoring.modereport.exceptions" />
+      <recent name="ru.centrikt.factorymonitoringservice.application.configs" />
+      <recent name="ru.centrikt.factorymonitoringservice.application.utils.filter.handlers.daily.dateranges" />
+      <recent name="ru.centrikt.factorymonitoringservice.presentation.controllers" />
+      <recent name="ru.centrikt.factorymonitoringservice.presentation.controllers.docs" />
+      <recent name="ru.centrikt.factorymonitoringservice.application.services.impl" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -247,7 +367,22 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.DailyReportApplicationTests">
+  <component name="RunManager" selected="JUnit.AuthServerApplicationTests">
+    <configuration name="AuthServerApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="auth-server" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="centrikt.factorymonitoring.authserver.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="centrikt.factorymonitoring.authserver" />
+      <option name="MAIN_CLASS_NAME" value="centrikt.factorymonitoring.authserver.AuthServerApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DailyReportApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="daily-report" />
       <extension name="coverage">
@@ -258,21 +393,6 @@
       </extension>
       <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.daily_report" />
       <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.daily_report.DailyReportApplicationTests" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PositionServiceImplTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="five-minute-report" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="centrikt.factory_monitoring.five_minute_report.services.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="centrikt.factory_monitoring.five_minute_report.services" />
-      <option name="MAIN_CLASS_NAME" value="centrikt.factory_monitoring.five_minute_report.services.PositionServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -351,6 +471,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FactoryMonitoringServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="factory-monitoring-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.centrikt.factorymonitoringservice.FactoryMonitoringServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="FiveMinuteReportApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="five-minute-report" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="centrikt.factory_monitoring.five_minute_report.FiveMinuteReportApplication" />
@@ -381,11 +508,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AuthServerApplicationTests" />
+        <item itemvalue="JUnit.DailyReportApplicationTests" />
         <item itemvalue="JUnit.ProductServiceImplTest (1)" />
         <item itemvalue="JUnit.ProductServiceImplTest" />
         <item itemvalue="JUnit.PositionServiceImplTest (2)" />
-        <item itemvalue="JUnit.PositionServiceImplTest (1)" />
-        <item itemvalue="JUnit.DailyReportApplicationTests" />
       </list>
     </recent_temporary>
   </component>
@@ -517,135 +644,23 @@
       <workItem from="1745503967473" duration="776000" />
       <workItem from="1745939880130" duration="23000" />
       <workItem from="1746004315303" duration="1023000" />
-      <workItem from="1746445857185" duration="1329000" />
-    </task>
-    <task id="LOCAL-00087" summary="fix backup utilities via pgbackrest">
-      <option name="closed" value="true" />
-      <created>1744645566911</created>
-      <option name="number" value="00087" />
-      <option name="presentableId" value="LOCAL-00087" />
-      <option name="project" value="LOCAL" />
-      <updated>1744645566911</updated>
-    </task>
-    <task id="LOCAL-00088" summary="fix backup utilities via pgbackrest">
-      <option name="closed" value="true" />
-      <created>1744645810750</created>
-      <option name="number" value="00088" />
-      <option name="presentableId" value="LOCAL-00088" />
-      <option name="project" value="LOCAL" />
-      <updated>1744645810750</updated>
-    </task>
-    <task id="LOCAL-00089" summary="fix backup utilities via pgbackrest">
-      <option name="closed" value="true" />
-      <created>1744645960009</created>
-      <option name="number" value="00089" />
-      <option name="presentableId" value="LOCAL-00089" />
-      <option name="project" value="LOCAL" />
-      <updated>1744645960009</updated>
-    </task>
-    <task id="LOCAL-00090" summary="edit backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744646521043</created>
-      <option name="number" value="00090" />
-      <option name="presentableId" value="LOCAL-00090" />
-      <option name="project" value="LOCAL" />
-      <updated>1744646521043</updated>
-    </task>
-    <task id="LOCAL-00091" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744646738495</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1744646738495</updated>
-    </task>
-    <task id="LOCAL-00092" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744710822718</created>
-      <option name="number" value="00092" />
-      <option name="presentableId" value="LOCAL-00092" />
-      <option name="project" value="LOCAL" />
-      <updated>1744710822719</updated>
-    </task>
-    <task id="LOCAL-00093" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744710852062</created>
-      <option name="number" value="00093" />
-      <option name="presentableId" value="LOCAL-00093" />
-      <option name="project" value="LOCAL" />
-      <updated>1744710852062</updated>
-    </task>
-    <task id="LOCAL-00094" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744711138879</created>
-      <option name="number" value="00094" />
-      <option name="presentableId" value="LOCAL-00094" />
-      <option name="project" value="LOCAL" />
-      <updated>1744711138879</updated>
-    </task>
-    <task id="LOCAL-00095" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744711332149</created>
-      <option name="number" value="00095" />
-      <option name="presentableId" value="LOCAL-00095" />
-      <option name="project" value="LOCAL" />
-      <updated>1744711332149</updated>
-    </task>
-    <task id="LOCAL-00096" summary="fix backup method via pgdump">
-      <option name="closed" value="true" />
-      <created>1744711484362</created>
-      <option name="number" value="00096" />
-      <option name="presentableId" value="LOCAL-00096" />
-      <option name="project" value="LOCAL" />
-      <updated>1744711484362</updated>
-    </task>
-    <task id="LOCAL-00097" summary="add physical backup">
-      <option name="closed" value="true" />
-      <created>1744726119791</created>
-      <option name="number" value="00097" />
-      <option name="presentableId" value="LOCAL-00097" />
-      <option name="project" value="LOCAL" />
-      <updated>1744726119791</updated>
-    </task>
-    <task id="LOCAL-00098" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744815241462</created>
-      <option name="number" value="00098" />
-      <option name="presentableId" value="LOCAL-00098" />
-      <option name="project" value="LOCAL" />
-      <updated>1744815241462</updated>
-    </task>
-    <task id="LOCAL-00099" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744815649255</created>
-      <option name="number" value="00099" />
-      <option name="presentableId" value="LOCAL-00099" />
-      <option name="project" value="LOCAL" />
-      <updated>1744815649255</updated>
-    </task>
-    <task id="LOCAL-00100" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744816030506</created>
-      <option name="number" value="00100" />
-      <option name="presentableId" value="LOCAL-00100" />
-      <option name="project" value="LOCAL" />
-      <updated>1744816030506</updated>
-    </task>
-    <task id="LOCAL-00101" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744816476821</created>
-      <option name="number" value="00101" />
-      <option name="presentableId" value="LOCAL-00101" />
-      <option name="project" value="LOCAL" />
-      <updated>1744816476821</updated>
-    </task>
-    <task id="LOCAL-00102" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744816686193</created>
-      <option name="number" value="00102" />
-      <option name="presentableId" value="LOCAL-00102" />
-      <option name="project" value="LOCAL" />
-      <updated>1744816686193</updated>
+      <workItem from="1746445857185" duration="4141000" />
+      <workItem from="1746529402706" duration="8870000" />
+      <workItem from="1746614064080" duration="1908000" />
+      <workItem from="1746617221292" duration="135000" />
+      <workItem from="1746624138705" duration="2552000" />
+      <workItem from="1746629635783" duration="14955000" />
+      <workItem from="1747040659842" duration="10008000" />
+      <workItem from="1747392527099" duration="5098000" />
+      <workItem from="1747996714593" duration="20000" />
+      <workItem from="1748431224197" duration="3869000" />
+      <workItem from="1748435226613" duration="2572000" />
+      <workItem from="1748596161067" duration="20000" />
+      <workItem from="1751286533954" duration="1196000" />
+      <workItem from="1751363636095" duration="10871000" />
+      <workItem from="1751471148302" duration="74577000" />
+      <workItem from="1752133882694" duration="8352000" />
+      <workItem from="1752150140363" duration="20493000" />
     </task>
     <task id="LOCAL-00103" summary="fix physical backup">
       <option name="closed" value="true" />
@@ -911,7 +926,135 @@
       <option name="project" value="LOCAL" />
       <updated>1745504745169</updated>
     </task>
-    <option name="localTasksCounter" value="136" />
+    <task id="LOCAL-00136" summary="rename PageRequest DTO, edit gitlab-ci, remove mode notifications and add access to notification only for subscribed users">
+      <option name="closed" value="true" />
+      <created>1746447666978</created>
+      <option name="number" value="00136" />
+      <option name="presentableId" value="LOCAL-00136" />
+      <option name="project" value="LOCAL" />
+      <updated>1746447666978</updated>
+    </task>
+    <task id="LOCAL-00137" summary="fix UserMapper">
+      <option name="closed" value="true" />
+      <created>1746448613231</created>
+      <option name="number" value="00137" />
+      <option name="presentableId" value="LOCAL-00137" />
+      <option name="project" value="LOCAL" />
+      <updated>1746448613231</updated>
+    </task>
+    <task id="LOCAL-00138" summary="fix UserServiceImplTest">
+      <option name="closed" value="true" />
+      <created>1746449169844</created>
+      <option name="number" value="00138" />
+      <option name="presentableId" value="LOCAL-00138" />
+      <option name="project" value="LOCAL" />
+      <updated>1746449169844</updated>
+    </task>
+    <task id="LOCAL-00139" summary="fix OrganizationServiceImplTest">
+      <option name="closed" value="true" />
+      <created>1746449322645</created>
+      <option name="number" value="00139" />
+      <option name="presentableId" value="LOCAL-00139" />
+      <option name="project" value="LOCAL" />
+      <updated>1746449322645</updated>
+    </task>
+    <task id="LOCAL-00140" summary="return mode notification">
+      <option name="closed" value="true" />
+      <created>1746533239220</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1746533239220</updated>
+    </task>
+    <task id="LOCAL-00141" summary="add notifications for not accepted reports">
+      <option name="closed" value="true" />
+      <created>1746534189649</created>
+      <option name="number" value="00141" />
+      <option name="presentableId" value="LOCAL-00141" />
+      <option name="project" value="LOCAL" />
+      <updated>1746534189650</updated>
+    </task>
+    <task id="LOCAL-00142" summary="fix notifications for not accepted reports">
+      <option name="closed" value="true" />
+      <created>1746534404650</created>
+      <option name="number" value="00142" />
+      <option name="presentableId" value="LOCAL-00142" />
+      <option name="project" value="LOCAL" />
+      <updated>1746534404650</updated>
+    </task>
+    <task id="LOCAL-00143" summary="fix position update">
+      <option name="closed" value="true" />
+      <created>1746625001728</created>
+      <option name="number" value="00143" />
+      <option name="presentableId" value="LOCAL-00143" />
+      <option name="project" value="LOCAL" />
+      <updated>1746625001728</updated>
+    </task>
+    <task id="LOCAL-00144" summary="fix daily report status notification bug">
+      <option name="closed" value="true" />
+      <created>1746625231206</created>
+      <option name="number" value="00144" />
+      <option name="presentableId" value="LOCAL-00144" />
+      <option name="project" value="LOCAL" />
+      <updated>1746625231206</updated>
+    </task>
+    <task id="LOCAL-00145" summary="fix tests">
+      <option name="closed" value="true" />
+      <created>1746625768839</created>
+      <option name="number" value="00145" />
+      <option name="presentableId" value="LOCAL-00145" />
+      <option name="project" value="LOCAL" />
+      <updated>1746625768839</updated>
+    </task>
+    <task id="LOCAL-00146" summary="add new parsing method for mode">
+      <option name="closed" value="true" />
+      <created>1746646823800</created>
+      <option name="number" value="00146" />
+      <option name="presentableId" value="LOCAL-00146" />
+      <option name="project" value="LOCAL" />
+      <updated>1746646823800</updated>
+    </task>
+    <task id="LOCAL-00147" summary="remove bad constructions">
+      <option name="closed" value="true" />
+      <created>1746891800990</created>
+      <option name="number" value="00147" />
+      <option name="presentableId" value="LOCAL-00147" />
+      <option name="project" value="LOCAL" />
+      <updated>1746891800991</updated>
+    </task>
+    <task id="LOCAL-00148" summary="add tests to sonar">
+      <option name="closed" value="true" />
+      <created>1746892895206</created>
+      <option name="number" value="00148" />
+      <option name="presentableId" value="LOCAL-00148" />
+      <option name="project" value="LOCAL" />
+      <updated>1746892895206</updated>
+    </task>
+    <task id="LOCAL-00149" summary="add tests to sonar">
+      <option name="closed" value="true" />
+      <created>1746893893135</created>
+      <option name="number" value="00149" />
+      <option name="presentableId" value="LOCAL-00149" />
+      <option name="project" value="LOCAL" />
+      <updated>1746893893135</updated>
+    </task>
+    <task id="LOCAL-00150" summary="add tests to sonar">
+      <option name="closed" value="true" />
+      <created>1746894580977</created>
+      <option name="number" value="00150" />
+      <option name="presentableId" value="LOCAL-00150" />
+      <option name="project" value="LOCAL" />
+      <updated>1746894580977</updated>
+    </task>
+    <task id="LOCAL-00151" summary="edit recovery code size">
+      <option name="closed" value="true" />
+      <created>1747061742125</created>
+      <option name="number" value="00151" />
+      <option name="presentableId" value="LOCAL-00151" />
+      <option name="project" value="LOCAL" />
+      <updated>1747061742125</updated>
+    </task>
+    <option name="localTasksCounter" value="152" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -928,7 +1071,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="main" />
+                        <option value="gogs/main" />
                       </list>
                     </value>
                   </entry>
@@ -941,20 +1084,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix artefacts in gitlab ci/cd" />
-    <MESSAGE value="fix scripts error" />
-    <MESSAGE value="test ci/cd" />
-    <MESSAGE value="edit report schemes" />
-    <MESSAGE value="deploy test" />
-    <MESSAGE value="test sast" />
-    <MESSAGE value="configure log journal" />
-    <MESSAGE value="edit architecture, domain model is only position, not product" />
-    <MESSAGE value="fix gitlab-ci for checking changes in services" />
-    <MESSAGE value="add backup utilities via pgbackrest" />
-    <MESSAGE value="fix backup utilities via pgbackrest" />
-    <MESSAGE value="edit backup method via pgdump" />
-    <MESSAGE value="fix backup method via pgdump" />
-    <MESSAGE value="add physical backup" />
     <MESSAGE value="Revert &quot;fix physical backup&quot;&#10;&#10;This reverts commit 43a6b6a807cc68aee39eae0fb809fbf5eb198e4b.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="fix physical backup" />
     <MESSAGE value="add incr physical backup" />
@@ -966,7 +1095,21 @@
     <MESSAGE value="update keystore" />
     <MESSAGE value="add new keystore for gateway" />
     <MESSAGE value="edit project directory in gitlab-ci" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit project directory in gitlab-ci" />
+    <MESSAGE value="rename PageRequest DTO, edit gitlab-ci, remove mode notifications and add access to notification only for subscribed users" />
+    <MESSAGE value="fix UserMapper" />
+    <MESSAGE value="fix UserServiceImplTest" />
+    <MESSAGE value="fix OrganizationServiceImplTest" />
+    <MESSAGE value="return mode notification" />
+    <MESSAGE value="add notifications for not accepted reports" />
+    <MESSAGE value="fix notifications for not accepted reports" />
+    <MESSAGE value="fix position update" />
+    <MESSAGE value="fix daily report status notification bug" />
+    <MESSAGE value="fix tests" />
+    <MESSAGE value="add new parsing method for mode" />
+    <MESSAGE value="remove bad constructions" />
+    <MESSAGE value="add tests to sonar" />
+    <MESSAGE value="edit recovery code size" />
+    <option name="LAST_COMMIT_MESSAGE" value="edit recovery code size" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: factory-monitoring-service
+  cloud:
+    consul:
+      host: consul-server
+      port: 8500
+      discovery:
+        enabled: true
+        acl-token: "3bcb67bb-7d6f-8261-b8e6-e40b31483124"
+      config:
+        enabled: true
+        format: key_value
+        acl-token: "3bcb67bb-7d6f-8261-b8e6-e40b31483124"
+  config:
+    import: "consul:"

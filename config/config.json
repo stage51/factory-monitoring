@@ -1,0 +1,482 @@
+[
+        {
+                "key": "config/api-gateway/data",
+                "flags": 0,
+                "value": "c3ByaW5nOgogIGNsb3VkOgogICAgZ2F0ZXdheToKICAgICAgZGlzY292ZXJ5OgogICAgICAgIGxvY2F0b3I6CiAgICAgICAgICBlbmFibGVkOiB0cnVlCiAgICAgIHJvdXRlczoKICAgICAgICAtIGlkOiBmaXZlLW1pbnV0ZS1yZXBvcnQKICAgICAgICAgIHVyaTogbGI6Ly9maXZlLW1pbnV0ZS1yZXBvcnQKICAgICAgICAgIHByZWRpY2F0ZXM6CiAgICAgICAgICAgIC0gUGF0aD0vYXBpL3YxL2ZpdmUtbWludXRlLXJlcG9ydC8qKgogICAgICAgIC0gaWQ6IGRhaWx5LXJlcG9ydAogICAgICAgICAgdXJpOiBsYjovL2RhaWx5LXJlcG9ydAogICAgICAgICAgcHJlZGljYXRlczoKICAgICAgICAgICAgLSBQYXRoPS9hcGkvdjEvZGFpbHktcmVwb3J0LyoqCiAgICAgICAgLSBpZDogbW9kZS1yZXBvcnQKICAgICAgICAgIHVyaTogbGI6Ly9tb2RlLXJlcG9ydAogICAgICAgICAgcHJlZGljYXRlczoKICAgICAgICAgICAgLSBQYXRoPS9hcGkvdjEvbW9kZS1yZXBvcnQvKioKICAgICAgICAtIGlkOiBhdXRoLXNlcnZlcgogICAgICAgICAgdXJpOiBsYjovL2F1dGgtc2VydmVyCiAgICAgICAgICBwcmVkaWNhdGVzOgogICAgICAgICAgICAtIFBhdGg9L2FwaS92MS9hdXRoLXNlcnZlci8qKgogICAgICAgIC0gaWQ6IGNvbmZpZy1zZXJ2ZXIKICAgICAgICAgIHVyaTogbGI6Ly9jb25maWctc2VydmVyCiAgICAgICAgICBwcmVkaWNhdGVzOgogICAgICAgICAgICAtIFBhdGg9L2FwaS92MS9jb25maWctc2VydmVyLyoqCiAgICAgICAgLSBpZDogbWFpbC1zZXJ2aWNlCiAgICAgICAgICB1cmk6IGxiOi8vbWFpbC1zZXJ2aWNlCiAgICAgICAgICBwcmVkaWNhdGVzOgogICAgICAgICAgICAtIFBhdGg9L2FwaS92MS9tYWlsLXNlcnZpY2UvKioKICAgICAgZGVmYXVsdC1maWx0ZXJzOgogICAgICAgIC0gRGVkdXBlUmVzcG9uc2VIZWFkZXI9QWNjZXNzLUNvbnRyb2wtQWxsb3ctQ3JlZGVudGlhbHMgQWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2luCiAgICAgIGdsb2JhbGNvcnM6CiAgICAgICAgY29yc0NvbmZpZ3VyYXRpb25zOgogICAgICAgICAgJ1svKipdJzoKICAgICAgICAgICAgYWxsb3dlZE9yaWdpbnM6ICJodHRwOi8vMTI3LjAuMC4xOjMwMDAsIGh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCwgbG9jYWxob3N0OjMwMDAsIGh0dHA6Ly8xMjcuMC4wLjEsIGh0dHA6Ly8xMjcuMC4wLjEsIGh0dHA6Ly9sb2NhbGhvc3QsIGxvY2FsaG9zdCIKICAgICAgICAgICAgYWxsb3dlZEhlYWRlcnM6ICIqIgogICAgICAgICAgICBhbGxvd2VkTWV0aG9kczoKICAgICAgICAgICAgICAtIEdFVAogICAgICAgICAgICAgIC0gUE9TVAogICAgICAgICAgICAgIC0gREVMRVRFCiAgICAgICAgICAgICAgLSBQVVQKICAgICAgICAgICAgICAtIE9QVElPTlMKc2VydmVyOgogIHBvcnQ6IDgwODA="
+        },
+        {
+                "key": "config/application/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/application/date-time.default-user-timezone",
+                "flags": 0,
+                "value": "VVRDKzAzOjAw"
+        },
+        {
+                "key": "config/application/date-time.default-value",
+                "flags": 0,
+                "value": "VVRDKzAwOjAw"
+        },
+        {
+                "key": "config/application/email.help-notification",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/email.help-notification-for",
+                "flags": 0,
+                "value": "bWFuYWdlci1vbmx5"
+        },
+        {
+                "key": "config/application/email.registration-notification",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/email.registration-notification-for",
+                "flags": 0,
+                "value": "YWRtaW4tb25seQ=="
+        },
+        {
+                "key": "config/application/security.access-expiration",
+                "flags": 0,
+                "value": "OTAwMDAw"
+        },
+        {
+                "key": "config/application/security.access-token-secret-key",
+                "flags": 0,
+                "value": "YXBpX21vbml0b3JpbmcxMDFtb25pdG9yaW5nMjAybW9uaXRvcmluZzMwM19hcGk="
+        },
+        {
+                "key": "config/application/security.api-token-secret-key",
+                "flags": 0,
+                "value": "bW9uaXRvcmluZzEwMW1vbml0b3JpbmcyMDJtb25pdG9yaW5nMzAz"
+        },
+        {
+                "key": "config/application/security.refresh-expiration",
+                "flags": 0,
+                "value": "ODY0MDAwMDA="
+        },
+        {
+                "key": "config/application/spring.main.allow-bean-definition-overriding",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/spring.mvc.static-path-pattern",
+                "flags": 0,
+                "value": "L3N0YXRpYy8qKg=="
+        },
+        {
+                "key": "config/application/spring.rabbitmq.host",
+                "flags": 0,
+                "value": "cmFiYml0bXE="
+        },
+        {
+                "key": "config/application/spring.rabbitmq.password",
+                "flags": 0,
+                "value": "YWRtaW4="
+        },
+        {
+                "key": "config/application/spring.rabbitmq.port",
+                "flags": 0,
+                "value": "NTY3Mg=="
+        },
+        {
+                "key": "config/application/spring.rabbitmq.username",
+                "flags": 0,
+                "value": "YWRtaW4="
+        },
+        {
+                "key": "config/application/spring.rabbitmq.virtual-host",
+                "flags": 0,
+                "value": "Lw=="
+        },
+        {
+                "key": "config/application/spring.servlet.multipart.max-file-size",
+                "flags": 0,
+                "value": "MTBNQg=="
+        },
+        {
+                "key": "config/application/spring.servlet.multipart.max-request-size",
+                "flags": 0,
+                "value": "MTBNQg=="
+        },
+        {
+                "key": "config/application/timing.green-daily-timing",
+                "flags": 0,
+                "value": "NDMyMDAwMDA="
+        },
+        {
+                "key": "config/application/timing.green-fiveminute-timing",
+                "flags": 0,
+                "value": "MzAwMDAw"
+        },
+        {
+                "key": "config/application/timing.green-monitoring-timing",
+                "flags": 0,
+                "value": "MzAwMDAw"
+        },
+        {
+                "key": "config/application/timing.red-daily-timing",
+                "flags": 0,
+                "value": "MTI5NjAwMDAw"
+        },
+        {
+                "key": "config/application/timing.red-fiveminute-timing",
+                "flags": 0,
+                "value": "MzYwMDAwMA=="
+        },
+        {
+                "key": "config/application/timing.red-monitoring-timing",
+                "flags": 0,
+                "value": "MzYwMDAwMA=="
+        },
+        {
+                "key": "config/application/timing.yellow-daily-timing",
+                "flags": 0,
+                "value": "ODY0MDAwMDA="
+        },
+        {
+                "key": "config/application/timing.yellow-fiveminute-timing",
+                "flags": 0,
+                "value": "MTIwMDAwMA=="
+        },
+        {
+                "key": "config/application/timing.yellow-monitoring-timing",
+                "flags": 0,
+                "value": "MTIwMDAwMA=="
+        },
+        {
+                "key": "config/application/user.avatar-upload",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/user.image-hosting-api-url",
+                "flags": 0,
+                "value": "aHR0cHM6Ly9hcGkuaW1hZ2ViYW4ucnUvdjE="
+        },
+        {
+                "key": "config/application/user.image-hosting-secret-key",
+                "flags": 0,
+                "value": "QmVhcmVyIGRVRkRndDdpMDZ1UGo0M3NTQ0pWZU1Bd3dnS0xTMlJtT3Z4"
+        },
+        {
+                "key": "config/application/user.recovery-url-lifetime",
+                "flags": 0,
+                "value": "MTQ0MA=="
+        },
+        {
+                "key": "config/application/xml-reports.daily-report",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/xml-reports.five-minute-report",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/application/xml-reports.ftp-directory",
+                "flags": 0,
+                "value": "L3JlcG9ydHMtY2lrdA=="
+        },
+        {
+                "key": "config/application/xml-reports.ftp-host",
+                "flags": 0,
+                "value": "ZnRwLnJ1LTEuc3RvcmFnZS5zZWxjbG91ZC5ydQ=="
+        },
+        {
+                "key": "config/application/xml-reports.ftp-password",
+                "flags": 0,
+                "value": "ZjkyY2ZiYmExYTk0NGM0YzkzMjg2N2QwYjJkNjdiOWM="
+        },
+        {
+                "key": "config/application/xml-reports.ftp-port",
+                "flags": 0,
+                "value": "MjE="
+        },
+        {
+                "key": "config/application/xml-reports.ftp-username",
+                "flags": 0,
+                "value": "ZWQwZDc1ZDYzMTM4NDRlMDk3NjgzNGZkYmVjOTU1OWQ="
+        },
+        {
+                "key": "config/application/xml-reports.mode-report",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/auth-server/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/auth-server/admin.password",
+                "flags": 0,
+                "value": "YWRtaW5hZG1pbg=="
+        },
+        {
+                "key": "config/auth-server/admin.username",
+                "flags": 0,
+                "value": "YS5tZXJrdWxvdkBjZW50cmlrdC5ydQ=="
+        },
+        {
+                "key": "config/auth-server/server.port",
+                "flags": 0,
+                "value": "ODA4Mw=="
+        },
+        {
+                "key": "config/auth-server/spring.datasource.driver-class-name",
+                "flags": 0,
+                "value": "b3JnLnBvc3RncmVzcWwuRHJpdmVy"
+        },
+        {
+                "key": "config/auth-server/spring.datasource.password",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfcGFzc3dvcmQ="
+        },
+        {
+                "key": "config/auth-server/spring.datasource.url",
+                "flags": 0,
+                "value": "amRiYzpwb3N0Z3Jlc3FsOi8vdXNlcl9kYjo1NDMyL3VzZXI="
+        },
+        {
+                "key": "config/auth-server/spring.datasource.username",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfYWRtaW4="
+        },
+        {
+                "key": "config/auth-server/spring.jpa.hibernate.ddl-auto",
+                "flags": 0,
+                "value": "dXBkYXRl"
+        },
+        {
+                "key": "config/auth-server/spring.jpa.show-sql",
+                "flags": 0,
+                "value": "ZmFsc2U="
+        },
+        {
+                "key": "config/daily-report/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/daily-report/server.port",
+                "flags": 0,
+                "value": "ODA4Mg=="
+        },
+        {
+                "key": "config/daily-report/spring.datasource.driven-class-name",
+                "flags": 0,
+                "value": "b3JnLnBvc3RncmVzcWwuRHJpdmVy"
+        },
+        {
+                "key": "config/daily-report/spring.datasource.password",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfcGFzc3dvcmQ="
+        },
+        {
+                "key": "config/daily-report/spring.datasource.url",
+                "flags": 0,
+                "value": "amRiYzpwb3N0Z3Jlc3FsOi8vZGFpbHktcmVwb3J0X2RiOjU0MzIvZGFpbHktcmVwb3J0"
+        },
+        {
+                "key": "config/daily-report/spring.datasource.username",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfYWRtaW4="
+        },
+        {
+                "key": "config/daily-report/spring.jpa.hibernate.ddl-auto",
+                "flags": 0,
+                "value": "dXBkYXRl"
+        },
+        {
+                "key": "config/daily-report/spring.jpa.show-sql",
+                "flags": 0,
+                "value": "ZmFsc2U="
+        },
+        {
+                "key": "config/five-minute-report/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/five-minute-report/server.port",
+                "flags": 0,
+                "value": "ODA4MQ=="
+        },
+        {
+                "key": "config/five-minute-report/spring.datasource.driver-class-name",
+                "flags": 0,
+                "value": "b3JnLnBvc3RncmVzcWwuRHJpdmVy"
+        },
+        {
+                "key": "config/five-minute-report/spring.datasource.password",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfcGFzc3dvcmQ="
+        },
+        {
+                "key": "config/five-minute-report/spring.datasource.url",
+                "flags": 0,
+                "value": "amRiYzpwb3N0Z3Jlc3FsOi8vZml2ZS1taW51dGUtcmVwb3J0X2RiOjU0MzIvZml2ZS1taW51dGUtcmVwb3J0"
+        },
+        {
+                "key": "config/five-minute-report/spring.datasource.username",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfYWRtaW4="
+        },
+        {
+                "key": "config/five-minute-report/spring.jpa.hibernate.ddl-auto",
+                "flags": 0,
+                "value": "dXBkYXRl"
+        },
+        {
+                "key": "config/five-minute-report/spring.jpa.show-sql",
+                "flags": 0,
+                "value": "ZmFsc2U="
+        },
+        {
+                "key": "config/mail-service/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/mail-service/server.port",
+                "flags": 0,
+                "value": "ODEwMA=="
+        },
+        {
+                "key": "config/mail-service/spring.mail.host",
+                "flags": 0,
+                "value": "bWFpbC5jZW50cmlrdC5ydQ=="
+        },
+        {
+                "key": "config/mail-service/spring.mail.password",
+                "flags": 0,
+                "value": "RkBjIzByeV8wRl9NMG4xI29yMW5n"
+        },
+        {
+                "key": "config/mail-service/spring.mail.port",
+                "flags": 0,
+                "value": "NDY1"
+        },
+        {
+                "key": "config/mail-service/spring.mail.properties.mail.smtp.auth",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/mail-service/spring.mail.properties.mail.smtp.ssl.enable",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        },
+        {
+                "key": "config/mail-service/spring.mail.properties.mail.smtp.starttls.enable",
+                "flags": 0,
+                "value": "ZmFsc2U="
+        },
+        {
+                "key": "config/mail-service/spring.mail.username",
+                "flags": 0,
+                "value": "bW9uaXRvcmluZy5mYWN0b3J5QGNlbnRyaWt0LnJ1"
+        },
+        {
+                "key": "config/mode-report/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/mode-report/server.port",
+                "flags": 0,
+                "value": "ODA4NA=="
+        },
+        {
+                "key": "config/mode-report/spring.datasource.driver-class-name",
+                "flags": 0,
+                "value": "b3JnLnBvc3RncmVzcWwuRHJpdmVy"
+        },
+        {
+                "key": "config/mode-report/spring.datasource.password",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfcGFzc3dvcmQ="
+        },
+        {
+                "key": "config/mode-report/spring.datasource.url",
+                "flags": 0,
+                "value": "amRiYzpwb3N0Z3Jlc3FsOi8vbW9kZS1yZXBvcnRfZGI6NTQzMi9tb2RlLXJlcG9ydA=="
+        },
+        {
+                "key": "config/mode-report/spring.datasource.username",
+                "flags": 0,
+                "value": "cG9zdGdyZXNfYWRtaW4="
+        },
+        {
+                "key": "config/mode-report/spring.jpa.hibernate.ddl-auto",
+                "flags": 0,
+                "value": "dXBkYXRl"
+        },
+        {
+                "key": "config/mode-report/spring.jpa.show-sql",
+                "flags": 0,
+                "value": "ZmFsc2U="
+        },
+        {
+                "key": "config/next-app/",
+                "flags": 0,
+                "value": ""
+        },
+        {
+                "key": "config/next-app/company.company-address",
+                "flags": 0,
+                "value": "0LMuINCc0L7RgdC60LLQsCwg0J7RgdGC0LDQv9C+0LLRgdC60LjQuSDQv9GA0L7QtdC30LQsINC0LiA1LCDRgdGC0YAuIDQsINC/0L7QtC4gNCwg0L7RhNC40YEgMTIx"
+        },
+        {
+                "key": "config/next-app/company.company-email",
+                "flags": 0,
+                "value": "aW5mb0BjZW50cmlrdC5ydQ=="
+        },
+        {
+                "key": "config/next-app/company.company-mail-address",
+                "flags": 0,
+                "value": "MTE1MjgwLCDQnNC+0YHQutCy0LAsINGD0Lsu0JvQtdC90LjQvdGB0LrQsNGPINCh0LvQvtCx0L7QtNCwLCDQtNC+0LwgMTksINGN0YLQsNC2IDEsINC60L7QvNC9LiA0MXgx0LQsINC+0YTQuNGBIDIz"
+        },
+        {
+                "key": "config/next-app/company.company-name",
+                "flags": 0,
+                "value": "0J7QntCeIMKr0KbQtdC90YLRgCDQmNCa0KLCuw=="
+        },
+        {
+                "key": "config/next-app/company.company-phone",
+                "flags": 0,
+                "value": "KzcgKDQ5OSkgNjUzLTYxLTQz"
+        },
+        {
+                "key": "config/next-app/seo.keywords",
+                "flags": 0,
+                "value": "a2V5d29yZHM="
+        },
+        {
+                "key": "config/next-app/seo.meta-info",
+                "flags": 0,
+                "value": "bWV0YWluZm8="
+        },
+        {
+                "key": "config/next-app/seo.page-description",
+                "flags": 0,
+                "value": "0KPQv9GA0LDQstC70Y/QudGC0LUg0LLQsNGI0LjQvNC4INC00LDQvdC90YvQvNC4INC40Lcg0JXQk9CQ0JjQoQ=="
+        },
+        {
+                "key": "config/next-app/seo.page-title",
+                "flags": 0,
+                "value": "0JXQk9CQ0JjQoSDQnNC+0L3QuNGC0L7RgNC40L3Qsw=="
+        },
+        {
+                "key": "config/next-app/user.avatar-upload",
+                "flags": 0,
+                "value": "dHJ1ZQ=="
+        }
+]

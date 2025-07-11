@@ -14,6 +14,15 @@
         <module name="five-minute-report" />
         <module name="mail-service" />
       </profile>
+      <profile name="Annotation profile for factory-monitoring-service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="factory-monitoring-service" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="daily-report (1)" target="17" />
@@ -30,6 +39,7 @@
       <module name="daily-report" options="-parameters" />
       <module name="daily-report (1)" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
+      <module name="factory-monitoring-service" options="-parameters" />
       <module name="five-minute-report" options="-parameters" />
       <module name="ftp-client" options="-parameters" />
       <module name="mail-service" options="-parameters" />

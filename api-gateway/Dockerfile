@@ -12,7 +12,6 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 COPY --from=builder /build/target/*.jar app.jar
-COPY --from=builder /build/src/main/resources/keystore.p12 /app/keystore.p12
 
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
