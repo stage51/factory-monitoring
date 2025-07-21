@@ -3,8 +3,8 @@ package ru.centrikt.factorymonitoringservice.application.mappers.daily;
 import jakarta.validation.constraints.NotNull;
 import ru.centrikt.factorymonitoringservice.domain.enums.Mode;
 import ru.centrikt.factorymonitoringservice.domain.models.daily.DailyPosition;
-import ru.centrikt.factorymonitoringservice.domain.models.daily.Product;
-import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.daily.PositionRequest;
+import ru.centrikt.factorymonitoringservice.domain.models.daily.DailyProduct;
+import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.daily.DailyReportPositionRequest;
 import ru.centrikt.factorymonitoringservice.presentation.dtos.responses.daily.DailyPositionResponse;
 
 public class DailyPositionMapper {
@@ -21,44 +21,44 @@ public class DailyPositionMapper {
         return dto;
     }
 
-    public static DailyPosition toEntity(PositionRequest positionRequest) {
-        if (positionRequest == null) {
+    public static DailyPosition toEntity(DailyReportPositionRequest dailyReportPositionRequest) {
+        if (dailyReportPositionRequest == null) {
             return null;
         }
         DailyPosition position = new DailyPosition();
-        position.setProduct(DailyProductMapper.toEntity(positionRequest.getProduct()));
-        return setFields(positionRequest, position);
+        position.setProduct(DailyProductMapper.toEntity(dailyReportPositionRequest.getProduct()));
+        return setFields(dailyReportPositionRequest, position);
     }
 
-    public static DailyPosition toEntity(PositionRequest positionRequest, DailyPosition position) {
-        if (positionRequest == null) {
+    public static DailyPosition toEntity(DailyReportPositionRequest dailyReportPositionRequest, DailyPosition position) {
+        if (dailyReportPositionRequest == null) {
             return null;
         }
-        position.setProduct(DailyProductMapper.toEntity(positionRequest.getProduct()));
-        return setFields(positionRequest, position);
+        position.setProduct(DailyProductMapper.toEntity(dailyReportPositionRequest.getProduct()));
+        return setFields(dailyReportPositionRequest, position);
     }
 
-    public static DailyPosition toEntity(PositionRequest positionRequest, DailyPosition position, Product product) {
-        if (positionRequest == null) {
+    public static DailyPosition toEntity(DailyReportPositionRequest dailyReportPositionRequest, DailyPosition position, DailyProduct product) {
+        if (dailyReportPositionRequest == null) {
             return null;
         }
-        position.setProduct(DailyProductMapper.toEntity(positionRequest.getProduct(), product));
-        return setFields(positionRequest, position);
+        position.setProduct(DailyProductMapper.toEntity(dailyReportPositionRequest.getProduct(), product));
+        return setFields(dailyReportPositionRequest, position);
     }
 
     @NotNull
-    private static DailyPosition setFields(PositionRequest positionRequest, DailyPosition position) {
-        position.setStartDate(positionRequest.getStartDate());
-        position.setEndDate(positionRequest.getEndDate());
-        position.setVbsStart(positionRequest.getVbsStart());
-        position.setVbsEnd(positionRequest.getVbsEnd());
-        position.setAStart(positionRequest.getAStart());
-        position.setAEnd(positionRequest.getAEnd());
-        position.setPercentAlc(positionRequest.getPercentAlc());
-        position.setBottleCountStart(positionRequest.getBottleCountStart());
-        position.setBottleCountEnd(positionRequest.getBottleCountEnd());
-        position.setTemperature(positionRequest.getTemperature());
-        position.setMode(Mode.fromCodeOrDescription(positionRequest.getMode()));
+    private static DailyPosition setFields(DailyReportPositionRequest dailyReportPositionRequest, DailyPosition position) {
+        position.setStartDate(dailyReportPositionRequest.getStartDate());
+        position.setEndDate(dailyReportPositionRequest.getEndDate());
+        position.setVbsStart(dailyReportPositionRequest.getVbsStart());
+        position.setVbsEnd(dailyReportPositionRequest.getVbsEnd());
+        position.setAStart(dailyReportPositionRequest.getAStart());
+        position.setAEnd(dailyReportPositionRequest.getAEnd());
+        position.setPercentAlc(dailyReportPositionRequest.getPercentAlc());
+        position.setBottleCountStart(dailyReportPositionRequest.getBottleCountStart());
+        position.setBottleCountEnd(dailyReportPositionRequest.getBottleCountEnd());
+        position.setTemperature(dailyReportPositionRequest.getTemperature());
+        position.setMode(Mode.fromCodeOrDescription(dailyReportPositionRequest.getMode()));
         return position;
     }
 }

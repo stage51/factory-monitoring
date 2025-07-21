@@ -7,6 +7,7 @@ import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizatio
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
+import centrikt.factorymonitoring.authserver.models.enums.OrganizationType;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.time.ZoneId;
@@ -19,7 +20,7 @@ public class OrganizationMapper {
             return null;
         }
         OrganizationResponse dto = OrganizationResponse.builder().id(organization.getId()).userId(organization.getUser().getId()).createdAt(organization.getCreatedAt()).updatedAt(organization.getUpdatedAt())
-                .shortName(organization.getShortName()).name(organization.getName()).type(organization.getType()).region(organization.getRegion())
+                .shortName(organization.getShortName()).name(organization.getName()).type(organization.getType().getDescription()).region(organization.getRegion())
                 .taxpayerNumber(organization.getTaxpayerNumber()).reasonCode(organization.getReasonCode()).address(organization.getAddress())
                 .specialEmail(organization.getSpecialEmail()).specialPhone(organization.getSpecialPhone())
                 .build();
@@ -61,7 +62,7 @@ public class OrganizationMapper {
         existingOrganization.setUpdatedAt(ZonedDateTime.now(ZoneId.of(DateTimeConfig.getDefaultValue())));
         existingOrganization.setShortName(organizationRequest.getShortName());
         existingOrganization.setName(organizationRequest.getName());
-        existingOrganization.setType(organizationRequest.getType());
+        existingOrganization.setType(OrganizationType.fromDescription(organizationRequest.getType()));
         existingOrganization.setRegion(organizationRequest.getRegion());
         existingOrganization.setTaxpayerNumber(organizationRequest.getTaxpayerNumber());
         existingOrganization.setReasonCode(organizationRequest.getReasonCode());
@@ -75,7 +76,7 @@ public class OrganizationMapper {
         organization.setUser(user);
         organization.setShortName(shortName);
         organization.setName(name);
-        organization.setType(type);
+        organization.setType(OrganizationType.fromDescription(type));
         organization.setRegion(region);
         organization.setTaxpayerNumber(taxpayerNumber);
         organization.setReasonCode(reasonCode);

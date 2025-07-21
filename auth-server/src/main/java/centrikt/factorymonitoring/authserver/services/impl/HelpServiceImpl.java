@@ -2,13 +2,12 @@ package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
 import centrikt.factorymonitoring.authserver.dtos.requests.HelpRequest;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidConstantException;
 import centrikt.factorymonitoring.authserver.models.User;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.HelpService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -77,7 +76,7 @@ public class HelpServiceImpl implements HelpService {
                 }
                 default -> {
                     log.error("Invalid help notification for constraint: {}", helpNotificationFor);
-                    throw new InvalidConstraintException("Invalid help notification for constraint " + helpNotificationFor);
+                    throw new InvalidConstantException("Invalid help notification for constraint " + helpNotificationFor);
                 }
             }
 

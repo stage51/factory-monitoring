@@ -52,7 +52,7 @@ public class OnlineController implements centrikt.factorymonitoring.authserver.c
                 pageRequest.getDateRanges()
         );
 
-        log.debug("Fetched {} elements", users.getContent().size());
+        log.debug("Fetched {} elements", users.getNumberOfElements());
         return ResponseEntity.ok(users);
     }
 }

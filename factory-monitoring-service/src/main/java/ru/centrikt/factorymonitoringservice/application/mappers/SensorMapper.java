@@ -11,7 +11,10 @@ public class SensorMapper {
         if (sensor == null) {
             throw new EntityMappingException("Sensor cannot be null");
         }
-        SensorResponse dto = SensorResponse.builder().id(sensor.getId()).sensorNumber(sensor.getControllerNumber() + "_" + sensor.getLineNumber())
+        SensorResponse dto = SensorResponse.builder()
+                .id(sensor.getId())
+                .organizationName(sensor.getOrganizationName())
+                .sensorNumber(sensor.getControllerNumber() + "_" + sensor.getLineNumber())
                 .taxpayerNumber(sensor.getTaxpayerNumber()).build();
         return dto;
     }
@@ -36,6 +39,7 @@ public class SensorMapper {
 
     @NotNull
     private static Sensor setFields(SensorRequest sensorRequest, Sensor sensor) {
+        sensor.setOrganizationName(sensorRequest.getOrganizationName());
         sensor.setTaxpayerNumber(sensorRequest.getTaxpayerNumber());
         sensor.setControllerNumber(sensorRequest.getSensorNumber().split("_")[0]);
         sensor.setLineNumber(sensorRequest.getSensorNumber().split("_")[1]);

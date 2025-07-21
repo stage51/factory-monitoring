@@ -4,139 +4,344 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="edit recovery code size">
-      <change afterPath="$PROJECT_DIR$/config/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/consul_acl.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DailyReportFilterConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DateTimeConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/FiveMinuteReportFilterConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/ModeReportFilterConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/TimingConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/filters/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/SensorMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyPositionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyReportMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinutePositionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteReportMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModePositionMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeProductMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeReportMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/AbstractService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/DailyReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/FiveMinuteReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/ModeReportService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/DailyReportServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/FiveMinuteReportServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/services/impl/ModeReportServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/FilterUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/FilterUtilImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/CustomDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/CustomFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportEndDateDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportStartDateDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportModeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportProductFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportSensorNumberFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportStatusFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportUnitTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/dateranges/FiveMinuteReportControlDateDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportModeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportProductFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportSensorNumberFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportStatusFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportUnitTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportEndDateDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportStartDateDateRangeHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportModeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportProductFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportSensorNumberFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportUnitTypeFilterHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPReportType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/ftp/FTPUtilImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/jwt/JwtTokenUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/validator/EntityValidator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/validator/EntityValidatorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Mode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/ReportStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/Type.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/enums/UnitType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/EntityMappingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/EntityNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileDownloadException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileExistsException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/FileUploadException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/InvalidConstantException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/InvalidTokenException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/MessageSendingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/MethodDisabledException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/ValidationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/BaseEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/Sensor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyPosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReportRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinutePosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/fiveminute/FiveMinuteReportRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModePosition.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeProduct.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeReport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/mode/ModeReportRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/DailyReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/FiveMinuteReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/ModeReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractDailyReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractFiveMinuteReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/controllers/docs/AbstractModeReportController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/extra/DateRange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/extra/PageRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/messages/ReportMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/SensorRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/PositionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/ProductRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteReportRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/PositionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/ProductRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModeReportRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/PositionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ProductRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/ReportStatusResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/SensorResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyPositionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyProductResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/daily/DailyReportResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinutePositionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinuteProductResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/fiveminute/FiveMinuteReportResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModePositionResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModeProductResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/mode/ModeReportResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/resources/application.yml" afterDir="false" />
+    <list default="true" id="98d9cba3-f820-4ddf-adb4-94776d36143c" name="Changes" comment="add new factory monitoring service">
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/requests/ControllerRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/responses/ControllerResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/ControllerMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/enums/OrganizationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/repos/ControllerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/DailyReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/ModeReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/NavigationReportFilterConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/SensorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/daily/DailyPositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/daily/DailyProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/daily/DailyReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/mode/ModePositionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/mode/ModeProductMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/mode/ModeReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/navigation/NavigationDataMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/navigation/NavigationLevelGaugeMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/mappers/navigation/NavigationReportMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/DailyReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/ModeReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/NavigationReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/impl/DailyReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/impl/ModeReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/impl/NavigationReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/FilterUtilImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/CustomDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/CustomFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportEndDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/dateranges/DailyReportStartDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportGovNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportModeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportProductFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportStatusFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportEndDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/dateranges/ModeReportStartDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportGovNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportModeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportProductFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/navigation/dateranges/NavigationReportNavigationDateDateRangeHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/navigation/filters/NavigationReportGovNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/navigation/filters/NavigationReportOrganizationNameFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/navigation/filters/NavigationReportStatusFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/handlers/navigation/filters/NavigationReportTaxpayerNumberFilterHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/ftp/FTPReportType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/ftp/FTPUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/validator/EntityValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/EntityMappingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/FileDownloadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/FileExistsException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/FileUploadException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/Sensor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/daily/DailyReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/daily/DailyReportRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/mode/ModeProduct.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/mode/ModeReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/navigation/NavigationData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/navigation/NavigationLevelGauge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/navigation/NavigationReport.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/DailyReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/ModeReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/NavigateReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/docs/AbstractDailyReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/docs/AbstractModeReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/controllers/docs/AbstractNavigationReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/SensorRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/daily/DailyReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/mode/ModeReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationAdminFindParamsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationAdminNavigateParamsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationDataRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationLevelGaugeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationReportRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationUserFindParamsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/navigation/NavigationUserNavigateParamsRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/SensorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/daily/DailyReportResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/mode/ModeReportResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/navigation/NavigationDataResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/navigation/NavigationLevelGaugeResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/navigation/NavigationReportResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/daily-report/src/test/resources/application-test.yml" beforeDir="false" afterPath="$PROJECT_DIR$/daily-report/src/test/resources/application-test.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OnlineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/OrganizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/RefreshTokenController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/controllers/docs/OrganizationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/responses/OrganizationResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/dtos/responses/OrganizationResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/InvalidConstraintException.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/InvalidConstantException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/OrganizationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/mappers/OrganizationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/Organization.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/Organization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/OrganizationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/OrganizationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/HelpServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/HelpServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/OrganizationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/main/java/centrikt/factorymonitoring/authserver/services/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/services/HelpServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/auth-server/src/test/java/centrikt/factorymonitoring/authserver/services/HelpServiceImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/DailyReportApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/DateTimeConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/DateTimeConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/OpenApiConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/configs/TimingConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/TimingConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/controllers/docs/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/extra/DateRange.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/extra/PageRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/extra/PageRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/messages/ReportMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/requests/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/daily/DailyReportPositionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/requests/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/daily/DailyReportProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/responses/PositionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/mode/ModePositionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/responses/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/daily/DailyProductResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/dtos/responses/ReportStatusResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/ReportStatusResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Mode.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/enums/Mode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/ReportStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/enums/ReportStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/enums/UnitType.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/enums/UnitType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/EntityNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/EntityNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/InvalidConstantException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/InvalidTokenException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/MessageSendingException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/MethodDisabledException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/MethodDisabledException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/ValidationException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/ValidationException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/handlers/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/filters/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/filters/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/PositionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/mappers/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/BaseEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/BaseEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/mode/ModePosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/models/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/repos/PositionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/repos/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/PositionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/ReadService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/PositionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/services/impl/ProductServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/filter/FilterUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/filter/FilterUtilImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/ftp/FTPUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/ftp/FTPUtilImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/jwt/JwtTokenUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/validator/EntityValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/java/centrikt/factory_monitoring/daily_report/utils/validator/EntityValidatorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/validator/EntityValidatorImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/DailyReportApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/PositionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/controllers/ProductControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/PositionServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/java/centrikt/factory_monitoring/daily_report/services/ProductServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/src/test/resources/application-test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/daily-report/test.sh" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/postgres-init/pg_hba.conf" beforeDir="false" afterPath="$PROJECT_DIR$/postgres-init/pg_hba.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DailyReportFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/DailyReportFilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/FiveMinuteReportFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/FiveMinuteReportFilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/ModeReportFilterConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/configs/ModeReportFilterConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/SensorMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/SensorMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyPositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyPositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/daily/DailyProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinutePositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinutePositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/fiveminute/FiveMinuteProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModePositionMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModePositionMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeProductMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/mappers/mode/ModeProductMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportUnitTypeFilterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/daily/filters/DailyReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportUnitTypeFilterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/fiveminute/filters/FiveMinuteReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportUnitTypeFilterHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/application/utils/filter/handlers/mode/filters/ModeReportUnitTypeFilterHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/Sensor.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/Sensor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyPosition.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/domain/models/daily/DailyProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/SensorRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/SensorRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportPositionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/daily/DailyReportProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteReportRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteReportPositionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/fiveminute/FiveMinuteProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModeReportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModeReportRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModePositionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/requests/mode/ModeProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/SensorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/factory-monitoring-service/src/main/java/ru/centrikt/factorymonitoringservice/presentation/dtos/responses/SensorResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/DateTimeConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/OpenApiConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/configs/OpenApiConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/RabbitMQConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/configs/TimingConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/controllers/docs/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/extra/DateRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/extra/DateRange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/extra/PageRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/messages/ReportMessage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/PositionRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/requests/ProductRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/PositionResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/ProductResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/dtos/responses/ReportStatusResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Mode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/ReportStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Status.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/enums/UnitType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/EntityNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/InvalidConstantException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/InvalidTokenException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/MessageSendingException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/MethodDisabledException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/ValidationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/filters/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/PositionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/mappers/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Position.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/models/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/daily/DailyProduct.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/repos/PositionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/repos/ProductRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/PositionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/ReadService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/PositionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/services/impl/ProductServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/filter/FilterUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/filter/FilterUtilImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/ftp/FTPUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/ftp/FTPUtilImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/jwt/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/validator/EntityValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/java/centrikt/factory_monitoring/five_minute_report/utils/validator/EntityValidatorImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/FiveMinuteReportApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/PositionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/controllers/ProductControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/PositionServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/java/centrikt/factory_monitoring/five_minute_report/services/ProductServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/src/test/resources/application-test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/five-minute-report/test.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/build.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/ModeReportApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/DateTimeConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/OpenApiConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/RabbitMQConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/configs/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/PositionController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/controllers/docs/ProductController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/extra/DateRange.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/extra/PageRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/messages/ReportMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/messages/ReportMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/requests/PositionRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/mode/ModePositionRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/requests/ProductRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/requests/mode/ModeProductRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/responses/PositionResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/daily/DailyPositionResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/dtos/responses/ProductResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/presentation/dtos/responses/mode/ModeProductResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Mode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/enums/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/Type.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/enums/UnitType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/EntityNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/InvalidConstantException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/InvalidConstantException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/InvalidTokenException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/InvalidTokenException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/MessageSendingException.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/exceptions/MessageSendingException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/MethodDisabledException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/ValidationException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/exceptions/handlers/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/filters/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/PositionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/mappers/ProductMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/models/BaseEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/models/Position.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/daily/DailyPosition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/models/Product.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/repos/PositionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/navigation/NavigationReportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/repos/ProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/domain/models/mode/ModeReportRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/PositionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/ProductService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/ReadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/services/AbstractService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/PositionServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/services/impl/ProductServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/filter/FilterUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/filter/FilterUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/filter/FilterUtilImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/ftp/FTPUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/ftp/FTPUtilImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/transport-monitoring-service/src/main/java/ru/centrikt/transportmonitoringservice/application/utils/ftp/FTPUtilImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/jwt/JwtTokenUtil.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/validator/EntityValidator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/java/centrikt/factorymonitoring/modereport/utils/validator/EntityValidatorImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/main/resources/logback.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/ModeReportApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/PositionControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/controllers/ProductControllerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/PositionServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/java/centrikt/factorymonitoring/modereport/services/ProductServiceImplTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/src/test/resources/application-test.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mode-report/test.sh" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,10 +352,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Record" />
+        <option value="Exception" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Exception" />
       </list>
     </option>
   </component>
@@ -213,131 +418,131 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests$AuthControllerTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServerApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.executor&quot;: &quot;Debug&quot;,
-    &quot;JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.DailyReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.FiveMinuteReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.contextLoads.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ModeReportApplicationTests.testCreatePosition.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerIntegrationTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest (2).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PositionServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest (1).executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.ProductServiceImplTest.update_ShouldUpdateProduct_WhenProductExists.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor&quot;: &quot;Run&quot;,
-    &quot;Maven.api-gateway [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-server [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.auth-server [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.config-server [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.daily-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.five-minute-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mode-report [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.mode-report [test].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.ApiGatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.AuthServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ConfigServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DailyReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.FiveMinuteReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.MailServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.ModeReportApplication.executor&quot;: &quot;Run&quot;,
-    &quot;database.data.extractors.current.export.id&quot;: &quot;JSON-Groovy.json.groovy&quot;,
-    &quot;database.data.extractors.current.id&quot;: &quot;CSV-Groovy.csv.groovy&quot;,
-    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/stg51/IdeaProjects/factory-monitoring/factory-monitoring-service&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.14941406&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.AuthControllerTest.checkAuth_shouldReturnOk_whenValidAuthorizationHeader.executor": "Run",
+    "JUnit.AuthControllerTest.executor": "Run",
+    "JUnit.AuthControllerTest.logout_shouldReturnNoContent_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.refreshToken_shouldReturnNewAccessToken_whenValidRequest.executor": "Run",
+    "JUnit.AuthControllerTest.register_shouldReturnUserResponse_whenValidRequest.executor": "Run",
+    "JUnit.AuthServerApplicationTests$AuthControllerTests.executor": "Run",
+    "JUnit.AuthServerApplicationTests.executor": "Run",
+    "JUnit.AuthServiceImplTest.createTokens_ValidCredentials_ReturnsTokens.executor": "Run",
+    "JUnit.AuthServiceImplTest.executor": "Debug",
+    "JUnit.AuthServiceImplTest.recoveryPassword_ValidCode_SetsNewPassword.executor": "Run",
+    "JUnit.AuthServiceImplTest.refreshAccessToken_ValidRefreshToken_ReturnsNewAccessToken.executor": "Run",
+    "JUnit.DailyReportApplicationTests.executor": "Run",
+    "JUnit.EmailServiceImplTest.executor": "Run",
+    "JUnit.EmailServiceImplTest.sendSimpleEmail_ShouldSendEmail.executor": "Run",
+    "JUnit.FilterUtilImplTest.executor": "Run",
+    "JUnit.FilterUtilImplTest.testBuildSpecification_ShouldApplyFilters.executor": "Run",
+    "JUnit.FiveMinuteReportApplicationTests.executor": "Run",
+    "JUnit.HelpServiceImplTest.executor": "Run",
+    "JUnit.HelpServiceImplTest.sendHelpRequest_shouldSendEmailsToAdminsAndManagers_whenHelpNotificationForIsAdminManager.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldNotSetAuthentication_WhenTokenIsInvalid.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForApiKey.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldSetAuthenticationForBearerToken.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testDoFilterInternal_ShouldThrowInvalidTokenException_WhenNoValidHeaders.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnFalse_WhenPathDoesNotStartWithAuth.executor": "Run",
+    "JUnit.JwtAuthenticationFilterTest.testShouldNotFilter_ShouldReturnTrue_WhenPathStartsWithAuth.executor": "Run",
+    "JUnit.ModeReportApplicationTests.contextLoads.executor": "Run",
+    "JUnit.ModeReportApplicationTests.executor": "Run",
+    "JUnit.ModeReportApplicationTests.testCreatePosition.executor": "Run",
+    "JUnit.OrganizationControllerTest.createOrganization_shouldReturnCreatedOrganization.executor": "Run",
+    "JUnit.OrganizationControllerTest.executor": "Run",
+    "JUnit.OrganizationControllerTest.getOrganization_shouldReturnOrganization_whenValidId.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.createOrganization_ValidRequest_ReturnsOrganizationResponse.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.executor": "Run",
+    "JUnit.OrganizationServiceImplTest.getPage_ValidParameters_ReturnsPageOfOrganizations.executor": "Run",
+    "JUnit.PositionControllerIntegrationTest.executor": "Run",
+    "JUnit.PositionControllerTest (1).executor": "Run",
+    "JUnit.PositionControllerTest.executor": "Run",
+    "JUnit.PositionControllerTest.getPagePositionsByTaxpayerNumber_shouldReturnPagedPositions.executor": "Run",
+    "JUnit.PositionControllerTest.updatePosition_shouldReturnUpdatedPositionResponse.executor": "Run",
+    "JUnit.PositionControllerTest.uploadReport_shouldReturnInternalServerError_whenUploadFails.executor": "Run",
+    "JUnit.PositionServiceImplTest (1).executor": "Run",
+    "JUnit.PositionServiceImplTest (2).executor": "Run",
+    "JUnit.PositionServiceImplTest.create_ShouldSavePositionAndSendMessage.executor": "Run",
+    "JUnit.PositionServiceImplTest.executor": "Run",
+    "JUnit.ProductControllerTest (1).executor": "Run",
+    "JUnit.ProductControllerTest.executor": "Run",
+    "JUnit.ProductControllerTest.getPagePositions_shouldReturnPagedProducts.executor": "Run",
+    "JUnit.ProductServiceImplTest (1).executor": "Run",
+    "JUnit.ProductServiceImplTest,create_ShouldSaveProduct and 8 more.executor": "Run",
+    "JUnit.ProductServiceImplTest.executor": "Run",
+    "JUnit.ProductServiceImplTest.update_ShouldUpdateProduct_WhenProductExists.executor": "Run",
+    "JUnit.RoleControllerTest.executor": "Run",
+    "JUnit.RoleControllerTest.testGetRoles_ShouldReturnListOfRoles.executor": "Run",
+    "JUnit.UserControllerTest.executor": "Run",
+    "JUnit.UserControllerTest.getNotVerifiedUserPage_shouldReturnPage.executor": "Run",
+    "JUnit.UserServiceImplTest.create_UserSuccessfullyCreated_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.executor": "Run",
+    "JUnit.UserServiceImplTest.getAll_UsersExist_ReturnsUserList.executor": "Run",
+    "JUnit.UserServiceImplTest.getPage_ValidParameters_ReturnsPageOfUsers.executor": "Run",
+    "JUnit.UserServiceImplTest.get_UserExists_ReturnsUserResponse.executor": "Run",
+    "JUnit.UserServiceImplTest.uploadAvatar_AvatarUploadEnabled_ReturnsAvatarResponse.executor": "Run",
+    "Maven.api-gateway [package].executor": "Run",
+    "Maven.auth-server [compile].executor": "Run",
+    "Maven.auth-server [test].executor": "Run",
+    "Maven.config-server [package].executor": "Run",
+    "Maven.daily-report [test].executor": "Run",
+    "Maven.five-minute-report [test].executor": "Run",
+    "Maven.microservice-utils [clean].executor": "Run",
+    "Maven.microservice-utils [install].executor": "Run",
+    "Maven.microservice-utils [org.apache.maven.plugins:maven-install-plugin:3.1.3:install].executor": "Run",
+    "Maven.mode-report [package].executor": "Run",
+    "Maven.mode-report [test].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.AuthServerApplication.executor": "Run",
+    "Spring Boot.ConfigServerApplication.executor": "Run",
+    "Spring Boot.DailyReportApplication.executor": "Run",
+    "Spring Boot.DiscoveryServerApplication.executor": "Run",
+    "Spring Boot.FiveMinuteReportApplication.executor": "Run",
+    "Spring Boot.MailServiceApplication.executor": "Run",
+    "Spring Boot.ModeReportApplication.executor": "Run",
+    "database.data.extractors.current.export.id": "JSON-Groovy.json.groovy",
+    "database.data.extractors.current.id": "CSV-Groovy.csv.groovy",
+    "extract.method.default.visibility": "private",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/stg51/IdeaProjects/factory-monitoring/transport-monitoring-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.14941406",
+    "project.structure.side.proportion": "0.2",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\resources" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers\fiveminute" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\utils\filter\handlers\mode" />
-      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\factory-monitoring-service\src\main\java\ru\centrikt\factorymonitoringservice\application\mappers\mode" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\transport-monitoring-service" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\transport-monitoring-service\src\main\java\ru\centrikt\transportmonitoringservice\presentation\dtos\responses\navigation" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\transport-monitoring-service\src\main\java\ru\centrikt\transportmonitoringservice\presentation\dtos\requests" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\transport-monitoring-service\src\main\java\ru\centrikt\transportmonitoringservice" />
+      <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\transport-monitoring-service\src\main\java\ru\centrikt\transportmonitoringservice\application" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\stg51\IdeaProjects\factory-monitoring\config" />
@@ -350,11 +555,11 @@
       <recent name="centrikt.factorymonitoring.mailservice.services" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ru.centrikt.factorymonitoringservice.application.configs" />
-      <recent name="ru.centrikt.factorymonitoringservice.application.utils.filter.handlers.daily.dateranges" />
-      <recent name="ru.centrikt.factorymonitoringservice.presentation.controllers" />
-      <recent name="ru.centrikt.factorymonitoringservice.presentation.controllers.docs" />
-      <recent name="ru.centrikt.factorymonitoringservice.application.services.impl" />
+      <recent name="ru.centrikt.transportmonitoringservice.application.utils.filter.handlers.navigation.filters" />
+      <recent name="ru.centrikt.transportmonitoringservice.presentation.dtos.requests.navigation" />
+      <recent name="ru.centrikt.transportmonitoringservice.application.utils.filter.handlers.navigation.dateranges" />
+      <recent name="ru.centrikt.transportmonitoringservice.domain.models.navigation" />
+      <recent name="ru.centrikt.transportmonitoringservice.domain.models.daily" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -502,6 +707,13 @@
     <configuration name="ModeReportApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="mode-report" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="centrikt.factorymonitoring.modereport.ModeReportApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TransportMonitoringServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="transport-monitoring-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.centrikt.transportmonitoringservice.TransportMonitoringServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -660,15 +872,9 @@
       <workItem from="1751363636095" duration="10871000" />
       <workItem from="1751471148302" duration="74577000" />
       <workItem from="1752133882694" duration="8352000" />
-      <workItem from="1752150140363" duration="20493000" />
-    </task>
-    <task id="LOCAL-00103" summary="fix physical backup">
-      <option name="closed" value="true" />
-      <created>1744818026194</created>
-      <option name="number" value="00103" />
-      <option name="presentableId" value="LOCAL-00103" />
-      <option name="project" value="LOCAL" />
-      <updated>1744818026194</updated>
+      <workItem from="1752150140363" duration="20931000" />
+      <workItem from="1752481441991" duration="55955000" />
+      <workItem from="1752740796563" duration="32118000" />
     </task>
     <task id="LOCAL-00104" summary="fix physical backup">
       <option name="closed" value="true" />
@@ -1054,7 +1260,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747061742125</updated>
     </task>
-    <option name="localTasksCounter" value="152" />
+    <task id="LOCAL-00152" summary="edit recovery code size">
+      <option name="closed" value="true" />
+      <created>1752252168032</created>
+      <option name="number" value="00152" />
+      <option name="presentableId" value="LOCAL-00152" />
+      <option name="project" value="LOCAL" />
+      <updated>1752252168033</updated>
+    </task>
+    <option name="localTasksCounter" value="153" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1071,7 +1285,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="gogs/main" />
+                        <option value="main" />
                       </list>
                     </value>
                   </entry>
@@ -1084,7 +1298,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Revert &quot;fix physical backup&quot;&#10;&#10;This reverts commit 43a6b6a807cc68aee39eae0fb809fbf5eb198e4b.&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
     <MESSAGE value="fix physical backup" />
     <MESSAGE value="add incr physical backup" />
     <MESSAGE value="add incr dependency for postgres" />
@@ -1108,8 +1321,9 @@
     <MESSAGE value="add new parsing method for mode" />
     <MESSAGE value="remove bad constructions" />
     <MESSAGE value="add tests to sonar" />
-    <MESSAGE value="edit recovery code size" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit recovery code size" />
+    <MESSAGE value="add new factory monitoring service" />
+    <MESSAGE value="add new factory monitoring service" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new factory monitoring service" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

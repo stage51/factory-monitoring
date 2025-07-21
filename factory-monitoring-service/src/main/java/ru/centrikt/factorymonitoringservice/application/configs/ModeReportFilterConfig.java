@@ -15,6 +15,7 @@ import java.util.List;
 public class ModeReportFilterConfig {
     @Bean
     public FilterUtil<ModeReport> ModeReportFilterUtil(ModeReportProductFilterHandler productFilterHandler,
+                                                       ModeReportTaxpayerNumberFilterHandler taxpayerNumberFilterHandler,
                                                        ModeReportSensorNumberFilterHandler sensorNumberFilterHandler,
                                                        ModeReportModeFilterHandler modeFilterHandler,
                                                        ModeReportTypeFilterHandler typeFilterHandler,
@@ -22,7 +23,9 @@ public class ModeReportFilterConfig {
                                                        ModeReportStartDateDateRangeHandler modeReportStartDateDateRangeHandler,
                                                        ModeReportEndDateDateRangeHandler modeReportEndDateDateRangeHandler) {
 
-        return new FilterUtilImpl<>(List.of(productFilterHandler, sensorNumberFilterHandler,
-                modeFilterHandler, typeFilterHandler, unitTypeFilterHandler), List.of(modeReportStartDateDateRangeHandler, modeReportEndDateDateRangeHandler));
+        return new FilterUtilImpl<>(
+                List.of(productFilterHandler, sensorNumberFilterHandler,
+                modeFilterHandler, typeFilterHandler, unitTypeFilterHandler, taxpayerNumberFilterHandler),
+                List.of(modeReportStartDateDateRangeHandler, modeReportEndDateDateRangeHandler));
     }
 }

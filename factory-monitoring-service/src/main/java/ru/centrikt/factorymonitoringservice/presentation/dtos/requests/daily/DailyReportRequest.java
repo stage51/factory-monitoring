@@ -11,11 +11,11 @@ import java.util.List;
 @Schema(description = "Форма на создание, редактирование дневного отчета")
 public class DailyReportRequest {
 
-    @Schema(description = "Вывод информации о сенсоре")
+    @Schema(description = "Форма информации о сенсоре")
     private SensorRequest sensor;
 
     @Schema(description = "Форма на создание, редактирование позиции")
-    private List<PositionRequest> positions;
+    private List<DailyReportPositionRequest> positions;
 
     @Schema(description = "Статус: Неизвестно, Принято в РАР, Не принято в РАР, Принято в УТМ, Не принято в УТМ")
     @NotNull(message = "Status must not be null")

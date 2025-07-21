@@ -2,15 +2,21 @@ package centrikt.factorymonitoring.authserver.services.impl;
 
 import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
 import centrikt.factorymonitoring.authserver.dtos.messages.ReportMessage;
+import centrikt.factorymonitoring.authserver.dtos.requests.ControllerRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.ControllerResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.exceptions.EntityNotFoundException;
+import centrikt.factorymonitoring.authserver.exceptions.IllegalArgumentException;
 import centrikt.factorymonitoring.authserver.exceptions.MessageSendingException;
+import centrikt.factorymonitoring.authserver.mappers.ControllerMapper;
 import centrikt.factorymonitoring.authserver.mappers.OrganizationMapper;
+import centrikt.factorymonitoring.authserver.models.Controller;
 import centrikt.factorymonitoring.authserver.models.Organization;
 import centrikt.factorymonitoring.authserver.models.User;
 import centrikt.factorymonitoring.authserver.models.enums.ReportNotification;
+import centrikt.factorymonitoring.authserver.repos.ControllerRepository;
 import centrikt.factorymonitoring.authserver.repos.OrganizationRepository;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
 import centrikt.factorymonitoring.authserver.services.OrganizationService;
@@ -29,8 +35,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,17 +44,22 @@ import java.util.stream.Collectors;
 public class OrganizationServiceImpl implements OrganizationService {
     private UserRepository userRepository;
     private OrganizationRepository organizationRepository;
-    private FilterUtil<Organization> filterUtil;
+    private ControllerRepository controllerRepository;
+    private FilterUtil<Organization> organizationFilterUtil;
+    private FilterUtil<Controller> controllerFilterUtil;
     private EntityValidator entityValidator;
     private JwtTokenUtil jwtTokenUtil;
     private RabbitTemplate rabbitTemplate;
 
     public OrganizationServiceImpl(UserRepository userRepository, OrganizationRepository organizationRepository,
-                                   FilterUtil<Organization> filterUtil, EntityValidator entityValidator,
+                                   FilterUtil<Organization> organizationFilterUtil, EntityValidator entityValidator,
+                                   FilterUtil<Controller> controllerFilterUtil, ControllerRepository controllerRepository,
                                    JwtTokenUtil jwtTokenUtil, RabbitTemplate rabbitTemplate) {
         this.userRepository = userRepository;
         this.organizationRepository = organizationRepository;
-        this.filterUtil = filterUtil;
+        this.organizationFilterUtil = organizationFilterUtil;
+        this.controllerRepository = controllerRepository;
+        this.controllerFilterUtil = controllerFilterUtil;
         this.entityValidator = entityValidator;
         this.jwtTokenUtil = jwtTokenUtil;
         this.rabbitTemplate = rabbitTemplate;
@@ -70,8 +79,8 @@ public class OrganizationServiceImpl implements OrganizationService {
     }
 
     @Autowired
-    public void setFilterUtil(FilterUtil<Organization> filterUtil) {
-        this.filterUtil = filterUtil;
+    public void setOrganizationFilterUtil(FilterUtil<Organization> organizationFilterUtil) {
+        this.organizationFilterUtil = organizationFilterUtil;
         log.debug("FilterUtil set");
     }
 
@@ -91,6 +100,18 @@ public class OrganizationServiceImpl implements OrganizationService {
     public void setRabbitTemplate(RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
         log.debug("RabbitTemplate set");
+    }
+
+    @Autowired
+    public void setControllerRepository(ControllerRepository controllerRepository) {
+        this.controllerRepository = controllerRepository;
+        log.debug("ControllerRepository set");
+    }
+
+    @Autowired
+    public void setControllerFilterUtil(FilterUtil<Controller> controllerFilterUtil) {
+        this.controllerFilterUtil = controllerFilterUtil;
+        log.debug("ControllerFilterUtil set");
     }
 
     @Override
@@ -168,7 +189,7 @@ public class OrganizationServiceImpl implements OrganizationService {
         Sort sort = Sort.by(direction, sortBy != null ? sortBy : "shortName");
         Pageable pageable = PageRequest.of(number, size, sort);
         log.debug("Created Pageable: {}", pageable);
-        Specification<Organization> specification = filterUtil.buildSpecification(filters, dateRanges);
+        Specification<Organization> specification = organizationFilterUtil.buildSpecification(filters, dateRanges);
         log.debug("Built specification for filters: {} and dateRanges: {}", filters, dateRanges);
         Page<OrganizationResponse> response = organizationRepository.findAll(specification, pageable).map(OrganizationMapper::toResponse);
         log.info("Fetched {} organizations with filters and pagination", response.getTotalElements());
@@ -254,6 +275,65 @@ public class OrganizationServiceImpl implements OrganizationService {
             log.debug("User is not subscribed. Skipping email report.");
         }
         log.trace("Exiting receiveReportMessageAndSendEmail method");
+    }
+
+    @Override
+    public Page<ControllerResponse> getControllers(String accessToken, int size, int number, String sortBy, String sortDirection, Map<String, String> filters, Map<String, String> dateRanges) {
+        log.trace("Entering getPage method with size: {}, number: {}, sortBy: {}, sortDirection: {}, filters: {}, dateRanges: {}", size, number, sortBy, sortDirection, filters, dateRanges);
+        Sort.Direction direction = sortDirection != null ? Sort.Direction.fromString(sortDirection) : Sort.Direction.DESC;
+        Sort sort = Sort.by(direction, sortBy != null ? sortBy : "shortName");
+        Pageable pageable = PageRequest.of(number, size, sort);
+        log.debug("Created Pageable: {}", pageable);
+        Specification<Controller> specification = controllerFilterUtil.buildSpecification(filters, dateRanges);
+        log.debug("Built specification for filters: {} and dateRanges: {}", filters, dateRanges);
+        Page<ControllerResponse> response = controllerRepository.findAll(specification, pageable).map(ControllerMapper::toResponse);
+        log.info("Fetched {} organizations with filters and pagination", response.getTotalElements());
+        log.trace("Exiting getPage method with response: {}", response);
+        return response;
+    }
+
+    @Override
+    public ControllerResponse createController(String accessToken, ControllerRequest controllerRequest) {
+        log.trace("Entering createController method with accessToken and DTO: {}", controllerRequest);
+        entityValidator.validate(controllerRequest);
+        User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
+                .orElseThrow(() -> {
+                    log.error("User with email {} not found", jwtTokenUtil.extractUsername(accessToken));
+                    return new EntityNotFoundException("User with email " + jwtTokenUtil.extractUsername(accessToken) + " not found");
+                });
+        Organization existingOrganization = organizationRepository.findByUser(user)
+                .orElseThrow(() -> {
+                    log.error("Organization for user {} not found", user.getEmail());
+                    return new EntityNotFoundException("Organization for user " + user.getEmail() + " not found");
+                });
+        Controller controller = ControllerMapper.toEntity(controllerRequest, existingOrganization);
+        ControllerResponse response = ControllerMapper.toResponse(controllerRepository.save(controller));
+        log.info("Created controller: {}", response);
+        log.trace("Exiting createController method");
+        return response;
+    }
+
+    @Override
+    @Transactional
+    public void deleteController(String accessToken, Long id) {
+        log.trace("Entering deleteController method with accessToken: {}", accessToken);
+        User user = userRepository.findByEmail(jwtTokenUtil.extractUsername(accessToken))
+                .orElseThrow(() -> {
+                    log.error("User with email {} not found", jwtTokenUtil.extractUsername(accessToken));
+                    return new EntityNotFoundException("User with email " + jwtTokenUtil.extractUsername(accessToken) + " not found");
+                });
+        Controller controller = controllerRepository.findById(id)
+                .orElseThrow(() -> {
+                    log.error("Controller with id {} not found", id);
+                    return new EntityNotFoundException("Controller with id " + id + " not found");
+                });
+        if (user.getOrganization().getId().equals(controller.getOrganization().getId())) {
+            controllerRepository.delete(controller);
+        } else {
+            throw new IllegalArgumentException("Controller with id " + id + " does not belong to organization with id " + user.getOrganization().getId());
+        }
+        log.info("Deleted controller for user with email {}", user.getEmail());
+        log.trace("Exiting deleteController method");
     }
 
     private void sendEmailReport(ReportMessage reportMessage, Organization organization) {

@@ -7,8 +7,7 @@ import centrikt.factorymonitoring.authserver.dtos.requests.admin.AdminUserReques
 import centrikt.factorymonitoring.authserver.dtos.responses.SettingResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UploadAvatarResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.UserResponse;
-import centrikt.factorymonitoring.authserver.dtos.responses.image.ImageHostUploadResponse;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidConstantException;
 import centrikt.factorymonitoring.authserver.exceptions.MethodDisabledException;
 import centrikt.factorymonitoring.authserver.mappers.SettingMapper;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
@@ -22,30 +21,22 @@ import centrikt.factorymonitoring.authserver.utils.filter.FilterUtil;
 import centrikt.factorymonitoring.authserver.utils.entityvalidator.EntityValidator;
 import centrikt.factorymonitoring.authserver.utils.imageuploader.ImageUploader;
 import centrikt.factorymonitoring.authserver.utils.jwt.JwtTokenUtil;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
-import org.springframework.http.*;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -148,7 +139,7 @@ public class UserServiceImpl implements UserService {
                 emails.addAll(managersEmails);
             } else {
                 log.warn("Invalid registration notification for constraint: {}", registrationNotificationFor);
-                throw new InvalidConstraintException("Invalid registration notification for constraint " + registrationNotificationFor);
+                throw new InvalidConstantException("Invalid registration notification for constraint " + registrationNotificationFor);
             }
             if (registrationNotification) {
                 log.debug("Sending registration notification to: {}", emails);

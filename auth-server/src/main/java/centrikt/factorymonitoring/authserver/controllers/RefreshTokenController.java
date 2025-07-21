@@ -45,7 +45,7 @@ public class RefreshTokenController implements centrikt.factorymonitoring.authse
                 pageRequest.getFilters(),
                 pageRequest.getDateRanges()
         );
-        log.debug("Fetched {} refresh token records", tokens.getContent().size());
+        log.debug("Fetched {} refresh token records", tokens.getNumberOfElements());
         return ResponseEntity.ok(tokens);
     }
 }

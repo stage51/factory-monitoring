@@ -68,7 +68,7 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
                 pageRequest.getFilters(),
                 pageRequest.getDateRanges()
         );
-        log.debug("Fetched {} user records", users.getContent().size());
+        log.debug("Fetched {} user records", users.getNumberOfElements());
         return ResponseEntity.ok(users);
     }
 
@@ -128,7 +128,7 @@ public class UserController implements centrikt.factorymonitoring.authserver.con
                 pageRequest.getFilters(),
                 pageRequest.getDateRanges()
         );
-        log.debug("Fetched {} user records", users.getContent().size());
+        log.debug("Fetched {} user records", users.getNumberOfElements());
         return ResponseEntity.ok(users);
     }
 

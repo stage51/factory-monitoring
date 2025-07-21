@@ -1,8 +1,10 @@
 package centrikt.factorymonitoring.authserver.controllers.docs;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.ControllerRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.ControllerResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -89,4 +91,28 @@ public interface OrganizationController {
     )
     @DeleteMapping("/profile")
     ResponseEntity<OrganizationResponse> deleteOrganization(@RequestHeader("Authorization") String authorizationHeader);
+
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Добавление контроллера",
+            description = "Добавление контроллера для организации пользователя на основе его access токена"
+    )
+    @PostMapping("/profile/controllers")
+    ResponseEntity<ControllerResponse> createController(@RequestHeader("Authorization") String authorizationHeader, @RequestBody ControllerRequest request);
+
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Просмотр контроллеров",
+            description = "Просмотр контроллеров для организации пользователя на основе его access токена"
+    )
+    @PostMapping("/profile/controllers/fetch")
+    ResponseEntity<Page<ControllerResponse>> getControllerPage(@RequestHeader("Authorization") String authorizationHeader, @RequestBody PageRequest pageRequest);
+
+    @SecurityRequirement(name = "JWT")
+    @Operation(
+            summary = "Удаление контроллера",
+            description = "Удаление контроллера для организации пользователя на основе его access токена"
+    )
+    @DeleteMapping("/profile/controllers/{id}")
+    ResponseEntity<ControllerResponse> deleteController(@RequestHeader("Authorization") String authorizationHeader, @PathVariable Long id);
 }

@@ -12,5 +12,6 @@
     <file url="file://$PROJECT_DIR$/mail-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/microservice-utils/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/mode-report/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/transport-monitoring-service/src/main/java" charset="UTF-8" />
   </component>
 </project>

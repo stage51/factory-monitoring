@@ -1,8 +1,10 @@
 package centrikt.factorymonitoring.authserver.controllers;
 
 import centrikt.factorymonitoring.authserver.dtos.extra.PageRequest;
+import centrikt.factorymonitoring.authserver.dtos.requests.ControllerRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.OrganizationRequest;
 import centrikt.factorymonitoring.authserver.dtos.requests.users.AuthOrganizationRequest;
+import centrikt.factorymonitoring.authserver.dtos.responses.ControllerResponse;
 import centrikt.factorymonitoring.authserver.dtos.responses.OrganizationResponse;
 import centrikt.factorymonitoring.authserver.services.OrganizationService;
 import lombok.extern.slf4j.Slf4j;
@@ -79,7 +81,7 @@ public class OrganizationController implements centrikt.factorymonitoring.authse
                 pageRequest.getFilters(),
                 pageRequest.getDateRanges()
         );
-        log.debug("Fetched page with {} organizations", organizations.getContent().size());
+        log.debug("Fetched page with {} organizations", organizations.getNumberOfElements());
         return ResponseEntity.ok(organizations);
     }
 
@@ -107,6 +109,41 @@ public class OrganizationController implements centrikt.factorymonitoring.authse
         log.info("Deleting organization profile with accessToken: {}", accessToken);
         organizationService.deleteOrganization(accessToken);
         log.debug("Deleted organization profile");
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/profile/controllers")
+    public ResponseEntity<ControllerResponse> createController(@RequestHeader("Authorization") String authorizationHeader, @RequestBody ControllerRequest request) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        log.info("Creating new controller: {}", request);
+        ControllerResponse response = organizationService.createController(accessToken, request);
+        log.debug("Created new controller: {}", response);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+
+    @PostMapping("/profile/controllers/fetch")
+    public ResponseEntity<Page<ControllerResponse>> getControllerPage(@RequestHeader("Authorization") String authorizationHeader, @RequestBody PageRequest pageRequest) {
+        log.info("Fetching page with filters: {}, dateRanges: {}", pageRequest.getFilters(), pageRequest.getDateRanges());
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        Page<ControllerResponse> controllers = organizationService.getControllers(
+                accessToken,
+                pageRequest.getSize(),
+                pageRequest.getNumber(),
+                pageRequest.getSortBy(),
+                pageRequest.getSortDirection(),
+                pageRequest.getFilters(),
+                pageRequest.getDateRanges()
+        );
+        log.debug("Fetched page with {} controllers", controllers.getNumberOfElements());
+        return ResponseEntity.ok(controllers);
+    }
+
+    @DeleteMapping("/profile/controllers/{id}")
+    public ResponseEntity<ControllerResponse> deleteController(@RequestHeader("Authorization") String authorizationHeader, @PathVariable Long id) {
+        String accessToken = authorizationHeader.startsWith("Bearer ") ? authorizationHeader.substring(7) : authorizationHeader;
+        log.info("Deleting controller profile with accessToken: {}", accessToken);
+        organizationService.deleteController(accessToken, id);
+        log.debug("Deleted controller profile");
         return ResponseEntity.noContent().build();
     }
 }

@@ -19,7 +19,19 @@ services:
     ports:
       - "8081:8081"
     depends_on:
-      - report_db
+      - factory_report_db
+      - config-server
+    networks:
+      - app-net
+
+  transport-monitoring-service:
+    build:
+      context: ./transport-monitoring-service
+    container_name: transport-monitoring-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - transport_report_db
       - config-server
     networks:
       - app-net
@@ -76,17 +88,35 @@ services:
     networks:
       - app-net
 
-  report_db:
+  factory_report_db:
     image: postgres:17.2-bookworm
-    container_name: report_db
+    container_name: factory_report_db
+    ports:
+      - "8901:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres_password
+      POSTGRES_USER: postgres_admin
+      POSTGRES_DB: factory_report
+    volumes:
+      - factory_report_postgres_data:/var/lib/postgresql/data
+      - ./postgres-init:/etc/postgresql-custom
+      - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgres-init/init.sh:/docker-entrypoint-initdb.d/init.sh
+    command: postgres -c config_file=/etc/postgresql-custom/postgresql.conf
+    networks:
+      - app-net
+
+  transport_report_db:
+    image: postgres:17.2-bookworm
+    container_name: transport_report_db
     ports:
       - "8902:5432"
     environment:
       POSTGRES_PASSWORD: postgres_password
       POSTGRES_USER: postgres_admin
-      POSTGRES_DB: report
+      POSTGRES_DB: transport_report
     volumes:
-      - report_postgres_data:/var/lib/postgresql/data
+      - transport_report_postgres_data:/var/lib/postgresql/data
       - ./postgres-init:/etc/postgresql-custom
       - ./postgres-init/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./postgres-init/init.sh:/docker-entrypoint-initdb.d/init.sh
@@ -162,12 +192,14 @@ services:
       - pg_dumps:/backups
     depends_on:
       - user_db
-      - report_db
+      - factory_report_db
+      - transport_report_db
     networks:
       - app-net
 
 volumes:
-  report_postgres_data:
+  factory_report_postgres_data:
+  transport_report_postgres_data:
   user_postgres_data:
   consul-server-data:
   consul-agent-data:

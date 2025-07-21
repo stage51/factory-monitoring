@@ -20,7 +20,7 @@ import java.time.ZonedDateTime;
 public class DailyPosition extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "product_id")
-    private Product product;
+    private DailyProduct product;
     @Column(nullable = false)
     private ZonedDateTime startDate;
     @Column(nullable = false)

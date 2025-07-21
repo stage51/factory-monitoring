@@ -3,7 +3,7 @@ package ru.centrikt.factorymonitoringservice.application.mappers.mode;
 import jakarta.validation.constraints.NotNull;
 import ru.centrikt.factorymonitoringservice.domain.enums.UnitType;
 import ru.centrikt.factorymonitoringservice.domain.models.mode.ModeProduct;
-import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.mode.ProductRequest;
+import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.mode.ModeProductRequest;
 import ru.centrikt.factorymonitoringservice.presentation.dtos.responses.mode.ModeProductResponse;
 
 public class ModeProductMapper {
@@ -17,27 +17,27 @@ public class ModeProductMapper {
         return dto;
     }
 
-    public static ModeProduct toEntity(ProductRequest productRequest) {
-        if (productRequest == null) {
+    public static ModeProduct toEntity(ModeProductRequest modeProductRequest) {
+        if (modeProductRequest == null) {
             return null;
         }
         ModeProduct product = new ModeProduct();
-        return setFields(productRequest, product);
+        return setFields(modeProductRequest, product);
     }
 
-    public static ModeProduct toEntity(ProductRequest productRequest, ModeProduct product) {
-        if (productRequest == null) {
+    public static ModeProduct toEntity(ModeProductRequest modeProductRequest, ModeProduct product) {
+        if (modeProductRequest == null) {
             return null;
         }
-        return setFields(productRequest, product);
+        return setFields(modeProductRequest, product);
     }
 
     @NotNull
-    private static ModeProduct setFields(ProductRequest productRequest, ModeProduct product) {
-        product.setUnitType(UnitType.fromString(productRequest.getUnitType()));
-        product.setFullName(productRequest.getFullName());
-        product.setAlcCode(productRequest.getAlcCode());
-        product.setProductVCode(productRequest.getProductVCode());
+    private static ModeProduct setFields(ModeProductRequest modeProductRequest, ModeProduct product) {
+        product.setUnitType(UnitType.fromString(modeProductRequest.getUnitType()));
+        product.setFullName(modeProductRequest.getFullName());
+        product.setAlcCode(modeProductRequest.getAlcCode());
+        product.setProductVCode(modeProductRequest.getProductVCode());
         return product;
     }
 }

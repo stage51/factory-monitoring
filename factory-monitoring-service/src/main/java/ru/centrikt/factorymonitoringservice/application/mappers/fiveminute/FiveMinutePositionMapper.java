@@ -4,7 +4,7 @@ import jakarta.validation.constraints.NotNull;
 import ru.centrikt.factorymonitoringservice.domain.enums.Mode;
 import ru.centrikt.factorymonitoringservice.domain.models.fiveminute.FiveMinutePosition;
 import ru.centrikt.factorymonitoringservice.domain.models.fiveminute.FiveMinuteProduct;
-import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.fiveminute.PositionRequest;
+import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.fiveminute.FiveMinuteReportPositionRequest;
 import ru.centrikt.factorymonitoringservice.presentation.dtos.responses.fiveminute.FiveMinutePositionResponse;
 
 public class FiveMinutePositionMapper {
@@ -23,40 +23,40 @@ public class FiveMinutePositionMapper {
         return dto;
     }
 
-    public static FiveMinutePosition toEntity(PositionRequest positionRequest) {
-        if (positionRequest == null) {
+    public static FiveMinutePosition toEntity(FiveMinuteReportPositionRequest fiveMinuteReportPositionRequest) {
+        if (fiveMinuteReportPositionRequest == null) {
             return null;
         }
         FiveMinutePosition position = new FiveMinutePosition();
-        position.setProduct(FiveMinuteProductMapper.toEntity(positionRequest.getProduct()));
-        return setFields(positionRequest, position);
+        position.setProduct(FiveMinuteProductMapper.toEntity(fiveMinuteReportPositionRequest.getProduct()));
+        return setFields(fiveMinuteReportPositionRequest, position);
     }
 
-    public static FiveMinutePosition toEntity(PositionRequest positionRequest, FiveMinutePosition position) {
-        if (positionRequest == null) {
+    public static FiveMinutePosition toEntity(FiveMinuteReportPositionRequest fiveMinuteReportPositionRequest, FiveMinutePosition position) {
+        if (fiveMinuteReportPositionRequest == null) {
             return null;
         }
-        position.setProduct(FiveMinuteProductMapper.toEntity(positionRequest.getProduct()));
-        return setFields(positionRequest, position);
+        position.setProduct(FiveMinuteProductMapper.toEntity(fiveMinuteReportPositionRequest.getProduct()));
+        return setFields(fiveMinuteReportPositionRequest, position);
     }
 
-    public static FiveMinutePosition toEntity(PositionRequest positionRequest, FiveMinutePosition position, FiveMinuteProduct product) {
-        if (positionRequest == null) {
+    public static FiveMinutePosition toEntity(FiveMinuteReportPositionRequest fiveMinuteReportPositionRequest, FiveMinutePosition position, FiveMinuteProduct product) {
+        if (fiveMinuteReportPositionRequest == null) {
             return null;
         }
-        position.setProduct(FiveMinuteProductMapper.toEntity(positionRequest.getProduct(), product));
-        return setFields(positionRequest, position);
+        position.setProduct(FiveMinuteProductMapper.toEntity(fiveMinuteReportPositionRequest.getProduct(), product));
+        return setFields(fiveMinuteReportPositionRequest, position);
     }
 
     @NotNull
-    private static FiveMinutePosition setFields(PositionRequest positionRequest, FiveMinutePosition position) {
-        position.setControlDate(positionRequest.getControlDate());
-        position.setVbsControl(positionRequest.getVbsControl());
-        position.setAControl(positionRequest.getAControl());
-        position.setPercentAlc(positionRequest.getPercentAlc());
-        position.setBottleCountControl(positionRequest.getBottleCountControl());
-        position.setTemperature(positionRequest.getTemperature());
-        position.setMode(Mode.fromCodeOrDescription(positionRequest.getMode()));
+    private static FiveMinutePosition setFields(FiveMinuteReportPositionRequest fiveMinuteReportPositionRequest, FiveMinutePosition position) {
+        position.setControlDate(fiveMinuteReportPositionRequest.getControlDate());
+        position.setVbsControl(fiveMinuteReportPositionRequest.getVbsControl());
+        position.setAControl(fiveMinuteReportPositionRequest.getAControl());
+        position.setPercentAlc(fiveMinuteReportPositionRequest.getPercentAlc());
+        position.setBottleCountControl(fiveMinuteReportPositionRequest.getBottleCountControl());
+        position.setTemperature(fiveMinuteReportPositionRequest.getTemperature());
+        position.setMode(Mode.fromCodeOrDescription(fiveMinuteReportPositionRequest.getMode()));
         return position;
     }
 }

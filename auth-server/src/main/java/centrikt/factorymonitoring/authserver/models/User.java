@@ -3,6 +3,7 @@ package centrikt.factorymonitoring.authserver.models;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 
 import java.util.List;
 
@@ -38,5 +39,6 @@ public class User extends BaseEntity {
     private Setting setting;
 
     @OneToMany(mappedBy = "user", cascade = {CascadeType.ALL}, orphanRemoval = true)
+    @BatchSize(size = 20)
     private List<RefreshToken> refreshTokens;
 }

@@ -3,13 +3,13 @@ package ru.centrikt.factorymonitoringservice.application.mappers.daily;
 import jakarta.validation.constraints.NotNull;
 import ru.centrikt.factorymonitoringservice.domain.enums.Type;
 import ru.centrikt.factorymonitoringservice.domain.enums.UnitType;
-import ru.centrikt.factorymonitoringservice.domain.models.daily.Product;
-import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.daily.ProductRequest;
+import ru.centrikt.factorymonitoringservice.domain.models.daily.DailyProduct;
+import ru.centrikt.factorymonitoringservice.presentation.dtos.requests.daily.DailyReportProductRequest;
 import ru.centrikt.factorymonitoringservice.presentation.dtos.responses.daily.DailyProductResponse;
 
 public class DailyProductMapper {
 
-    public static DailyProductResponse toResponse(Product product) {
+    public static DailyProductResponse toResponse(DailyProduct product) {
         if (product == null) {
             return null;
         }
@@ -20,31 +20,31 @@ public class DailyProductMapper {
         return dto;
     }
 
-    public static Product toEntity(ProductRequest productRequest) {
-        if (productRequest == null) {
+    public static DailyProduct toEntity(DailyReportProductRequest dailyReportProductRequest) {
+        if (dailyReportProductRequest == null) {
             return null;
         }
-        Product product = new Product();
-        return setFields(productRequest, product);
+        DailyProduct product = new DailyProduct();
+        return setFields(dailyReportProductRequest, product);
     }
 
-    public static Product toEntity(ProductRequest productRequest, Product product) {
-        if (productRequest == null) {
+    public static DailyProduct toEntity(DailyReportProductRequest dailyReportProductRequest, DailyProduct product) {
+        if (dailyReportProductRequest == null) {
             return null;
         }
-        return setFields(productRequest, product);
+        return setFields(dailyReportProductRequest, product);
     }
 
     @NotNull
-    private static Product setFields(ProductRequest productRequest, Product product) {
-        product.setUnitType(UnitType.fromString(productRequest.getUnitType()));
-        product.setType(Type.fromString(productRequest.getType()));
-        product.setFullName(productRequest.getFullName());
-        product.setShortName(productRequest.getShortName());
-        product.setAlcCode(productRequest.getAlcCode());
-        product.setCapacity(productRequest.getCapacity());
-        product.setAlcVolume(productRequest.getAlcVolume());
-        product.setProductVCode(productRequest.getProductVCode());
+    private static DailyProduct setFields(DailyReportProductRequest dailyReportProductRequest, DailyProduct product) {
+        product.setUnitType(UnitType.fromString(dailyReportProductRequest.getUnitType()));
+        product.setType(Type.fromString(dailyReportProductRequest.getType()));
+        product.setFullName(dailyReportProductRequest.getFullName());
+        product.setShortName(dailyReportProductRequest.getShortName());
+        product.setAlcCode(dailyReportProductRequest.getAlcCode());
+        product.setCapacity(dailyReportProductRequest.getCapacity());
+        product.setAlcVolume(dailyReportProductRequest.getAlcVolume());
+        product.setProductVCode(dailyReportProductRequest.getProductVCode());
         return product;
     }
 }

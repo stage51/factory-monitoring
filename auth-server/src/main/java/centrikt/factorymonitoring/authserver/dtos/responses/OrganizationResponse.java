@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import java.util.List;
+
 @Getter
 @SuperBuilder
 @Schema(description = "Форма вывода организации пользователя")
@@ -23,4 +25,5 @@ public class OrganizationResponse extends BaseResponse{
     private String address;
     private String specialEmail;
     private String specialPhone;
+    private List<ControllerResponse> controllers;
 }

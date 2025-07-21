@@ -15,8 +15,8 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<?> handleEntityNotFoundException(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Message("error", HttpStatus.NOT_FOUND.value(), ex.getMessage()));
     }
-    @ExceptionHandler(InvalidConstraintException.class)
-    public ResponseEntity<?> handleInvalidConstraintException(InvalidConstraintException ex){
+    @ExceptionHandler(InvalidConstantException.class)
+    public ResponseEntity<?> handleInvalidConstraintException(InvalidConstantException ex){
         return ResponseEntity.badRequest().body(new Message("error", HttpStatus.BAD_REQUEST.value(), ex.getMessage()));
     }
     @ExceptionHandler(ValidationException.class)

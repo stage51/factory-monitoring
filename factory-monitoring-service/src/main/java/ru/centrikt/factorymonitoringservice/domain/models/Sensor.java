@@ -16,6 +16,8 @@ import lombok.Setter;
 @Table(name="sensors")
 public class Sensor extends BaseEntity {
     @Column(nullable = false)
+    private String organizationName;
+    @Column(nullable = false)
     private String controllerNumber;
     @Column(nullable = false)
     private String lineNumber;

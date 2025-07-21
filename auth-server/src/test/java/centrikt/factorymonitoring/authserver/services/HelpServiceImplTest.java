@@ -2,7 +2,7 @@ package centrikt.factorymonitoring.authserver.services;
 
 import centrikt.factorymonitoring.authserver.dtos.messages.EmailMessage;
 import centrikt.factorymonitoring.authserver.dtos.requests.HelpRequest;
-import centrikt.factorymonitoring.authserver.exceptions.InvalidConstraintException;
+import centrikt.factorymonitoring.authserver.exceptions.InvalidConstantException;
 import centrikt.factorymonitoring.authserver.models.User;
 import centrikt.factorymonitoring.authserver.models.enums.Role;
 import centrikt.factorymonitoring.authserver.repos.UserRepository;
@@ -12,14 +12,12 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -143,7 +141,7 @@ public class HelpServiceImplTest {
         // Assert
         try {
             helpService.sendHelpRequest(helpRequest);
-        } catch (InvalidConstraintException e) {
+        } catch (InvalidConstantException e) {
             assertEquals("Invalid help notification for constraint invalid", e.getMessage());
         }
     }

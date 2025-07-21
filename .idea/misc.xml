@@ -15,13 +15,17 @@
         <option value="$PROJECT_DIR$/mail-service/pom.xml" />
         <option value="$PROJECT_DIR$/ftp-client/pom.xml" />
         <option value="$PROJECT_DIR$/factory-monitoring-service/pom.xml" />
+        <option value="$PROJECT_DIR$/transport-monitoring-service/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/daily-report/pom.xml" />
         <option value="$PROJECT_DIR$/discovery-server/pom.xml" />
+        <option value="$PROJECT_DIR$/five-minute-report/pom.xml" />
         <option value="$PROJECT_DIR$/ftp-client/pom.xml" />
         <option value="$PROJECT_DIR$/microservice-utils/pom.xml" />
+        <option value="$PROJECT_DIR$/mode-report/pom.xml" />
       </set>
     </option>
   </component>

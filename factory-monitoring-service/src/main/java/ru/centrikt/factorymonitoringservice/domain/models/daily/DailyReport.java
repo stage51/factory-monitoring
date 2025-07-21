@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.BatchSize;
 import ru.centrikt.factorymonitoringservice.domain.enums.Status;
 import ru.centrikt.factorymonitoringservice.domain.models.BaseEntity;
 import ru.centrikt.factorymonitoringservice.domain.models.Sensor;
@@ -21,6 +22,7 @@ import java.util.List;
 public class DailyReport extends BaseEntity {
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "position_id")
+    @BatchSize(size = 50)
     private List<DailyPosition> positions;
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "sensor_id")
